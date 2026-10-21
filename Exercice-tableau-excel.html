@@ -1,0 +1,1028 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>📊 20 Exercices Excel PRO | InfoPro</title><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:linear-gradient(135deg,#071b2f,#063f52,#087f8c);
+    color:#fff;
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:30px 15px;
+    background:rgba(0,0,0,.25);
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
+
+header p{
+    margin-top:8px;
+    opacity:.9;
+}
+
+.container{
+    width:95%;
+    max-width:1400px;
+    margin:25px auto;
+}
+
+.controls{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+input,select,button{
+    border:0;
+    border-radius:10px;
+    padding:12px 15px;
+    font-size:15px;
+}
+
+input,select{
+    flex:1;
+    min-width:220px;
+}
+
+button{
+    cursor:pointer;
+    font-weight:bold;
+    background:#00c9a7;
+    color:#06202c;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:18px;
+    padding:20px;
+    backdrop-filter:blur(10px);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,.16);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.badge{
+    display:inline-block;
+    background:#00c9a7;
+    color:#06202c;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#d8edf2;
+    min-height:45px;
+}
+
+.card button{
+    margin-top:15px;
+    width:100%;
+}
+
+#zoneExercice{
+    display:none;
+    margin-top:25px;
+    background:#f8fbfc;
+    color:#13232d;
+    padding:20px;
+    border-radius:18px;
+}
+
+.zoneTop{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.zoneTop button{
+    background:#123c52;
+    color:white;
+}
+
+.info{
+    background:#e7f7f5;
+    padding:15px;
+    border-left:5px solid #00a98f;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.tableWrap{
+    overflow:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:750px;
+    background:white;
+}
+
+th,td{
+    border:1px solid #bbb;
+    padding:9px;
+    text-align:center;
+}
+
+th{
+    background:#123c52;
+    color:white;
+}
+
+td[contenteditable="true"]{
+    background:#fffbe6;
+    min-width:100px;
+}
+
+.actions{
+    margin-top:15px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.actions button{
+    background:#123c52;
+    color:white;
+}
+
+.corrige{
+    display:none;
+    margin-top:20px;
+    background:#fff4cf;
+    padding:15px;
+    border-radius:10px;
+    border-left:5px solid #e4a900;
+}
+
+footer{
+    text-align:center;
+    padding:30px 15px;
+    margin-top:30px;
+    background:rgba(0,0,0,.25);
+}
+
+@media(max-width:600px){
+    header h1{
+        font-size:22px;
+    }
+
+    .container{
+        width:94%;
+    }
+}
+</style></head><body><header>
+    <div class="logo">💻 InfoPro</div>
+    <h1>📊 20 Exercices Excel PRO</h1>
+    <p>Apprendre • Pratiquer • Réussir 🌟</p>
+    <p>Mr Tahiry - Informatique 👨‍🏫</p>
+</header><div class="container"><div class="controls">
+    <input
+        type="text"
+        id="recherche"
+        placeholder="🔎 Rechercher un exercice..."
+        oninput="filtrer()"><select id="niveau" onchange="filtrer()">
+    <option value="tous">Tous les exercices</option>
+    <option value="1">Niveau 1</option>
+    <option value="2">Niveau 2</option>
+    <option value="3">Niveau 3</option>
+    <option value="4">Niveau 4</option>
+    <option value="5">Projet final</option>
+</select>
+
+</div><div class="cards" id="liste"></div><div id="zoneExercice"><div class="zoneTop">
+    <h2 id="titreExercice"></h2>
+    <button onclick="fermerExercice()">✖ Fermer</button>
+</div>
+
+<div class="info">
+    <strong>📌 Consigne :</strong>
+    <p id="consigne"></p>
+</div>
+
+<div class="tableWrap">
+    <table id="tableau"></table>
+</div>
+
+<div class="actions">
+    <button onclick="calculer()">🧮 Calculer</button>
+    <button onclick="sauvegarder()">💾 Enregistrer</button>
+    <button onclick="charger()">📂 Ouvrir stockage</button>
+    <button onclick="imprimer()">🖨️ Imprimer</button>
+    <button onclick="afficherCorrige()">👨‍🏫 Corrigé professeur</button>
+    <button onclick="reinitialiser()">🔄 Réinitialiser</button>
+</div>
+
+<div class="corrige" id="corrige"></div>
+
+</div></div><footer>
+    💻 InfoPro • Mr Tahiry - Informatique 👨‍🏫
+    <br>
+    🚀 Apprendre • Pratiquer • Réussir 🌟
+</footer><script>
+
+const exercices = [
+
+{
+id:1,
+titre:"🛒 Gestion d'un magasin",
+niveau:1,
+formules:"SOMME • SI • Pourcentage",
+consigne:"Calculer le Total = Prix unitaire × Quantité. Si la quantité est supérieure ou égale à 20, appliquer une remise de 5%. Calculer ensuite le Net à payer.",
+colonnes:["Produit","Catégorie","Prix","Quantité","Total","Remise","Net"],
+data:[
+["Cahier","Papeterie",3500,25,"","",""],
+["Stylo","Papeterie",1500,40,"","",""],
+["Clé USB","Informatique",25000,12,"","",""],
+["Souris","Informatique",18000,15,"","",""],
+["Clavier","Informatique",35000,8,"","",""],
+["Sac","Accessoire",45000,10,"","",""]
+],
+corrige:"Total = Prix × Quantité<br>Remise = SI(Quantité>=20;Total*5%;0)<br>Net = Total - Remise"
+},
+
+{
+id:2,
+titre:"💰 Ventes d'une boutique",
+niveau:2,
+formules:"SOMME • SI • SOMME.SI",
+consigne:"Calculer le chiffre d'affaires. Si le CA est supérieur ou égal à 1 000 000, appliquer une commission de 5%, sinon 2%.",
+colonnes:["Vendeur","Produit","Quantité","Prix","CA","Commission","Observation"],
+data:[
+["Aina","Ordinateur",2,1500000,"","",""],
+["Hery","Imprimante",3,650000,"","",""],
+["Fara","Souris",15,18000,"","",""],
+["Aina","Clavier",10,35000,"","",""],
+["Hery","Écran",5,450000,"","",""],
+["Fara","Clé USB",20,25000,"","",""]
+],
+corrige:"CA = Quantité × Prix<br>Commission = SI(CA>=1000000;CA*5%;CA*2%)<br>Observation = SI(CA>=500000;'Objectif atteint';'À améliorer')"
+},
+
+{
+id:3,
+titre:"💻 Parc informatique",
+niveau:2,
+formules:"SI • NB.SI • SOMME.SI",
+consigne:"Calculer la valeur totale de chaque matériel. Si l'état est 'À réparer', afficher 'Maintenance nécessaire'.",
+colonnes:["Matériel","Marque","État","Prix","Quantité","Valeur","Maintenance"],
+data:[
+["Ordinateur","HP","Bon",1800000,10,"",""],
+["Ordinateur","Dell","À réparer",1700000,5,"",""],
+["Écran","Samsung","Bon",600000,12,"",""],
+["Clavier","Logitech","Bon",35000,20,"",""],
+["Souris","HP","À réparer",20000,18,"",""],
+["Imprimante","Canon","Bon",750000,3,"",""]
+],
+corrige:"Valeur = Prix × Quantité<br>Maintenance = SI(État='À réparer';'Maintenance nécessaire';'OK')"
+},
+
+{
+id:4,
+titre:"🍽️ Gestion d'un restaurant",
+niveau:2,
+formules:"SOMME • MOYENNE • SI",
+consigne:"Calculer le total des ventes. Ajouter une TVA de 10%. Calculer le montant net.",
+colonnes:["Plat","Catégorie","Prix","Quantité","Total","TVA","Net"],
+data:[
+["Riz + viande","Plat",8000,25,"","",""],
+["Poulet","Plat",12000,18,"","",""],
+["Salade","Entrée",5000,10,"","",""],
+["Jus naturel","Boisson",4000,30,"","",""],
+["Eau","Boisson",2000,40,"","",""],
+["Café","Boisson",3000,22,"","",""]
+],
+corrige:"Total = Prix × Quantité<br>TVA = Total × 10%<br>Net = Total + TVA"
+},
+
+{
+id:5,
+titre:"🚕 Entreprise de transport",
+niveau:3,
+formules:"SOMME • SI • MAX • MIN",
+consigne:"Calculer la recette, la dépense et le bénéfice. Si le bénéfice est supérieur ou égal à 200 000 Ar, afficher 'Rentable'.",
+colonnes:["Chauffeur","Distance","Prix/km","Carburant","Recette","Bénéfice","Résultat"],
+data:[
+["Jean",120,1500,80000,"","",""],
+["Paul",250,1500,120000,"","",""],
+["Marie",180,1500,95000,"","",""],
+["Hery",320,1500,150000,"","",""],
+["Aina",90,1500,60000,"","",""]
+],
+corrige:"Recette = Distance × Prix/km<br>Bénéfice = Recette - Carburant<br>Résultat = SI(Bénéfice>=200000;'Rentable';'À améliorer')"
+},
+
+{
+id:6,
+titre:"📦 Gestion de stock",
+niveau:3,
+formules:"SI • NB.SI • SOMME.SI",
+consigne:"Calculer le stock restant. Si le stock restant est inférieur ou égal au seuil, afficher 'Commander'.",
+colonnes:["Produit","Stock initial","Entrées","Sorties","Stock final","Seuil","Statut"],
+data:[
+["Ordinateur",20,5,8,"",10,""],
+["Clavier",50,10,25,"",15,""],
+["Souris",80,20,35,"",20,""],
+["Clé USB",40,15,30,"",10,""],
+["Écran",15,5,8,"",5,""]
+],
+corrige:"Stock final = Stock initial + Entrées - Sorties<br>Statut = SI(Stock final<=Seuil;'Commander';'Stock suffisant')"
+},
+
+{
+id:7,
+titre:"🏠 Budget familial",
+niveau:3,
+formules:"SOMME • Pourcentage • Différence",
+consigne:"Calculer le total des revenus, le total des dépenses et le solde disponible.",
+colonnes:["Dépense","Catégorie","Montant","Pourcentage","Observation"],
+data:[
+["Loyer","Logement",300000,"",""],
+["Électricité","Maison",80000,"",""],
+["Internet","Communication",60000,"",""],
+["Alimentation","Maison",350000,"",""],
+["Transport","Déplacement",150000,"",""],
+["Éducation","École",200000,"",""]
+],
+corrige:"Total = SOMME(Montant)<br>Pourcentage = Montant / Total × 100"
+},
+
+{
+id:8,
+titre:"⚡ Consommation électrique",
+niveau:3,
+formules:"SOMME • MOYENNE • MAX • MIN",
+consigne:"Calculer la consommation totale, la consommation moyenne, maximale et minimale.",
+colonnes:["Mois","Consommation kWh","Prix/kWh","Montant"],
+data:[
+["Janvier",125,450,""],
+["Février",140,450,""],
+["Mars",155,450,""],
+["Avril",130,450,""],
+["Mai",170,450,""],
+["Juin",145,450,""]
+],
+corrige:"Montant = Consommation × Prix/kWh<br>Utiliser SOMME, MOYENNE, MAX et MIN."
+},
+
+{
+id:9,
+titre:"📱 Abonnements téléphoniques",
+niveau:3,
+formules:"SI • SOMME.SI • NB.SI",
+consigne:"Calculer le montant à payer. Appliquer une réduction de 10% aux clients dont la facture dépasse 100 000 Ar.",
+colonnes:["Client","Opérateur","Forfait","Consommation","Facture","Réduction","Net"],
+data:[
+["Aina","Telma",50000,30000,"","",""],
+["Hery","Orange",60000,55000,"","",""],
+["Fara","Airtel",45000,25000,"","",""],
+["Jean","Telma",80000,40000,"","",""],
+["Mamy","Orange",90000,30000,"","",""]
+],
+corrige:"Facture = Forfait + Consommation<br>Réduction = SI(Facture>100000;Facture*10%;0)<br>Net = Facture - Réduction"
+},
+
+{
+id:10,
+titre:"🏨 Gestion d'un hôtel",
+niveau:3,
+formules:"SOMME • SI • Pourcentage",
+consigne:"Calculer le nombre de nuits, le prix total et appliquer une réduction de 10% pour les séjours de 5 nuits ou plus.",
+colonnes:["Client","Arrivée","Départ","Prix/nuit","Nuits","Total","Réduction","Net"],
+data:[
+["Rakoto","01/10/2026","04/10/2026",80000,"","","",""],
+["Aina","02/10/2026","08/10/2026",100000,"","","",""],
+["Hery","05/10/2026","07/10/2026",75000,"","","",""],
+["Fara","10/10/2026","16/10/2026",90000,"","","",""]
+],
+corrige:"Nuits = Date départ - Date arrivée<br>Total = Nuits × Prix/nuit<br>Réduction = SI(Nuits>=5;Total*10%;0)"
+},
+
+{
+id:11,
+titre:"🌾 Production agricole",
+niveau:3,
+formules:"SOMME • MOYENNE • MAX • MIN",
+consigne:"Calculer la production totale par parcelle et analyser la production moyenne, maximale et minimale.",
+colonnes:["Parcelle","Culture","Surface","Production kg"],
+data:[
+["A1","Riz",2.5,4500],
+["A2","Riz",3,5200],
+["B1","Maïs",2,3100],
+["B2","Maïs",3.5,4900],
+["C1","Haricot",1.5,2200],
+["C2","Haricot",2,2800]
+],
+corrige:"Utiliser SOMME pour la production totale, MOYENNE pour la moyenne, MAX et MIN."
+},
+
+{
+id:12,
+titre:"🚌 Transport scolaire",
+niveau:4,
+formules:"SOMME.SI • NB.SI",
+consigne:"Calculer les recettes par ligne de transport et compter les élèves transportés.",
+colonnes:["Élève","Ligne","Tarif","Mois","Montant"],
+data:[
+["Élève 01","Ligne A",30000,"Octobre",""],
+["Élève 02","Ligne A",30000,"Octobre",""],
+["Élève 03","Ligne B",35000,"Octobre",""],
+["Élève 04","Ligne C",40000,"Octobre",""],
+["Élève 05","Ligne B",35000,"Octobre",""],
+["Élève 06","Ligne A",30000,"Octobre",""]
+],
+corrige:"Utiliser SOMME.SI pour calculer les recettes par ligne et NB.SI pour compter les élèves par ligne."
+},
+
+{
+id:13,
+titre:"🏗️ Gestion d'un chantier",
+niveau:4,
+formules:"Multiplication • SOMME • SI",
+consigne:"Calculer le coût total de chaque matériel et vérifier si le budget est dépassé.",
+colonnes:["Matériel","Prix unitaire","Quantité","Coût","Budget","Statut"],
+data:[
+["Ciment",35000,100,"",4000000,""],
+["Fer",25000,150,"",5000000,""],
+["Sable",18000,80,"",2000000,""],
+["Bois",45000,50,"",3000000,""],
+["Peinture",55000,40,"",2500000,""]
+],
+corrige:"Coût = Prix unitaire × Quantité<br>Statut = SI(Coût>Budget;'Budget dépassé';'Budget respecté')"
+},
+
+{
+id:14,
+titre:"📚 Bibliothèque",
+niveau:4,
+formules:"NB.SI • SI • Tri • Filtre",
+consigne:"Gérer les livres disponibles et empruntés. Compter les livres par catégorie et filtrer les livres empruntés.",
+colonnes:["Code","Titre","Catégorie","Année","État"],
+data:[
+["L001","Informatique débutant","Informatique",2024,"Disponible"],
+["L002","Excel pratique","Informatique",2025,"Emprunté"],
+["L003","Mathématiques","Sciences",2023,"Disponible"],
+["L004","HTML & CSS","Informatique",2025,"Emprunté"],
+["L005","Histoire","Histoire",2022,"Disponible"],
+["L006","Python","Informatique",2026,"Disponible"]
+],
+corrige:"Utiliser NB.SI pour compter Disponible/Emprunté. Utiliser les filtres Excel pour afficher une catégorie ou un état."
+},
+
+{
+id:15,
+titre:"💊 Gestion d'une pharmacie",
+niveau:4,
+formules:"SI • NB.SI • SOMME.SI",
+consigne:"Calculer le stock restant et afficher une alerte lorsque le stock est faible.",
+colonnes:["Produit","Stock initial","Entrées","Ventes","Stock final","Seuil","Alerte"],
+data:[
+["Paracétamol",100,50,80,"",30,""],
+["Vitamine C",80,20,40,"",25,""],
+["Sirop",50,10,35,"",20,""],
+["Pansements",120,30,60,"",40,""],
+["Gants",200,50,130,"",50,""]
+],
+corrige:"Stock final = Stock initial + Entrées - Ventes<br>Alerte = SI(Stock final<=Seuil;'Stock faible';'OK')"
+},
+
+{
+id:16,
+titre:"⚽ Tournoi sportif",
+niveau:4,
+formules:"SOMME • SI • Classement",
+consigne:"Calculer les points d'une équipe. Une victoire vaut 3 points, un nul 1 point et une défaite 0 point.",
+colonnes:["Équipe","Victoire","Nul","Défaite","Points","Classement"],
+data:[
+["Équipe A",3,1,0,"",""],
+["Équipe B",2,2,0,"",""],
+["Équipe C",1,1,2,"",""],
+["Équipe D",2,0,2,"",""],
+["Équipe E",0,2,2,"",""]
+],
+corrige:"Points = Victoire×3 + Nul×1 + Défaite×0. Trier ensuite les équipes par points décroissants."
+},
+
+{
+id:17,
+titre:"🎫 Billetterie",
+niveau:4,
+formules:"SOMME.SI • Pourcentage",
+consigne:"Calculer les recettes selon la catégorie de billet et appliquer une réduction pour les groupes.",
+colonnes:["Billet","Catégorie","Prix","Quantité","Recette","Réduction","Net"],
+data:[
+["B001","Adulte",10000,120,"","",""],
+["B002","Enfant",5000,80,"","",""],
+["B003","VIP",25000,25,"","",""],
+["B004","Adulte",10000,150,"","",""],
+["B005","Enfant",5000,100,"","",""]
+],
+corrige:"Recette = Prix × Quantité. Utiliser SOMME.SI pour totaliser les recettes par catégorie."
+},
+
+{
+id:18,
+titre:"🏭 Production industrielle",
+niveau:4,
+formules:"Rendement • SI • MOYENNE",
+consigne:"Calculer le rendement de chaque machine et afficher 'Bon rendement' si le rendement atteint 90%.",
+colonnes:["Machine","Production prévue","Production réelle","Rendement","Statut"],
+data:[
+["M01",1000,950,"",""],
+["M02",1200,1080,"",""],
+["M03",800,600,"",""],
+["M04",1500,1420,"",""],
+["M05",900,810,"",""]
+],
+corrige:"Rendement = Production réelle / Production prévue × 100<br>Statut = SI(Rendement>=90%;'Bon rendement';'À améliorer')"
+},
+
+{
+id:19,
+titre:"🏠 Location immobilière",
+niveau:4,
+formules:"SOMME • SI • Pourcentage",
+consigne:"Calculer le loyer total avec charges. Appliquer une réduction selon la durée de location.",
+colonnes:["Locataire","Loyer","Charges","Mois","Total","Réduction","Net"],
+data:[
+["Rakoto",350000,50000,12,"","",""],
+["Aina",450000,60000,6,"","",""],
+["Hery",300000,40000,10,"","",""],
+["Fara",500000,70000,12,"","",""]
+],
+corrige:"Total = (Loyer + Charges) × Mois. Appliquer une réduction selon la règle donnée par le professeur."
+},
+
+{
+id:20,
+titre:"📊 Projet final Excel PRO",
+niveau:5,
+formules:"Toutes les compétences",
+consigne:"Créer un tableau complet de gestion. Utiliser SOMME, MOYENNE, SI, NB.SI, SOMME.SI, MAX, MIN, pourcentages, tri, filtre, mise en forme conditionnelle et graphique.",
+colonnes:["Produit","Catégorie","Prix","Quantité","Total","Remise","Net","Statut"],
+data:[
+["Ordinateur","Informatique",1800000,5,"","","",""],
+["Clavier","Informatique",35000,20,"","","",""],
+["Souris","Informatique",18000,30,"","","",""],
+["Cahier","Papeterie",3500,50,"","","",""],
+["Stylo","Papeterie",1500,80,"","","",""],
+["Sac","Accessoire",45000,15,"","","",""],
+["Écran","Informatique",600000,8,"","","",""],
+["Ramette","Papeterie",28000,25,"","","",""]
+],
+corrige:"Projet complet : calculs, conditions, statistiques, filtres, mise en forme conditionnelle et graphique. Le professeur peut définir ses propres règles de remise et de statut."
+}
+
+];
+
+function afficherListe(){
+
+    const liste=document.getElementById("liste");
+    liste.innerHTML="";
+
+    exercices.forEach(ex=>{
+
+        const card=document.createElement("div");
+        card.className="card";
+        card.dataset.niveau=ex.niveau;
+        card.dataset.texte=(ex.titre+" "+ex.formules).toLowerCase();
+
+        card.innerHTML=`
+            <span class="badge">EXERCICE ${String(ex.id).padStart(2,"0")}</span>
+            <h3>${ex.titre}</h3>
+            <p>${ex.formules}</p>
+            <button onclick="ouvrirExercice(${ex.id})">
+                📖 Ouvrir l'exercice
+            </button>
+        `;
+
+        liste.appendChild(card);
+    });
+}
+
+function filtrer(){
+
+    const recherche=document
+        .getElementById("recherche")
+        .value
+        .toLowerCase();
+
+    const niveau=document
+        .getElementById("niveau")
+        .value;
+
+    document.querySelectorAll(".card").forEach(card=>{
+
+        const okRecherche=
+            card.dataset.texte.includes(recherche);
+
+        const okNiveau=
+            niveau==="tous" ||
+            card.dataset.niveau===niveau;
+
+        card.style.display=
+            okRecherche && okNiveau
+            ?"block"
+            :"none";
+    });
+}
+
+let exerciceActuel=null;
+
+function ouvrirExercice(id){
+
+    exerciceActuel=exercices.find(e=>e.id===id);
+
+    document.getElementById("zoneExercice").style.display="block";
+
+    document.getElementById("titreExercice").textContent=
+        exerciceActuel.titre;
+
+    document.getElementById("consigne").textContent=
+        exerciceActuel.consigne;
+
+    construireTableau();
+
+    document.getElementById("corrige").style.display="none";
+
+    window.scrollTo({
+        top:document.getElementById("zoneExercice").offsetTop-20,
+        behavior:"smooth"
+    });
+}
+
+function construireTableau(){
+
+    const table=document.getElementById("tableau");
+    table.innerHTML="";
+
+    const thead=document.createElement("thead");
+    const tr=document.createElement("tr");
+
+    exerciceActuel.colonnes.forEach(col=>{
+        const th=document.createElement("th");
+        th.textContent=col;
+        tr.appendChild(th);
+    });
+
+    thead.appendChild(tr);
+    table.appendChild(thead);
+
+    const tbody=document.createElement("tbody");
+
+    exerciceActuel.data.forEach((ligne,r)=>{
+
+        const tr=document.createElement("tr");
+
+        ligne.forEach((val,c)=>{
+
+            const td=document.createElement("td");
+
+            td.textContent=val;
+
+            if(
+                val==="" ||
+                c>=2
+            ){
+                td.contentEditable="true";
+            }
+
+            tr.appendChild(td);
+        });
+
+        tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+}
+
+function calculer(){
+
+    if(!exerciceActuel)return;
+
+    const rows=document.querySelectorAll("#tableau tbody tr");
+
+    rows.forEach(row=>{
+
+        const cells=row.querySelectorAll("td");
+
+        const title=exerciceActuel.id;
+
+        if(title===1){
+
+            const prix=parseFloat(cells[2].textContent)||0;
+            const qte=parseFloat(cells[3].textContent)||0;
+
+            const total=prix*qte;
+            const remise=qte>=20 ? total*0.05 : 0;
+            const net=total-remise;
+
+            cells[4].textContent=total.toFixed(0);
+            cells[5].textContent=remise.toFixed(0);
+            cells[6].textContent=net.toFixed(0);
+        }
+
+        if(title===2){
+
+            const qte=parseFloat(cells[2].textContent)||0;
+            const prix=parseFloat(cells[3].textContent)||0;
+
+            const ca=qte*prix;
+            const commission=ca>=1000000 ? ca*.05 : ca*.02;
+            const observation=ca>=500000
+                ?"Objectif atteint"
+                :"À améliorer";
+
+            cells[4].textContent=ca.toFixed(0);
+            cells[5].textContent=commission.toFixed(0);
+            cells[6].textContent=observation;
+        }
+
+        if(title===3){
+
+            const prix=parseFloat(cells[3].textContent)||0;
+            const qte=parseFloat(cells[4].textContent)||0;
+
+            cells[5].textContent=(prix*qte).toFixed(0);
+
+            cells[6].textContent=
+                cells[2].textContent==="À réparer"
+                ?"Maintenance nécessaire"
+                :"OK";
+        }
+
+        if(title===4){
+
+            const prix=parseFloat(cells[2].textContent)||0;
+            const qte=parseFloat(cells[3].textContent)||0;
+
+            const total=prix*qte;
+            const tva=total*.10;
+
+            cells[4].textContent=total.toFixed(0);
+            cells[5].textContent=tva.toFixed(0);
+            cells[6].textContent=(total+tva).toFixed(0);
+        }
+
+        if(title===5){
+
+            const distance=parseFloat(cells[1].textContent)||0;
+            const prix=parseFloat(cells[2].textContent)||0;
+            const carburant=parseFloat(cells[3].textContent)||0;
+
+            const recette=distance*prix;
+            const benefice=recette-carburant;
+
+            cells[4].textContent=recette.toFixed(0);
+            cells[5].textContent=benefice.toFixed(0);
+            cells[6].textContent=
+                benefice>=200000
+                ?"Rentable"
+                :"À améliorer";
+        }
+
+        if(title===6){
+
+            const initial=parseFloat(cells[1].textContent)||0;
+            const entrees=parseFloat(cells[2].textContent)||0;
+            const sorties=parseFloat(cells[3].textContent)||0;
+            const seuil=parseFloat(cells[5].textContent)||0;
+
+            const stock=initial+entrees-sorties;
+
+            cells[4].textContent=stock;
+            cells[6].textContent=
+                stock<=seuil
+                ?"Commander"
+                :"Stock suffisant";
+        }
+
+        if(title===8){
+
+            const conso=parseFloat(cells[1].textContent)||0;
+            const prix=parseFloat(cells[2].textContent)||0;
+
+            cells[3].textContent=(conso*prix).toFixed(0);
+        }
+
+        if(title===9){
+
+            const forfait=parseFloat(cells[2].textContent)||0;
+            const conso=parseFloat(cells[3].textContent)||0;
+
+            const facture=forfait+conso;
+            const reduction=facture>100000
+                ?facture*.10
+                :0;
+
+            cells[4].textContent=facture.toFixed(0);
+            cells[5].textContent=reduction.toFixed(0);
+            cells[6].textContent=(facture-reduction).toFixed(0);
+        }
+
+        if(title===10){
+
+            const arrivee=new Date(cells[1].textContent);
+            const depart=new Date(cells[2].textContent);
+
+            const nuits=Math.round(
+                (depart-arrivee)/(1000*60*60*24)
+            );
+
+            const prix=parseFloat(cells[3].textContent)||0;
+            const total=nuits*prix;
+            const reduction=nuits>=5?total*.10:0;
+
+            cells[4].textContent=nuits;
+            cells[5].textContent=total.toFixed(0);
+            cells[6].textContent=reduction.toFixed(0);
+            cells[7].textContent=(total-reduction).toFixed(0);
+        }
+
+        if(title===13){
+
+            const prix=parseFloat(cells[1].textContent)||0;
+            const qte=parseFloat(cells[2].textContent)||0;
+            const budget=parseFloat(cells[4].textContent)||0;
+
+            const cout=prix*qte;
+
+            cells[3].textContent=cout.toFixed(0);
+            cells[5].textContent=
+                cout>budget
+                ?"Budget dépassé"
+                :"Budget respecté";
+        }
+
+        if(title===15){
+
+            const initial=parseFloat(cells[1].textContent)||0;
+            const entrees=parseFloat(cells[2].textContent)||0;
+            const ventes=parseFloat(cells[3].textContent)||0;
+            const seuil=parseFloat(cells[5].textContent)||0;
+
+            const stock=initial+entrees-ventes;
+
+            cells[4].textContent=stock;
+            cells[6].textContent=
+                stock<=seuil
+                ?"Stock faible"
+                :"OK";
+        }
+
+        if(title===16){
+
+            const victoire=parseFloat(cells[1].textContent)||0;
+            const nul=parseFloat(cells[2].textContent)||0;
+
+            cells[4].textContent=
+                victoire*3+nul;
+        }
+
+        if(title===18){
+
+            const prevu=parseFloat(cells[1].textContent)||0;
+            const reel=parseFloat(cells[2].textContent)||0;
+
+            const rendement=
+                prevu ? reel/prevu*100 : 0;
+
+            cells[3].textContent=
+                rendement.toFixed(2)+" %";
+
+            cells[4].textContent=
+                rendement>=90
+                ?"Bon rendement"
+                :"À améliorer";
+        }
+
+        if(title===20){
+
+            const prix=parseFloat(cells[2].textContent)||0;
+            const qte=parseFloat(cells[3].textContent)||0;
+
+            const total=prix*qte;
+            const remise=qte>=20 ? total*.05 : 0;
+            const net=total-remise;
+
+            cells[4].textContent=total.toFixed(0);
+            cells[5].textContent=remise.toFixed(0);
+            cells[6].textContent=net.toFixed(0);
+
+            cells[7].textContent=
+                qte>=20
+                ?"Grande quantité"
+                :"Quantité normale";
+        }
+
+    });
+
+    alert("✅ Calcul terminé !");
+}
+
+function sauvegarder(){
+
+    if(!exerciceActuel)return;
+
+    localStorage.setItem(
+        "InfoPro_Excel_Exercice_"+exerciceActuel.id,
+        document.getElementById("tableau").outerHTML
+    );
+
+    alert("💾 Exercice enregistré dans le stockage !");
+}
+
+function charger(){
+
+    if(!exerciceActuel)return;
+
+    const sauvegarde=
+        localStorage.getItem(
+            "InfoPro_Excel_Exercice_"+exerciceActuel.id
+        );
+
+    if(!sauvegarde){
+
+        alert("ℹ️ Aucun exercice enregistré.");
+        return;
+    }
+
+    document.getElementById("tableau").outerHTML=
+        sauvegarde;
+
+    alert("📂 Exercice chargé !");
+}
+
+function afficherCorrige(){
+
+    const zone=document.getElementById("corrige");
+
+    zone.innerHTML=
+        "<strong>👨‍🏫 Corrigé professeur</strong><br><br>"+
+        exerciceActuel.corrige;
+
+    zone.style.display="block";
+}
+
+function reinitialiser(){
+
+    if(!exerciceActuel)return;
+
+    if(confirm("Réinitialiser cet exercice ?")){
+
+        construireTableau();
+
+        document.getElementById("corrige").style.display="none";
+    }
+}
+
+function fermerExercice(){
+
+    document.getElementById("zoneExercice").style.display="none";
+}
+
+function imprimer(){
+
+    window.print();
+}
+
+afficherListe();
+
+</script></body>
+</html>

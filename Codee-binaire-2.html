@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leçon : Le Code Binaire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>Découvrir le Code Binaire 🤖</h1>
+        <p>La langue secrète des ordinateurs</p>
+    </header>
+
+    <main class="container">
+        <!-- Section 1: Introduction -->
+        <section class="lesson-card">
+            <h2>1. Qu'est-ce que le code binaire ?</h2>
+            <p>Un ordinateur est une machine électronique. Pour fonctionner, il utilise des millions de petits interrupteurs. 
+               Ces interrupteurs ne peuvent avoir que deux états :</p>
+            
+            <div class="states-container">
+                <div class="state-box off">
+                    <span class="lamp">💡 Off</span>
+                    <span class="number">0</span>
+                    <p>Le courant ne passe pas</p>
+                </div>
+                <div class="state-box on">
+                    <span class="lamp">💡 On</span>
+                    <span class="number">1</span>
+                    <p>Le courant passe</p>
+                </div>
+            </div>
+            <p>Chaque <strong>0</strong> ou <strong>1</strong> est appelé un <strong>bit</strong> (Binary Digit).</p>
+        </section>
+
+        <!-- Section 2: Comment ça marche -->
+        <section class="lesson-card text-center">
+            <h2>2. Comment l'ordinateur compte-t-il ?</h2>
+            <p>En combinant 8 bits (un <strong>octet</strong>), l'ordinateur peut créer 256 combinaisons différentes pour représenter des nombres, des lettres ou des couleurs.</p>
+            
+            <div class="binary-example">
+                <span class="binary-digit">0</span>
+                <span class="binary-digit">1</span>
+                <span class="binary-digit">0</span>
+                <span class="binary-digit">0</span>
+                <span class="binary-digit">0</span>
+                <span class="binary-digit">0</span>
+                <span class="binary-digit">0</span>
+                <span class="binary-digit">1</span>
+            </div>
+            <p class="caption">En binaire, cette suite de 8 bits représente la lettre <strong>"A"</strong> !</p>
+        </section>
+
+        <!-- Section 3: Zone interactive (Défi) -->
+        <section class="lesson-card interactive-zone">
+            <h2>🧠 Le Défi du Jour</h2>
+            <p>Peux-tu deviner comment s'écrit le chiffre <strong>2</strong> en binaire ?</p>
+            <div class="quiz-options">
+                <button class="btn-quiz" onclick="alert('Essaye encore ! En binaire, 1 + 1 ne fait pas 2.')">A) 11</button>
+                <button class="btn-quiz btn-correct" onclick="alert('Bravo ! 10 en binaire est égal à 2 en système décimal.')">B) 10</button>
+                <button class="btn-quiz" onclick="alert('Faux ! 00 n\'a pas de valeur.')">C) 00</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>Cours créé pour mon Site Pédagogique © 2026</p>
+    </footer>
+
+</body>
+</html>

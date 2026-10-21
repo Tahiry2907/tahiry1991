@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choix Niveau Excel</title>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background: linear-gradient(to right, #2196f3, #21cbf3);
+  color: white;
+  text-align: center;
+}
+
+/* HEADER */
+header {
+  padding: 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* BUTTON */
+.card a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.card i {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: hsl(0, 80%, 53%);
+}
+.footer-pro h2 {
+  margin-bottom: 10px;
+  color: #00e5ff;
+}
+
+.footer-pro p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+.footer-pro {
+  background: linear-gradient(270deg, #141e30, #243b55);
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+  border-radius: 15px 15px 0 0;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* effet lumière animé */
+.footer-pro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shine 5s infinite;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+📊 Choisissez votre niveau Excel
+</header>
+
+<div class="grid">
+
+<div class="card">
+<a href="excel-5eme.html">5ème</a>
+</div>
+
+<div class="card">
+<a href="excel-4eme.html">4ème</a>
+</div>
+
+<div class="card">
+<a href="excel-3eme.html">3ème</a>
+</div>
+
+<div class="card">
+<a href="excel-2nd.html">2nde</a>
+</div>
+
+<div class="card">
+<a href="excel-1ere.html">1ère</a>
+</div>
+
+</div>
+<footer class="footer-pro">
+
+  <h2>💻 Mr Tahiry - Informatique 👨‍🏫</h2>
+
+  <p>📅 <span id="dateFooter"></span></p>
+
+  <div class="socials">
+    <a href="#">📘 Facebook</a>
+    <a href="#">💬 WhatsApp</a>
+    <a href="#">📧 Email</a>
+  </div>
+
+  <p class="devise">🚀 Apprendre • Pratiquer • Réussir 🌟</p>
+
+</footer>
+
+</body>
+</html>

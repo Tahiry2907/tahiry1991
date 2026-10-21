@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation Excel Pro</title>
+
+<style>
+}
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f4f7fb;
+}
+
+/* HEADER */
+header {
+  background: #2e7d32;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+/* CONTAINER */
+.container {
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* BUTTON */
+button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1b5e20;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* QUIZ */
+.correct {
+  color: green;
+}
+.wrong {
+  color: red;
+}
+
+/* PROGRESS */
+.progress {
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.progress-bar {
+  height: 10px;
+  background: #2e7d32;
+  width: 0%;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>📊 Formation Excel (FR - ML)</h1>
+</header>
+
+<div class="container">
+
+<!-- PROGRESS -->
+<div class="progress">
+  <div class="progress-bar" id="progress"></div>
+</div>
+
+<!-- LESSON 1 -->
+<div class="card" id="lesson1">
+<h2>🔰 Introduction</h2>
+<p><b>FR :</b> Excel est un logiciel de tableur.</p>
+<p><b>ML :</b> Excel dia logiciel hanaovana kajy sy tableau.</p>
+</div>
+
+<!-- LESSON 2 -->
+<div class="card" id="lesson2" style="display:none;">
+<h2>➕ Formules</h2>
+<p>=A1+B1 → Addition</p>
+<p>=A1*B1 → Multiplication</p>
+</div>
+
+<!-- LESSON 3 -->
+<div class="card" id="lesson3" style="display:none;">
+<h2>🧮 Fonctions</h2>
+<p>=SOMME(A1:A10)</p>
+<p>=MOYENNE(A1:A10)</p>
+</div>
+
+<!-- QUIZ -->
+<div class="card" id="quiz" style="display:none;">
+<h2>🧪 Quiz</h2>
+
+<p>1. Excel dia inona?</p>
+<button onclick="check(this, true)">Logiciel tableur</button>
+<button onclick="check(this, false)">Jeu vidéo</button>
+
+<p>2. Inona no formule marina?</p>
+<button onclick="check(this, true)">=A1+B1</button>
+<button onclick="check(this, false)">A1+B1</button>
+
+<p id="result"></p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav">
+<button onclick="prev()">⬅️ Précédent</button>
+<button onclick="next()">Suivant ➡️</button>
+</div>
+
+</div>
+
+<script>
+let current = 1;
+let total = 4;
+
+function showLesson(n) {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById("lesson" + i).style.display = "none";
+  }
+  document.getElementById("quiz").style.display = "none";
+
+  if (n <= 3) {
+    document.getElementById("lesson" + n).style.display = "block";
+  } else {
+    document.getElementById("quiz").style.display = "block";
+  }
+
+  document.getElementById("progress").style.width = (n / total * 100) + "%";
+}
+
+function next() {
+  if (current < total) {
+    current++;
+    showLesson(current);
+  }
+}
+
+function prev() {
+  if (current > 1) {
+    current--;
+    showLesson(current);
+  }
+}
+
+function check(btn, correct) {
+  if (correct) {
+    btn.classList.add("correct");
+    document.getElementById("result").innerHTML = "✔️ Marina!";
+  } else {
+    btn.classList.add("wrong");
+    document.getElementById("result").innerHTML = "❌ Diso!";
+  }
+}
+
+showLesson(current);
+</script>
+
+<div class="boutton">
+ <a href="fonction-somme-5eme .html"class="button" >fonction SOMME</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-multiple-5eme.html"class="button" >fonction somme multiple</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-conditionnel-5eme.html"class="button" >fonction somme conditionnelle</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-moyenne-5eme.html"class="button" >fonction MOYENNE</a>
+ 
+ 
+<div class="boutton">
+ <a href="foncton-SI.html"class="button" >fonction SI</a>
+
+
+</body>
+</html>

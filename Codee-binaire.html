@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Leçon Code Binaire | Mr Tahiry</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#eef2f7;
+  color:#172033;
+  line-height:1.7;
+}
+
+/* ================= HEADER ================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:linear-gradient(135deg,#0f172a,#1e3a8a);
+  color:white;
+  padding:15px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+
+.logo{
+  font-size:21px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#facc15;
+}
+
+.lang{
+  display:flex;
+  gap:6px;
+}
+
+.lang button{
+  border:none;
+  padding:8px 13px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.lang button:hover{
+  transform:scale(1.05);
+}
+
+.lang .active{
+  background:#facc15;
+  color:#422006;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  text-align:center;
+  padding:55px 20px;
+  color:white;
+  background:
+    radial-gradient(circle at top,#2563eb,#111827 65%);
+}
+
+.hero h1{
+  font-size:clamp(30px,6vw,50px);
+  margin-bottom:10px;
+}
+
+.hero h1 span{
+  color:#facc15;
+}
+
+.hero p{
+  max-width:850px;
+  margin:auto;
+  color:#dbeafe;
+  font-size:17px;
+}
+
+.hero-buttons{
+  margin-top:25px;
+}
+
+.hero-buttons a{
+  display:inline-block;
+  text-decoration:none;
+  background:#facc15;
+  color:#422006;
+  padding:11px 18px;
+  margin:5px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+  width:92%;
+  max-width:1100px;
+  margin:35px auto;
+}
+
+/* ================= BOX ================= */
+
+.box{
+  background:white;
+  padding:27px;
+  margin-bottom:25px;
+  border-radius:18px;
+  border:1px solid #e2e8f0;
+  box-shadow:0 8px 25px rgba(15,23,42,.08);
+  transition:.3s;
+}
+
+.box:hover{
+  transform:translateY(-3px);
+}
+
+.box h2{
+  color:#1d4ed8;
+  margin-bottom:15px;
+  border-left:5px solid #facc15;
+  padding-left:12px;
+}
+
+.box h3{
+  color:#4338ca;
+  margin:20px 0 10px;
+}
+
+.box p{
+  margin-bottom:10px;
+}
+
+.info{
+  background:#e0f2fe;
+  border-left:5px solid #0284c7;
+  padding:15px;
+  border-radius:8px;
+  margin:15px 0;
+}
+
+.warning{
+  background:#fef3c7;
+  border-left:5px solid #f59e0b;
+  padding:15px;
+  border-radius:8px;
+  margin:15px 0;
+}
+
+.success{
+  background:#dcfce7;
+  border-left:5px solid #22c55e;
+  padding:15px;
+  border-radius:8px;
+  margin:15px 0;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  min-width:550px;
+  border-collapse:collapse;
+  margin-top:15px;
+}
+
+th,td{
+  border:1px solid #cbd5e1;
+  padding:11px;
+  text-align:center;
+}
+
+th{
+  background:#1d4ed8;
+  color:white;
+}
+
+tr:nth-child(even){
+  background:#f8fafc;
+}
+
+/* ================= CARDS ================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px;
+  margin-top:20px;
+}
+
+.card{
+  background:#f8fafc;
+  border:1px solid #dbeafe;
+  padding:20px;
+  border-radius:14px;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.card .icon{
+  font-size:32px;
+}
+
+.card strong{
+  display:block;
+  color:#4338ca;
+  font-size:18px;
+}
+
+/* ================= BINARY DISPLAY ================= */
+
+.binary-display{
+  background:#020617;
+  color:#4ade80;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  font-family:Consolas,monospace;
+  font-size:25px;
+  letter-spacing:5px;
+  margin:15px 0;
+}
+
+/* ================= CODE ================= */
+
+pre{
+  background:#020617;
+  color:#4ade80;
+  padding:20px;
+  border-radius:12px;
+  overflow-x:auto;
+  font-family:Consolas,monospace;
+  margin:15px 0;
+}
+
+/* ================= CALCULATOR ================= */
+
+.calculator{
+  max-width:500px;
+  margin:20px auto;
+  background:#0f172a;
+  padding:22px;
+  border-radius:18px;
+  color:white;
+}
+
+.calculator input{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:none;
+  border-radius:8px;
+  font-size:17px;
+}
+
+.calc-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+.calc-buttons button,
+.quiz-btn,
+.exercise-btn{
+  border:none;
+  padding:12px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+  background:#2563eb;
+  color:white;
+}
+
+.calc-buttons button:hover,
+.quiz-btn:hover,
+.exercise-btn:hover{
+  background:#1d4ed8;
+}
+
+.result{
+  margin-top:15px;
+  padding:15px;
+  background:#020617;
+  color:#4ade80;
+  border-radius:8px;
+  min-height:45px;
+}
+
+/* ================= EXERCISES ================= */
+
+.exercise{
+  background:#f8fafc;
+  border:1px solid #dbeafe;
+  padding:20px;
+  margin-top:15px;
+  border-radius:12px;
+}
+
+.answer{
+  display:none;
+  background:#dcfce7;
+  border-left:5px solid #22c55e;
+  padding:15px;
+  margin-top:15px;
+  border-radius:8px;
+}
+
+/* ================= QUIZ ================= */
+
+.quiz-question{
+  background:#f8fafc;
+  padding:20px;
+  margin:15px 0;
+  border-radius:12px;
+  border:1px solid #e2e8f0;
+}
+
+.quiz-question label{
+  display:block;
+  margin:8px 0;
+  cursor:pointer;
+}
+
+.quiz-result{
+  display:none;
+  padding:20px;
+  margin-top:20px;
+  background:#e0f2fe;
+  border-radius:12px;
+  font-size:20px;
+  font-weight:bold;
+  text-align:center;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  text-align:center;
+  padding:35px 20px;
+  margin-top:40px;
+  background:linear-gradient(135deg,#0f172a,#1e3a8a);
+  color:white;
+}
+
+footer h2{
+  color:#facc15;
+}
+
+footer p{
+  margin:7px;
+}
+
+/* ================= TOP ================= */
+
+.top{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#2563eb;
+  color:white;
+  text-decoration:none;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+  header{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .container{
+    width:94%;
+  }
+
+  .box{
+    padding:20px;
+  }
+
+  .hero{
+    padding:40px 15px;
+  }
+
+  .binary-display{
+    font-size:19px;
+    letter-spacing:2px;
+  }
+}
+
+/* ================= LANGUAGE ================= */
+
+.ml{
+  display:none;
+}
+
+body.lang-ml .fr{
+  display:none;
+}
+
+body.lang-ml .ml{
+  display:inline;
+}
+</style>
+</head>
+
+<body id="top">
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+  <div class="logo">
+    💻 <span class="fr">Code Binaire</span>
+    <span class="ml">Kaody Binaire</span>
+  </div>
+
+  <div class="lang">
+    <button id="frBtn" class="active" onclick="setLang('fr')">
+      🇫🇷 FR
+    </button>
+
+    <button id="mlBtn" onclick="setLang('ml')">
+      🇲🇬 ML
+    </button>
+  </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+  <h1>
+    💻
+    <span class="fr">Le Code <span>Binaire</span></span>
+    <span class="ml">Ny Kaody <span>Binaire</span></span>
+  </h1>
+
+  <p class="fr">
+    Comprendre le langage utilisé par l'ordinateur pour représenter,
+    traiter et stocker les informations.
+  </p>
+
+  <p class="ml">
+    Mianatra ny fiteny ampiasain'ny ordinateur mba hanehoana,
+    hikarakarana ary hitahirizana ny informations.
+  </p>
+
+  <div class="hero-buttons">
+    <a href="#definition">📚 Cours</a>
+    <a href="#conversion">🔢 Conversion</a>
+    <a href="#exercices">✏️ Exercices</a>
+    <a href="#quiz">🧠 Quiz</a>
+  </div>
+
+</section>
+
+
+<main class="container">
+
+<!-- ===================================================== -->
+<!-- 1 DEFINITION -->
+<!-- ===================================================== -->
+
+<div class="box" id="definition">
+
+<h2>
+<span class="fr">1️⃣ Définition du code binaire</span>
+<span class="ml">1️⃣ Famaritana ny kaody binaire</span>
+</h2>
+
+<div class="fr">
+
+<p>
+Le système binaire est un système de numération qui utilise seulement
+deux chiffres : <strong>0 et 1</strong>.
+</p>
+
+<p>
+L'ordinateur utilise principalement le binaire pour représenter et
+traiter les informations.
+</p>
+
+<div class="info">
+💡 <strong>À retenir :</strong>
+Un chiffre binaire est appelé un <strong>bit</strong>.
+</div>
+
+</div>
+
+<div class="ml">
+
+<p>
+Ny système binaire dia rafitra fanisana mampiasa tarehimarika roa ihany :
+<strong>0 sy 1</strong>.
+</p>
+
+<p>
+Ny ordinateur dia mampiasa ny binaire mba hanehoana sy hikarakarana
+ny informations.
+</p>
+
+<div class="info">
+💡 <strong>Tadidio :</strong>
+Ny chiffre binaire iray dia antsoina hoe <strong>bit</strong>.
+</div>
+
+</div>
+
+<div class="binary-display">
+0 1 0 1 1 0 1 0
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 2 POURQUOI -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">2️⃣ Pourquoi l'ordinateur utilise-t-il le binaire ?</span>
+<span class="ml">2️⃣ Nahoana no mampiasa binaire ny ordinateur ?</span>
+</h2>
+
+<div class="fr">
+
+<p>
+Les composants électroniques d'un ordinateur fonctionnent avec des
+signaux électriques pouvant être représentés simplement par deux états.
+</p>
+
+<table>
+<tr>
+<th>État</th>
+<th>Représentation</th>
+</tr>
+
+<tr>
+<td>OFF</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>ON</td>
+<td>1</td>
+</tr>
+</table>
+
+</div>
+
+<div class="ml">
+
+<p>
+Ny composants électroniques ao amin'ny ordinateur dia afaka aseho amin'ny
+états roa tsotra.
+</p>
+
+<table>
+<tr>
+<th>État</th>
+<th>Fanehoana</th>
+</tr>
+
+<tr>
+<td>OFF</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>ON</td>
+<td>1</td>
+</tr>
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 3 BIT BYTE -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">3️⃣ Bit, Octet et Byte</span>
+<span class="ml">3️⃣ Bit, Octet ary Byte</span>
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🔹</div>
+<strong>Bit</strong>
+<span class="fr">
+Plus petite unité d'information. Elle vaut 0 ou 1.
+</span>
+<span class="ml">
+Unité kely indrindra amin'ny information. 0 na 1.
+</span>
+</div>
+
+<div class="card">
+<div class="icon">🔢</div>
+<strong>8 bits</strong>
+<span class="fr">
+8 bits forment généralement un octet.
+</span>
+<span class="ml">
+Bit 8 dia mamorona octet iray.
+</span>
+</div>
+
+<div class="card">
+<div class="icon">💾</div>
+<strong>Octet</strong>
+<span class="fr">
+Un octet contient 8 bits.
+</span>
+<span class="ml">
+Octet iray dia misy bits 8.
+</span>
+</div>
+
+</div>
+
+<div class="binary-display">
+10110101 = 8 bits = 1 octet
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 4 PUISSANCES -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">4️⃣ Les puissances de 2</span>
+<span class="ml">4️⃣ Ny puissances de 2</span>
+</h2>
+
+<div class="fr">
+
+<p>
+Chaque position dans un nombre binaire correspond à une puissance de 2.
+</p>
+
+</div>
+
+<div class="ml">
+
+<p>
+Ny toerana tsirairay ao amin'ny nombre binaire dia mifandray amin'ny
+puissance de 2.
+</p>
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Position</th>
+<th>Puissance</th>
+<th>Valeur</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td>2⁰</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>2¹</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>2²</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>2³</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>2⁴</td>
+<td>16</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>2⁵</td>
+<td>32</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>2⁶</td>
+<td>64</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>2⁷</td>
+<td>128</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 5 CONVERSION DECIMAL BINAIRE -->
+<!-- ===================================================== -->
+
+<div class="box" id="conversion">
+
+<h2>
+<span class="fr">5️⃣ Conversion décimal → binaire</span>
+<span class="ml">5️⃣ Fanovana décimal → binaire</span>
+</h2>
+
+<div class="fr">
+
+<p>
+Pour convertir un nombre décimal en binaire, on peut effectuer
+des divisions successives par 2 et lire les restes de bas en haut.
+</p>
+
+<h3>Exemple : convertir 13 en binaire</h3>
+
+<table>
+
+<tr>
+<th>Calcul</th>
+<th>Quotient</th>
+<th>Reste</th>
+</tr>
+
+<tr>
+<td>13 ÷ 2</td>
+<td>6</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>6 ÷ 2</td>
+<td>3</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>3 ÷ 2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>1 ÷ 2</td>
+<td>0</td>
+<td>1</td>
+</tr>
+
+</table>
+
+<div class="success">
+<strong>Résultat :</strong>
+13₁₀ = 1101₂
+</div>
+
+</div>
+
+
+<div class="ml">
+
+<p>
+Mba hanovana nombre décimal ho binaire dia azo atao ny mizara
+imbetsaka amin'ny 2 ary alaina avy any ambany miakatra ny restes.
+</p>
+
+<h3>Ohatra : 13 ho binaire</h3>
+
+<table>
+
+<tr>
+<th>Kajy</th>
+<th>Quotient</th>
+<th>Reste</th>
+</tr>
+
+<tr>
+<td>13 ÷ 2</td>
+<td>6</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>6 ÷ 2</td>
+<td>3</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>3 ÷ 2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>1 ÷ 2</td>
+<td>0</td>
+<td>1</td>
+</tr>
+
+</table>
+
+<div class="success">
+<strong>Valiny :</strong>
+13₁₀ = 1101₂
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 6 CONVERSION BINAIRE DECIMAL -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">6️⃣ Conversion binaire → décimal</span>
+<span class="ml">6️⃣ Fanovana binaire → décimal</span>
+</h2>
+
+<div class="fr">
+
+<p>
+Pour convertir un nombre binaire en décimal, on multiplie chaque bit
+par sa puissance de 2 correspondante.
+</p>
+
+<h3>Exemple : 1011₂</h3>
+
+<pre>
+1 × 2³ = 8
+0 × 2² = 0
+1 × 2¹ = 2
+1 × 2⁰ = 1
+
+8 + 0 + 2 + 1 = 11
+
+Donc :
+1011₂ = 11₁₀
+</pre>
+
+</div>
+
+<div class="ml">
+
+<p>
+Mba hanovana binaire ho décimal dia ampitomboina amin'ny puissance
+de 2 mifanaraka aminy ny bit tsirairay.
+</p>
+
+<h3>Ohatra : 1011₂</h3>
+
+<pre>
+1 × 2³ = 8
+0 × 2² = 0
+1 × 2¹ = 2
+1 × 2⁰ = 1
+
+8 + 0 + 2 + 1 = 11
+
+Noho izany :
+1011₂ = 11₁₀
+</pre>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 7 TABLE COMPLETE -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">7️⃣ Tableau décimal / binaire</span>
+<span class="ml">7️⃣ Tabilao décimal / binaire</span>
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Décimal</th>
+<th>Binaire</th>
+<th>Puissances</th>
+</tr>
+
+<tr><td>0</td><td>0000</td><td>0</td></tr>
+<tr><td>1</td><td>0001</td><td>1</td></tr>
+<tr><td>2</td><td>0010</td><td>2</td></tr>
+<tr><td>3</td><td>0011</td><td>2 + 1</td></tr>
+<tr><td>4</td><td>0100</td><td>4</td></tr>
+<tr><td>5</td><td>0101</td><td>4 + 1</td></tr>
+<tr><td>6</td><td>0110</td><td>4 + 2</td></tr>
+<tr><td>7</td><td>0111</td><td>4 + 2 + 1</td></tr>
+<tr><td>8</td><td>1000</td><td>8</td></tr>
+<tr><td>9</td><td>1001</td><td>8 + 1</td></tr>
+<tr><td>10</td><td>1010</td><td>8 + 2</td></tr>
+<tr><td>11</td><td>1011</td><td>8 + 2 + 1</td></tr>
+<tr><td>12</td><td>1100</td><td>8 + 4</td></tr>
+<tr><td>13</td><td>1101</td><td>8 + 4 + 1</td></tr>
+<tr><td>14</td><td>1110</td><td>8 + 4 + 2</td></tr>
+<tr><td>15</td><td>1111</td><td>8 + 4 + 2 + 1</td></tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 8 ADDITION BINAIRE -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">8️⃣ Addition binaire</span>
+<span class="ml">8️⃣ Fanampiana binaire</span>
+</h2>
+
+<div class="fr">
+
+<p>Les règles principales sont :</p>
+
+<table>
+
+<tr>
+<th>Calcul</th>
+<th>Résultat</th>
+</tr>
+
+<tr><td>0 + 0</td><td>0</td></tr>
+<tr><td>0 + 1</td><td>1</td></tr>
+<tr><td>1 + 0</td><td>1</td></tr>
+<tr><td>1 + 1</td><td>10</td></tr>
+
+</table>
+
+<h3>Exemple</h3>
+
+<pre>
+   101
+ + 011
+ -----
+  1000
+</pre>
+
+</div>
+
+<div class="ml">
+
+<p>Ireto ny fitsipika fototra :</p>
+
+<table>
+
+<tr>
+<th>Kajy</th>
+<th>Valiny</th>
+</tr>
+
+<tr><td>0 + 0</td><td>0</td></tr>
+<tr><td>0 + 1</td><td>1</td></tr>
+<tr><td>1 + 0</td><td>1</td></tr>
+<tr><td>1 + 1</td><td>10</td></tr>
+
+</table>
+
+<h3>Ohatra</h3>
+
+<pre>
+   101
+ + 011
+ -----
+  1000
+</pre>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 9 SOUSTRACTION -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">9️⃣ Soustraction binaire</span>
+<span class="ml">9️⃣ Fanalana binaire</span>
+</h2>
+
+<div class="fr">
+
+<p>
+La soustraction binaire utilise les mêmes principes que la soustraction
+décimale, avec seulement les chiffres 0 et 1.
+</p>
+
+<table>
+
+<tr>
+<th>Calcul</th>
+<th>Résultat</th>
+</tr>
+
+<tr><td>0 − 0</td><td>0</td></tr>
+<tr><td>1 − 0</td><td>1</td></tr>
+<tr><td>1 − 1</td><td>0</td></tr>
+
+</table>
+
+</div>
+
+<div class="ml">
+
+<p>
+Ny fanalana binaire dia mitovy hevitra amin'ny fanalana décimal,
+fa 0 sy 1 ihany no ampiasaina.
+</p>
+
+<table>
+
+<tr>
+<th>Kajy</th>
+<th>Valiny</th>
+</tr>
+
+<tr><td>0 − 0</td><td>0</td></tr>
+<tr><td>1 − 0</td><td>1</td></tr>
+<tr><td>1 − 1</td><td>0</td></tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 10 HEXADECIMAL -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">🔟 Le binaire et l'hexadécimal</span>
+<span class="ml">🔟 Binaire sy hexadécimal</span>
+</h2>
+
+<div class="fr">
+
+<p>
+Le système hexadécimal utilise 16 symboles : 0 à 9 et A à F.
+Il est très utilisé en informatique car un chiffre hexadécimal
+correspond à 4 bits.
+</p>
+
+</div>
+
+<div class="ml">
+
+<p>
+Ny système hexadécimal dia mampiasa symboles 16 : 0 hatramin'ny 9
+ary A hatramin'ny F.
+Zava-dehibe amin'ny informatique izy satria chiffre hexadécimal iray
+dia mifanaraka amin'ny bits 4.
+</p>
+
+</div>
+
+<table>
+
+<tr>
+<th>Décimal</th>
+<th>Binaire</th>
+<th>Hexadécimal</th>
+</tr>
+
+<tr><td>0</td><td>0000</td><td>0</td></tr>
+<tr><td>1</td><td>0001</td><td>1</td></tr>
+<tr><td>2</td><td>0010</td><td>2</td></tr>
+<tr><td>3</td><td>0011</td><td>3</td></tr>
+<tr><td>4</td><td>0100</td><td>4</td></tr>
+<tr><td>5</td><td>0101</td><td>5</td></tr>
+<tr><td>6</td><td>0110</td><td>6</td></tr>
+<tr><td>7</td><td>0111</td><td>7</td></tr>
+<tr><td>8</td><td>1000</td><td>8</td></tr>
+<tr><td>9</td><td>1001</td><td>9</td></tr>
+<tr><td>10</td><td>1010</td><td>A</td></tr>
+<tr><td>11</td><td>1011</td><td>B</td></tr>
+<tr><td>12</td><td>1100</td><td>C</td></tr>
+<tr><td>13</td><td>1101</td><td>D</td></tr>
+<tr><td>14</td><td>1110</td><td>E</td></tr>
+<tr><td>15</td><td>1111</td><td>F</td></tr>
+
+</table>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 11 ASCII -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">1️⃣1️⃣ Binaire et code ASCII</span>
+<span class="ml">1️⃣1️⃣ Binaire sy code ASCII</span>
+</h2>
+
+<div class="fr">
+
+<p>
+L'ordinateur doit également représenter les lettres, chiffres et
+symboles sous forme numérique. Le code ASCII permet d'associer
+des caractères à des nombres.
+</p>
+
+<table>
+
+<tr>
+<th>Caractère</th>
+<th>Décimal</th>
+<th>Binaire</th>
+</tr>
+
+<tr>
+<td>A</td>
+<td>65</td>
+<td>01000001</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>66</td>
+<td>01000010</td>
+</tr>
+
+<tr>
+<td>C</td>
+<td>67</td>
+<td>01000011</td>
+</tr>
+
+<tr>
+<td>a</td>
+<td>97</td>
+<td>01100001</td>
+</tr>
+
+<tr>
+<td>0</td>
+<td>48</td>
+<td>00110000</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="ml">
+
+<p>
+Ny ordinateur dia tsy maintsy maneho litera, isa ary symboles amin'ny
+endrika numérique. Ny code ASCII dia mampifandray caractère iray
+amin'ny isa iray.
+</p>
+
+<table>
+
+<tr>
+<th>Caractère</th>
+<th>Décimal</th>
+<th>Binaire</th>
+</tr>
+
+<tr>
+<td>A</td>
+<td>65</td>
+<td>01000001</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>66</td>
+<td>01000010</td>
+</tr>
+
+<tr>
+<td>C</td>
+<td>67</td>
+<td>01000011</td>
+</tr>
+
+<tr>
+<td>a</td>
+<td>97</td>
+<td>01100001</td>
+</tr>
+
+<tr>
+<td>0</td>
+<td>48</td>
+<td>00110000</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 12 CALCULATEUR -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">1️⃣2️⃣ Convertisseur décimal ↔ binaire</span>
+<span class="ml">1️⃣2️⃣ Convertisseur décimal ↔ binaire</span>
+</h2>
+
+<div class="calculator">
+
+<input
+type="number"
+id="decimalInput"
+placeholder="Nombre décimal">
+
+<input
+type="text"
+id="binaryInput"
+placeholder="Nombre binaire">
+
+<div class="calc-buttons">
+
+<button onclick="decimalToBinary()">
+Décimal → Binaire
+</button>
+
+<button onclick="binaryToDecimal()">
+Binaire → Décimal
+</button>
+
+</div>
+
+<div class="result" id="calcResult">
+Résultat...
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 13 EXERCICES -->
+<!-- ===================================================== -->
+
+<div class="box" id="exercices">
+
+<h2>
+<span class="fr">1️⃣3️⃣ Exercices d'application</span>
+<span class="ml">1️⃣3️⃣ Fanazaran-tena</span>
+</h2>
+
+<div class="exercise">
+
+<strong class="fr">
+Exercice 1 : Convertir 10₁₀ en binaire.
+</strong>
+
+<strong class="ml">
+Fanazaran-tena 1 : Ovay ho binaire ny 10₁₀.
+</strong>
+
+<br>
+
+<button class="exercise-btn"
+onclick="showAnswer('a1')">
+Voir la correction
+</button>
+
+<div class="answer" id="a1">
+<strong>Réponse :</strong> 10₁₀ = 1010₂
+</div>
+
+</div>
+
+
+<div class="exercise">
+
+<strong class="fr">
+Exercice 2 : Convertir 10101₂ en décimal.
+</strong>
+
+<strong class="ml">
+Fanazaran-tena 2 : Ovay ho décimal ny 10101₂.
+</strong>
+
+<br>
+
+<button class="exercise-btn"
+onclick="showAnswer('a2')">
+Voir la correction
+</button>
+
+<div class="answer" id="a2">
+<strong>Réponse :</strong><br>
+10101₂ = 16 + 4 + 1 = 21₁₀
+</div>
+
+</div>
+
+
+<div class="exercise">
+
+<strong class="fr">
+Exercice 3 : Convertir 25₁₀ en binaire.
+</strong>
+
+<strong class="ml">
+Fanazaran-tena 3 : Ovay ho binaire ny 25₁₀.
+</strong>
+
+<br>
+
+<button class="exercise-btn"
+onclick="showAnswer('a3')">
+Voir la correction
+</button>
+
+<div class="answer" id="a3">
+<strong>Réponse :</strong> 25₁₀ = 11001₂
+</div>
+
+</div>
+
+
+<div class="exercise">
+
+<strong class="fr">
+Exercice 4 : Calculer 101₂ + 11₂.
+</strong>
+
+<strong class="ml">
+Fanazaran-tena 4 : Kajio 101₂ + 11₂.
+</strong>
+
+<br>
+
+<button class="exercise-btn"
+onclick="showAnswer('a4')">
+Voir la correction
+</button>
+
+<div class="answer" id="a4">
+<strong>Réponse :</strong> 101₂ + 11₂ = 1000₂
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 14 QUIZ -->
+<!-- ===================================================== -->
+
+<div class="box" id="quiz">
+
+<h2>
+<span class="fr">1️⃣4️⃣ Quiz – Code Binaire</span>
+<span class="ml">1️⃣4️⃣ Quiz – Kaody Binaire</span>
+</h2>
+
+
+<div class="quiz-question">
+
+<p><strong>1. Combien de chiffres utilise le système binaire ?</strong></p>
+
+<label>
+<input type="radio" name="q1" value="0">
+1
+</label>
+
+<label>
+<input type="radio" name="q1" value="1">
+2
+</label>
+
+<label>
+<input type="radio" name="q1" value="0">
+10
+</label>
+
+</div>
+
+
+<div class="quiz-question">
+
+<p><strong>2. Quels sont les deux chiffres binaires ?</strong></p>
+
+<label>
+<input type="radio" name="q2" value="1">
+0 et 1
+</label>
+
+<label>
+<input type="radio" name="q2" value="0">
+1 et 2
+</label>
+
+<label>
+<input type="radio" name="q2" value="0">
+2 et 3
+</label>
+
+</div>
+
+
+<div class="quiz-question">
+
+<p><strong>3. Combien vaut 1010₂ en décimal ?</strong></p>
+
+<label>
+<input type="radio" name="q3" value="0">
+8
+</label>
+
+<label>
+<input type="radio" name="q3" value="1">
+10
+</label>
+
+<label>
+<input type="radio" name="q3" value="0">
+12
+</label>
+
+</div>
+
+
+<div class="quiz-question">
+
+<p><strong>4. Combien de bits contient un octet ?</strong></p>
+
+<label>
+<input type="radio" name="q4" value="0">
+4
+</label>
+
+<label>
+<input type="radio" name="q4" value="1">
+8
+</label>
+
+<label>
+<input type="radio" name="q4" value="0">
+16
+</label>
+
+</div>
+
+
+<div class="quiz-question">
+
+<p><strong>5. Quelle est la valeur de 1111₂ ?</strong></p>
+
+<label>
+<input type="radio" name="q5" value="0">
+10
+</label>
+
+<label>
+<input type="radio" name="q5" value="1">
+15
+</label>
+
+<label>
+<input type="radio" name="q5" value="0">
+16
+</label>
+
+</div>
+
+
+<button class="quiz-btn" onclick="checkQuiz()">
+Valider le quiz
+</button>
+
+<div class="quiz-result" id="quizResult"></div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- 15 RESUME -->
+<!-- ===================================================== -->
+
+<div class="box">
+
+<h2>
+<span class="fr">1️⃣5️⃣ Résumé général</span>
+<span class="ml">1️⃣5️⃣ Famintinana ankapobeny</span>
+</h2>
+
+<div class="fr">
+
+<p>
+Le système binaire est fondamental en informatique.
+Il utilise uniquement les chiffres <strong>0 et 1</strong>.
+</p>
+
+<ul>
+<li>1 bit = 0 ou 1</li>
+<li>8 bits = 1 octet</li>
+<li>Chaque position correspond à une puissance de 2</li>
+<li>Les nombres décimaux peuvent être convertis en binaire</li>
+<li>Les nombres binaires peuvent être convertis en décimal</li>
+<li>Les opérations comme l'addition peuvent être réalisées en binaire</li>
+<li>Le binaire intervient dans la représentation des données</li>
+<li>ASCII permet notamment de représenter des caractères par des nombres</li>
+</ul>
+
+</div>
+
+<div class="ml">
+
+<p>
+Ny système binaire dia fototra lehibe amin'ny informatique.
+0 sy 1 ihany no ampiasainy.
+</p>
+
+<ul>
+<li>1 bit = 0 na 1</li>
+<li>Bits 8 = octet 1</li>
+<li>Ny position tsirairay dia mifandray amin'ny puissance de 2</li>
+<li>Azo ovaina ho binaire ny isa décimal</li>
+<li>Azo ovaina ho décimal ny isa binaire</li>
+<li>Azo atao amin'ny binaire ny opérations toy ny addition</li>
+<li>Ny binaire dia ampiasaina amin'ny représentation des données</li>
+<li>ASCII dia manampy amin'ny représentation des caractères</li>
+</ul>
+
+</div>
+
+<div class="success">
+
+<strong class="fr">
+🎯 Objectif : être capable de lire, convertir et calculer des nombres binaires.
+</strong>
+
+<strong class="ml">
+🎯 Tanjona : hahafahanao mamaky, manova ary manao kajy amin'ny nombres binaires.
+</strong>
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h2>💻 Mr Tahiry - Informatique 👨‍🏫</h2>
+
+<p>
+<span class="fr">
+Cours de programmation et informatique
+</span>
+
+<span class="ml">
+Lesona programmation sy informatique
+</span>
+</p>
+
+<p>
+📅 <span id="dateFooter"></span>
+</p>
+
+<p>
+© 2026 - Plateforme pédagogique
+</p>
+
+</footer>
+
+
+<a href="#top" class="top">↑</a>
+
+
+<script>
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+function setLang(lang){
+
+  if(lang === "fr"){
+
+    document.body.classList.remove("lang-ml");
+
+    document.getElementById("frBtn").classList.add("active");
+    document.getElementById("mlBtn").classList.remove("active");
+
+    localStorage.setItem("binaryLang","fr");
+
+  }
+
+  else{
+
+    document.body.classList.add("lang-ml");
+
+    document.getElementById("mlBtn").classList.add("active");
+    document.getElementById("frBtn").classList.remove("active");
+
+    localStorage.setItem("binaryLang","ml");
+
+  }
+
+}
+
+
+/* =====================================================
+   RESTORE LANGUAGE
+===================================================== */
+
+const savedLang = localStorage.getItem("binaryLang");
+
+if(savedLang === "ml"){
+  setLang("ml");
+}
+else{
+  setLang("fr");
+}
+
+
+/* =====================================================
+   DECIMAL → BINARY
+===================================================== */
+
+function decimalToBinary(){
+
+  const value =
+    document.getElementById("decimalInput").value;
+
+  const result =
+    document.getElementById("calcResult");
+
+  if(value === ""){
+
+    result.innerHTML =
+      "⚠️ Entrez un nombre décimal.";
+
+    return;
+  }
+
+  const number = Number(value);
+
+  if(number < 0 || !Number.isInteger(number)){
+
+    result.innerHTML =
+      "⚠️ Entrez un entier positif.";
+
+    return;
+  }
+
+  result.innerHTML =
+    "🔢 " + number + "₁₀ = <strong>" +
+    number.toString(2) +
+    "₂</strong>";
+
+}
+
+
+/* =====================================================
+   BINARY → DECIMAL
+===================================================== */
+
+function binaryToDecimal(){
+
+  const value =
+    document.getElementById("binaryInput").value.trim();
+
+  const result =
+    document.getElementById("calcResult");
+
+  if(value === ""){
+
+    result.innerHTML =
+      "⚠️ Entrez un nombre binaire.";
+
+    return;
+  }
+
+  if(!/^[01]+$/.test(value)){
+
+    result.innerHTML =
+      "❌ Erreur : utilisez uniquement 0 et 1.";
+
+    return;
+  }
+
+  const number =
+    parseInt(value,2);
+
+  result.innerHTML =
+    "🔢 " + value + "₂ = <strong>" +
+    number +
+    "₁₀</strong>";
+
+}
+
+
+/* =====================================================
+   SHOW EXERCISE ANSWER
+===================================================== */
+
+function showAnswer(id){
+
+  const answer =
+    document.getElementById(id);
+
+  if(answer.style.display === "block"){
+
+    answer.style.display = "none";
+
+  }
+  else{
+
+    answer.style.display = "block";
+
+  }
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+function checkQuiz(){
+
+  let score = 0;
+
+  for(let i=1;i<=5;i++){
+
+    const answer =
+      document.querySelector(
+        'input[name="q'+i+'"]:checked'
+      );
+
+    if(answer && answer.value === "1"){
+      score++;
+    }
+
+  }
+
+  const result =
+    document.getElementById("quizResult");
+
+  result.style.display = "block";
+
+  if(score === 5){
+
+    result.innerHTML =
+      "🏆 Excellent ! Score : 5 / 5";
+
+  }
+
+  else if(score >= 3){
+
+    result.innerHTML =
+      "👏 Très bien ! Score : " +
+      score + " / 5";
+
+  }
+
+  else{
+
+    result.innerHTML =
+      "📚 Continuez à réviser. Score : " +
+      score + " / 5";
+
+  }
+
+}
+
+
+/* =====================================================
+   DATE FOOTER
+===================================================== */
+
+const today = new Date();
+
+document.getElementById("dateFooter").textContent =
+  today.toLocaleDateString("fr-FR");
+
+</script>
+
+</body>
+</html>

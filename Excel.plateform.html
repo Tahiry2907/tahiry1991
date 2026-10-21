@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0">
+
+<title>Choix Niveau Excel | Mr Tahiry</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:"Segoe UI",Arial,sans-serif;
+
+    min-height:100vh;
+
+    background:
+        radial-gradient(circle at top left,#2196f3,#21cbf3 45%,#0066cc);
+
+    color:white;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+    text-align:center;
+
+    padding:35px 15px 25px;
+
+    background:
+        linear-gradient(135deg,
+        rgba(0,0,0,.20),
+        rgba(0,0,0,.05));
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.25);
+
+}
+
+.logo{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+
+}
+
+.subtitle{
+
+    font-size:16px;
+
+    opacity:.95;
+
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+.language{
+
+    margin-top:20px;
+
+}
+
+.language button{
+
+    border:none;
+
+    padding:10px 18px;
+
+    margin:4px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    background:white;
+
+    color:#0066cc;
+
+    transition:.3s;
+
+}
+
+.language button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro{
+
+    width:min(900px,92%);
+
+    margin:30px auto 20px;
+
+    text-align:center;
+
+}
+
+.intro h1{
+
+    font-size:30px;
+
+    margin-bottom:10px;
+
+}
+
+.intro p{
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.grid{
+
+    width:min(1100px,92%);
+
+    margin:30px auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(210px,1fr));
+
+    gap:25px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+    position:relative;
+
+    background:white;
+
+    color:#102a43;
+
+    padding:28px 20px;
+
+    min-height:230px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.20);
+
+    overflow:hidden;
+
+    transition:
+        transform .35s,
+        box-shadow .35s;
+
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0066ff,
+            #00e5ff
+        );
+
+}
+
+.card:hover{
+
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+    box-shadow:
+        0 18px 35px rgba(0,0,0,.28);
+
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.excel-icon{
+
+    width:70px;
+
+    height:70px;
+
+    margin:5px auto 15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #107c41,
+            #21a366
+        );
+
+    color:white;
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    box-shadow:
+        0 6px 15px rgba(16,124,65,.3);
+
+}
+
+
+/* =====================================================
+   CARD TITLE
+===================================================== */
+
+.card h2{
+
+    font-size:25px;
+
+    margin-bottom:8px;
+
+}
+
+.card p{
+
+    color:#607080;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    min-height:45px;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.card a{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:11px 22px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0066ff,
+            #00bfff
+        );
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.card a:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 7px 15px rgba(0,102,255,.3);
+
+}
+
+
+/* =====================================================
+   LEVEL BADGE
+===================================================== */
+
+.badge{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    background:#e8f5ff;
+
+    color:#0066cc;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
+   INFO
+===================================================== */
+
+.info{
+
+    width:min(900px,92%);
+
+    margin:35px auto;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.15);
+
+    border:
+        1px solid rgba(255,255,255,.3);
+
+    text-align:center;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+.back{
+
+    text-align:center;
+
+    margin:30px 0;
+
+}
+
+.back a{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:
+        rgba(0,0,0,.25);
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.back a:hover{
+
+    background:
+        rgba(0,0,0,.45);
+
+    transform:translateY(-3px);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer-pro{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            270deg,
+            #141e30,
+            #243b55
+        );
+
+    color:white;
+
+    text-align:center;
+
+    padding:30px 15px;
+
+    margin-top:45px;
+
+    border-radius:
+        25px 25px 0 0;
+
+    box-shadow:
+        0 -5px 20px rgba(0,0,0,.35);
+
+}
+
+.footer-pro h2{
+
+    color:#00e5ff;
+
+    margin-bottom:12px;
+
+}
+
+.footer-pro p{
+
+    margin:8px 0;
+
+    font-size:14px;
+
+}
+
+
+/* =====================================================
+   SOCIAL
+===================================================== */
+
+.socials{
+
+    margin:18px 0;
+
+}
+
+.socials a{
+
+    display:inline-block;
+
+    color:white;
+
+    text-decoration:none;
+
+    margin:5px;
+
+    padding:8px 12px;
+
+    border-radius:8px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    transition:.3s;
+
+}
+
+.socials a:hover{
+
+    background:
+        rgba(255,255,255,.22);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =====================================================
+   SHINE
+===================================================== */
+
+.footer-pro::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:200%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    animation:
+        shine 5s infinite;
+
+    pointer-events:none;
+
+}
+
+@keyframes shine{
+
+    0%{
+        transform:translateX(-30%);
+    }
+
+    100%{
+        transform:translateX(30%);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .logo{
+
+        font-size:25px;
+
+    }
+
+    .intro h1{
+
+        font-size:24px;
+
+    }
+
+    .grid{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .card{
+
+        min-height:auto;
+
+    }
+
+    .socials a{
+
+        display:block;
+
+        width:200px;
+
+        margin:7px auto;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo"
+         data-fr="📊 Excel — Choisissez votre niveau"
+         data-ml="📊 Excel — Safidio ny kilasinao">
+
+        📊 Excel — Choisissez votre niveau
+
+    </div>
+
+
+    <div class="subtitle"
+         data-fr="Cours, exercices et pratiques Excel"
+         data-ml="Lesona, fanazaran-tena ary fampiharana Excel">
+
+        Cours, exercices et pratiques Excel
+
+    </div>
+
+
+    <div class="language">
+
+        <button onclick="setLang('fr')">
+            🇫🇷 Français
+        </button>
+
+        <button onclick="setLang('ml')">
+            🇲🇬 Malagasy
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
+
+<section class="intro">
+
+    <h1
+        data-fr="💻 Apprendre Excel progressivement"
+        data-ml="💻 Mianatra Excel tsikelikely">
+
+        💻 Apprendre Excel progressivement
+
+    </h1>
+
+
+    <p
+        data-fr="Choisissez votre niveau pour accéder aux cours, exercices, fonctions et projets Excel adaptés à votre classe."
+        data-ml="Safidio ny kilasy misy anao mba hahazoana lesona, fanazaran-tena, fonctions ary projets Excel mifanaraka amin'ny kilasy misy anao.">
+
+        Choisissez votre niveau pour accéder aux cours,
+        exercices, fonctions et projets Excel adaptés à votre classe.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     LEVEL GRID
+===================================================== -->
+
+<div class="grid">
+
+
+    <!-- 5EME -->
+
+    <div class="card">
+
+        <span class="badge">Niveau 1</span>
+
+        <div class="excel-icon">
+            X
+        </div>
+
+        <h2>5ème</h2>
+
+        <p
+            data-fr="Initiation à Excel, tableaux et fonctions simples."
+            data-ml="Fanombohana Excel, tableaux ary fonctions tsotra.">
+
+            Initiation à Excel, tableaux et fonctions simples.
+
+        </p>
+
+        <a href="excel-5eme.html">
+
+            📘
+            <span
+                data-fr="Ouvrir le cours"
+                data-ml="Sokafy ny lesona">
+
+                Ouvrir le cours
+
+            </span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- 4EME -->
+
+    <div class="card">
+
+        <span class="badge">Niveau 2</span>
+
+        <div class="excel-icon">
+            X
+        </div>
+
+        <h2>4ème</h2>
+
+        <p
+            data-fr="Formules, calculs et organisation des données."
+            data-ml="Formules, kajy ary fandaminana données.">
+
+            Formules, calculs et organisation des données.
+
+        </p>
+
+        <a href="excel-4eme.html">
+
+            📘
+            <span
+                data-fr="Ouvrir le cours"
+                data-ml="Sokafy ny lesona">
+
+                Ouvrir le cours
+
+            </span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- 3EME -->
+
+    <div class="card">
+
+        <span class="badge">Niveau 3</span>
+
+        <div class="excel-icon">
+            X
+        </div>
+
+        <h2>3ème</h2>
+
+        <p
+            data-fr="Fonctions avancées, tableaux et graphiques."
+            data-ml="Fonctions avancées, tableaux ary graphiques.">
+
+            Fonctions avancées, tableaux et graphiques.
+
+        </p>
+
+        <a href="excel-3eme.html">
+
+            📘
+            <span
+                data-fr="Ouvrir le cours"
+                data-ml="Sokafy ny lesona">
+
+                Ouvrir le cours
+
+            </span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- 2NDE -->
+
+    <div class="card">
+
+        <span class="badge">Lycée</span>
+
+        <div class="excel-icon">
+            X
+        </div>
+
+        <h2>2nde</h2>
+
+        <p
+            data-fr="Excel avancé, fonctions logiques et analyse."
+            data-ml="Excel avancé, fonctions logiques ary analyse.">
+
+            Excel avancé, fonctions logiques et analyse.
+
+        </p>
+
+        <a href="excel-2nd.html">
+
+            📘
+            <span
+                data-fr="Ouvrir le cours"
+                data-ml="Sokafy ny lesona">
+
+                Ouvrir le cours
+
+            </span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- 1ERE -->
+
+    <div class="card">
+
+        <span class="badge">Lycée</span>
+
+        <div class="excel-icon">
+            X
+        </div>
+
+        <h2>1ère</h2>
+
+        <p
+            data-fr="Analyse de données, fonctions avancées et projets."
+            data-ml="Fandinihana données, fonctions avancées ary projets.">
+
+            Analyse de données, fonctions avancées et projets.
+
+        </p>
+
+        <a href="excel-1ere.html">
+
+            📘
+            <span
+                data-fr="Ouvrir le cours"
+                data-ml="Sokafy ny lesona">
+
+                Ouvrir le cours
+
+            </span>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     INFO
+===================================================== -->
+
+<section class="info">
+
+    <h2
+        data-fr="🎯 Parcours Excel"
+        data-ml="🎯 Fianarana Excel">
+
+        🎯 Parcours Excel
+
+    </h2>
+
+
+    <p
+        data-fr="Débutant → Fonctions → Analyse → Graphiques → Projets"
+        data-ml="Fanombohana → Fonctions → Analyse → Graphiques → Projets">
+
+        Débutant → Fonctions → Analyse → Graphiques → Projets
+
+    </p>
+
+
+    <p
+        data-fr="Chaque niveau permet de progresser étape par étape."
+        data-ml="Ny niveau tsirairay dia manampy ny mpianatra handroso tsikelikely.">
+
+        Chaque niveau permet de progresser étape par étape.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     RETOUR
+===================================================== -->
+
+<div class="back">
+
+    <a href="index.html">
+
+        ⬅️
+        <span
+            data-fr="Retour à l'accueil"
+            data-ml="Hiverina any amin'ny Accueil">
+
+            Retour à l'accueil
+
+        </span>
+
+    </a>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer-pro">
+
+    <h2>
+        💻 Mr Tahiry - Informatique 👨‍🏫
+    </h2>
+
+
+    <p>
+
+        📅
+        <span
+            data-fr="Date :"
+            data-ml="Daty :">
+
+            Date :
+
+        </span>
+
+        <span id="dateFooter"></span>
+
+    </p>
+
+
+    <div class="socials">
+
+        <a href="#">
+            📘 Facebook
+        </a>
+
+        <a href="#">
+            💬 WhatsApp
+        </a>
+
+        <a href="#">
+            📧 Email
+        </a>
+
+    </div>
+
+
+    <p class="devise"
+       data-fr="🚀 Apprendre • Pratiquer • Réussir 🌟"
+       data-ml="🚀 Mianatra • Manao fanazaran-tena • Mahomby 🌟">
+
+        🚀 Apprendre • Pratiquer • Réussir 🌟
+
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   LANGUE FR / ML
+===================================================== */
+
+function setLang(lang){
+
+    document.querySelectorAll("[data-fr]").forEach(function(element){
+
+        if(lang === "fr"){
+
+            element.textContent =
+                element.getAttribute("data-fr");
+
+        }
+
+        else{
+
+            element.textContent =
+                element.getAttribute("data-ml");
+
+        }
+
+    });
+
+
+    document.documentElement.lang =
+        lang === "fr" ? "fr" : "mg";
+
+
+    localStorage.setItem(
+        "language",
+        lang
+    );
+
+}
+
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+const today = new Date();
+
+document.getElementById("dateFooter").textContent =
+    today.toLocaleDateString("fr-FR",{
+
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric"
+
+    });
+
+
+
+/* =====================================================
+   LANGUAGE SAVED
+===================================================== */
+
+const savedLanguage =
+    localStorage.getItem("language") || "fr";
+
+setLang(savedLanguage);
+
+
+</script>
+
+
+</body>
+</html>

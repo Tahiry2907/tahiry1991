@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Binaire avec étapes | Mr Tahiry</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+    line-height:1.7;
+}
+
+header{
+    background:#1e293b;
+    padding:18px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 4px 15px rgba(0,0,0,.4);
+}
+
+header h1{
+    color:#38bdf8;
+    margin-bottom:10px;
+}
+
+.lang button{
+    padding:8px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin:3px;
+    font-weight:bold;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:auto;
+    padding:25px 0;
+}
+
+.card{
+    background:#1e293b;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+.card h2{
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#7dd3fc;
+}
+
+p{
+    margin:10px 0;
+}
+
+.fr,.ml{
+    display:inline;
+}
+
+.ml{
+    display:none;
+}
+
+
+/* =====================================================
+   CONVERTISSEUR
+===================================================== */
+
+.converter-box{
+    background:#0f172a;
+    padding:20px;
+    margin-top:20px;
+    border-radius:15px;
+    border:1px solid #334155;
+}
+
+.converter-box h3{
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+.converter-box label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.converter-box input{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:8px;
+    font-size:17px;
+    margin-bottom:12px;
+}
+
+.converter-box input:focus{
+    box-shadow:0 0 0 2px #38bdf8;
+}
+
+.btn{
+    background:#0284c7;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#0369a1;
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   RESULTAT
+===================================================== */
+
+#stepsResult{
+    margin-top:25px;
+    padding:20px;
+    background:#020617;
+    border-radius:15px;
+    line-height:2;
+    overflow-x:auto;
+}
+
+.steps-title{
+    color:#38bdf8;
+    font-size:21px;
+    margin-bottom:15px;
+}
+
+.step-box{
+    background:#111827;
+    border-left:4px solid #38bdf8;
+    padding:12px;
+    margin:8px 0;
+    border-radius:8px;
+    font-family:monospace;
+}
+
+.binary-result{
+    background:#111827;
+    padding:15px;
+    border-radius:10px;
+    font-size:24px;
+    text-align:center;
+    letter-spacing:3px;
+    color:#00ff99;
+    margin:15px 0;
+}
+
+.success{
+    background:#064e3b;
+    color:#a7f3d0;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    text-align:center;
+    font-size:18px;
+}
+
+.warning{
+    background:#78350f;
+    color:#fde68a;
+    padding:15px;
+    border-radius:10px;
+}
+
+.error{
+    background:#7f1d1d;
+    color:#fecaca;
+    padding:15px;
+    border-radius:10px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #475569;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#0369a1;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    text-align:center;
+    background:#020617;
+    padding:25px;
+    margin-top:30px;
+    color:#cbd5e1;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .container{
+        width:94%;
+    }
+
+    header h1{
+        font-size:21px;
+    }
+
+    .card{
+        padding:15px;
+    }
+
+    .binary-result{
+        font-size:19px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <h1>
+        💻
+        <span class="fr">
+            Leçon : Code Binaire
+        </span>
+
+        <span class="ml">
+            Lesona : Code Binaire
+        </span>
+    </h1>
+
+
+    <div class="lang">
+
+        <button onclick="setLang('fr')">
+            🇫🇷 Français
+        </button>
+
+        <button onclick="setLang('ml')">
+            🇲🇬 Malagasy
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
+
+<div class="card">
+
+    <h2>
+        📚
+        <span class="fr">Introduction</span>
+        <span class="ml">Fampidirana</span>
+    </h2>
+
+
+    <p class="fr">
+
+        Un ordinateur comprend principalement deux états :
+        <strong>0</strong> et <strong>1</strong>.
+
+        Ces deux valeurs constituent le système binaire.
+
+    </p>
+
+
+    <p class="ml">
+
+        Ny ordinateur dia mampiasa indrindra ny sanda roa :
+        <strong>0</strong> sy <strong>1</strong>.
+
+        Ireo no fototry ny rafitra binaire.
+
+    </p>
+
+</div>
+
+
+
+<!-- =====================================================
+     DEFINITION
+===================================================== -->
+
+<div class="card">
+
+    <h2>
+        📌
+        <span class="fr">Définition du binaire</span>
+        <span class="ml">Famaritana ny binaire</span>
+    </h2>
+
+
+    <p class="fr">
+
+        Le système binaire est un système de numération
+        qui utilise uniquement deux chiffres :
+
+        <strong>0</strong> et <strong>1</strong>.
+
+    </p>
+
+
+    <p class="ml">
+
+        Ny système binaire dia rafitra fanisana mampiasa
+        tarehimarika roa ihany :
+
+        <strong>0</strong> sy <strong>1</strong>.
+
+    </p>
+
+</div>
+
+
+
+<!-- =====================================================
+     CONVERTISSEUR
+===================================================== -->
+
+<div class="card" id="convertisseur">
+
+    <h2>
+
+        🔢
+
+        <span class="fr">
+            Convertisseur Binaire avec étapes
+        </span>
+
+        <span class="ml">
+            Convertisseur Binaire miaraka amin'ny dingana
+        </span>
+
+    </h2>
+
+
+    <p class="fr">
+
+        Entrez un nombre pour voir le calcul
+        étape par étape.
+
+    </p>
+
+
+    <p class="ml">
+
+        Ampidiro ny isa mba hahitana ny kajy
+        tsikelikely.
+
+    </p>
+
+
+
+    <!-- =================================================
+         DECIMAL → BINAIRE
+    ================================================= -->
+
+    <div class="converter-box">
+
+        <h3>
+
+            🔢
+
+            <span class="fr">
+                Décimal → Binaire
+            </span>
+
+            <span class="ml">
+                Décimal → Binaire
+            </span>
+
+        </h3>
+
+
+        <label>
+
+            <span class="fr">
+                Nombre décimal :
+            </span>
+
+            <span class="ml">
+                Isa décimal :
+            </span>
+
+        </label>
+
+
+        <input
+            type="number"
+            id="decimalInput"
+            placeholder="Exemple : 13"
+            min="0"
+            step="1"
+        >
+
+
+        <button
+            class="btn"
+            onclick="convertDecimalSteps()">
+
+            <span class="fr">
+                🔄 Convertir en binaire
+            </span>
+
+            <span class="ml">
+                🔄 Avadika ho binaire
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         BINAIRE → DECIMAL
+    ================================================= -->
+
+    <div class="converter-box">
+
+        <h3>
+
+            🔢
+
+            <span class="fr">
+                Binaire → Décimal
+            </span>
+
+            <span class="ml">
+                Binaire → Décimal
+            </span>
+
+        </h3>
+
+
+        <label>
+
+            <span class="fr">
+                Nombre binaire :
+            </span>
+
+            <span class="ml">
+                Isa binaire :
+            </span>
+
+        </label>
+
+
+        <input
+            type="text"
+            id="binaryInput"
+            placeholder="Exemple : 1101"
+        >
+
+
+        <button
+            class="btn"
+            onclick="convertBinarySteps()">
+
+            <span class="fr">
+                🔄 Convertir en décimal
+            </span>
+
+            <span class="ml">
+                🔄 Avadika ho décimal
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         RESULTAT
+    ================================================= -->
+
+    <div id="stepsResult">
+
+        <span class="fr">
+
+            💡 Les étapes du calcul apparaîtront ici...
+
+        </span>
+
+
+        <span class="ml">
+
+            💡 Hiseho eto ny dingana rehetra amin'ny kajy...
+
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     EXEMPLE
+===================================================== -->
+
+<div class="card">
+
+    <h2>
+
+        🧮
+
+        <span class="fr">
+            Exemple : 13 en binaire
+        </span>
+
+        <span class="ml">
+            Ohatra : 13 ho binaire
+        </span>
+
+    </h2>
+
+
+    <div class="step-box">
+
+        13 ÷ 2 = 6 reste 1
+
+        <br>
+
+        6 ÷ 2 = 3 reste 0
+
+        <br>
+
+        3 ÷ 2 = 1 reste 1
+
+        <br>
+
+        1 ÷ 2 = 0 reste 1
+
+    </div>
+
+
+    <p class="fr">
+
+        On lit les restes de bas en haut :
+
+    </p>
+
+
+    <p class="ml">
+
+        Vakiana avy any ambany miakatra ireo reste :
+
+    </p>
+
+
+    <div class="binary-result">
+
+        1101
+
+    </div>
+
+
+    <div class="success">
+
+        🎯
+
+        13₁₀ = 1101₂
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TABLEAU
+===================================================== -->
+
+<div class="card">
+
+    <h2>
+
+        📊
+
+        <span class="fr">
+            Tableau binaire
+        </span>
+
+        <span class="ml">
+            Tabilao binaire
+        </span>
+
+    </h2>
+
+
+    <table>
+
+        <tr>
+            <th>Décimal</th>
+            <th>Binaire</th>
+        </tr>
+
+        <tr>
+            <td>0</td>
+            <td>0000</td>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>0001</td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>0010</td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>0011</td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td>0100</td>
+        </tr>
+
+        <tr>
+            <td>5</td>
+            <td>0101</td>
+        </tr>
+
+        <tr>
+            <td>6</td>
+            <td>0110</td>
+        </tr>
+
+        <tr>
+            <td>7</td>
+            <td>0111</td>
+        </tr>
+
+        <tr>
+            <td>8</td>
+            <td>1000</td>
+        </tr>
+
+        <tr>
+            <td>9</td>
+            <td>1001</td>
+        </tr>
+
+        <tr>
+            <td>10</td>
+            <td>1010</td>
+        </tr>
+
+        <tr>
+            <td>11</td>
+            <td>1011</td>
+        </tr>
+
+        <tr>
+            <td>12</td>
+            <td>1100</td>
+        </tr>
+
+        <tr>
+            <td>13</td>
+            <td>1101</td>
+        </tr>
+
+        <tr>
+            <td>14</td>
+            <td>1110</td>
+        </tr>
+
+        <tr>
+            <td>15</td>
+            <td>1111</td>
+        </tr>
+
+    </table>
+
+</div>
+
+
+
+<!-- =====================================================
+     RESUME
+===================================================== -->
+
+<div class="card">
+
+    <h2>
+
+        ✅
+
+        <span class="fr">
+            À retenir
+        </span>
+
+        <span class="ml">
+            Zavatra tokony hotadidina
+        </span>
+
+    </h2>
+
+
+    <p class="fr">
+
+        ✔ Le binaire utilise 0 et 1.<br>
+
+        ✔ Pour convertir un décimal en binaire,
+        on effectue des divisions successives par 2.<br>
+
+        ✔ On lit les restes de bas en haut.<br>
+
+        ✔ Pour convertir un binaire en décimal,
+        on utilise les puissances de 2.
+
+    </p>
+
+
+    <p class="ml">
+
+        ✔ Ny binaire dia mampiasa 0 sy 1.<br>
+
+        ✔ Raha avadika décimal ho binaire,
+        dia zaraina 2 misesy ilay isa.<br>
+
+        ✔ Vakiana avy any ambany miakatra ny reste.<br>
+
+        ✔ Raha binaire ho décimal,
+        dia ampiasaina ny puissance de 2.
+
+    </p>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    💻 Mr Tahiry - Informatique 👨‍🏫
+
+    <br>
+
+    <span id="dateFooter"></span>
+
+</footer>
+
+
+
+<script>
+
+/* =====================================================
+   🌐 LANGUE
+===================================================== */
+
+function setLang(lang){
+
+    const fr =
+        document.querySelectorAll(".fr");
+
+    const ml =
+        document.querySelectorAll(".ml");
+
+
+    if(lang === "fr"){
+
+        fr.forEach(el => {
+            el.style.display = "inline";
+        });
+
+        ml.forEach(el => {
+            el.style.display = "none";
+        });
+
+        localStorage.setItem("language","fr");
+
+    }
+
+
+    if(lang === "ml"){
+
+        fr.forEach(el => {
+            el.style.display = "none";
+        });
+
+        ml.forEach(el => {
+            el.style.display = "inline";
+        });
+
+        localStorage.setItem("language","ml");
+
+    }
+
+}
+
+
+/* =====================================================
+   🔢 DECIMAL → BINAIRE
+===================================================== */
+
+function convertDecimalSteps(){
+
+    const input =
+        document
+        .getElementById("decimalInput")
+        .value
+        .trim();
+
+
+    const result =
+        document.getElementById("stepsResult");
+
+
+    if(input === ""){
+
+        result.innerHTML = `
+
+            <div class="warning">
+
+                ⚠️
+
+                <strong>
+                    Entrez un nombre décimal.
+                </strong>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    const number = Number(input);
+
+
+    if(
+        !Number.isInteger(number) ||
+        number < 0
+    ){
+
+        result.innerHTML = `
+
+            <div class="error">
+
+                ❌
+
+                Entrez un nombre entier positif
+                ou égal à 0.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    /* CAS 0 */
+
+    if(number === 0){
+
+        result.innerHTML = `
+
+            <div class="steps-title">
+
+                🔢 0₁₀ → Binaire
+
+            </div>
+
+
+            <div class="step-box">
+
+                0 ÷ 2 = 0 reste 0
+
+            </div>
+
+
+            <div class="binary-result">
+
+                0
+
+            </div>
+
+
+            <div class="success">
+
+                🎯
+
+                <strong>
+
+                    0₁₀ = 0₂
+
+                </strong>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    let n = number;
+
+    let steps = [];
+
+    let remainders = [];
+
+
+    /* DIVISIONS */
+
+    while(n > 0){
+
+        const quotient =
+            Math.floor(n / 2);
+
+        const reste =
+            n % 2;
+
+
+        steps.push({
+
+            nombre:n,
+
+            quotient:quotient,
+
+            reste:reste
+
+        });
+
+
+        remainders.push(reste);
+
+
+        n = quotient;
+
+    }
+
+
+    /* RESULTAT BINAIRE */
+
+    const binaryResult =
+        remainders
+        .slice()
+        .reverse()
+        .join("");
+
+
+    let html = `
+
+        <div class="steps-title">
+
+            🔢 ${number}₁₀ → Binaire
+
+        </div>
+
+
+        <p>
+
+            <strong>
+
+                📌 Étape 1 :
+                Divisions successives par 2
+
+            </strong>
+
+        </p>
+
+    `;
+
+
+    steps.forEach((step,index)=>{
+
+        html += `
+
+            <div class="step-box">
+
+                Étape ${index + 1} :
+
+                ${step.nombre}
+
+                ÷ 2 =
+
+                ${step.quotient}
+
+                reste
+
+                <strong>
+
+                    ${step.reste}
+
+                </strong>
+
+            </div>
+
+        `;
+
+    });
+
+
+    html += `
+
+        <p>
+
+            <strong>
+
+                📌 Étape 2 :
+                Lire les restes de bas en haut
+
+            </strong>
+
+        </p>
+
+
+        <div class="step-box">
+
+            ${remainders
+                .slice()
+                .reverse()
+                .join(" → ")}
+
+        </div>
+
+
+        <p>
+
+            <strong>
+
+                📌 Étape 3 : Résultat
+
+            </strong>
+
+        </p>
+
+
+        <div class="binary-result">
+
+            ${binaryResult}
+
+        </div>
+
+
+        <div class="success">
+
+            🎯
+
+            <strong>
+
+                ${number}₁₀ = ${binaryResult}₂
+
+            </strong>
+
+        </div>
+
+    `;
+
+
+    result.innerHTML = html;
+
+}
+
+
+
+/* =====================================================
+   🔢 BINAIRE → DECIMAL
+===================================================== */
+
+function convertBinarySteps(){
+
+    const input =
+        document
+        .getElementById("binaryInput")
+        .value
+        .trim();
+
+
+    const result =
+        document.getElementById("stepsResult");
+
+
+    if(input === ""){
+
+        result.innerHTML = `
+
+            <div class="warning">
+
+                ⚠️
+
+                <strong>
+
+                    Entrez un nombre binaire.
+
+                </strong>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    /* VERIFICATION */
+
+    if(!/^[01]+$/.test(input)){
+
+        result.innerHTML = `
+
+            <div class="error">
+
+                ❌
+
+                <strong>
+
+                    Erreur :
+
+                </strong>
+
+                un nombre binaire doit contenir
+                uniquement 0 et 1.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    let total = 0;
+
+    let steps = [];
+
+
+    /* PUISSANCES DE 2 */
+
+    const digits =
+        input.split("").reverse();
+
+
+    digits.forEach((bit,index)=>{
+
+        const puissance =
+            Math.pow(2,index);
+
+
+        const valeur =
+            Number(bit) * puissance;
+
+
+        total += valeur;
+
+
+        steps.push({
+
+            bit:bit,
+
+            exposant:index,
+
+            puissance:puissance,
+
+            valeur:valeur
+
+        });
+
+    });
+
+
+    let html = `
+
+        <div class="steps-title">
+
+            🔢 ${input}₂ → Décimal
+
+        </div>
+
+
+        <p>
+
+            <strong>
+
+                📌 Étape 1 :
+                Identifier les puissances de 2
+
+            </strong>
+
+        </p>
+
+
+        <div class="step-box">
+
+    `;
+
+
+    for(
+        let i = steps.length - 1;
+        i >= 0;
+        i--
+    ){
+
+        const s = steps[i];
+
+
+        html += `
+
+            ${s.bit}
+
+            ×
+
+            2<sup>${s.exposant}</sup>
+
+            =
+
+            <strong>
+
+                ${s.valeur}
+
+            </strong>
+
+            <br>
+
+        `;
+
+    }
+
+
+    html += `
+
+        </div>
+
+
+        <p>
+
+            <strong>
+
+                📌 Étape 2 :
+                Additionner les résultats
+
+            </strong>
+
+        </p>
+
+
+        <div class="step-box">
+
+    `;
+
+
+    const additions =
+        steps
+        .slice()
+        .reverse()
+        .map(s => s.valeur)
+        .join(" + ");
+
+
+    html += `
+
+        ${additions}
+
+        =
+
+        <strong>
+
+            ${total}
+
+        </strong>
+
+        </div>
+
+
+        <p>
+
+            <strong>
+
+                📌 Étape 3 : Résultat
+
+            </strong>
+
+        </p>
+
+
+        <div class="binary-result">
+
+            ${total}
+
+        </div>
+
+
+        <div class="success">
+
+            🎯
+
+            <strong>
+
+                ${input}₂ = ${total}₁₀
+
+            </strong>
+
+        </div>
+
+    `;
+
+
+    result.innerHTML = html;
+
+}
+
+
+
+/* =====================================================
+   📅 DATE
+===================================================== */
+
+document.getElementById("dateFooter").textContent =
+    new Date().toLocaleDateString("fr-FR",{
+
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric"
+
+    });
+
+
+
+/* =====================================================
+   🌐 LANGUE PAR DEFAUT
+===================================================== */
+
+const savedLanguage =
+    localStorage.getItem("language") || "fr";
+
+
+setLang(savedLanguage);
+
+</script>
+
+</body>
+</html>

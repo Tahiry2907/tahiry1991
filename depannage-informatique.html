@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b33">
+<title>IT Admin PRO++ | InfoPro</title><style>
+*{box-sizing:border-box}
+:root{
+  --fond:#071b33;
+  --carte:#102b49;
+  --bleu:#1677d2;
+  --turquoise:#16c6b3;
+  --texte:#edf6ff;
+  --muted:#b8c9dd;
+  --bordure:rgba(255,255,255,.12);
+}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--texte);
+  background:linear-gradient(135deg,#061426,#0c2948,#073a50);
+  min-height:100vh;
+  line-height:1.6;
+}
+header{
+  padding:25px 15px;
+  text-align:center;
+  background:rgba(3,15,29,.88);
+  border-bottom:1px solid var(--bordure);
+}
+.logo{font-size:30px;font-weight:bold;color:#42e6d0}
+header p{color:var(--muted);margin:8px 0}
+.langues{display:flex;justify-content:center;gap:8px;margin-top:15px}
+button,select,input{font:inherit}
+.langues button,.btn{
+  border:0;border-radius:9px;padding:10px 15px;
+  cursor:pointer;font-weight:bold;
+  background:var(--bleu);color:white;
+}
+.langues button.active{background:var(--turquoise);color:#052237}
+.container{width:min(1150px,94%);margin:22px auto}
+.intro,.outil,.carte,.alerte{
+  background:rgba(16,43,73,.9);
+  border:1px solid var(--bordure);
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:18px;
+}
+h1{font-size:clamp(23px,4vw,35px);margin:8px 0}
+h2{font-size:22px;margin-top:0}
+h3{margin-top:0}
+p{overflow-wrap:anywhere}
+.muted{color:var(--muted)}
+.searchline{display:flex;gap:10px;flex-wrap:wrap}
+.searchline input,.searchline select{
+  flex:1;min-width:180px;padding:12px;
+  border:1px solid var(--bordure);border-radius:9px;
+  background:#071b33;color:white;
+}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.filters button{
+  border:1px solid var(--bordure);border-radius:20px;
+  padding:8px 12px;background:#102b49;color:white;cursor:pointer;
+}
+.filters button.active{background:var(--turquoise);color:#062338}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:15px;
+}
+.carte{margin:0;display:flex;flex-direction:column}
+.icone{font-size:35px}
+.carte h3{margin:8px 0}
+.carte p{color:var(--muted);margin:5px 0 14px}
+.carte .btn{margin-top:auto}
+.etapes{
+  display:none;margin-top:14px;padding-top:14px;
+  border-top:1px solid var(--bordure);
+}
+.etapes.ouverte{display:block}
+.etapes ol{padding-left:22px}
+.etapes li{margin-bottom:9px}
+.alerte{
+  border-left:5px solid #ffb547;
+  background:rgba(105,68,12,.22);
+}
+.alerte strong{color:#ffd17a}
+.tag{
+  display:inline-block;font-size:12px;padding:4px 8px;
+  border-radius:20px;background:rgba(22,198,179,.15);
+  color:#67f5df;margin-bottom:8px;
+}
+.checklist label{display:block;padding:7px 0}
+.checklist input{margin-right:8px}
+footer{
+  text-align:center;padding:25px 12px;
+  color:var(--muted);border-top:1px solid var(--bordure);
+}
+.hidden{display:none!important}
+@media(max-width:480px){
+  header{padding:20px 10px}
+  .intro,.outil,.carte,.alerte{padding:14px}
+  .searchline{flex-direction:column}
+  .searchline input,.searchline select{width:100%}
+}
+</style></head><body><header>
+  <div class="logo">💻 InfoPro</div>
+  <h1 data-fr="IT Admin PRO++" data-ml="IT Admin PRO++">IT Admin PRO++</h1>
+  <p data-fr="Diagnostic et dépannage informatique" data-ml="Fizahana sy fanamboarana olana amin’ny solosaina">Diagnostic et dépannage informatique</p>
+  <div class="langues">
+    <button id="btnFR" class="active" onclick="changerLangue('fr')">🇫🇷 Français</button>
+    <button id="btnML" onclick="changerLangue('ml')">🇲🇬 Malagasy</button>
+  </div>
+</header><main class="container"><section class="intro">
+  <span class="tag" data-fr="GUIDE TECHNIQUE" data-ml="TOROLALANA TEKNIKA">GUIDE TECHNIQUE</span>
+  <h2 data-fr="Bienvenue dans le centre de dépannage" data-ml="Tongasoa eto amin’ny ivon-toerana fanamboarana solosaina">Bienvenue dans le centre de dépannage</h2>
+  <p data-fr="Identifiez une panne, vérifiez les causes possibles et suivez les étapes de diagnostic avant de remplacer une pièce ou de réinstaller Windows."
+     data-ml="Fantaro ny olana, zahao ny mety ho antony ary araho tsikelikely ny fizahana alohan’ny hanoloana kojakoja na hametrahana Windows indray.">
+    Identifiez une panne, vérifiez les causes possibles et suivez les étapes de diagnostic avant de remplacer une pièce ou de réinstaller Windows.
+  </p>
+</section><section class="alerte">
+  <strong data-fr="⚠️ Attention : sauvegardez vos fichiers !" data-ml="⚠️ Tandremo: tehirizo aloha ny rakitrao!">⚠️ Attention : sauvegardez vos fichiers !</strong>
+  <p data-fr="Ne formatez pas le disque et ne supprimez aucune partition avant d’avoir vérifié les sauvegardes. Une réinstallation peut effacer les données. Si vous avez un doute, demandez l’aide d’un technicien."
+     data-ml="Aza manao format na mamafa partition raha tsy efa voatahiry ny rakitra. Mety hamafa ny angona ny fametrahana Windows indray. Raha misy fisalasalana dia mangataha fanampiana amin’ny teknisianina.">
+    Ne formatez pas le disque et ne supprimez aucune partition avant d’avoir vérifié les sauvegardes.
+  </p>
+</section><section class="outil">
+  <h2 data-fr="🔎 Rechercher une panne" data-ml="🔎 Mitady olana">🔎 Rechercher une panne</h2>
+  <div class="searchline">
+    <input id="recherche" type="search"
+      placeholder="Ex. : disque dur, écran noir, Windows..."
+      data-placeholder-fr="Ex. : disque dur, écran noir, Windows..."
+      data-placeholder-ml="Ohatra: disque dur, écran mainty, Windows..."
+      oninput="filtrer()">
+    <select id="filtreMarque" onchange="filtrer()">
+      <option value="toutes" data-fr="Toutes les catégories" data-ml="Sokajy rehetra">Toutes les catégories</option>
+      <option value="materiel" data-fr="Matériel" data-ml="Kojakoja">Matériel</option>
+      <option value="demarrage" data-fr="Démarrage et BIOS" data-ml="Fandefasana sy BIOS">Démarrage et BIOS</option>
+      <option value="windows" data-fr="Windows" data-ml="Windows">Windows</option>
+      <option value="reseau" data-fr="Réseau et logiciels" data-ml="Tambajotra sy rindranasa">Réseau et logiciels</option>
+      <option value="marque" data-fr="Par marque" data-ml="Araka ny marika">Par marque</option>
+    </select>
+  </div>
+  <div class="filters">
+    <button class="active" onclick="choisirCategorie('toutes',this)" data-fr="Tout afficher" data-ml="Asehoy daholo">Tout afficher</button>
+    <button onclick="choisirCategorie('materiel',this)" data-fr="Matériel" data-ml="Kojakoja">Matériel</button>
+    <button onclick="choisirCategorie('demarrage',this)" data-fr="Démarrage" data-ml="Fandefasana">Démarrage</button>
+    <button onclick="choisirCategorie('windows',this)" data-fr="Windows" data-ml="Windows">Windows</button>
+    <button onclick="choisirCategorie('marque',this)" data-fr="Marques" data-ml="Marika">Marques</button>
+  </div>
+  <p id="compteur" class="muted">Guides disponibles</p>
+</section><section class="grid" id="listeGuides"><article class="carte" data-cat="materiel" data-search-fr="ordinateur ne démarre pas alimentation batterie câble bouton"
+data-search-ml="tsy mandeha ordinateur batterie tariby alimentation">
+  <div class="icone">🔌</div>
+  <span class="tag" data-fr="MATÉRIEL" data-ml="KOJAKOJA">MATÉRIEL</span>
+  <h3 data-fr="1. L’ordinateur ne démarre pas" data-ml="1. Tsy mandeha ny ordinateur">1. L’ordinateur ne démarre pas</h3>
+  <p data-fr="Aucun voyant ou aucun signe de démarrage." data-ml="Tsy misy jiro na famantarana rehefa alefa.">Aucun voyant ou aucun signe de démarrage.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Vérifiez la prise électrique et le câble d’alimentation." data-ml="Zahao ny prise électrique sy ny tariby famatsiana herinaratra.">Vérifiez la prise électrique et le câble d’alimentation.</li>
+      <li data-fr="Sur un portable, vérifiez le chargeur et le voyant de charge." data-ml="Amin’ny portable, zahao ny chargeur sy ny jiro famahanana batterie.">Sur un portable, vérifiez le chargeur et le voyant de charge.</li>
+      <li data-fr="Débranchez les périphériques USB non nécessaires puis réessayez." data-ml="Esory ireo périphériques USB tsy ilaina ary andramo indray.">Débranchez les périphériques USB non nécessaires puis réessayez.</li>
+      <li data-fr="Si aucun voyant ne s’allume, faites contrôler l’alimentation ou la carte mère." data-ml="Raha tsy misy jiro mihitsy, asaivo zahana ny alimentation na carte mère.">Si aucun voyant ne s’allume, faites contrôler l’alimentation ou la carte mère.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="materiel" data-search-fr="écran noir ordinateur ventilateur mémoire RAM écran"
+data-search-ml="écran mainty ordinateur RAM écran">
+  <div class="icone">🖥️</div>
+  <span class="tag" data-fr="MATÉRIEL" data-ml="KOJAKOJA">MATÉRIEL</span>
+  <h3 data-fr="2. Écran noir" data-ml="2. Écran mainty">2. Écran noir</h3>
+  <p data-fr="L’ordinateur semble fonctionner, mais rien ne s’affiche." data-ml="Toa mandeha ny ordinateur nefa tsy misy miseho eo amin’ny écran.">L’ordinateur semble fonctionner, mais rien ne s’affiche.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Vérifiez que l’écran est allumé et que son câble est bien connecté." data-ml="Zahao raha mandeha ny écran ary mifandray tsara ny tariby.">Vérifiez que l’écran est allumé et que son câble est bien connecté.</li>
+      <li data-fr="Choisissez la bonne source vidéo : HDMI, VGA ou DisplayPort." data-ml="Fidio ny fidirana vidéo marina: HDMI, VGA na DisplayPort.">Choisissez la bonne source vidéo : HDMI, VGA ou DisplayPort.</li>
+      <li data-fr="Sur un portable, essayez la touche de fonction d’affichage indiquée sur le clavier." data-ml="Amin’ny portable, andramo ny touche fonction an’ny écran araka ny marika eo amin’ny clavier.">Sur un portable, essayez la touche de fonction d’affichage indiquée sur le clavier.</li>
+      <li data-fr="Si le problème persiste, faites vérifier la RAM et la carte graphique par une personne compétente." data-ml="Raha mbola mitohy ny olana, asaivo zahana ny RAM sy carte graphique amin’ny olona mahay.">Si le problème persiste, faites vérifier la RAM et la carte graphique par une personne compétente.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="materiel" data-search-fr="disque dur HDD SSD non détecté BIOS stockage"
+data-search-ml="disque dur HDD SSD tsy hita BIOS stockage">
+  <div class="icone">💽</div>
+  <span class="tag" data-fr="STOCKAGE" data-ml="FITAHIRIZANA">STOCKAGE</span>
+  <h3 data-fr="3. Disque dur non détecté" data-ml="3. Tsy hita ny disque dur">3. Disque dur non détecté</h3>
+  <p data-fr="Le disque fonctionne sur un autre PC mais n’est pas reconnu ici." data-ml="Mandeha amin’ny ordinateur hafa ilay disque nefa tsy hita amin’ity ordinateur ity.">Le disque fonctionne sur un autre PC mais n’est pas reconnu ici.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Entrez dans le BIOS/UEFI et cherchez les informations de stockage." data-ml="Midira ao amin’ny BIOS/UEFI ary tadiavo ny mombamomba ny stockage.">Entrez dans le BIOS/UEFI et cherchez les informations de stockage.</li>
+      <li data-fr="Éteignez le PC et débranchez-le avant de vérifier les câbles SATA et d’alimentation." data-ml="Vonoy ary esory amin’ny herinaratra ny PC alohan’ny hijerena ny câble SATA sy alimentation.">Éteignez le PC et débranchez-le avant de vérifier les câbles SATA et d’alimentation.</li>
+      <li data-fr="Essayez un autre port SATA et un autre câble compatibles si vous savez le faire." data-ml="Andramo port SATA hafa sy tariby mifanaraka aminy raha mahay manao izany ianao.">Essayez un autre port SATA et un autre câble compatibles si vous savez le faire.</li>
+      <li data-fr="Si le disque n’apparaît toujours pas, vérifiez les réglages du contrôleur et la compatibilité. Ne changez pas les réglages au hasard." data-ml="Raha mbola tsy hita ilay disque, zahao ny réglage contrôleur sy compatibilité. Aza manova réglage an-jambany.">Si le disque n’apparaît toujours pas, vérifiez les réglages du contrôleur et la compatibilité.</li>
+      <li data-fr="Ne formatez pas le disque si vous souhaitez récupérer des fichiers." data-ml="Aza manao format raha mbola mila averina ny rakitra ao anatiny.">Ne formatez pas le disque si vous souhaitez récupérer des fichiers.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="materiel" data-search-fr="RAM mémoire bip démarrage ordinateur"
+data-search-ml="RAM mémoire bip ordinateur">
+  <div class="icone">🧠</div>
+  <span class="tag" data-fr="MÉMOIRE" data-ml="FITADIDIANA">MÉMOIRE</span>
+  <h3 data-fr="4. Problème de RAM" data-ml="4. Olana amin’ny RAM">4. Problème de RAM</h3>
+  <p data-fr="Bips au démarrage, redémarrages ou écran noir." data-ml="Misy bip rehefa alefa, miverimberina ny redémarrage na écran mainty.">Bips au démarrage, redémarrages ou écran noir.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Éteignez l’ordinateur, débranchez-le et attendez l’arrêt complet." data-ml="Vonoy ny ordinateur, esory amin’ny herinaratra ary andraso ho maty tanteraka.">Éteignez l’ordinateur, débranchez-le et attendez l’arrêt complet.</li>
+      <li data-fr="Si vous savez ouvrir le boîtier en sécurité, vérifiez que la RAM est correctement installée." data-ml="Raha mahay manokatra boîtier am-pilaminana ianao, zahao raha mipetraka tsara ny RAM.">Si vous savez ouvrir le boîtier en sécurité, vérifiez que la RAM est correctement installée.</li>
+      <li data-fr="Testez une barrette à la fois uniquement si vous maîtrisez cette opération." data-ml="Andramo tsirairay ny barrette raha hainao tsara izany.">Testez une barrette à la fois uniquement si vous maîtrisez cette opération.</li>
+      <li data-fr="Consultez le manuel pour interpréter les bips. Ils varient selon le fabricant." data-ml="Jereo ny manuel handikana ny bip satria miova arakaraka ny marika.">Consultez le manuel pour interpréter les bips.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="demarrage" data-search-fr="BIOS UEFI boot menu clé démarrage ordinateur"
+data-search-ml="BIOS UEFI boot menu touche démarrage">
+  <div class="icone">⚙️</div>
+  <span class="tag" data-fr="BIOS / UEFI" data-ml="BIOS / UEFI">BIOS / UEFI</span>
+  <h3 data-fr="5. Accéder au BIOS ou Boot Menu" data-ml="5. Miditra amin’ny BIOS na Boot Menu">5. Accéder au BIOS ou Boot Menu</h3>
+  <p data-fr="Utilisez la touche adaptée à la marque et au modèle." data-ml="Ampiasao ny touche mifanaraka amin’ny marika sy ny modèle.">Utilisez la touche adaptée à la marque et au modèle.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Éteignez complètement le PC, puis rallumez-le." data-ml="Vonoy tanteraka ny PC dia alefaso indray.">Éteignez complètement le PC, puis rallumez-le.</li>
+      <li data-fr="Dès l’allumage, appuyez plusieurs fois sur la touche indiquée pour votre modèle." data-ml="Raha vao alefa, tsindrio imbetsaka ny touche mifanaraka amin’ny modèle.">Dès l’allumage, appuyez plusieurs fois sur la touche indiquée pour votre modèle.</li>
+      <li data-fr="Si la touche ne fonctionne pas, consultez le manuel ou le site officiel du fabricant." data-ml="Raha tsy mandeha ilay touche, jereo ny manuel na ny tranonkala ofisialin’ny mpanamboatra.">Si la touche ne fonctionne pas, consultez le manuel.</li>
+      <li data-fr="Ne modifiez pas Secure Boot, UEFI/Legacy ou SATA sans comprendre les conséquences." data-ml="Aza manova Secure Boot, UEFI/Legacy na SATA raha tsy fantatrao ny vokany.">Ne modifiez pas les réglages sans comprendre les conséquences.</li>
+    </ol>
+    <p><strong data-fr="Touches souvent utilisées :" data-ml="Touche fampiasa matetika:">Touches souvent utilisées :</strong></p>
+    <ul>
+      <li>HP : Esc puis F9 (Boot Menu) ou F10 (BIOS)</li>
+      <li>Dell : F12 (Boot Menu) ou F2 (BIOS)</li>
+      <li>Lenovo : F12 ou bouton Novo selon le modèle ; F1/F2 sur certains modèles</li>
+      <li>Acer : F12 (Boot Menu) ou F2 (BIOS)</li>
+      <li>ASUS : Esc (Boot Menu) ou F2 (BIOS)</li>
+    </ul>
+    <p class="muted" data-fr="Ces touches sont indicatives : elles peuvent varier selon le modèle." data-ml="Touche fanoroana ireo: mety hiova arakaraka ny modèle.">Ces touches sont indicatives : elles peuvent varier selon le modèle.</p>
+  </div>
+</article><article class="carte" data-cat="windows" data-search-fr="Windows installation disque absent SSD Intel VMD RAID pilote"
+data-search-ml="Windows installation disque tsy hita SSD pilote">
+  <div class="icone">💿</div>
+  <span class="tag">WINDOWS</span>
+  <h3 data-fr="6. Disque absent pendant l’installation Windows" data-ml="6. Tsy hita ny disque rehefa mametraka Windows">6. Disque absent pendant l’installation Windows</h3>
+  <p data-fr="L’installateur Windows ne montre aucun disque disponible." data-ml="Tsy mampiseho disque azo isafidianana ny installateur Windows.">L’installateur Windows ne montre aucun disque disponible.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Vérifiez d’abord si le SSD/HDD apparaît dans le BIOS/UEFI." data-ml="Zahao aloha raha hita ao amin’ny BIOS/UEFI ny SSD/HDD.">Vérifiez d’abord si le SSD/HDD apparaît dans le BIOS/UEFI.</li>
+      <li data-fr="S’il est absent du BIOS, vérifiez le branchement, le port et la compatibilité." data-ml="Raha tsy hita ao amin’ny BIOS izy, zahao ny branchement, port ary compatibilité.">S’il est absent du BIOS, vérifiez le branchement, le port et la compatibilité.</li>
+      <li data-fr="S’il est détecté dans le BIOS mais absent de l’installateur, vérifiez le pilote de stockage requis par le fabricant." data-ml="Raha hita ao amin’ny BIOS fa tsy ao amin’ny installateur, zahao raha ilaina ny pilote stockage avy amin’ny mpanamboatra.">S’il est détecté dans le BIOS mais absent de l’installateur, vérifiez le pilote de stockage requis.</li>
+      <li data-fr="Certains PC utilisent Intel RST/VMD ou un mode RAID. Consultez la documentation officielle avant de changer ce réglage." data-ml="Misy PC mampiasa Intel RST/VMD na RAID. Jereo ny torolalana ofisialy alohan’ny hanovana izany.">Certains PC utilisent Intel RST/VMD ou un mode RAID.</li>
+      <li data-fr="Ne supprimez aucune partition pour tenter de faire apparaître le disque." data-ml="Aza mamafa partition mba hanandramana hampiseho ilay disque.">Ne supprimez aucune partition.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="demarrage" data-search-fr="no bootable device operating system disque démarrage"
+data-search-ml="no bootable device système disque démarrage">
+  <div class="icone">🚫</div>
+  <span class="tag" data-fr="DÉMARRAGE" data-ml="FANDEFA SANA">DÉMARRAGE</span>
+  <h3 data-fr="7. No Bootable Device" data-ml="7. No Bootable Device">7. No Bootable Device</h3>
+  <p data-fr="Le PC ne trouve pas de système à démarrer." data-ml="Tsy mahita système azo alefa ny PC.">Le PC ne trouve pas de système à démarrer.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Vérifiez si le disque est reconnu dans le BIOS/UEFI." data-ml="Zahao raha hita ao amin’ny BIOS/UEFI ny disque.">Vérifiez si le disque est reconnu dans le BIOS/UEFI.</li>
+      <li data-fr="Vérifiez l’ordre de démarrage et choisissez le disque système approprié." data-ml="Zahao ny ordre de démarrage ary fidio ny disque misy ny système.">Vérifiez l’ordre de démarrage.</li>
+      <li data-fr="Si Windows est installé mais ne démarre pas, utilisez les options de réparation de Windows." data-ml="Raha efa napetraka ny Windows nefa tsy mandeha, ampiasao ny safidy fanamboarana Windows.">Si Windows est installé mais ne démarre pas, utilisez les options de réparation.</li>
+      <li data-fr="Si le disque fait des bruits inhabituels ou disparaît, arrêtez les essais et protégez les données." data-ml="Raha misy feo hafahafa na tsy hita intsony ilay disque, ajanony ny fitsapana ary arovy ny angona.">Si le disque fait des bruits inhabituels, protégez les données.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="windows" data-search-fr="Windows lent mise à jour stockage démarrage applications"
+data-search-ml="Windows miadana mise à jour stockage application">
+  <div class="icone">🐢</div>
+  <span class="tag">WINDOWS</span>
+  <h3 data-fr="8. Windows est lent" data-ml="8. Miadana ny Windows">8. Windows est lent</h3>
+  <p data-fr="Le démarrage ou l’ouverture des logiciels prend trop de temps." data-ml="Ela ny fandefasana Windows na fanokafana logiciel.">Le démarrage ou l’ouverture des logiciels prend trop de temps.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Redémarrez l’ordinateur et vérifiez les mises à jour." data-ml="Avereno alefa ny ordinateur ary zahao ny mises à jour.">Redémarrez l’ordinateur et vérifiez les mises à jour.</li>
+      <li data-fr="Utilisez le Gestionnaire des tâches pour repérer les applications très gourmandes." data-ml="Ampiasao ny Gestionnaire des tâches hahitana ny application mandany loharanon-karena be.">Utilisez le Gestionnaire des tâches.</li>
+      <li data-fr="Désinstallez uniquement les logiciels inutiles que vous reconnaissez." data-ml="Esory ihany ireo logiciel tsy ilaina izay fantatrao.">Désinstallez uniquement les logiciels inutiles.</li>
+      <li data-fr="Vérifiez l’espace libre et lancez une analyse de sécurité avec un outil fiable." data-ml="Zahao ny toerana malalaka ary manaova analyse de sécurité amin’ny fitaovana azo itokisana.">Vérifiez l’espace libre et lancez une analyse de sécurité.</li>
+      <li data-fr="Sauvegardez les données avant toute réinitialisation." data-ml="Tehirizo ny angona alohan’ny hanaovana réinitialisation.">Sauvegardez les données avant toute réinitialisation.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="reseau" data-search-fr="Wi-Fi internet réseau connexion pilote"
+data-search-ml="Wi-Fi internet réseau connexion pilote">
+  <div class="icone">🌐</div>
+  <span class="tag" data-fr="RÉSEAU" data-ml="TAMBAJOTRA">RÉSEAU</span>
+  <h3 data-fr="9. Internet ne fonctionne pas" data-ml="9. Tsy mandeha ny Internet">9. Internet ne fonctionne pas</h3>
+  <p data-fr="Le Wi-Fi ou la connexion réseau ne fonctionne plus." data-ml="Tsy mandeha ny Wi-Fi na ny connexion réseau.">Le Wi-Fi ou la connexion réseau ne fonctionne plus.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Vérifiez si les autres appareils ont accès à Internet." data-ml="Zahao raha mahazo Internet ny fitaovana hafa.">Vérifiez si les autres appareils ont accès à Internet.</li>
+      <li data-fr="Vérifiez le Wi-Fi, le mode avion et les câbles réseau." data-ml="Zahao ny Wi-Fi, mode avion ary ny tariby réseau.">Vérifiez le Wi-Fi, le mode avion et les câbles réseau.</li>
+      <li data-fr="Redémarrez le routeur si vous êtes autorisé à le faire." data-ml="Avereno alefa ny routeur raha mahazo alalana hanao izany ianao.">Redémarrez le routeur si vous êtes autorisé à le faire.</li>
+      <li data-fr="Si le problème persiste, vérifiez le pilote réseau et contactez le fournisseur d’accès." data-ml="Raha mbola misy olana, zahao ny pilote réseau ary mifandraisa amin’ny mpanome Internet.">Vérifiez le pilote réseau et contactez le fournisseur d’accès.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="marque" data-search-fr="HP BIOS boot menu Esc F9 F10"
+data-search-ml="HP BIOS boot menu Esc F9 F10">
+  <div class="icone">💻</div>
+  <span class="tag">HP</span>
+  <h3 data-fr="10. Dépannage des ordinateurs HP" data-ml="10. Fanamboarana ordinateur HP">10. Dépannage des ordinateurs HP</h3>
+  <p data-fr="Accès au menu de démarrage et aux diagnostics." data-ml="Fidirana amin’ny menu de démarrage sy diagnostic.">Accès au menu de démarrage et aux diagnostics.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Au démarrage, appuyez plusieurs fois sur Esc pour afficher le menu de démarrage HP." data-ml="Rehefa alefa, tsindrio imbetsaka ny Esc mba hampisehoana ny menu HP.">Au démarrage, appuyez plusieurs fois sur Esc.</li>
+      <li data-fr="F9 ouvre souvent le Boot Device Options ; F10 ouvre souvent le BIOS Setup." data-ml="Matetika ny F9 no manokatra Boot Device Options ary F10 ny BIOS Setup.">F9 ouvre souvent le Boot Device Options ; F10 ouvre souvent le BIOS Setup.</li>
+      <li data-fr="Selon le modèle, lancez les diagnostics matériels depuis le menu HP." data-ml="Arakaraka ny modèle, alefaso ny diagnostics matériels ao amin’ny menu HP.">Selon le modèle, lancez les diagnostics matériels.</li>
+      <li data-fr="Si les touches diffèrent, vérifiez le manuel officiel de votre modèle." data-ml="Raha hafa ny touche dia zahao ny manuel ofisialin’ilay modèle.">Vérifiez le manuel officiel de votre modèle.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="marque" data-search-fr="Dell BIOS F2 Boot Menu F12 diagnostic"
+data-search-ml="Dell BIOS F2 Boot Menu F12 diagnostic">
+  <div class="icone">💻</div>
+  <span class="tag">DELL</span>
+  <h3 data-fr="11. Dépannage des ordinateurs Dell" data-ml="11. Fanamboarana ordinateur Dell">11. Dépannage des ordinateurs Dell</h3>
+  <p data-fr="Vérifier le disque, le démarrage et les diagnostics." data-ml="Fijerena disque, démarrage ary diagnostic.">Vérifier le disque, le démarrage et les diagnostics.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="F12 ouvre souvent le menu de démarrage et les outils de diagnostic." data-ml="Matetika ny F12 no manokatra menu de démarrage sy diagnostic.">F12 ouvre souvent le menu de démarrage et les outils de diagnostic.</li>
+      <li data-fr="F2 permet souvent d’ouvrir les paramètres BIOS." data-ml="Matetika ny F2 no manokatra ny réglage BIOS.">F2 permet souvent d’ouvrir les paramètres BIOS.</li>
+      <li data-fr="Exécutez les diagnostics proposés et notez tout code d’erreur affiché." data-ml="Alefaso ny diagnostic ary soraty izay code d’erreur miseho.">Exécutez les diagnostics et notez les codes d’erreur.</li>
+      <li data-fr="Confirmez les touches exactes dans la documentation de votre modèle." data-ml="Hamafiso ao amin’ny documentation an’ilay modèle ny touche marina.">Confirmez les touches exactes.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="marque" data-search-fr="Lenovo BIOS F1 F2 F12 bouton Novo"
+data-search-ml="Lenovo BIOS F1 F2 F12 bouton Novo">
+  <div class="icone">💻</div>
+  <span class="tag">LENOVO</span>
+  <h3 data-fr="12. Dépannage des ordinateurs Lenovo" data-ml="12. Fanamboarana ordinateur Lenovo">12. Dépannage des ordinateurs Lenovo</h3>
+  <p data-fr="Accès au BIOS ou au menu de démarrage selon le modèle." data-ml="Fidirana BIOS na menu de démarrage arakaraka ny modèle.">Accès au BIOS ou au menu de démarrage selon le modèle.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="Selon le modèle, F1 ou F2 peut ouvrir les paramètres BIOS." data-ml="Arakaraka ny modèle, F1 na F2 no mety hanokatra BIOS.">Selon le modèle, F1 ou F2 peut ouvrir les paramètres BIOS.</li>
+      <li data-fr="F12 ouvre souvent le menu de démarrage." data-ml="Matetika ny F12 no manokatra menu de démarrage.">F12 ouvre souvent le menu de démarrage.</li>
+      <li data-fr="Certains modèles disposent d’un bouton Novo dédié." data-ml="Misy modèle sasany manana bouton Novo manokana.">Certains modèles disposent d’un bouton Novo dédié.</li>
+      <li data-fr="Vérifiez la procédure exacte dans le guide Lenovo du modèle." data-ml="Jereo ao amin’ny guide Lenovo an’ilay modèle ny fomba marina.">Vérifiez la procédure exacte dans le guide Lenovo.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="marque" data-search-fr="Acer BIOS F2 F12 démarrage"
+data-search-ml="Acer BIOS F2 F12 démarrage">
+  <div class="icone">💻</div>
+  <span class="tag">ACER</span>
+  <h3 data-fr="13. Dépannage des ordinateurs Acer" data-ml="13. Fanamboarana ordinateur Acer">13. Dépannage des ordinateurs Acer</h3>
+  <p data-fr="Vérifier le BIOS et l’ordre de démarrage." data-ml="Fijerena BIOS sy ordre de démarrage.">Vérifier le BIOS et l’ordre de démarrage.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="F2 ouvre souvent le BIOS sur les ordinateurs portables Acer." data-ml="Matetika ny F2 no manokatra BIOS amin’ny portable Acer.">F2 ouvre souvent le BIOS.</li>
+      <li data-fr="F12 peut ouvrir le menu de démarrage, si cette option est activée." data-ml="Mety hanokatra Boot Menu ny F12 raha efa activée ilay safidy.">F12 peut ouvrir le menu de démarrage, si cette option est activée.</li>
+      <li data-fr="Si F12 ne fonctionne pas, vérifiez le manuel du modèle avant de modifier les réglages." data-ml="Raha tsy mandeha ny F12, zahao ny manuel alohan’ny hanovana réglage.">Si F12 ne fonctionne pas, vérifiez le manuel.</li>
+    </ol>
+  </div>
+</article><article class="carte" data-cat="marque" data-search-fr="ASUS BIOS F2 Esc Boot Menu ordinateur"
+data-search-ml="ASUS BIOS F2 Esc Boot Menu ordinateur">
+  <div class="icone">💻</div>
+  <span class="tag">ASUS</span>
+  <h3 data-fr="14. Dépannage des ordinateurs ASUS" data-ml="14. Fanamboarana ordinateur ASUS">14. Dépannage des ordinateurs ASUS</h3>
+  <p data-fr="Accéder au BIOS ou sélectionner un périphérique de démarrage." data-ml="Fidirana BIOS na fisafidianana fitaovana handefasana ny système.">Accéder au BIOS ou sélectionner un périphérique de démarrage.</p>
+  <button class="btn" onclick="basculer(this)" data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</button>
+  <div class="etapes">
+    <ol>
+      <li data-fr="F2 ouvre souvent le BIOS sur les portables ASUS." data-ml="Matetika ny F2 no manokatra BIOS amin’ny portable ASUS.">F2 ouvre souvent le BIOS.</li>
+      <li data-fr="Esc peut ouvrir le menu de démarrage sur certains modèles." data-ml="Mety hanokatra Boot Menu ny Esc amin’ny modèle sasany.">Esc peut ouvrir le menu de démarrage sur certains modèles.</li>
+      <li data-fr="Consultez la documentation ASUS si les touches ne fonctionnent pas." data-ml="Jereo ny documentation ASUS raha tsy mandeha ireo touche.">Consultez la documentation ASUS si les touches ne fonctionnent pas.</li>
+    </ol>
+  </div>
+</article></section><section class="outil" style="margin-top:20px">
+  <h2 data-fr="✅ Vérifications avant le dépannage" data-ml="✅ Fanamarinana alohan’ny fanamboarana">✅ Vérifications avant le dépannage</h2>
+  <div class="checklist">
+    <label><input type="checkbox"> <span data-fr="J’ai noté le message d’erreur exact." data-ml="Noraisiko an-tsoratra ny hafatra diso marina.">J’ai noté le message d’erreur exact.</span></label>
+    <label><input type="checkbox"> <span data-fr="J’ai vérifié les câbles et les branchements." data-ml="Nojereko ny tariby sy ny branchement.">J’ai vérifié les câbles et les branchements.</span></label>
+    <label><input type="checkbox"> <span data-fr="J’ai vérifié si le disque apparaît dans le BIOS." data-ml="Nojereko raha hita ao amin’ny BIOS ny disque.">J’ai vérifié si le disque apparaît dans le BIOS.</span></label>
+    <label><input type="checkbox"> <span data-fr="J’ai sauvegardé les fichiers importants si possible." data-ml="Efa notahiriziko ny rakitra manan-danja raha azo atao.">J’ai sauvegardé les fichiers importants si possible.</span></label>
+    <label><input type="checkbox"> <span data-fr="Je n’ai pas formaté ni supprimé de partition sans vérifier." data-ml="Tsy nanao format na namafa partition aho raha tsy nanamarina.">Je n’ai pas formaté ni supprimé de partition sans vérifier.</span></label>
+  </div>
+</section><section class="intro">
+  <h2 data-fr="👨‍🏫 Conseil du professeur" data-ml="👨‍🏫 Torohevitr’ny mpampianatra">👨‍🏫 Conseil du professeur</h2>
+  <p data-fr="En dépannage informatique, commencez toujours par les vérifications simples. Notez les symptômes, testez une seule hypothèse à la fois et évitez les changements qui risquent de supprimer les données."
+     data-ml="Amin’ny fanamboarana solosaina dia atombohy amin’ny fanamarinana tsotra. Soraty ny soritr’olana, andramo tsirairay ny mety ho antony ary ialao ny fanovana mety hamafa angona.">
+    En dépannage informatique, commencez toujours par les vérifications simples.
+  </p>
+</section></main><footer>
+  <p>💻 InfoPro — <span data-fr="Apprendre • Pratiquer • Réussir" data-ml="Mianatra • Mampihatra • Mahomby">Apprendre • Pratiquer • Réussir</span></p>
+  <p>Mr Tahiry - Informatique 👨‍🏫</p>
+</footer><script>
+let langueActuelle = "fr";
+let categorieActive = "toutes";
+
+function changerLangue(langue){
+  langueActuelle = langue;
+  document.documentElement.lang = langue === "fr" ? "fr" : "mg";
+
+  document.querySelectorAll("[data-fr][data-ml]").forEach(element=>{
+    element.textContent = element.getAttribute("data-" + langue);
+  });
+
+  document.querySelectorAll("[data-placeholder-fr]").forEach(element=>{
+    element.placeholder = element.getAttribute("data-placeholder-" + langue);
+  });
+
+  document.getElementById("btnFR").classList.toggle("active", langue === "fr");
+  document.getElementById("btnML").classList.toggle("active", langue === "ml");
+
+  filtrer();
+}
+
+function basculer(bouton){
+  const etapes = bouton.nextElementSibling;
+  etapes.classList.toggle("ouverte");
+
+  const ouvert = etapes.classList.contains("ouverte");
+  bouton.textContent = ouvert
+    ? (langueActuelle === "fr" ? "Masquer les étapes" : "Afeno ny dingana")
+    : (langueActuelle === "fr" ? "Voir les étapes" : "Jereo ny dingana");
+}
+
+function choisirCategorie(categorie,bouton){
+  categorieActive = categorie;
+
+  document.querySelectorAll(".filters button").forEach(b=>{
+    b.classList.remove("active");
+  });
+  bouton.classList.add("active");
+
+  document.getElementById("filtreMarque").value =
+    ["materiel","demarrage","windows","reseau","marque"].includes(categorie)
+      ? categorie : "toutes";
+
+  filtrer();
+}
+
+function filtrer(){
+  const recherche = document.getElementById("recherche").value
+    .toLowerCase().trim();
+  const filtreSelect = document.getElementById("filtreMarque").value;
+  const filtre = filtreSelect !== "toutes" ? filtreSelect : categorieActive;
+  let visibles = 0;
+
+  document.querySelectorAll("#listeGuides .carte").forEach(carte=>{
+    const texteLangue = carte.getAttribute("data-search-" + langueActuelle) || "";
+    const texte = (
+      texteLangue + " " + carte.textContent
+    ).toLowerCase();
+
+    const categorieOK = filtre === "toutes" || carte.dataset.cat === filtre;
+    const rechercheOK = !recherche || texte.includes(recherche);
+
+    carte.classList.toggle("hidden", !(categorieOK && rechercheOK));
+    if(categorieOK && rechercheOK) visibles++;
+  });
+
+  document.getElementById("compteur").textContent =
+    langueActuelle === "fr"
+      ? visibles + " guide(s) affiché(s)"
+      : "Torolalana " + visibles + " no hita";
+}
+
+changerLangue("fr");
+</script></body>
+</html>

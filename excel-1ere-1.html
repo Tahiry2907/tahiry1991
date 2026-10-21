@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel 1ère</title>
+
+<style>
+body {font-family: Arial; margin:0; background:#e3f2fd;}
+
+header {
+  background:#0d47a1;
+  color:white;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.lang button {
+  background:white;
+  color:#0d47a1;
+  border:none;
+  padding:5px 10px;
+  margin-left:5px;
+  border-radius:5px;
+}
+
+.container {padding:20px;}
+
+.card {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.nav {display:flex; justify-content:space-between;}
+
+button {
+  background:#0d47a1;
+  color:white;
+  border:none;
+  padding:10px;
+  border-radius:5px;
+}
+
+.correct{color:green;}
+.wrong{color:red;}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>📊 Excel 1ère (Expert)</h2>
+<div class="lang">
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('ml')">ML</button>
+</div>
+</header>
+
+<div class="container">
+
+<div class="card" id="content"></div>
+
+<div class="nav">
+<button onclick="prev()">⬅️</button>
+<button onclick="next()">➡️</button>
+</div>
+
+</div>
+
+<script>
+  
+
+let lang="fr";
+let step=0;
+
+const lessons=[
+
+// 1
+{
+fr:`<h2>Tableau croisé dynamique</h2>
+<p>Permet d’analyser rapidement des milliers de données.</p>
+<ul>
+<li>Insertion → Tableau croisé dynamique</li>
+<li>Choisir champs</li>
+</ul>`,
+
+ml:`<h2>Tableau croisé dynamique</h2>
+<p>Famakafakana données betsaka haingana.</p>`
+},
+
+// 2
+{
+fr:`<h2>Fonction RECHERCHEX (moderne)</h2>
+<p>Remplace RECHERCHEV.</p>`,
+
+ml:`<h2>RECHERCHEX</h2>
+<p>Version vaovao RECHERCHEV.</p>`
+},
+
+// 3
+{
+fr:`<h2>Analyse de données</h2>
+<p>Utiliser filtres, graphiques et tableaux pour interpréter les résultats.</p>`,
+
+ml:`<h2>Analyse données</h2>
+<p>Famakafakana sy fanapahan-kevitra.</p>`
+},
+
+// 4
+{
+fr:`<h2>Dashboard Excel</h2>
+<p>Créer un tableau de bord avec graphiques et indicateurs.</p>`,
+
+ml:`<h2>Dashboard</h2>
+<p>Tableau misy graphique sy indicateur.</p>`
+},
+
+// 5
+{
+fr:`<h2>Automatisation</h2>
+<p>Utiliser formules pour automatiser calculs.</p>`,
+
+ml:`<h2>Automatisation</h2>
+<p>Manamora asa automatique.</p>`
+},
+
+// 6
+{
+fr:`<h2>Projet réel</h2>
+<p>Créer un système complet :</p>
+<ul>
+<li>Notes élèves</li>
+<li>Moyenne automatique</li>
+<li>Graphique</li>
+</ul>`,
+
+ml:`<h2>Projet tena izy</h2>
+<p>Gestion notes sy moyenne automatique.</p>`
+},
+
+// 7
+{
+fr:`<h2>Interprétation</h2>
+<p>Comprendre les résultats pour prendre décision.</p>`,
+
+ml:`<h2>Interpretation</h2>
+<p>Mahatakatra résultats.</p>`
+},
+
+// QUIZ
+{
+fr:`<h2>Quiz</h2>
+<p>Tableau croisé dynamique sert à :</p>
+<button onclick="answer(true)">Analyser données</button>
+<button onclick="answer(false)">Jouer</button>
+<p id="res"></p>`,
+
+ml:`<h2>Quiz</h2>
+<p>Tableau croisé dynamique dia:</p>
+<button onclick="answer(true)">Analyse données</button>
+<button onclick="answer(false)">Milalao</button>
+<p id="res"></p>`
+}
+
+];
+
+function show(){
+document.getElementById("content").innerHTML=lessons[step][lang];
+}
+
+function next(){ if(step<lessons.length-1){step++;show();}}
+function prev(){ if(step>0){step--;show();}}
+
+function setLang(l){ lang=l; show(); }
+
+function answer(correct){
+document.getElementById("res").innerHTML= correct ? "✔️ Marina" : "❌ Diso";
+}
+
+show();
+
+</script>
+ 
+ 
+<div class="boutton">
+ <a href="fonction-somme-5eme .html"class="button" >fonction SOMME</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-multiple-5eme.html"class="button" >fonction somme multiple</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-conditionnel-5eme.html"class="button" >fonction somme conditionnelle</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-si-4eme.html"class="button" >fonction somme SI</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-somme-si-ens-4eme.html"class="button" >fonction somme SI ens</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-si-4eme.html"class="button" >fonction somme SI</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-moyenne-plusieur-plage-3eme.html"class="button" >fonction moyenne plusieur plage</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-moyenne-5eme.html"class="button" >fonction MOYENNE</a>
+ 
+
+<div class="boutton">
+  
+<a href="fonction-moyenne-conditionnelle.3eme.html"class="button" >fonction MOYENNE conditionnelle</a>
+</div>
+
+<div class="boutton">
+ <a href="foncton-SI.html"class="button" >fonction SI</a>
+ 
+<div class="boutton">
+ <a href="foncton-SI-imbriquer.html"class="button" >fonction SI</a> 
+ 
+</body>
+</html>

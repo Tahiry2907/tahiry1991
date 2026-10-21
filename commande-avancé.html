@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMD - Commandes avancées</title>
+<style>
+body{font-family:Arial; margin:0; background:#0f172a; color:white;}
+header{background:#1e293b; padding:15px; display:flex; justify-content:space-between;}
+button{padding:6px 10px; border:none; border-radius:5px; cursor:pointer;}
+.lang button{margin-left:5px;}
+.container{padding:20px;}
+.section{background:#1e293b; margin:15px 0; padding:15px; border-radius:10px;}
+h2{color:#38bdf8;}
+code{background:black; color:#00ff00; display:block; padding:5px;}
+.correct{color:lightgreen;}
+.wrong{color:red;}
+.terminal{background:black; height:200px; overflow:auto; padding:10px; border-radius:10px; font-family:monospace;}
+input{width:100%; padding:10px; background:black; color:#00ff00; border:none;}
+</style>
+</head>
+<body>
+
+<header>
+<div id="title">💻 CMD - Commandes avancées</div>
+<div class="lang">
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('mg')">MG</button>
+</div>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2 id="defTitle">📌 Famaritana</h2>
+<p id="defText">Ireo commandes avancées dia manampy amin’ny gestion système sy réseau.</p>
+</div>
+
+<div class="section">
+<h2>⚙ Commandes avancées</h2>
+<p>tasklist</p><code>tasklist</code>
+<p>taskkill</p><code>taskkill /IM chrome.exe</code>
+<p>ipconfig</p><code>ipconfig</code>
+<p>ping</p><code>ping google.com</code>
+<p>shutdown</p><code>shutdown /s /t 0</code>
+</div>
+
+<div class="section">
+<h2>💻 Simulateur</h2>
+<div class="terminal" id="terminal"></div>
+<input id="cmd" placeholder="Ecrire une commande..." onkeydown="run(event)">
+</div>
+
+<div class="section">
+<h2>🧠 Quiz</h2>
+<p>tasklist = ?</p>
+<button onclick="quiz(this,true)">Voir programmes actifs</button>
+<button onclick="quiz(this,false)">Créer dossier</button>
+
+<p>ping = ?</p>
+<button onclick="quiz(this,true)">Tester connexion internet</button>
+<button onclick="quiz(this,false)">Voir fichiers</button>
+
+<p>shutdown /s /t 0 = ?</p>
+<button onclick="quiz(this,true)">Éteindre PC</button>
+<button onclick="quiz(this,false)">Afficher fichiers</button>
+</div>
+
+<div class="section">
+<button onclick="prevPage()">⬅ Page précédente</button>
+<button onclick="nextPage()">➡ Page suivante : Redirection & Variables</button>
+</div>
+
+</div>
+
+<script>
+// SIMULATEUR
+function run(e){
+if(e.key==="Enter"){
+let cmd=document.getElementById("cmd").value;
+let term=document.getElementById("terminal");
+term.innerHTML+="<div>> "+cmd+"</div>";
+
+if(cmd==="tasklist"){
+term.innerHTML+="<div>chrome.exe notepad.exe cmd.exe</div>";
+}else if(cmd.startsWith("taskkill")){
+term.innerHTML+="<div>Programme fermé</div>";
+}else if(cmd==="ipconfig"){
+term.innerHTML+="<div>IPv4: 192.168.1.10</div>";
+}else if(cmd.startsWith("ping")){
+term.innerHTML+="<div>Réponse de google.com : 32ms</div>";
+}else if(cmd.startsWith("shutdown")){
+term.innerHTML+="<div>PC éteint...</div>";
+}else{
+term.innerHTML+="<div>Commande inconnue</div>";
+}
+
+document.getElementById("cmd").value="";
+term.scrollTop=term.scrollHeight;
+}
+}
+
+// QUIZ
+function quiz(btn,good){
+if(good){btn.classList.add("correct");}else{btn.classList.add("wrong");}
+}
+
+// LANGUE
+function setLang(lang){
+if(lang==="fr"){
+document.getElementById("title").innerHTML="💻 CMD - Commandes avancées";
+document.getElementById("defTitle").innerHTML="📌 Définition";
+document.getElementById("defText").innerHTML="Les commandes avancées aident à gérer le système et le réseau.";
+}
+if(lang==="mg"){
+document.getElementById("title").innerHTML="💻 CMD - Commandes avancées";
+document.getElementById("defTitle").innerHTML="📌 Famaritana";
+document.getElementById("defText").innerHTML="Ireo commandes avancées dia manampy amin’ny gestion système sy réseau.";
+}
+}
+
+// NAVIGATION PAGE
+function nextPage(){alert("Page suivante : Redirection & Variables");}
+function prevPage(){alert("Page précédente : Commandes de base");}
+</script>
+
+</body>
+</html>

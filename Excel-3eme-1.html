@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel Avancé</title>
+
+<style>
+body {font-family: Arial; margin:0; background:#eef2f7;}
+header {
+  background:#1565c0;
+  color:white;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+}
+.lang button {
+  background:white;
+  color:#1565c0;
+  border:none;
+  padding:5px 10px;
+  margin-left:5px;
+  border-radius:5px;
+}
+.container {padding:20px;}
+.card {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+.nav {display:flex; justify-content:space-between;}
+button {padding:10px; border:none; border-radius:5px; background:#1565c0; color:white;}
+.correct{color:green;} .wrong{color:red;}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2 id="title">📊 Excel Avancé</h2>
+<div class="lang">
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('ml')">ML</button>
+</div>
+</header>
+
+<div class="container">
+<div class="card" id="content"></div>
+
+<div class="nav">
+<button onclick="prev()">⬅️</button>
+<button onclick="next()">➡️</button>
+</div>
+</div>
+
+<script>
+
+let lang="fr";
+let step=0;
+
+const lessons=[
+
+// 1
+{
+fr:`<h2>Fonction SI avancée</h2>
+<p>=SI(A1>=10;"Admis";"Echec")</p>
+<p>Permet de prendre une décision automatique.</p>`,
+
+ml:`<h2>Fonction SI avancé</h2>
+<p>Raha A1 >=10 → Admis</p>
+<p>Raha tsy izany → Echec</p>`
+},
+
+// 2
+{
+fr:`<h2>Fonction RECHERCHEV</h2>
+<p>=RECHERCHEV(A2;A1:C10;2;FAUX)</p>
+<p>Recherche une valeur dans un tableau.</p>`,
+
+ml:`<h2>RECHERCHEV</h2>
+<p>Mikaroka donnée ao anaty tableau.</p>`
+},
+
+// 3
+{
+fr:`<h2>Tableau croisé dynamique</h2>
+<p>Permet d'analyser des grandes données rapidement.</p>`,
+
+ml:`<h2>Tableau croisé dynamique</h2>
+<p>Manampy amin'ny analyse données betsaka.</p>`
+},
+
+// 4
+{
+fr:`<h2>Mise en forme conditionnelle</h2>
+<p>Colorer automatiquement selon valeur.</p>`,
+
+ml:`<h2>Mise en forme automatique</h2>
+<p>Miova loko ho azy.</p>`
+},
+
+// 5
+{
+fr:`<h2>Gestion de stock (cas réel)</h2>
+<ul>
+<li>Produit</li>
+<li>Quantité</li>
+<li>Prix</li>
+</ul>`,
+
+ml:`<h2>Gestion stock</h2>
+<p>Produit, quantité, prix</p>`
+},
+
+// 6
+{
+fr:`<h2>Budget familial</h2>
+<p>Calcul dépenses et économies.</p>`,
+
+ml:`<h2>Budget</h2>
+<p>Kajy vola miditra sy mivoaka.</p>`
+},
+
+// 7
+{
+fr:`<h2>Graphiques avancés</h2>
+<p>Analyse visuelle des données.</p>`,
+
+ml:`<h2>Graphique avancé</h2>
+<p>Famakafakana données.</p>`
+},
+
+// 8
+{
+fr:`<h2>Mini Projet</h2>
+<p>Créer un tableau de notes avec moyenne automatique.</p>`,
+
+ml:`<h2>Projet</h2>
+<p>Mamorona tableau notes.</p>`
+},
+
+// 9 QUIZ
+{
+fr:`<h2>Quiz</h2>
+<p>RECHERCHEV sert à :</p>
+<button onclick="answer(true)">Chercher donnée</button>
+<button onclick="answer(false)">Dessiner</button>
+<p id="res"></p>`,
+
+ml:`<h2>Quiz</h2>
+<p>RECHERCHEV dia:</p>
+<button onclick="answer(true)">Mitady donnée</button>
+<button onclick="answer(false)">Manao dessin</button>
+<p id="res"></p>`
+}
+
+];
+
+function show(){
+document.getElementById("content").innerHTML=lessons[step][lang];
+}
+
+function next(){ if(step<lessons.length-1){step++;show();}}
+function prev(){ if(step>0){step--;show();}}
+
+function setLang(l){ lang=l; show(); }
+
+function answer(correct){
+document.getElementById("res").innerHTML= correct ? "✔️ Marina" : "❌ Diso";
+}
+
+show();
+
+</script>
+
+<div class="boutton">
+ <a href="fonction-somme-5eme .html"class="button" >fonction SOMME</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-multiple-5eme.html"class="button" >fonction somme multiple</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-conditionnel-5eme.html"class="button" >fonction somme conditionnelle</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-si-4eme.html"class="button" >fonction somme SI</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-somme-si-ens-4eme.html"class="button" >fonction somme SI ens</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-si-4eme.html"class="button" >fonction somme SI</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-moyenne-plusieur-plage-3eme.html"class="button" >fonction moyenne plusieur plage</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-moyenne-5eme.html"class="button" >fonction MOYENNE</a>
+ 
+
+<div class="boutton">
+  
+<a href="fonction-moyenne-conditionnelle.3eme.html"class="button" >fonction MOYENNE conditionnelle</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesona CMD - cls</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin:0; padding:0;}
+        header { background-color: #007bff; color:white; padding:15px 30px; display:flex; justify-content:space-between; align-items:center;}
+        header h1 { margin:0; font-size:20px;}
+        header button { background-color:white; color:#007bff; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;}
+        header button:hover { background-color:#e6e6e6;}
+        .container { max-width:900px; margin:30px auto; background-color:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+        h2 { color:#333; }
+        pre { background-color:#272822; color:#f8f8f2; padding:15px; border-radius:8px; overflow-x:auto; }
+        .buttons { margin-top:30px; display:flex; justify-content:space-between; }
+        .buttons button { background-color:#007bff; border:none; color:white; padding:10px 20px; font-size:16px; border-radius:8px; cursor:pointer; transition:0.3s; }
+        .buttons button:hover { background-color:#0056b3; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="title">Lesona CMD : cls</h1>
+        <div>
+            <button onclick="switchLang('fr')">FR</button>
+            <button onclick="switchLang('ml')">ML</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="content"></div>
+
+        <div class="buttons">
+            <button id="prevBtn">← Previous</button>
+            <button id="nextBtn">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        // Contenu lesona cls
+        const lesson = {
+            fr: `
+<h2>1️⃣ Commande de base</h2>
+<pre>cls</pre>
+<p>Efface tout le contenu affiché dans la fenêtre CMD.</p>
+
+<h2>2️⃣ Exemple pratique</h2>
+<pre>
+C:\\Users\\Jeanjacques>dir
+... (liste des fichiers)
+C:\\Users\\Jeanjacques>cls
+</pre>
+<p>Après exécution de <code>cls</code>, l'écran sera vide.</p>
+
+<h2>3️⃣ Remarques</h2>
+<ul>
+<li>La commande ne supprime pas les fichiers ou dossiers.</li>
+<li>Elle ne fait qu'effacer l'affichage à l'écran.</li>
+<li>Très utile pour nettoyer l'écran avant de taper de nouvelles commandes.</li>
+</ul>
+            `,
+            ml: `
+<h2>1️⃣ Fomba fototra</h2>
+<pre>cls</pre>
+<p>Manadio ny efijery rehetra eo amin'ny varavarankelin'ny CMD.</p>
+
+<h2>2️⃣ Ohatra fampiharana</h2>
+<pre>
+C:\\Users\\Jeanjacques>dir
+... (lisitry ny fichiers)
+C:\\Users\\Jeanjacques>cls
+</pre>
+<p>Rehefa vita ny <code>cls</code>, dia ho banga ny efijery.</p>
+
+<h2>3️⃣ Fanamarihana</h2>
+<ul>
+<li>Tsy mamafa fichiers na dossiers ny baiko.</li>
+<li>Madio fotsiny ny efijery.</li>
+<li>Ilaina rehefa te-hanadio ny écran alohan'ny hanoratana baiko vaovao.</li>
+</ul>
+            `
+        };
+
+        function loadLesson(lang='fr') {
+            document.getElementById('title').textContent = lang === 'fr' ? "Lesona CMD : cls" : "Lesona CMD : cls";
+            document.getElementById('content').innerHTML = lesson[lang];
+        }
+
+        function switchLang(lang) {
+            loadLesson(lang);
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            window.location.href = "05_del.html"; // URL pejy teo aloha
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            window.location.href = "07_echo.html"; // URL pejy manaraka
+        });
+
+        // Charger la leçon par défaut
+        loadLesson('fr');
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#061a2e">
+<meta name="description" content="Les composants de l'ordinateur en français et en malagasy - InfoPro">
+
+<title>Composants de l'ordinateur | InfoPro</title>
+
+<style>
+:root {
+    --bleu:#061a2e;
+    --bleu2:#075985;
+    --turquoise:#087e8b;
+    --fond:#eef4f9;
+    --blanc:#ffffff;
+    --texte:#172b4d;
+}
+
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--fond);
+    color:var(--texte);
+    line-height:1.65;
+}
+
+header {
+    background:linear-gradient(135deg,#061a2e,#075985,#087e8b);
+    color:white;
+    text-align:center;
+    padding:25px 12px 20px;
+}
+
+.logo {
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:4px;
+}
+
+header p {
+    font-size:14px;
+}
+
+.slogan {
+    margin-top:7px;
+    color:#c9fff7;
+    font-weight:bold;
+}
+
+.topbar {
+    background:#09243d;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:10px;
+}
+
+.topbar a {
+    color:white;
+    text-decoration:none;
+    padding:7px 11px;
+    border-radius:7px;
+    font-size:13px;
+}
+
+.topbar a:hover {
+    background:#087e8b;
+}
+
+.langues {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    padding:13px 10px;
+    background:white;
+    border-bottom:1px solid #dce5ee;
+}
+
+.langues button {
+    min-width:85px;
+    padding:9px 17px;
+    border:1px solid #087e8b;
+    border-radius:25px;
+    background:white;
+    color:#087e8b;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.langues button.actif {
+    color:white;
+    background:#087e8b;
+}
+
+.container {
+    max-width:1150px;
+    margin:auto;
+    padding:18px;
+}
+
+.titre-page {
+    color:white;
+    background:linear-gradient(90deg,#087e8b,#075985);
+    padding:16px;
+    border-radius:12px;
+    margin-bottom:18px;
+    font-size:23px;
+}
+
+.intro, .section, .upload-zone, .activite {
+    background:white;
+    padding:19px;
+    border-radius:13px;
+    margin-bottom:20px;
+    box-shadow:0 4px 14px #0000000c;
+}
+
+h2 {
+    color:#087e8b;
+    margin-bottom:12px;
+    font-size:21px;
+}
+
+h3 {
+    color:#075985;
+    margin-bottom:7px;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(225px,1fr));
+    gap:17px;
+}
+
+.card {
+    background:white;
+    border:1px solid #d8e5ee;
+    border-radius:13px;
+    overflow:hidden;
+    box-shadow:0 3px 10px #00000009;
+    transition:transform .2s,box-shadow .2s;
+}
+
+.card:hover {
+    transform:translateY(-3px);
+    box-shadow:0 7px 18px #00000015;
+}
+
+.card img {
+    width:100%;
+    height:185px;
+    object-fit:contain;
+    padding:10px;
+    background:#f5f9fc;
+    display:block;
+}
+
+.card-content {
+    padding:15px;
+}
+
+.card h3 {
+    font-size:17px;
+}
+
+.card p {
+    font-size:14px;
+}
+
+.tag {
+    display:inline-block;
+    background:#d9f5f2;
+    color:#086b68;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+    margin-bottom:9px;
+    font-weight:bold;
+}
+
+button, .upload-label {
+    background:#087e8b;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:10px 14px;
+    cursor:pointer;
+    font-weight:bold;
+    display:inline-block;
+    margin-top:8px;
+    font-size:14px;
+}
+
+button:hover, .upload-label:hover {
+    background:#065b66;
+}
+
+select, input[type="file"] {
+    width:100%;
+    max-width:100%;
+    padding:11px;
+    border:1px solid #c8d8e5;
+    border-radius:8px;
+    margin-top:9px;
+    background:white;
+    color:#172b4d;
+}
+
+.upload-zone {
+    border:2px dashed #087e8b;
+}
+
+.message {
+    margin-top:10px;
+    font-weight:bold;
+    color:#087e8b;
+    overflow-wrap:anywhere;
+}
+
+.note {
+    background:#eaf6ff;
+    border-left:4px solid #1685c5;
+    padding:12px;
+    margin-top:15px;
+    border-radius:7px;
+    font-size:14px;
+}
+
+.activite ol {
+    padding-left:23px;
+}
+
+.activite li {
+    margin-bottom:8px;
+}
+
+.retenir {
+    background:#e5f8ef;
+    border-left:4px solid #16a34a;
+    padding:14px;
+    border-radius:8px;
+    margin-top:16px;
+}
+
+footer {
+    background:#061a2e;
+    color:white;
+    text-align:center;
+    padding:20px 12px;
+    margin-top:25px;
+    font-size:13px;
+}
+
+[hidden] {
+    display:none !important;
+}
+
+@media(max-width:520px) {
+    header {
+        padding:20px 10px;
+    }
+
+    .logo {
+        font-size:26px;
+    }
+
+    .container {
+        padding:11px;
+    }
+
+    .titre-page {
+        font-size:19px;
+    }
+
+    .intro,.section,.upload-zone,.activite {
+        padding:14px;
+    }
+
+    .grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+    }
+
+    .card img {
+        height:125px;
+        padding:5px;
+    }
+
+    .card-content {
+        padding:10px;
+    }
+
+    .card h3 {
+        font-size:14px;
+    }
+
+    .card p {
+        font-size:12px;
+        line-height:1.5;
+    }
+
+    .tag {
+        font-size:10px;
+        padding:3px 6px;
+    }
+}
+
+@media(max-width:350px) {
+    .grid {
+        grid-template-columns:1fr;
+    }
+
+    .card img {
+        height:170px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">💻 InfoPro</div>
+    <p data-fr="Apprendre l'informatique de manière moderne, interactive et pratique"
+       data-ml="Hianatra informatique amin'ny fomba maoderina sy azo ampiharina">
+       Apprendre l'informatique de manière moderne, interactive et pratique
+    </p>
+    <p class="slogan" data-fr="🚀 Apprendre • Pratiquer • Réussir"
+       data-ml="🚀 Mianatra • Mampihatra • Tafita">
+       🚀 Apprendre • Pratiquer • Réussir
+    </p>
+</header>
+
+<nav class="topbar">
+    <a href="index.html" data-fr="⌂ Accueil" data-ml="⌂ Fandraisana">⌂ Accueil</a>
+    <a href="#composants" data-fr="🖥️ Composants" data-ml="🖥️ Singa">🖥️ Composants</a>
+    <a href="#ajouter" data-fr="📷 Photos" data-ml="📷 Sary">📷 Photos</a>
+    <a href="#activite" data-fr="📝 Activités" data-ml="📝 Fanazaran-tena">📝 Activités</a>
+</nav>
+
+<div class="langues" aria-label="Choix de langue">
+    <button type="button" id="btnFR" class="actif" onclick="changerLangue('fr')">🇫🇷 FR</button>
+    <button type="button" id="btnML" onclick="changerLangue('ml')">🇲🇬 ML</button>
+</div>
+
+<main class="container">
+
+<h1 class="titre-page"
+    data-fr="🖥️ Les composants de l'ordinateur"
+    data-ml="🖥️ Ireo singa mandrafitra ny ordinatera">
+    🖥️ Les composants de l'ordinateur
+</h1>
+
+<section class="intro">
+    <h2 data-fr="📘 Présentation du cours"
+        data-ml="📘 Fampidirana ny lesona">
+        📘 Présentation du cours
+    </h2>
+
+    <p data-fr="Un ordinateur est un appareil électronique composé de plusieurs éléments matériels appelés composants. Chaque composant possède une fonction particulière."
+       data-ml="Ny ordinatera dia fitaovana elektronika ahitana singa ara-materialy maro. Samy manana ny asany manokana ny singa tsirairay.">
+       Un ordinateur est un appareil électronique composé de plusieurs éléments matériels appelés composants. Chaque composant possède une fonction particulière.
+    </p>
+
+    <p data-fr="Cette page permet aux élèves d'observer les images, de reconnaître les composants et de comprendre leurs rôles."
+       data-ml="Ity pejy ity dia manampy ny mpianatra hahafantatra ireo singa amin'ny alalan'ny sary sy hahatakatra ny asan'izy ireo.">
+       Cette page permet aux élèves d'observer les images, de reconnaître les composants et de comprendre leurs rôles.
+    </p>
+</section>
+
+<section id="composants" class="section">
+    <h2 data-fr="⚙️ Les 12 principaux composants"
+        data-ml="⚙️ Ireo singa 12 lehibe">
+        ⚙️ Les 12 principaux composants
+    </h2>
+
+    <div class="grid">
+
+        <article class="card">
+            <img src="sary/ordonateur.jpg" alt="Unité centrale"
+                 onerror="this.alt='Image de l’unité centrale introuvable';">
+            <div class="card-content">
+                <span class="tag" data-fr="Matériel informatique" data-ml="Fitaovana informatika">Matériel informatique</span>
+                <h3 data-fr="1. Unité centrale" data-ml="1. Boîtier central">1. Unité centrale</h3>
+                <p data-fr="Elle contient plusieurs composants internes nécessaires au fonctionnement de l'ordinateur."
+                   data-ml="Ahitana ireo singa anatiny maro ilaina amin'ny fiasan'ny ordinatera izy io.">
+                   Elle contient plusieurs composants internes nécessaires au fonctionnement de l'ordinateur.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/ecran.jpg" alt="Écran d'ordinateur">
+            <div class="card-content">
+                <span class="tag" data-fr="Périphérique de sortie" data-ml="Fitaovana famoahana">Périphérique de sortie</span>
+                <h3 data-fr="2. Écran" data-ml="2. Efijery">2. Écran</h3>
+                <p data-fr="Il affiche les textes, les images, les vidéos et les résultats du travail."
+                   data-ml="Mampiseho soratra, sary, horonan-tsary ary ny vokatra eo amin'ny asa izy.">
+                   Il affiche les textes, les images, les vidéos et les résultats du travail.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/clavier.jpg" alt="Clavier d'ordinateur">
+            <div class="card-content">
+                <span class="tag" data-fr="Périphérique d'entrée" data-ml="Fitaovana fampidirana">Périphérique d'entrée</span>
+                <h3 data-fr="3. Clavier" data-ml="3. Kitendry">3. Clavier</h3>
+                <p data-fr="Il permet de saisir des lettres, des chiffres, des symboles et des commandes."
+                   data-ml="Ampiasaina hampidirana litera, isa, marika ary baiko ao amin'ny ordinatera izy.">
+                   Il permet de saisir des lettres, des chiffres, des symboles et des commandes.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/souris.jpg" alt="Souris d'ordinateur">
+            <div class="card-content">
+                <span class="tag" data-fr="Périphérique d'entrée" data-ml="Fitaovana fampidirana">Périphérique d'entrée</span>
+                <h3 data-fr="4. Souris" data-ml="4. Totozy">4. Souris</h3>
+                <p data-fr="Elle permet de déplacer le pointeur, de cliquer et de sélectionner des éléments."
+                   data-ml="Ampiasaina hamindrana ny tondro, hanaovana clic ary hisafidianana zavatra izy.">
+                   Elle permet de déplacer le pointeur, de cliquer et de sélectionner des éléments.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/carte-mere.jpg" alt="Carte mère">
+            <div class="card-content">
+                <span class="tag" data-fr="Composant interne" data-ml="Singa anatiny">Composant interne</span>
+                <h3 data-fr="5. Carte mère" data-ml="5. Takelaka reny (carte mère)">5. Carte mère</h3>
+                <p data-fr="Elle relie les principaux composants internes et permet leur communication."
+                   data-ml="Mampifandray ireo singa anatiny lehibe izy ary ahafahan'izy ireo mifampita vaovao.">
+                   Elle relie les principaux composants internes et permet leur communication.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/processeur.jpg" alt="Processeur">
+            <div class="card-content">
+                <span class="tag" data-fr="Traitement" data-ml="Fikarakarana baiko">Traitement</span>
+                <h3 data-fr="6. Processeur (CPU)" data-ml="6. Processeur (CPU)">6. Processeur (CPU)</h3>
+                <p data-fr="Il exécute les instructions et effectue les opérations de traitement."
+                   data-ml="Manatanteraka ny baiko sy ny kajy ilain'ny ordinatera izy.">
+                   Il exécute les instructions et effectue les opérations de traitement.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/RAM.jpg" alt="Mémoire vive RAM">
+            <div class="card-content">
+                <span class="tag" data-fr="Mémoire" data-ml="Fahatsiarovana">Mémoire</span>
+                <h3 data-fr="7. Mémoire RAM" data-ml="7. Fahatsiarovana RAM">7. Mémoire RAM</h3>
+                <p data-fr="Elle conserve temporairement les données utilisées par les programmes en cours."
+                   data-ml="Mitahiry vonjimaika ireo angona ampiasain'ny rindranasa mandeha izy.">
+                   Elle conserve temporairement les données utilisées par les programmes en cours.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/disque-dur.jpg" alt="Disque dur et SSD">
+            <div class="card-content">
+                <span class="tag" data-fr="Stockage" data-ml="Fitehirizana">Stockage</span>
+                <h3 data-fr="8. Disque dur / SSD" data-ml="8. Disque dur / SSD">8. Disque dur / SSD</h3>
+                <p data-fr="Il conserve les fichiers, les logiciels et le système d'exploitation."
+                   data-ml="Mitahiry ny rakitra, ny rindranasa ary ny rafitra fiasan'ny ordinatera izy.">
+                   Il conserve les fichiers, les logiciels et le système d'exploitation.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/bloc-alimentation.jpg" alt="Bloc d'alimentation">
+            <div class="card-content">
+                <span class="tag" data-fr="Énergie électrique" data-ml="Herinaratra">Énergie électrique</span>
+                <h3 data-fr="9. Bloc d'alimentation" data-ml="9. Mpamatsy herinaratra">9. Bloc d'alimentation</h3>
+                <p data-fr="Il fournit aux composants l'énergie électrique adaptée à leur fonctionnement."
+                   data-ml="Manome ny herinaratra mifanaraka amin'ny ilain'ireo singa izy.">
+                   Il fournit aux composants l'énergie électrique adaptée à leur fonctionnement.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/ventilateur.jpg" alt="Ventilateur">
+            <div class="card-content">
+                <span class="tag" data-fr="Refroidissement" data-ml="Fampangatsiahana">Refroidissement</span>
+                <h3 data-fr="10. Ventilateur" data-ml="10. Ventilateur">10. Ventilateur</h3>
+                <p data-fr="Il aide à évacuer la chaleur produite par certains composants."
+                   data-ml="Manampy amin'ny famoahana ny hafanana ateraky ny singa sasany izy.">
+                   Il aide à évacuer la chaleur produite par certains composants.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/carte-graphique.jpg" alt="Carte graphique">
+            <div class="card-content">
+                <span class="tag" data-fr="Affichage graphique" data-ml="Sary aseho">Affichage graphique</span>
+                <h3 data-fr="11. Carte graphique" data-ml="11. Karatra sary">11. Carte graphique</h3>
+                <p data-fr="Elle traite les informations graphiques. Elle peut être intégrée ou indépendante."
+                   data-ml="Mikarakara ny fampisehoana sary izy. Mety ho tafiditra ao anaty carte mère na misaraka.">
+                   Elle traite les informations graphiques. Elle peut être intégrée ou indépendante.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sary/haut-parleur.jpg" alt="Haut-parleurs">
+            <div class="card-content">
+                <span class="tag" data-fr="Périphérique de sortie" data-ml="Fitaovana famoahana">Périphérique de sortie</span>
+                <h3 data-fr="12. Haut-parleurs" data-ml="12. Fanamafisam-peo">12. Haut-parleurs</h3>
+                <p data-fr="Ils permettent d'écouter les sons, la musique et les vidéos."
+                   data-ml="Ahafahana mihaino feo, mozika ary ny feon'ny horonan-tsary izy ireo.">
+                   Ils permettent d'écouter les sons, la musique et les vidéos.
+                </p>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section class="upload-zone" id="ajouter">
+    <h2 data-fr="📷 Ajouter une image depuis le téléphone"
+        data-ml="📷 Manampy sary avy amin'ny téléphone">
+        📷 Ajouter une image depuis le téléphone
+    </h2>
+
+    <p data-fr="Choisis un composant, puis sélectionne sa photo dans la galerie de ton téléphone."
+       data-ml="Safidio ny singa iray, ary fidio ao amin'ny galerie an'ny téléphone ny sariny.">
+       Choisis un composant, puis sélectionne sa photo dans la galerie de ton téléphone.
+    </p>
+
+    <label for="choix"
+           data-fr="Choisir un composant :"
+           data-ml="Hisafidy singa :">
+        Choisir un composant :
+    </label>
+
+    <select id="choix">
+        <option value="0" data-fr="Unité centrale" data-ml="Boîtier central">Unité centrale</option>
+        <option value="1" data-fr="Écran" data-ml="Efijery">Écran</option>
+        <option value="2" data-fr="Clavier" data-ml="Kitendry">Clavier</option>
+        <option value="3" data-fr="Souris" data-ml="Totozy">Souris</option>
+        <option value="4" data-fr="Carte mère" data-ml="Carte mère">Carte mère</option>
+        <option value="5" data-fr="Processeur" data-ml="Processeur">Processeur</option>
+        <option value="6" data-fr="Mémoire RAM" data-ml="RAM">Mémoire RAM</option>
+        <option value="7" data-fr="Disque dur / SSD" data-ml="Disque dur / SSD">Disque dur / SSD</option>
+        <option value="8" data-fr="Bloc d'alimentation" data-ml="Mpamatsy herinaratra">Bloc d'alimentation</option>
+        <option value="9" data-fr="Ventilateur" data-ml="Ventilateur">Ventilateur</option>
+        <option value="10" data-fr="Carte graphique" data-ml="Carte graphique">Carte graphique</option>
+        <option value="11" data-fr="Haut-parleurs" data-ml="Fanamafisam-peo">Haut-parleurs</option>
+    </select>
+
+    <input type="file" id="photo" accept="image/*">
+
+    <button type="button" onclick="afficherPhoto()"
+            data-fr="Afficher la photo"
+            data-ml="Asehoy ny sary">
+        Afficher la photo
+    </button>
+
+    <p id="message" class="message" aria-live="polite"></p>
+
+    <div class="note">
+        <strong data-fr="Important :" data-ml="Zava-dehibe :">Important :</strong>
+        <span data-fr="La photo choisie s'affiche temporairement dans cette page. Pour la conserver dans le site, place le fichier dans le dossier sary et modifie le chemin de l'image dans le code HTML."
+              data-ml="Miseho vetivety amin'ity pejy ity ny sary voafidy. Raha tianao hitoetra ao amin'ny site ilay izy, apetraho ao amin'ny dossier sary ilay fichier ary ovay ny chemin ao amin'ny code HTML.">
+            La photo choisie s'affiche temporairement dans cette page. Pour la conserver dans le site, place le fichier dans le dossier sary et modifie le chemin de l'image dans le code HTML.
+        </span>
+    </div>
+</section>
+
+<section class="activite" id="activite">
+    <h2 data-fr="📝 Activités des élèves"
+        data-ml="📝 Fanazaran-tenan'ny mpianatra">
+        📝 Activités des élèves
+    </h2>
+
+    <ol>
+        <li data-fr="Identifier cinq composants de l'ordinateur."
+            data-ml="Lazao ny anaran'ny singa dimy amin'ny ordinatera.">
+            Identifier cinq composants de l'ordinateur.
+        </li>
+        <li data-fr="Écrire le nom de chaque composant."
+            data-ml="Soraty ny anaran'ny singa tsirairay.">
+            Écrire le nom de chaque composant.
+        </li>
+        <li data-fr="Expliquer le rôle de trois composants."
+            data-ml="Hazavao ny asan'ny singa telo.">
+            Expliquer le rôle de trois composants.
+        </li>
+        <li data-fr="Classer le clavier, la souris, l'écran et les haut-parleurs en périphériques d'entrée ou de sortie."
+            data-ml="Sokajio ho fitaovana fampidirana na famoahana ny clavier, souris, écran ary haut-parleurs.">
+            Classer le clavier, la souris, l'écran et les haut-parleurs en périphériques d'entrée ou de sortie.
+        </li>
+        <li data-fr="Expliquer la différence entre la RAM et le disque dur."
+            data-ml="Hazavao ny maha-samy hafa ny RAM sy ny disque dur.">
+            Expliquer la différence entre la RAM et le disque dur.
+        </li>
+    </ol>
+
+    <div class="retenir">
+        <h3 data-fr="✅ À retenir" data-ml="✅ Tsarovy">✅ À retenir</h3>
+        <p data-fr="Chaque composant a un rôle précis. La RAM est une mémoire temporaire, tandis que le disque dur ou le SSD conserve les fichiers durablement."
+           data-ml="Samy manana ny asany ny singa tsirairay. Fahatsiarovana vonjimaika ny RAM, fa ny disque dur na SSD kosa mitahiry rakitra maharitra.">
+           Chaque composant a un rôle précis. La RAM est une mémoire temporaire, tandis que le disque dur ou le SSD conserve les fichiers durablement.
+        </p>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p data-fr="InfoPro — Apprendre l'informatique de manière moderne et pratique"
+       data-ml="InfoPro — Mianatra informatique amin'ny fomba maoderina sy azo ampiharina">
+       InfoPro — Apprendre l'informatique de manière moderne et pratique
+    </p>
+    <p>Mr Tahiry - Informatique 👨‍🏫</p>
+</footer>
+
+<script>
+let langueActuelle = "fr";
+
+function changerLangue(langue) {
+    langueActuelle = langue;
+    document.documentElement.lang = langue === "ml" ? "mg" : "fr";
+
+    document.querySelectorAll("[data-fr][data-ml]").forEach(function(element) {
+        element.textContent = element.dataset[langue];
+    });
+
+    document.getElementById("btnFR").classList.toggle("actif", langue === "fr");
+    document.getElementById("btnML").classList.toggle("actif", langue === "ml");
+
+    document.getElementById("message").textContent = "";
+}
+
+function afficherPhoto() {
+    const fichier = document.getElementById("photo").files[0];
+    const numero = Number(document.getElementById("choix").value);
+    const cartes = document.querySelectorAll("#composants .card");
+    const message = document.getElementById("message");
+
+    if (!fichier) {
+        message.textContent = langueActuelle === "fr"
+            ? "Choisis d'abord une photo."
+            : "Misafidiana sary aloha.";
+        return;
+    }
+
+    if (!fichier.type.startsWith("image/")) {
+        message.textContent = langueActuelle === "fr"
+            ? "Veuillez sélectionner un fichier image."
+            : "Misafidiana fichier sary azafady.";
+        return;
+    }
+
+    const lecteur = new FileReader();
+
+    lecteur.onload = function(e) {
+        cartes[numero].querySelector("img").src = e.target.result;
+
+        const nom = cartes[numero].querySelector("h3").textContent;
+
+        message.textContent = langueActuelle === "fr"
+            ? "Photo affichée pour : " + nom
+            : "Naseho ny sarin'ny : " + nom;
+    };
+
+    lecteur.onerror = function() {
+        message.textContent = langueActuelle === "fr"
+            ? "Impossible de lire cette image."
+            : "Tsy afaka namaky io sary io.";
+    };
+
+    lecteur.readAsDataURL(fichier);
+}
+</script>
+
+</body>
+</html>

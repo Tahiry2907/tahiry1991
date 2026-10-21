@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Certificat</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Georgia', serif;
+    background:#f0f2f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* CERTIFICAT BOX */
+.certificat{
+    width:800px;
+    padding:40px;
+    background:white;
+    border:10px solid #1976d2;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    text-align:center;
+    position:relative;
+}
+
+/* TITLE */
+.certificat h1{
+    font-size:40px;
+    color:#1976d2;
+    margin-bottom:10px;
+}
+
+.certificat h2{
+    margin:10px 0;
+    font-weight:normal;
+}
+
+/* NAME */
+.nom{
+    font-size:30px;
+    font-weight:bold;
+    margin:20px 0;
+    color:#000;
+}
+
+/* SIGNATURE */
+.signature{
+    display:flex;
+    justify-content:space-between;
+    margin-top:50px;
+}
+
+.signature div{
+    text-align:center;
+}
+
+/* BUTTON */
+.btn{
+    margin-top:30px;
+    display:inline-block;
+    padding:10px 20px;
+    background:#1976d2;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#0d47a1;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="certificat">
+
+    <h1>🎓 Certificat de Réussite</h1>
+
+    <h2>Ce certificat est décerné à</h2>
+
+    <div class="nom" id="nomEleve">Nom de l'élève</div>
+
+    <p>
+        Pour avoir réussi avec succès le quiz en informatique
+        sur la plateforme d’apprentissage numérique.
+    </p>
+
+    <p id="date"></p>
+
+    <div class="signature">
+        <div>
+            ___________________<br>
+            Responsable Informatique
+        </div>
+        <div>
+            ___________________<br>
+            Signature
+        </div>
+    </div>
+
+    <button class="btn" onclick="window.print()">📄 Télécharger / Imprimer</button>
+
+</div>
+
+<script>
+// DATE AUTOMATIQUE
+let today = new Date();
+document.getElementById("date").innerHTML =
+    "Fait le : " + today.toLocaleDateString();
+
+// NOM (AZONAO OVANA)
+let nom = localStorage.getItem("nomEleve");
+if(nom){
+    document.getElementById("nomEleve").innerText = nom;
+}
+</script>
+
+</body>
+</html>

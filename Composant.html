@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Composants de l'ordinateur | Mr Tahiry</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at top left,#e8f7ff,#f4f6f9 45%,#eaf2ff);
+    color:#222;
+    line-height:1.7;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+    background:linear-gradient(135deg,#0066ff,#00c6ff);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+header .logo{
+    font-size:30px;
+    font-weight:bold;
+}
+
+header p{
+    margin-top:5px;
+    opacity:.95;
+}
+
+
+/* =====================================================
+   LANGUAGE BUTTONS
+===================================================== */
+
+.language{
+    margin-top:18px;
+}
+
+.language button{
+    border:none;
+    padding:10px 18px;
+    margin:4px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.language button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 12px rgba(0,0,0,.2);
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#102a43;
+    padding:12px 10px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.2);
+}
+
+nav a{
+    display:inline-block;
+    color:white;
+    margin:5px 10px;
+    padding:7px 12px;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:8px;
+    transition:.3s;
+}
+
+nav a:hover{
+    background:#00c6ff;
+    color:white;
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+    width:min(1100px,94%);
+    margin:auto;
+    padding:30px 0;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro{
+    background:linear-gradient(135deg,#ffffff,#eef9ff);
+    padding:25px;
+    border-radius:18px;
+    margin-bottom:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    border-left:6px solid #00aaff;
+}
+
+.intro h1{
+    color:#0066cc;
+    margin-bottom:10px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    border:1px solid #e5edf5;
+    animation:fadeIn .7s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* =====================================================
+   TITRES
+===================================================== */
+
+h1,h2,h3{
+    line-height:1.3;
+}
+
+h2{
+    color:#0066cc;
+    margin:22px 0 10px;
+}
+
+h3{
+    color:#0086b3;
+    margin-top:18px;
+}
+
+
+/* =====================================================
+   LISTES
+===================================================== */
+
+ul{
+    padding-left:25px;
+    margin:10px 0 15px;
+}
+
+li{
+    margin:5px 0;
+}
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.info{
+    background:#e9f7ff;
+    border-left:5px solid #00aaff;
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.warning{
+    background:#fff7df;
+    border-left:5px solid #ffb300;
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+
+/* =====================================================
+   COMPONENT GRID
+===================================================== */
+
+.component-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin:20px 0;
+}
+
+.component{
+    background:linear-gradient(135deg,#f8fcff,#eef8ff);
+    padding:20px;
+    border-radius:15px;
+    border:1px solid #d8ecf8;
+    transition:.3s;
+}
+
+.component:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
+
+.component .icon{
+    font-size:40px;
+    margin-bottom:8px;
+}
+
+
+/* =====================================================
+   IMAGES
+===================================================== */
+
+.lesson-image{
+    display:block;
+    width:min(100%,550px);
+    height:auto;
+    margin:20px auto;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.lesson-image:hover{
+    transform:scale(1.02);
+}
+
+
+/* =====================================================
+   DOWNLOAD BUTTON
+===================================================== */
+
+.download{
+    display:inline-block;
+    background:linear-gradient(135deg,#0066ff,#00bfff);
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    margin:8px 5px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.download:hover{
+    transform:translateY(-3px);
+    box-shadow:0 7px 18px rgba(0,102,255,.3);
+}
+
+
+/* =====================================================
+   ACCORDION
+===================================================== */
+
+.toggle{
+    width:100%;
+    border:none;
+    background:#102a43;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    cursor:pointer;
+    text-align:left;
+    font-size:17px;
+    font-weight:bold;
+    margin-top:12px;
+    transition:.3s;
+}
+
+.toggle:hover{
+    background:#0066cc;
+}
+
+.content{
+    display:none;
+    padding:18px;
+    background:#f8fbff;
+    border-radius:0 0 10px 10px;
+    animation:openBox .3s ease;
+}
+
+.content.show{
+    display:block;
+}
+
+@keyframes openBox{
+    from{
+        opacity:0;
+        transform:translateY(-5px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-container{
+    overflow-x:auto;
+    margin:15px 0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:500px;
+}
+
+th,td{
+    padding:12px;
+    border:1px solid #d7e2ea;
+    text-align:left;
+}
+
+th{
+    background:#0066cc;
+    color:white;
+}
+
+tr:nth-child(even){
+    background:#f4f9fc;
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quiz{
+    background:#f0f8ff;
+    padding:20px;
+    margin-top:25px;
+    border-radius:15px;
+    border:1px solid #d5eaf7;
+}
+
+.question{
+    margin-bottom:20px;
+}
+
+.question button{
+    display:block;
+    width:100%;
+    max-width:600px;
+    margin:7px 0;
+    padding:10px 14px;
+    border:1px solid #ccdbe5;
+    border-radius:8px;
+    background:white;
+    cursor:pointer;
+    text-align:left;
+    transition:.3s;
+}
+
+.question button:hover{
+    background:#e8f6ff;
+}
+
+.correct{
+    background:#c8f7d2 !important;
+    border-color:#27ae60 !important;
+}
+
+.wrong{
+    background:#ffd0d0 !important;
+    border-color:#e74c3c !important;
+}
+
+.score{
+    margin-top:15px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   OBJECTIFS
+===================================================== */
+
+.objectifs{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    margin-top:15px;
+}
+
+.objectif{
+    padding:18px;
+    background:#f5fbff;
+    border-radius:12px;
+    border-top:4px solid #00aaff;
+}
+
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
+
+#topBtn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#0066cc;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    background:#0d3b66;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    margin-top:30px;
+}
+
+footer strong{
+    color:#00d4ff;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    header .logo{
+        font-size:24px;
+    }
+
+    nav a{
+        margin:3px;
+        font-size:14px;
+    }
+
+    .container{
+        width:92%;
+        padding-top:20px;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    h1{
+        font-size:25px;
+    }
+
+    h2{
+        font-size:21px;
+    }
+
+    h3{
+        font-size:18px;
+    }
+
+    .download{
+        display:block;
+        text-align:center;
+        margin:10px 0;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo"
+         data-fr="💻 Les composants de l'ordinateur"
+         data-ml="💻 Ireo singa mandrafitra ny solosaina">
+        💻 Les composants de l'ordinateur
+    </div>
+
+    <p
+        data-fr="Cours d'initiation informatique — Classe 6ème"
+        data-ml="Lesona fanombohana informatika — Kilasy 6ème">
+        Cours d'initiation informatique — Classe 6ème
+    </p>
+
+    <p>
+        👨‍🏫 <strong>Mr Tahiry</strong>
+    </p>
+
+    <div class="language">
+        <button onclick="setLang('fr')">🇫🇷 Français</button>
+        <button onclick="setLang('ml')">🇲🇬 Malagasy</button>
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav>
+
+    <a href="#debutant"
+       data-fr="🏠 Accueil"
+       data-ml="🏠 Fandraisana">
+       🏠 Accueil
+    </a>
+
+    <a href="#base"
+       data-fr="🖥️ Éléments de base"
+       data-ml="🖥️ Singa fototra">
+       🖥️ Éléments de base
+    </a>
+
+    <a href="#souris"
+       data-fr="🖱️ Souris"
+       data-ml="🖱️ Souris">
+       🖱️ Souris
+    </a>
+
+    <a href="#clavier"
+       data-fr="⌨️ Clavier"
+       data-ml="⌨️ Clavier">
+       ⌨️ Clavier
+    </a>
+
+    <a href="#unite"
+       data-fr="🖥️ Unité centrale"
+       data-ml="🖥️ Boîtier / Unité centrale">
+       🖥️ Unité centrale
+    </a>
+
+    <a href="#quiz"
+       data-fr="📝 Quiz"
+       data-ml="📝 Fanadinana">
+       📝 Quiz
+    </a>
+
+</nav>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
+
+<section class="intro" id="debutant">
+
+    <h1
+        data-fr="📘 Les éléments qui composent l'ordinateur"
+        data-ml="📘 Ireo singa mandrafitra ny solosaina">
+        📘 Les éléments qui composent l'ordinateur
+    </h1>
+
+    <p
+        data-fr="Un ordinateur est constitué de plusieurs éléments qui travaillent ensemble pour permettre à l'utilisateur de saisir, traiter, stocker et afficher des informations."
+        data-ml="Ny solosaina dia misy singa maro miara-miasa mba hahafahan'ny mpampiasa mampiditra, mikarakara, mitahiry ary mampiseho vaovao.">
+        Un ordinateur est constitué de plusieurs éléments qui travaillent ensemble
+        pour permettre à l'utilisateur de saisir, traiter, stocker et afficher des informations.
+    </p>
+
+    <div class="info">
+
+        <strong
+            data-fr="🎯 Objectif du cours :"
+            data-ml="🎯 Tanjona amin'ny lesona :">
+            🎯 Objectif du cours :
+        </strong>
+
+        <span
+            data-fr="Identifier les principaux composants d'un ordinateur et comprendre leur rôle."
+            data-ml="Mamantatra ireo singa fototra amin'ny solosaina ary mahafantatra ny andraikiny.">
+            Identifier les principaux composants d'un ordinateur et comprendre leur rôle.
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ELEMENTS DE BASE
+===================================================== -->
+
+<section class="card" id="base">
+
+    <h2
+        data-fr="🖥️ Les éléments de base"
+        data-ml="🖥️ Ireo singa fototra">
+        🖥️ Les éléments de base
+    </h2>
+
+    <div class="component-grid">
+
+        <div class="component">
+
+            <div class="icon">🖥️</div>
+
+            <h3
+                data-fr="Écran / Moniteur"
+                data-ml="Écran / Moniteur">
+                Écran / Moniteur
+            </h3>
+
+            <p
+                data-fr="Permet d'afficher les informations et les résultats."
+                data-ml="Izy no mampiseho ny vaovao sy ny vokatra asehon'ny solosaina.">
+                Permet d'afficher les informations et les résultats.
+            </p>
+
+        </div>
+
+
+        <div class="component">
+
+            <div class="icon">🖥️</div>
+
+            <h3
+                data-fr="Unité centrale"
+                data-ml="Unité centrale">
+                Unité centrale
+            </h3>
+
+            <p
+                data-fr="Contient plusieurs composants essentiels au fonctionnement de l'ordinateur."
+                data-ml="Ahitana singa manan-danja maro mampandeha ny solosaina.">
+                Contient plusieurs composants essentiels au fonctionnement de l'ordinateur.
+            </p>
+
+        </div>
+
+
+        <div class="component">
+
+            <div class="icon">⌨️</div>
+
+            <h3
+                data-fr="Clavier"
+                data-ml="Clavier">
+                Clavier
+            </h3>
+
+            <p
+                data-fr="Permet de saisir des textes, nombres et commandes."
+                data-ml="Ampiasaina hampidirana soratra, isa ary baiko.">
+                Permet de saisir des textes, nombres et commandes.
+            </p>
+
+        </div>
+
+
+        <div class="component">
+
+            <div class="icon">🖱️</div>
+
+            <h3
+                data-fr="Souris"
+                data-ml="Souris">
+                Souris
+            </h3>
+
+            <p
+                data-fr="Permet de déplacer le pointeur et d'effectuer différentes commandes."
+                data-ml="Ampiasaina hampihetsika ny pointeur sy hanaovana baiko samihafa.">
+                Permet de déplacer le pointeur et d'effectuer différentes commandes.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <h3
+        data-fr="🔌 Autres périphériques"
+        data-ml="🔌 Périphériques hafa">
+        🔌 Autres périphériques
+    </h3>
+
+    <ul>
+
+        <li data-fr="🔊 Les enceintes"
+            data-ml="🔊 Haut-parleurs / Enceintes">
+            🔊 Les enceintes
+        </li>
+
+        <li data-fr="🖨️ L'imprimante"
+            data-ml="🖨️ Imprimante">
+            🖨️ L'imprimante
+        </li>
+
+        <li data-fr="📄 Le scanner"
+            data-ml="📄 Scanner">
+            📄 Le scanner
+        </li>
+
+        <li data-fr="🌐 Le modem"
+            data-ml="🌐 Modem">
+            🌐 Le modem
+        </li>
+
+        <li data-fr="📷 La webcam"
+            data-ml="📷 Webcam">
+            📷 La webcam
+        </li>
+
+    </ul>
+
+</section>
+
+
+<!-- =====================================================
+     MONITEUR
+===================================================== -->
+
+<section class="card">
+
+    <button class="toggle" onclick="toggleContent(this)">
+
+        🖥️
+        <span
+            data-fr="Le moniteur"
+            data-ml="Ny écran / Moniteur">
+            Le moniteur
+        </span>
+
+        ▼
+
+    </button>
+
+    <div class="content">
+
+        <p
+            data-fr="Le moniteur permet de visualiser les résultats des actions effectuées sur l'ordinateur."
+            data-ml="Ny moniteur dia ahafahana mijery ireo vokatra sy vaovao avoakan'ny solosaina.">
+            Le moniteur permet de visualiser les résultats des actions effectuées
+            sur l'ordinateur.
+        </p>
+
+        <h3
+            data-fr="Les principaux types d'écrans"
+            data-ml="Karazana écran lehibe">
+            Les principaux types d'écrans
+        </h3>
+
+        <ul>
+
+            <li
+                data-fr="Tube cathodique (CRT)"
+                data-ml="Tube cathodique (CRT)">
+                Tube cathodique (CRT)
+            </li>
+
+            <li
+                data-fr="Écran plat (LCD)"
+                data-ml="Écran plat (LCD)">
+                Écran plat (LCD)
+            </li>
+
+            <li
+                data-fr="LED"
+                data-ml="LED">
+                LED
+            </li>
+
+        </ul>
+
+        <div class="info">
+
+            <strong
+                data-fr="📏 Taille de l'écran :"
+                data-ml="📏 Haben'ny écran :">
+                📏 Taille de l'écran :
+            </strong>
+
+            <span
+                data-fr="La dimension d'un écran est généralement déterminée par la longueur de sa diagonale et exprimée en pouces."
+                data-ml="Ny haben'ny écran dia faritana amin'ny halavan'ny diagonale ary aseho amin'ny pouce.">
+                La dimension d'un écran est généralement déterminée par la longueur
+                de sa diagonale et exprimée en pouces.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SOURIS
+===================================================== -->
+
+<section class="card" id="souris">
+
+    <h2
+        data-fr="🖱️ La souris"
+        data-ml="🖱️ Ny souris">
+        🖱️ La souris
+    </h2>
+
+    <p
+        data-fr="La souris est un périphérique de pointage. Elle permet de déplacer le pointeur affiché à l'écran et d'effectuer différentes commandes."
+        data-ml="Ny souris dia fitaovana ampiasaina amin'ny fanondroana. Izy no mampihetsika ny pointeur eo amin'ny écran ary ahafahana manao baiko samihafa.">
+        La souris est un périphérique de pointage.
+        Elle permet de déplacer le pointeur affiché à l'écran
+        et d'effectuer différentes commandes.
+    </p>
+
+
+    <h3
+        data-fr="🔘 Les boutons de la souris"
+        data-ml="🔘 Ireo bokotra amin'ny souris">
+        🔘 Les boutons de la souris
+    </h3>
+
+    <ul>
+
+        <li
+            data-fr="Clic gauche : sélectionner et ouvrir."
+            data-ml="Clic gauche : misafidy sy manokatra.">
+            Clic gauche : sélectionner et ouvrir.
+        </li>
+
+        <li
+            data-fr="Clic droit : afficher un menu contextuel."
+            data-ml="Clic droit : mampiseho menu contextuel.">
+            Clic droit : afficher un menu contextuel.
+        </li>
+
+        <li
+            data-fr="Molette : faire défiler une page."
+            data-ml="Molette : mampiakatra na mampidina pejy.">
+            Molette : faire défiler une page.
+        </li>
+
+    </ul>
+
+
+    <img
+        src="sary/souris2.jpg"
+        alt="Souris d'ordinateur"
+        class="lesson-image">
+
+
+    <div class="warning">
+
+        ⚠️
+        <strong
+            data-fr="À retenir :"
+            data-ml="Tsarovy :">
+            À retenir :
+        </strong>
+
+        <span
+            data-fr="La souris permet principalement de contrôler le pointeur."
+            data-ml="Ny souris dia ampiasaina indrindra hifehezana ny pointeur.">
+            La souris permet principalement de contrôler le pointeur.
+        </span>
+
+    </div>
+
+
+    <a
+        href="sary/claviersouris.pdf"
+        download="souris.pdf"
+        class="download">
+
+        📥
+        <span
+            data-fr="Télécharger la leçon sur la souris"
+            data-ml="Sintomy ny lesona momba ny souris">
+            Télécharger la leçon sur la souris
+        </span>
+
+    </a>
+
+</section>
+
+
+<!-- =====================================================
+     CLAVIER
+===================================================== -->
+
+<section class="card" id="clavier">
+
+    <h2
+        data-fr="⌨️ Le clavier"
+        data-ml="⌨️ Ny clavier">
+        ⌨️ Le clavier
+    </h2>
+
+    <p
+        data-fr="Le clavier permet la saisie des informations en direction de l'ordinateur."
+        data-ml="Ny clavier dia ampiasaina hampidirana vaovao ao amin'ny solosaina.">
+        Le clavier permet la saisie des informations en direction de l'ordinateur.
+    </p>
+
+
+    <h3
+        data-fr="🔘 Les touches de base"
+        data-ml="🔘 Ireo touches fototra">
+        🔘 Les touches de base
+    </h3>
+
+    <ul>
+
+        <li>Entrée / Enter</li>
+        <li>Espace / Space</li>
+        <li>Échap / Esc</li>
+        <li>Suppr / Delete</li>
+        <li>Retour arrière / Backspace</li>
+        <li>Caps Lock</li>
+        <li>Shift</li>
+
+    </ul>
+
+
+    <h3
+        data-fr="⌨️ Comment manipuler le clavier ?"
+        data-ml="⌨️ Ahoana ny fampiasana ny clavier ?">
+        ⌨️ Comment manipuler le clavier ?
+    </h3>
+
+    <p
+        data-fr="Pour apprendre à taper efficacement, il faut placer correctement les mains sur le clavier et s'entraîner régulièrement à utiliser les dix doigts."
+        data-ml="Mba hahafahana manoratra tsara amin'ny clavier dia mila apetraka tsara ny tanana ary manao fanazaran-tena matetika amin'ny fampiasana ny rantsan-tanana folo.">
+        Pour apprendre à taper efficacement, il faut placer correctement les mains
+        sur le clavier et s'entraîner régulièrement à utiliser les dix doigts.
+    </p>
+
+
+    <div class="info">
+
+        💡
+        <strong
+            data-fr="Conseil :"
+            data-ml="Torohevitra :">
+            Conseil :
+        </strong>
+
+        <span
+            data-fr="L'entraînement régulier améliore la vitesse et la précision de frappe."
+            data-ml="Ny fanazaran-tena tsy tapaka dia manatsara ny hafainganam-panoratra sy ny fahamarinan'ny soratra.">
+            L'entraînement régulier améliore la vitesse et la précision de frappe.
+        </span>
+
+    </div>
+
+
+    <h3
+        data-fr="🌍 Types de clavier"
+        data-ml="🌍 Karazana clavier">
+        🌍 Types de clavier
+    </h3>
+
+    <ul>
+
+        <li>AZERTY</li>
+        <li>QWERTY</li>
+        <li
+            data-fr="Autres dispositions"
+            data-ml="Fandaminana hafa">
+            Autres dispositions
+        </li>
+
+    </ul>
+
+
+    <h3
+        data-fr="🔢 Les différentes parties d'un clavier"
+        data-ml="🔢 Ireo ampahany amin'ny clavier">
+        🔢 Les différentes parties d'un clavier
+    </h3>
+
+    <ul>
+
+        <li
+            data-fr="Les touches de fonction"
+            data-ml="Touches de fonction">
+            Les touches de fonction
+        </li>
+
+        <li
+            data-fr="Les touches alphanumériques"
+            data-ml="Touches alphanumériques">
+            Les touches alphanumériques
+        </li>
+
+        <li
+            data-fr="Les touches directionnelles"
+            data-ml="Touches directionnelles">
+            Les touches directionnelles
+        </li>
+
+        <li
+            data-fr="Les touches numériques"
+            data-ml="Touches numériques">
+            Les touches numériques
+        </li>
+
+    </ul>
+
+
+    <img
+        src="sary/clavier3.jpg"
+        alt="Clavier d'ordinateur"
+        class="lesson-image">
+
+
+    <a
+        href="sary/clavierpdf.pdf"
+        download="clavier.pdf"
+        class="download">
+
+        📥
+        <span
+            data-fr="Télécharger la leçon sur le clavier"
+            data-ml="Sintomy ny lesona momba ny clavier">
+            Télécharger la leçon sur le clavier
+        </span>
+
+    </a>
+
+
+    <a
+        href="sary/clavier-1.pdf"
+        download="raccourcis.pdf"
+        class="download">
+
+        ⌨️
+        <span
+            data-fr="Télécharger les raccourcis clavier"
+            data-ml="Sintomy ny raccourcis clavier">
+            Télécharger les raccourcis clavier
+        </span>
+
+    </a>
+
+</section>
+
+
+<!-- =====================================================
+     UNITE CENTRALE
+===================================================== -->
+
+<section class="card" id="unite">
+
+    <h2
+        data-fr="🖥️ L'unité centrale"
+        data-ml="🖥️ Ny unité centrale">
+        🖥️ L'unité centrale
+    </h2>
+
+    <p
+        data-fr="L'unité centrale, souvent appelée boîtier, contient plusieurs composants essentiels au fonctionnement de l'ordinateur."
+        data-ml="Ny unité centrale, izay antsoina matetika hoe boîtier, dia misy ireo singa manan-danja mampandeha ny solosaina.">
+        L'unité centrale, souvent appelée boîtier, contient plusieurs composants
+        essentiels au fonctionnement de l'ordinateur.
+    </p>
+
+
+    <div class="component-grid">
+
+        <div class="component">
+
+            <div class="icon">🧠</div>
+
+            <h3>Processeur (CPU)</h3>
+
+            <p
+                data-fr="Il exécute les instructions et effectue les calculs."
+                data-ml="Izy no manatanteraka ny baiko sy manao kajy.">
+                Il exécute les instructions et effectue les calculs.
+            </p>
+
+        </div>
+
+
+        <div class="component">
+
+            <div class="icon">🧩</div>
+
+            <h3
+                data-fr="Carte mère"
+                data-ml="Carte mère">
+                Carte mère
+            </h3>
+
+            <p
+                data-fr="Elle permet aux différents composants de communiquer entre eux."
+                data-ml="Izy no mampifandray sy mampifampiresaka ireo singa samihafa.">
+                Elle permet aux différents composants de communiquer entre eux.
+            </p>
+
+        </div>
+
+
+        <div class="component">
+
+            <div class="icon">💾</div>
+
+            <h3
+                data-fr="Disque dur / SSD"
+                data-ml="Disque dur / SSD">
+                Disque dur / SSD
+            </h3>
+
+            <p
+                data-fr="Il permet de stocker les fichiers et les programmes."
+                data-ml="Izy no itehirizana rakitra sy programme.">
+                Il permet de stocker les fichiers et les programmes.
+            </p>
+
+        </div>
+
+
+        <div class="component">
+
+            <div class="icon">🧠</div>
+
+            <h3
+                data-fr="Mémoire RAM"
+                data-ml="Mémoire RAM">
+                Mémoire RAM
+            </h3>
+
+            <p
+                data-fr="Elle conserve temporairement les données utilisées par les programmes."
+                data-ml="Mitahiry vetivety ireo données ampiasain'ny programme izy.">
+                Elle conserve temporairement les données utilisées par les programmes.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="warning">
+
+        ⚠️
+        <strong
+            data-fr="À retenir :"
+            data-ml="Tsarovy :">
+            À retenir :
+        </strong>
+
+        <span
+            data-fr="L'unité centrale n'est pas seulement le processeur. Elle contient plusieurs composants."
+            data-ml="Ny unité centrale dia tsy processeur ihany. Misy singa maro ao anatiny.">
+            L'unité centrale n'est pas seulement le processeur.
+            Elle contient plusieurs composants.
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TABLEAU RECAPITULATIF
+===================================================== -->
+
+<section class="card">
+
+    <h2
+        data-fr="📋 Tableau récapitulatif"
+        data-ml="📋 Tabilao famintinana">
+        📋 Tableau récapitulatif
+    </h2>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th
+                        data-fr="Composant"
+                        data-ml="Singa">
+                        Composant
+                    </th>
+
+                    <th
+                        data-fr="Rôle"
+                        data-ml="Andraikitra">
+                        Rôle
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>🖥️ Écran</td>
+
+                    <td
+                        data-fr="Afficher les informations"
+                        data-ml="Mampiseho ny vaovao">
+                        Afficher les informations
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>⌨️ Clavier</td>
+
+                    <td
+                        data-fr="Saisir des informations"
+                        data-ml="Mampiditra vaovao">
+                        Saisir des informations
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>🖱️ Souris</td>
+
+                    <td
+                        data-fr="Déplacer le pointeur et sélectionner"
+                        data-ml="Mampihetsika pointeur sy misafidy">
+                        Déplacer le pointeur et sélectionner
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>🧠 Processeur</td>
+
+                    <td
+                        data-fr="Traiter les instructions"
+                        data-ml="Mikarakara ireo baiko">
+                        Traiter les instructions
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>💾 Disque / SSD</td>
+
+                    <td
+                        data-fr="Stocker les données"
+                        data-ml="Mitahiry données">
+                        Stocker les données
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>🧠 RAM</td>
+
+                    <td
+                        data-fr="Stockage temporaire"
+                        data-ml="Fitahirizana vetivety">
+                        Stockage temporaire
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     QUIZ
+===================================================== -->
+
+<section class="card" id="quiz">
+
+    <div class="quiz">
+
+        <h2
+            data-fr="📝 Petit quiz"
+            data-ml="📝 Fanadinana kely">
+            📝 Petit quiz
+        </h2>
+
+
+        <!-- QUESTION 1 -->
+
+        <div class="question">
+
+            <p>
+                <strong
+                    data-fr="1. Quel périphérique permet de saisir du texte ?"
+                    data-ml="1. Inona no fitaovana ampiasaina hampidirana soratra ?">
+                    1. Quel périphérique permet de saisir du texte ?
+                </strong>
+            </p>
+
+            <button onclick="answer(this,false)">
+                🖱️ Souris
+            </button>
+
+            <button onclick="answer(this,true)">
+                ⌨️ Clavier
+            </button>
+
+            <button onclick="answer(this,false)">
+                🖥️ Écran
+            </button>
+
+        </div>
+
+
+        <!-- QUESTION 2 -->
+
+        <div class="question">
+
+            <p>
+                <strong
+                    data-fr="2. Quel composant permet principalement de stocker les fichiers ?"
+                    data-ml="2. Inona no singa itehirizana ny fichiers ?">
+                    2. Quel composant permet principalement de stocker les fichiers ?
+                </strong>
+            </p>
+
+            <button onclick="answer(this,true)">
+                💾 Disque dur / SSD
+            </button>
+
+            <button onclick="answer(this,false)">
+                🖥️ Écran
+            </button>
+
+            <button onclick="answer(this,false)">
+                🖱️ Souris
+            </button>
+
+        </div>
+
+
+        <!-- QUESTION 3 -->
+
+        <div class="question">
+
+            <p>
+                <strong
+                    data-fr="3. Combien de boutons principaux trouve-t-on généralement sur une souris ?"
+                    data-ml="3. Firy ny bokotra fototra hita amin'ny souris amin'ny ankapobeny ?">
+                    3. Combien de boutons principaux trouve-t-on généralement sur une souris ?
+                </strong>
+            </p>
+
+            <button onclick="answer(this,true)">
+                3 : gauche, droit et molette
+            </button>
+
+            <button onclick="answer(this,false)">
+                1
+            </button>
+
+            <button onclick="answer(this,false)">
+                10
+            </button>
+
+        </div>
+
+
+        <div id="quizResult" class="score"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RETOUR
+===================================================== -->
+
+<section class="card" style="text-align:center;">
+
+    <a
+        href="Initiation.html"
+        class="download">
+
+        ⬅️
+        <span
+            data-fr="Retour au cours d'initiation"
+            data-ml="Hiverina amin'ny lesona fanombohana">
+            Retour au cours d'initiation
+        </span>
+
+    </a>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <p>
+        💻 <strong>Mr Tahiry - Informatique</strong> 👨‍🏫
+    </p>
+
+    <p
+        data-fr="Cours pédagogique d'informatique"
+        data-ml="Lesona pedagogika momba ny informatika">
+        Cours pédagogique d'informatique
+    </p>
+
+    <p>
+        © <span id="year"></span> —
+        <span id="date"></span>
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     TOP BUTTON
+===================================================== -->
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    ↑
+</button>
+
+
+<script>
+
+/* =====================================================
+   LANGUE FR / ML
+===================================================== */
+
+function setLang(lang){
+
+    document.querySelectorAll("[data-fr]").forEach(function(element){
+
+        if(lang === "fr"){
+            element.textContent = element.getAttribute("data-fr");
+        }
+
+        else if(lang === "ml"){
+            element.textContent = element.getAttribute("data-ml");
+        }
+
+    });
+
+    document.documentElement.lang = lang === "fr" ? "fr" : "mg";
+
+    localStorage.setItem("language",lang);
+}
+
+
+/* =====================================================
+   ACCORDION
+===================================================== */
+
+function toggleContent(button){
+
+    const content = button.nextElementSibling;
+
+    content.classList.toggle("show");
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+let score = 0;
+let answered = 0;
+
+function answer(button,correct){
+
+    const question = button.closest(".question");
+
+    if(question.dataset.done === "true"){
+        return;
+    }
+
+    question.dataset.done = "true";
+
+    if(correct){
+
+        button.classList.add("correct");
+
+        score++;
+
+    }else{
+
+        button.classList.add("wrong");
+
+    }
+
+    answered++;
+
+    document.getElementById("quizResult").textContent =
+        "📊 Score : " + score + " / " + answered;
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+const now = new Date();
+
+document.getElementById("year").textContent =
+    now.getFullYear();
+
+document.getElementById("date").textContent =
+    now.toLocaleDateString("fr-FR");
+
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
+
+window.addEventListener("scroll",function(){
+
+    const btn = document.getElementById("topBtn");
+
+    if(window.scrollY > 400){
+        btn.style.display = "block";
+    }else{
+        btn.style.display = "none";
+    }
+
+});
+
+
+/* =====================================================
+   LANGUE PAR DEFaut
+===================================================== */
+
+const savedLanguage =
+    localStorage.getItem("language") || "fr";
+
+setLang(savedLanguage);
+
+</script>
+
+</body>
+</html>

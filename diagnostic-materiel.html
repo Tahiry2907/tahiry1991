@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#061a2e">
+<title>Diagnostic matériel PRO++ | InfoPro</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#071b2d;
+  color:#f2f7fc;
+  line-height:1.6;
+  overflow-wrap:break-word;
+}
+header{
+  background:linear-gradient(135deg,#0b3550,#087b83);
+  padding:24px 15px;
+  text-align:center;
+}
+header h1{font-size:clamp(24px,5vw,36px);margin:0 0 8px}
+header p{margin:0}
+.langues{display:flex;justify-content:center;gap:10px;margin-top:16px}
+button,.btn{
+  border:0;border-radius:8px;padding:11px 14px;
+  cursor:pointer;font-weight:bold;font-size:14px;
+}
+.langues button{background:#dceaf2;color:#10283a}
+.langues button.actif{background:#20d4b4;color:#06252c}
+nav{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+  padding:12px;background:#061321;
+}
+nav a{
+  display:inline-block;text-decoration:none;color:white;
+  background:#173b55;padding:8px 11px;border-radius:8px;
+  font-size:14px;
+}
+nav a:hover{background:#087b83}
+main{width:min(1100px,100%);margin:auto;padding:18px 14px}
+.section{
+  background:#102b43;border:1px solid #294b65;
+  border-radius:14px;padding:18px;margin-bottom:18px;
+  min-width:0;
+}
+h2{color:#35dfc3;font-size:22px;margin:0 0 12px}
+h3{font-size:18px;margin:0 0 8px;color:#fff}
+p{margin:8px 0}
+.muet{color:#c4d4e2}
+.warning{
+  background:#3b301a;border:1px solid #a98b41;
+  padding:14px;border-radius:12px;margin-bottom:18px;
+}
+.warning h2{color:#ffd879}
+.recherche{
+  display:block;width:100%;max-width:100%;padding:13px;
+  border:1px solid #45677f;border-radius:9px;
+  background:#061a2e;color:white;font-size:16px;
+  margin:12px 0 18px;
+}
+.grille{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
+  gap:14px;
+  align-items:stretch;
+}
+.carte{
+  min-width:0;display:flex;flex-direction:column;
+  background:#0a2237;border:1px solid #31536c;
+  border-radius:12px;padding:16px;
+  overflow-wrap:anywhere;
+}
+.carte .icone{font-size:29px;margin-bottom:5px}
+.carte .resume{color:#c4d4e2;flex:1}
+.carte details{
+  margin-top:12px;padding-top:10px;
+  border-top:1px solid #31536c;
+}
+.carte summary{cursor:pointer;color:#35dfc3;font-weight:bold}
+.carte ol{padding-left:21px;margin-bottom:0}
+.carte li{margin:8px 0}
+.empty{padding:14px;color:#ffd879}
+.form-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+}
+.champ{min-width:0;display:flex;flex-direction:column;gap:6px}
+.champ label{font-weight:bold}
+.champ input,.champ select,.champ textarea{
+  width:100%;min-width:0;padding:11px;border-radius:8px;
+  border:1px solid #45677f;background:#061a2e;color:white;
+  font:inherit;
+}
+.champ textarea{min-height:100px;resize:vertical}
+.large{grid-column:1/-1}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.principal{background:#20d4b4;color:#06252c}
+.secondaire{background:#234b67;color:white}
+.danger{background:#9b3434;color:white}
+#message{color:#48e7c8;font-weight:bold;overflow-wrap:anywhere}
+.etapes li{margin:9px 0}
+footer{text-align:center;background:#04111d;padding:20px;color:#c4d4e2}
+[hidden]{display:none!important}
+@media(max-width:560px){
+  main{padding:12px 10px}
+  .section{padding:13px}
+  .grille{grid-template-columns:minmax(0,1fr)}
+  .form-grid{grid-template-columns:minmax(0,1fr)}
+  .large{grid-column:auto}
+  nav a{font-size:13px;padding:8px}
+  h2{font-size:20px}
+}
+@media print{
+  body{background:white;color:black}
+  header,nav,.langues,.recherche,.warning,.actions,footer,
+  #diagnostics,.intro{display:none!important}
+  main{width:100%;padding:0}
+  .section{background:white;color:black;border:0;padding:0}
+  h2,h3{color:black}
+  .champ input,.champ select,.champ textarea{
+    background:white;color:black;border:1px solid #777;
+  }
+  #fiche{display:block!important}
+  #fiche *{color:black}
+  #message{display:none}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>🔧 InfoPro - Diagnostic matériel</h1>
+  <p data-fr="Identifier les pannes et rechercher leurs causes."
+     data-ml="Mamantatra ny olana sy mikaroka ny antony.">
+    Identifier les pannes et rechercher leurs causes.
+  </p>
+  <div class="langues">
+    <button type="button" id="btnFR" class="actif" onclick="changerLangue('fr')">🇫🇷 FR</button>
+    <button type="button" id="btnML" onclick="changerLangue('ml')">🇲🇬 ML</button>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">🏠 <span data-fr="Accueil" data-ml="Fandraisana">Accueil</span></a>
+  <a href="installation-windows.html">💿 <span data-fr="Installation Windows" data-ml="Fametrahana Windows">Installation Windows</span></a>
+  <a href="depannage-informatique.html">🛠️ <span data-fr="Dépannage" data-ml="Fanamboarana">Dépannage</span></a>
+  <a href="#diagnostics">🔎 <span data-fr="Diagnostics" data-ml="Diagnostic">Diagnostics</span></a>
+  <a href="#fiche">📝 <span data-fr="Fiche" data-ml="Taratasy">Fiche</span></a>
+</nav>
+
+<main>
+<section class="section intro">
+  <h2 data-fr="🎯 Objectifs" data-ml="🎯 Tanjona">🎯 Objectifs</h2>
+  <ul>
+    <li data-fr="Reconnaître les symptômes d'une panne matérielle."
+        data-ml="Mamantatra ny soritr'aretin'ny olana amin'ny matériel.">
+      Reconnaître les symptômes d'une panne matérielle.
+    </li>
+    <li data-fr="Effectuer des vérifications simples et méthodiques."
+        data-ml="Manao fanamarinana tsotra sy voalamina.">
+      Effectuer des vérifications simples et méthodiques.
+    </li>
+    <li data-fr="Noter les observations et les solutions proposées."
+        data-ml="Manoratra ny zavatra hita sy ny vahaolana natolotra.">
+      Noter les observations et les solutions proposées.
+    </li>
+  </ul>
+</section>
+
+<section class="warning">
+  <h2 data-fr="⚠️ Sécurité" data-ml="⚠️ Fiarovana">⚠️ Sécurité</h2>
+  <ul>
+    <li data-fr="Éteignez et débranchez l'ordinateur avant toute ouverture."
+        data-ml="Vonoy ary esory amin'ny herinaratra ny ordinateur alohan'ny hanokafana azy.">
+      Éteignez et débranchez l'ordinateur avant toute ouverture.
+    </li>
+    <li data-fr="N'ouvrez jamais le bloc d'alimentation électrique."
+        data-ml="Aza sokafana mihitsy ny bloc alimentation électrique.">
+      N'ouvrez jamais le bloc d'alimentation électrique.
+    </li>
+    <li data-fr="Ne manipulez pas les composants avec les mains mouillées."
+        data-ml="Aza mikasika ireo singa amin'ny tanana lena.">
+      Ne manipulez pas les composants avec les mains mouillées.
+    </li>
+    <li data-fr="En cas de batterie gonflée, d'odeur de brûlé ou de doute, arrêtez et demandez l'aide d'un technicien."
+        data-ml="Raha mibontsina ny batterie, misy fofona may na misy ahiahy, ajanony ary mangataha fanampiana amin'ny teknisianina.">
+      En cas de batterie gonflée, d'odeur de brûlé ou de doute, arrêtez et demandez l'aide d'un technicien.
+    </li>
+  </ul>
+</section>
+
+<section class="section" id="diagnostics">
+  <h2 data-fr="🔎 Guides de diagnostic" data-ml="🔎 Torolalana diagnostic">🔎 Guides de diagnostic</h2>
+  <p class="muet" data-fr="Recherchez une panne par son nom ou son symptôme."
+     data-ml="Mitadiava olana amin'ny anarany na ny soritr'aretiny.">
+    Recherchez une panne par son nom ou son symptôme.
+  </p>
+  <input id="recherche" class="recherche" type="search"
+    placeholder="Ex. : RAM, écran noir, disque dur"
+    data-placeholder-fr="Ex. : RAM, écran noir, disque dur"
+    data-placeholder-ml="Ohatra: RAM, écran mainty, disque dur"
+    oninput="filtrerCartes()">
+
+  <div class="grille" id="grille">
+
+    <article class="carte" data-mots="alimentation courant power démarrage herinaratra">
+      <div class="icone">🔌</div>
+      <h3 data-fr="1. L'ordinateur ne démarre pas" data-ml="1. Tsy mandeha ny ordinateur">1. L'ordinateur ne démarre pas</h3>
+      <p class="resume" data-fr="Aucun voyant et aucune réaction."
+         data-ml="Tsy misy jiro na fihetsika rehefa alefa.">Aucun voyant et aucune réaction.</p>
+      <details>
+        <summary data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</summary>
+        <ol>
+          <li data-fr="Vérifiez la prise et le câble d'alimentation."
+              data-ml="Hamarino ny prise sy ny tariby herinaratra.">Vérifiez la prise et le câble d'alimentation.</li>
+          <li data-fr="Observez les voyants de l'ordinateur et du chargeur."
+              data-ml="Jereo ny jiro famantarana amin'ny ordinateur sy chargeur.">Observez les voyants de l'ordinateur et du chargeur.</li>
+          <li data-fr="Si aucune réaction, faites contrôler l'alimentation et la carte mère."
+              data-ml="Raha tsy misy fiovana, asaivo zahana ny alimentation sy carte mère.">Si aucune réaction, faites contrôler l'alimentation et la carte mère.</li>
+        </ol>
+      </details>
+    </article>
+
+    <article class="carte" data-mots="ram mémoire écran noir bip bips">
+      <div class="icone">🧠</div>
+      <h3 data-fr="2. Écran noir au démarrage" data-ml="2. Écran mainty rehefa alefa">2. Écran noir au démarrage</h3>
+      <p class="resume" data-fr="L'ordinateur semble fonctionner, mais l'image manque."
+         data-ml="Toa mandeha ny ordinateur nefa tsy misy sary.">L'ordinateur semble fonctionner, mais l'image manque.</p>
+      <details>
+        <summary data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</summary>
+        <ol>
+          <li data-fr="Vérifiez que l'écran est allumé et que le câble vidéo est branché."
+              data-ml="Jereo raha mandeha ny écran ary mifandray ny câble vidéo.">Vérifiez que l'écran est allumé et que le câble vidéo est branché.</li>
+          <li data-fr="Notez les bips et les voyants éventuels."
+              data-ml="Soraty ireo bip sy jiro famantarana raha misy.">Notez les bips et les voyants éventuels.</li>
+          <li data-fr="Une RAM peut être en cause. Faites contrôler les composants selon le manuel du fabricant."
+              data-ml="Mety ho RAM no antony. Asaivo zahana araka ny bokin'ny mpanamboatra ny singa anatiny.">Une RAM peut être en cause. Faites contrôler les composants selon le manuel du fabricant.</li>
+        </ol>
+      </details>
+    </article>
+
+    <article class="carte" data-mots="disque dur hdd ssd bios stockage tsy hita">
+      <div class="icone">💽</div>
+      <h3 data-fr="3. HDD / SSD non détecté" data-ml="3. Tsy hita ny HDD / SSD">3. HDD / SSD non détecté</h3>
+      <p class="resume" data-fr="Le disque n'apparaît pas dans le BIOS ou l'installation."
+         data-ml="Tsy hita ao amin'ny BIOS na rehefa mametraka système ilay disque.">Le disque n'apparaît pas dans le BIOS ou l'installation.</p>
+      <details>
+        <summary data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</summary>
+        <ol>
+          <li data-fr="Vérifiez dans le BIOS/UEFI si le disque apparaît."
+              data-ml="Jereo ao amin'ny BIOS/UEFI raha miseho ilay disque.">Vérifiez dans le BIOS/UEFI si le disque apparaît.</li>
+          <li data-fr="Faites vérifier les branchements SATA et d'alimentation sur un PC de bureau, appareil débranché."
+              data-ml="Amin'ny ordinateur de bureau, asaivo zahana ny tariby SATA sy alimentation rehefa nesorina tamin'ny herinaratra ilay fitaovana.">Faites vérifier les branchements SATA et d'alimentation sur un PC de bureau, appareil débranché.</li>
+          <li data-fr="Si les fichiers sont importants, ne formatez pas le disque."
+              data-ml="Raha sarobidy ny rakitra, aza manao formatage.">Si les fichiers sont importants, ne formatez pas le disque.</li>
+        </ol>
+      </details>
+    </article>
+
+    <article class="carte" data-mots="ventilateur chaleur température surchauffe bruit">
+      <div class="icone">🌡️</div>
+      <h3 data-fr="4. Surchauffe ou bruit" data-ml="4. Hafanana tafahoatra na tabataba">4. Surchauffe ou bruit</h3>
+      <p class="resume" data-fr="Le PC chauffe, ralentit ou s'éteint."
+         data-ml="Mafana ny ordinateur, miadana na maty ho azy.">Le PC chauffe, ralentit ou s'éteint.</p>
+      <details>
+        <summary data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</summary>
+        <ol>
+          <li data-fr="Éteignez l'appareil s'il devient anormalement chaud."
+              data-ml="Vonoy raha mafana tafahoatra ilay fitaovana.">Éteignez l'appareil s'il devient anormalement chaud.</li>
+          <li data-fr="Placez-le sur une surface dure et dégagez les aérations."
+              data-ml="Apetraho amin'ny toerana mafy ary aza sakanana ny fivoahan'ny rivotra.">Placez-le sur une surface dure et dégagez les aérations.</li>
+          <li data-fr="Demandez un nettoyage professionnel si le problème persiste."
+              data-ml="Mangataha fanadiovana ataon'ny teknisianina raha mitohy ny olana.">Demandez un nettoyage professionnel si le problème persiste.</li>
+        </ol>
+      </details>
+    </article>
+
+    <article class="carte" data-mots="batterie chargeur portable laptop charge">
+      <div class="icone">🔋</div>
+      <h3 data-fr="5. Batterie ou chargeur" data-ml="5. Batterie na chargeur">5. Batterie ou chargeur</h3>
+      <p class="resume" data-fr="La batterie ne charge pas ou se vide rapidement."
+         data-ml="Tsy mameno ny batterie na lany haingana ny heriny.">La batterie ne charge pas ou se vide rapidement.</p>
+      <details>
+        <summary data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</summary>
+        <ol>
+          <li data-fr="Vérifiez la prise, le câble et le voyant du chargeur."
+              data-ml="Hamarino ny prise, tariby ary jiro amin'ny chargeur.">Vérifiez la prise, le câble et le voyant du chargeur.</li>
+          <li data-fr="Utilisez un chargeur adapté au modèle."
+              data-ml="Chargeur mifanaraka amin'ilay modèle ihany no ampiasao.">Utilisez un chargeur adapté au modèle.</li>
+          <li data-fr="Arrêtez l'utilisation si la batterie est gonflée ou endommagée."
+              data-ml="Ajanony ny fampiasana raha mibontsina na simba ny batterie.">Arrêtez l'utilisation si la batterie est gonflée ou endommagée.</li>
+        </ol>
+      </details>
+    </article>
+
+    <article class="carte" data-mots="écran moniteur câble hdmi vga lignes affichage">
+      <div class="icone">🖥️</div>
+      <h3 data-fr="6. Écran sans image" data-ml="6. Tsy misy sary eo amin'ny écran">6. Écran sans image</h3>
+      <p class="resume" data-fr="L'écran reste noir, clignote ou affiche des lignes."
+         data-ml="Mainty ny écran, mipipika na misy tsipika.">L'écran reste noir, clignote ou affiche des lignes.</p>
+      <details>
+        <summary data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</summary>
+        <ol>
+          <li data-fr="Vérifiez l'alimentation de l'écran."
+              data-ml="Hamarino ny herinaratra miditra amin'ny écran.">Vérifiez l'alimentation de l'écran.</li>
+          <li data-fr="Vérifiez le câble vidéo et la source sélectionnée."
+              data-ml="Hamarino ny câble vidéo sy ny source voafidy.">Vérifiez le câble vidéo et la source sélectionnée.</li>
+          <li data-fr="Essayez un autre câble ou écran compatible si possible."
+              data-ml="Andramo câble na écran hafa mifanaraka raha misy.">Essayez un autre câble ou écran compatible si possible.</li>
+        </ol>
+      </details>
+    </article>
+
+    <article class="carte" data-mots="carte mère processeur cpu motherboard bips">
+      <div class="icone">⚙️</div>
+      <h3 data-fr="7. Carte mère ou processeur" data-ml="7. Carte mère na processeur">7. Carte mère ou processeur</h3>
+      <p class="resume" data-fr="Le démarrage échoue ou des erreurs reviennent."
+         data-ml="Tsy tafiditra ny démarrage na miverimberina ny erreur.">Le démarrage échoue ou des erreurs reviennent.</p>
+      <details>
+        <summary data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</summary>
+        <ol>
+          <li data-fr="Notez les codes, bips et voyants."
+              data-ml="Soraty ny code, bip ary jiro famantarana.">Notez les codes, bips et voyants.</li>
+          <li data-fr="Vérifiez les périphériques et les branchements externes."
+              data-ml="Hamarino ny périphériques sy ny fampifandraisana ivelany.">Vérifiez les périphériques et les branchements externes.</li>
+          <li data-fr="Faites réaliser un diagnostic technique avant de remplacer une pièce."
+              data-ml="Manaova diagnostic teknika alohan'ny hanoloana singa.">Faites réaliser un diagnostic technique avant de remplacer une pièce.</li>
+        </ol>
+      </details>
+    </article>
+
+    <article class="carte" data-mots="usb clavier souris périphérique port">
+      <div class="icone">⌨️</div>
+      <h3 data-fr="8. USB, clavier ou souris" data-ml="8. USB, clavier na souris">8. USB, clavier ou souris</h3>
+      <p class="resume" data-fr="Un périphérique n'est pas reconnu."
+         data-ml="Tsy fantatra na tsy mandeha ny périphérique.">Un périphérique n'est pas reconnu.</p>
+      <details>
+        <summary data-fr="Voir les étapes" data-ml="Jereo ny dingana">Voir les étapes</summary>
+        <ol>
+          <li data-fr="Essayez un autre port USB."
+              data-ml="Andramo port USB hafa.">Essayez un autre port USB.</li>
+          <li data-fr="Testez le périphérique sur un autre ordinateur."
+              data-ml="Andramo amin'ny ordinateur hafa ilay périphérique.">Testez le périphérique sur un autre ordinateur.</li>
+          <li data-fr="Redémarrez le PC et vérifiez les pilotes."
+              data-ml="Avereno alefa ny PC ary jereo ny pilotes.">Redémarrez le PC et vérifiez les pilotes.</li>
+        </ol>
+      </details>
+    </article>
+
+  </div>
+  <p id="aucun" class="empty" hidden
+     data-fr="Aucun résultat trouvé."
+     data-ml="Tsy nahitana valiny.">Aucun résultat trouvé.</p>
+</section>
+
+<section class="section" id="fiche">
+  <h2 data-fr="📝 Fiche de diagnostic" data-ml="📝 Taratasy diagnostic">📝 Fiche de diagnostic</h2>
+  <p class="muet" data-fr="Les données sont enregistrées uniquement dans ce navigateur."
+     data-ml="Voatahiry ao amin'ity navigateur ity ihany ny angona.">
+    Les données sont enregistrées uniquement dans ce navigateur.
+  </p>
+
+  <form id="formDiagnostic">
+    <div class="form-grid">
+      <div class="champ">
+        <label for="nom" data-fr="Nom de l'élève / technicien" data-ml="Anaran'ny mpianatra / teknisianina">Nom de l'élève / technicien</label>
+        <input id="nom" required>
+      </div>
+
+      <div class="champ">
+        <label for="date" data-fr="Date" data-ml="Daty">Date</label>
+        <input id="date" type="date" required>
+      </div>
+
+      <div class="champ">
+        <label for="appareil" data-fr="Appareil" data-ml="Fitaovana">Appareil</label>
+        <select id="appareil">
+          <option value="Ordinateur de bureau">Ordinateur de bureau</option>
+          <option value="Ordinateur portable">Ordinateur portable</option>
+          <option value="Écran">Écran</option>
+          <option value="Autre périphérique" data-fr="Autre périphérique" data-ml="Périphérique hafa">Autre périphérique</option>
+        </select>
+      </div>
+
+      <div class="champ">
+        <label for="panne" data-fr="Panne observée" data-ml="Olana hita">Panne observée</label>
+        <select id="panne">
+          <option data-fr="Ne démarre pas" data-ml="Tsy mandeha">Ne démarre pas</option>
+          <option data-fr="Écran noir" data-ml="Écran mainty">Écran noir</option>
+          <option data-fr="Disque non détecté" data-ml="Tsy hita ny disque">Disque non détecté</option>
+          <option data-fr="Surchauffe" data-ml="Mafana tafahoatra">Surchauffe</option>
+          <option data-fr="Batterie / chargeur" data-ml="Batterie / chargeur">Batterie / chargeur</option>
+          <option data-fr="Autre panne" data-ml="Olana hafa">Autre panne</option>
+        </select>
+      </div>
+
+      <div class="champ large">
+        <label for="symptomes" data-fr="Symptômes observés" data-ml="Soritr'aretina hita">Symptômes observés</label>
+        <textarea id="symptomes" data-placeholder-fr="Décrivez ce que vous observez..." data-placeholder-ml="Farito izay hitanao..." placeholder="Décrivez ce que vous observez..."></textarea>
+      </div>
+
+      <div class="champ large">
+        <label for="cause" data-fr="Causes possibles" data-ml="Antony mety">Causes possibles</label>
+        <textarea id="cause" data-placeholder-fr="Causes possibles..." data-placeholder-ml="Antony mety..." placeholder="Causes possibles..."></textarea>
+      </div>
+
+      <div class="champ large">
+        <label for="solution" data-fr="Vérifications et solution" data-ml="Fanamarinana sy vahaolana">Vérifications et solution</label>
+        <textarea id="solution" data-placeholder-fr="Actions réalisées et résultat..." data-placeholder-ml="Asa natao sy vokatra azo..." placeholder="Actions réalisées et résultat..."></textarea>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="principal" type="submit" data-fr="💾 Enregistrer" data-ml="💾 Tehirizo">💾 Enregistrer</button>
+      <button class="secondaire" type="button" onclick="imprimerFiche()" data-fr="🖨️ Imprimer" data-ml="🖨️ Atao printy">🖨️ Imprimer</button>
+      <button class="secondaire" type="button" onclick="exporterFiche()" data-fr="⬇️ Exporter TXT" data-ml="⬇️ Hamoaka TXT">⬇️ Exporter TXT</button>
+      <button class="danger" type="button" onclick="effacerFiche()" data-fr="Effacer" data-ml="Fafao">Effacer</button>
+    </div>
+    <p id="message" role="status"></p>
+  </form>
+</section>
+
+<section class="section">
+  <h2 data-fr="📚 Méthode de diagnostic" data-ml="📚 Fomba fanaovana diagnostic">📚 Méthode de diagnostic</h2>
+  <ol class="etapes">
+    <li data-fr="Demander à l'utilisateur ce qui s'est passé."
+        data-ml="Anontanio ny mpampiasa ny zava-nitranga.">Demander à l'utilisateur ce qui s'est passé.</li>
+    <li data-fr="Observer et noter les symptômes."
+        data-ml="Jereo ary soraty ny soritr'aretina.">Observer et noter les symptômes.</li>
+    <li data-fr="Commencer par les vérifications simples et sûres."
+        data-ml="Atombohy amin'ny fanamarinana tsotra sy azo antoka.">Commencer par les vérifications simples et sûres.</li>
+    <li data-fr="Tester une hypothèse à la fois."
+        data-ml="Antony iray isaky ny mandeha no andramana.">Tester une hypothèse à la fois.</li>
+    <li data-fr="Noter le résultat et demander l'aide d'un technicien si nécessaire."
+        data-ml="Soraty ny vokatra ary mangataha teknisianina raha ilaina.">Noter le résultat et demander l'aide d'un technicien si nécessaire.</li>
+  </ol>
+</section>
+</main>
+
+<footer>
+  <p>💻 InfoPro — <span data-fr="Apprendre • Pratiquer • Réussir" data-ml="Mianatra • Mampihatra • Mahomby">Apprendre • Pratiquer • Réussir</span></p>
+  <p>Mr Tahiry - Informatique 👨‍🏫</p>
+</footer>
+
+<script>
+"use strict";
+
+let langue = "fr";
+const cle = "InfoPro_Diagnostic_Materiel_v2";
+
+function changerLangue(l){
+  langue = l;
+  document.documentElement.lang = l;
+
+  document.querySelectorAll("[data-fr][data-ml]").forEach(el=>{
+    if(el.tagName === "OPTION"){
+      el.textContent = el.dataset[l];
+    }else{
+      el.textContent = el.dataset[l];
+    }
+  });
+
+  document.querySelectorAll("[data-placeholder-fr]").forEach(el=>{
+    el.placeholder = el.dataset["placeholder" + l.toUpperCase()];
+  });
+
+  document.getElementById("btnFR").classList.toggle("actif",l==="fr");
+  document.getElementById("btnML").classList.toggle("actif",l==="ml");
+  document.getElementById("recherche").placeholder =
+    document.getElementById("recherche").dataset["placeholder" + l.toUpperCase()];
+}
+
+function filtrerCartes(){
+  const q = document.getElementById("recherche").value.toLowerCase().trim();
+  let compte = 0;
+
+  document.querySelectorAll("#grille .carte").forEach(carte=>{
+    const texte = (carte.innerText + " " + carte.dataset.mots).toLowerCase();
+    const visible = texte.includes(q);
+    carte.hidden = !visible;
+    if(visible) compte++;
+  });
+
+  document.getElementById("aucun").hidden = compte > 0;
+}
+
+const ids = ["nom","date","appareil","panne","symptomes","cause","solution"];
+const form = document.getElementById("formDiagnostic");
+
+function lireFiche(){
+  const data = {};
+  ids.forEach(id=>{
+    const el = document.getElementById(id);
+    data[id] = el.value;
+  });
+  return data;
+}
+
+function afficherMessage(fr,ml){
+  document.getElementById("message").textContent = langue==="fr" ? fr : ml;
+}
+
+form.addEventListener("submit",function(e){
+  e.preventDefault();
+  try{
+    localStorage.setItem(cle,JSON.stringify(lireFiche()));
+    afficherMessage("✅ Fiche enregistrée dans ce navigateur.",
+                    "✅ Voatahiry ao amin'ity navigateur ity ny fiche.");
+  }catch(err){
+    afficherMessage("Impossible d'enregistrer dans le navigateur.",
+                    "Tsy afaka mitahiry ao amin'ny navigateur.");
+  }
+});
+
+function chargerFiche(){
+  try{
+    const data = JSON.parse(localStorage.getItem(cle) || "null");
+    if(data){
+      ids.forEach(id=>{
+        if(data[id] !== undefined){
+          document.getElementById(id).value = data[id];
+        }
+      });
+    }
+  }catch(err){
+    console.warn("Chargement de la fiche impossible.");
+  }
+}
+
+function texteFiche(){
+  const d = lireFiche();
+  const fr = langue==="fr";
+  return [
+    fr ? "FICHE DE DIAGNOSTIC MATERIEL" : "TARATASY DIAGNOSTIC MATERIEL",
+    "",
+    (fr ? "Nom" : "Anarana") + " : " + d.nom,
+    (fr ? "Date" : "Daty") + " : " + d.date,
+    (fr ? "Appareil" : "Fitaovana") + " : " + d.appareil,
+    (fr ? "Panne" : "Olana") + " : " + document.getElementById("panne").selectedOptions[0].textContent,
+    "",
+    (fr ? "Symptômes" : "Soritr'aretina") + " :\n" + d.symptomes,
+    "",
+    (fr ? "Causes possibles" : "Antony mety") + " :\n" + d.cause,
+    "",
+    (fr ? "Vérifications et solution" : "Fanamarinana sy vahaolana") + " :\n" + d.solution,
+    "",
+    "InfoPro - Mr Tahiry"
+  ].join("\n");
+}
+
+function imprimerFiche(){
+  window.print();
+}
+
+function exporterFiche(){
+  const blob = new Blob([texteFiche()],{type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "fiche-diagnostic-infopro.txt";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function effacerFiche(){
+  const ok = confirm(langue==="fr"
+    ? "Effacer les données de cette fiche ?"
+    : "Fafana ve ny angona rehetra ato amin'ity fiche ity?");
+
+  if(!ok) return;
+  form.reset();
+  localStorage.removeItem(cle);
+  document.getElementById("date").value = new Date().toISOString().slice(0,10);
+  afficherMessage("Fiche effacée.","Voafafa ny fiche.");
+}
+
+document.getElementById("date").value = new Date().toISOString().slice(0,10);
+chargerFiche();
+</script>
+</body>
+</html>

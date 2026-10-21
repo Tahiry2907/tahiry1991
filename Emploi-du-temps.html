@@ -1,0 +1,1939 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Emploi du temps | InfoPro</title><style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #061a2e,
+        #083b66,
+        #075985,
+        #0f766e
+    );
+
+    color:#fff;
+
+    min-height:100vh;
+
+    padding:20px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.top-header{
+
+    max-width:1250px;
+
+    margin:0 auto 20px;
+
+    padding:18px 22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    background:
+    rgba(2,31,59,.94);
+
+    border:
+    1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,.30);
+
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    white-space:nowrap;
+}
+
+.logo span{
+
+    color:#00e5ff;
+}
+
+.top-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+}
+
+.top-actions a{
+
+    text-decoration:none;
+
+    color:#fff;
+
+    padding:9px 13px;
+
+    border-radius:10px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.12);
+
+    transition:.3s;
+}
+
+.top-actions a:hover{
+
+    background:#00c6ff;
+
+    color:#00111f;
+
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   TITRE
+===================================================== */
+
+.header{
+
+    max-width:1250px;
+
+    margin:0 auto 20px;
+
+    text-align:center;
+}
+
+.header h1{
+
+    font-size:
+    clamp(28px,5vw,45px);
+
+    margin-bottom:8px;
+
+    color:#fff;
+}
+
+.header h1 span{
+
+    color:#00e5ff;
+}
+
+.header p{
+
+    color:#dbeafe;
+
+    font-size:16px;
+
+    line-height:1.7;
+}
+
+
+/* =====================================================
+   CONTENEUR
+===================================================== */
+
+.container{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    background:
+    rgba(255,255,255,.96);
+
+    color:#222;
+
+    padding:22px;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 20px 55px rgba(0,0,0,.30);
+}
+
+
+/* =====================================================
+   INFORMATIONS
+===================================================== */
+
+.informations{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.info-box{
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:#f1f5f9;
+
+    border:1px solid #dbeafe;
+}
+
+.info-box label{
+
+    display:block;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    color:#475569;
+
+    margin-bottom:5px;
+}
+
+.info-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    color:#0f172a;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:20px;
+}
+
+button{
+
+    border:none;
+
+    padding:11px 17px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+button:hover{
+
+    transform:
+    translateY(-2px);
+
+    box-shadow:
+    0 6px 15px rgba(0,0,0,.15);
+}
+
+.btn-save{
+
+    background:#198754;
+
+    color:#fff;
+}
+
+.btn-print{
+
+    background:#0d6efd;
+
+    color:#fff;
+}
+
+.btn-reset{
+
+    background:#dc3545;
+
+    color:#fff;
+}
+
+.btn-json{
+
+    background:#7c3aed;
+
+    color:#fff;
+}
+
+.btn-import{
+
+    background:#0891b2;
+
+    color:#fff;
+}
+
+
+/* =====================================================
+   RECHERCHE
+===================================================== */
+
+.search-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:18px;
+}
+
+.search-box input{
+
+    width:100%;
+
+    max-width:450px;
+
+    padding:12px 15px;
+
+    border:
+    2px solid #dbeafe;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+.search-box input:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:
+    0 0 0 3px rgba(13,110,253,.12);
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    border-radius:14px;
+}
+
+table{
+
+    width:100%;
+
+    min-width:950px;
+
+    border-collapse:collapse;
+
+    text-align:center;
+}
+
+th,
+td{
+
+    border:
+    2px solid #fff;
+
+    padding:12px 8px;
+
+    min-width:125px;
+}
+
+thead th{
+
+    background:#164a8a;
+
+    color:#fff;
+
+    font-size:15px;
+
+    padding:15px 8px;
+}
+
+thead th:first-child{
+
+    background:#102f58;
+
+    min-width:105px;
+}
+
+.time{
+
+    background:#e9eef5;
+
+    color:#183b61;
+
+    font-weight:bold;
+
+    min-width:105px;
+}
+
+
+/* =====================================================
+   CELLULE EDITABLE
+===================================================== */
+
+td.editable{
+
+    cursor:text;
+
+    font-weight:bold;
+
+    min-height:50px;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+td.editable:hover{
+
+    filter:brightness(.95);
+
+    outline:
+    3px solid #ffc107;
+
+    outline-offset:-3px;
+}
+
+td.editable:focus{
+
+    outline:
+    3px solid #0d6efd;
+
+    outline-offset:-3px;
+
+    background:#fff !important;
+
+    color:#111 !important;
+}
+
+
+/* =====================================================
+   COULEURS CLASSES
+===================================================== */
+
+.c-3{
+
+    background:#dbeafe;
+
+    color:#075985;
+}
+
+.c-4{
+
+    background:#d1fae5;
+
+    color:#065f46;
+}
+
+.c-5{
+
+    background:#fef3c7;
+
+    color:#92400e;
+}
+
+.c-6{
+
+    background:#ede9fe;
+
+    color:#5b21b6;
+}
+
+.c-1{
+
+    background:#fce7f3;
+
+    color:#9d174d;
+}
+
+.c-2{
+
+    background:#ffedd5;
+
+    color:#9a3412;
+}
+
+.c-terminale{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+}
+
+
+/* =====================================================
+   PAUSE
+===================================================== */
+
+.pause{
+
+    background:#f1f3f5;
+
+    color:#777;
+
+    font-weight:bold;
+
+    font-size:15px;
+}
+
+
+/* =====================================================
+   LEGENDE
+===================================================== */
+
+.legend{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.legend span{
+
+    padding:8px 13px;
+
+    border-radius:9px;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+.l3{
+
+    background:#dbeafe;
+
+    color:#075985;
+}
+
+.l4{
+
+    background:#d1fae5;
+
+    color:#065f46;
+}
+
+.l5{
+
+    background:#fef3c7;
+
+    color:#92400e;
+}
+
+.l6{
+
+    background:#ede9fe;
+
+    color:#5b21b6;
+}
+
+.l1{
+
+    background:#fce7f3;
+
+    color:#9d174d;
+}
+
+.l2{
+
+    background:#ffedd5;
+
+    color:#9a3412;
+}
+
+.lt{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+
+    text-align:center;
+
+    margin-top:16px;
+
+    color:#198754;
+
+    font-weight:bold;
+
+    min-height:24px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    padding-top:20px;
+
+    border-top:
+    1px solid #e2e8f0;
+
+    color:#64748b;
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+.footer strong{
+
+    color:#0f766e;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px){
+
+    body{
+
+        padding:8px;
+    }
+
+    .top-header{
+
+        border-radius:15px;
+
+        justify-content:center;
+
+        text-align:center;
+    }
+
+    .informations{
+
+        grid-template-columns:1fr;
+    }
+
+    .container{
+
+        padding:12px;
+
+        border-radius:15px;
+    }
+
+    .header h1{
+
+        font-size:26px;
+    }
+
+    .header p{
+
+        font-size:13px;
+    }
+
+    button{
+
+        padding:9px 12px;
+
+        font-size:12px;
+    }
+
+    th,
+    td{
+
+        padding:10px 6px;
+
+        font-size:13px;
+    }
+
+}
+
+
+/* =====================================================
+   IMPRESSION
+===================================================== */
+
+@media print{
+
+    body{
+
+        background:white;
+
+        padding:0;
+
+        color:#000;
+    }
+
+    .top-header{
+
+        display:none;
+    }
+
+    .header{
+
+        color:#000;
+
+        margin-bottom:10px;
+    }
+
+    .header h1{
+
+        color:#000;
+    }
+
+    .header h1 span{
+
+        color:#000;
+    }
+
+    .header p{
+
+        color:#000;
+    }
+
+    .container{
+
+        box-shadow:none;
+
+        max-width:100%;
+
+        padding:0;
+
+        background:#fff;
+    }
+
+    .informations{
+
+        margin-bottom:10px;
+    }
+
+    .actions,
+    .search-box,
+    .message{
+
+        display:none;
+    }
+
+    table{
+
+        min-width:100%;
+
+        font-size:11px;
+    }
+
+    th,
+    td{
+
+        padding:8px 5px;
+    }
+
+    .footer{
+
+        color:#000;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITÉ
+===================================================== */
+
+button,
+a,
+input{
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+</style></head><body><!-- =====================================================
+     HEADER INFOPro
+===================================================== --><div class="top-header"><div class="logo">
+
+    💻 Info<span>Pro</span>
+
+</div>
+
+
+<div class="top-actions">
+
+    <a href="index.html">
+
+        🏠 Accueil
+
+    </a>
+
+    <a href="index-mg.html">
+
+        🇲🇬 Malagasy
+
+    </a>
+
+</div>
+
+</div><!-- =====================================================
+     TITRE
+===================================================== --><div class="header"><h1>
+
+    📅 EMPLOI DU TEMPS
+    <span>INFORMATIQUE</span>
+
+</h1>
+
+<p>
+
+    <strong>Discipline :</strong>
+    Informatique
+
+    &nbsp; | &nbsp;
+
+    <strong>Enseignant :</strong>
+    M. Tahiry
+
+</p>
+
+</div><!-- =====================================================
+     CONTENEUR
+===================================================== --><div class="container"><!-- =================================================
+     INFORMATIONS
+================================================== -->
+
+<div class="informations">
+
+
+    <div class="info-box">
+
+        <label>
+
+            🏫 Établissement
+
+        </label>
+
+        <input
+            id="etablissement"
+            type="text"
+            value="LYCÉE SAINT PIERRE MALAZA">
+
+    </div>
+
+
+    <div class="info-box">
+
+        <label>
+
+            📚 Année scolaire
+
+        </label>
+
+        <input
+            id="annee"
+            type="text"
+            value="2026 - 2027">
+
+    </div>
+
+
+    <div class="info-box">
+
+        <label>
+
+            👨‍🏫 Enseignant
+
+        </label>
+
+        <input
+            id="enseignant"
+            type="text"
+            value="M. Tahiry">
+
+    </div>
+
+
+</div>
+
+
+<!-- =================================================
+     BOUTONS
+================================================== -->
+
+<div class="actions">
+
+
+    <button
+        class="btn-save"
+        onclick="sauvegarder()">
+
+        💾 Enregistrer
+
+    </button>
+
+
+    <button
+        class="btn-print"
+        onclick="window.print()">
+
+        🖨️ Imprimer
+
+    </button>
+
+
+    <button
+        class="btn-json"
+        onclick="exporterJSON()">
+
+        📥 Exporter JSON
+
+    </button>
+
+
+    <button
+        class="btn-import"
+        onclick="document.getElementById('fichierJSON').click()">
+
+        📤 Importer JSON
+
+    </button>
+
+
+    <button
+        class="btn-reset"
+        onclick="reinitialiser()">
+
+        🔄 Réinitialiser
+
+    </button>
+
+
+    <input
+        type="file"
+        id="fichierJSON"
+        accept=".json"
+        style="display:none"
+        onchange="importerJSON(event)">
+
+</div>
+
+
+<!-- =================================================
+     RECHERCHE
+================================================== -->
+
+<div class="search-box">
+
+    <input
+        type="search"
+        id="recherche"
+        placeholder="🔎 Rechercher une classe : 6C, 5I, 4II, 3I, 2I, 1L, TL..."
+        oninput="rechercherClasse()">
+
+</div>
+
+
+<!-- =================================================
+     TABLEAU
+================================================== -->
+
+<div class="table-wrapper">
+
+    <table id="emploiTable">
+
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    ⏰ Heure
+                </th>
+
+                <th>
+                    📘 Lundi
+                </th>
+
+                <th>
+                    📗 Mardi
+                </th>
+
+                <th>
+                    📙 Mercredi
+                </th>
+
+                <th>
+                    📕 Jeudi
+                </th>
+
+                <th>
+                    📒 Vendredi
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+
+            <!-- 07 - 08 -->
+
+            <tr>
+
+                <td class="time">
+                    07h – 08h
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable c-3"
+                    contenteditable="true">
+                    3II
+                </td>
+
+                <td class="editable c-5"
+                    contenteditable="true">
+                    5I
+                </td>
+
+                <td class="editable c-6"
+                    contenteditable="true">
+                    6C
+                </td>
+
+            </tr>
+
+
+            <!-- 08 - 09 -->
+
+            <tr>
+
+                <td class="time">
+                    08h – 09h
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable c-3"
+                    contenteditable="true">
+                    3II
+                </td>
+
+                <td class="editable c-5"
+                    contenteditable="true">
+                    5I
+                </td>
+
+                <td class="editable c-6"
+                    contenteditable="true">
+                    6C
+                </td>
+
+            </tr>
+
+
+            <!-- 09 - 10 -->
+
+            <tr>
+
+                <td class="time">
+                    09h – 10h
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable c-4"
+                    contenteditable="true">
+                    4I
+                </td>
+
+                <td class="editable c-6"
+                    contenteditable="true">
+                    6II
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+            </tr>
+
+
+            <!-- 10 - 11 -->
+
+            <tr>
+
+                <td class="time">
+                    10h – 11h
+                </td>
+
+                <td class="editable c-1"
+                    contenteditable="true">
+                    1S
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable c-4"
+                    contenteditable="true">
+                    4I
+                </td>
+
+                <td class="editable c-6"
+                    contenteditable="true">
+                    6II
+                </td>
+
+                <td class="editable c-3"
+                    contenteditable="true">
+                    3I
+                </td>
+
+            </tr>
+
+
+            <!-- 11 - 12 -->
+
+            <tr>
+
+                <td class="time">
+                    11h – 12h
+                </td>
+
+                <td class="editable c-1"
+                    contenteditable="true">
+                    1S
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable c-terminale"
+                    contenteditable="true">
+                    TL
+                </td>
+
+                <td class="editable c-terminale"
+                    contenteditable="true">
+                    TS
+                </td>
+
+                <td class="editable c-3"
+                    contenteditable="true">
+                    3I
+                </td>
+
+            </tr>
+
+
+            <!-- PAUSE -->
+
+            <tr>
+
+                <td class="time">
+                    12h – 14h
+                </td>
+
+                <td
+                    colspan="5"
+                    class="pause">
+
+                    🍽️ PAUSE
+
+                </td>
+
+            </tr>
+
+
+            <!-- 14 - 15 -->
+
+            <tr>
+
+                <td class="time">
+                    14h – 15h
+                </td>
+
+                <td class="editable c-4"
+                    contenteditable="true">
+                    4II
+                </td>
+
+                <td class="editable c-2"
+                    contenteditable="true">
+                    2I
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable c-5"
+                    contenteditable="true">
+                    5I
+                </td>
+
+            </tr>
+
+
+            <!-- 15 - 16 -->
+
+            <tr>
+
+                <td class="time">
+                    15h – 16h
+                </td>
+
+                <td class="editable c-4"
+                    contenteditable="true">
+                    4II
+                </td>
+
+                <td class="editable c-2"
+                    contenteditable="true">
+                    2I
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable c-6"
+                    contenteditable="true">
+                    6III
+                </td>
+
+                <td class="editable c-5"
+                    contenteditable="true">
+                    5I
+                </td>
+
+            </tr>
+
+
+            <!-- 16 - 17 -->
+
+            <tr>
+
+                <td class="time">
+                    16h – 17h
+                </td>
+
+                <td class="editable c-1"
+                    contenteditable="true">
+                    1L
+                </td>
+
+                <td class="editable c-2"
+                    contenteditable="true">
+                    2II
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable c-6"
+                    contenteditable="true">
+                    6III
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+            </tr>
+
+
+            <!-- 17 - 18 -->
+
+            <tr>
+
+                <td class="time">
+                    17h – 18h
+                </td>
+
+                <td class="editable c-1"
+                    contenteditable="true">
+                    1L
+                </td>
+
+                <td class="editable c-2"
+                    contenteditable="true">
+                    2II
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+                <td class="editable"
+                    contenteditable="true">
+                </td>
+
+            </tr>
+
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- =================================================
+     LEGENDE
+================================================== -->
+
+<div class="legend">
+
+    <span class="l6">
+        6ème
+    </span>
+
+    <span class="l5">
+        5ème
+    </span>
+
+    <span class="l4">
+        4ème
+    </span>
+
+    <span class="l3">
+        3ème
+    </span>
+
+    <span class="l2">
+        2nde
+    </span>
+
+    <span class="l1">
+        1ère
+    </span>
+
+    <span class="lt">
+        Terminale
+    </span>
+
+</div>
+
+
+<!-- MESSAGE -->
+
+<div
+    id="message"
+    class="message">
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    💻 Plateforme pédagogique
+    <strong>InfoPro</strong>
+
+    <br>
+
+    👨‍🏫 Enseignant :
+    <strong>M. Tahiry</strong>
+
+    <br>
+
+    © 2026 - 2027
+
+</div>
+
+</div><script>
+
+/* =====================================================
+   CLÉ LOCALSTORAGE
+===================================================== */
+
+const STORAGE_KEY =
+    "InfoPro_Emploi_Du_Temps_PRO";
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function afficherMessage(texte){
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent = texte;
+
+    setTimeout(function(){
+
+        message.textContent = "";
+
+    },2500);
+
+}
+
+
+/* =====================================================
+   SAUVEGARDER
+===================================================== */
+
+function sauvegarder(){
+
+    const cellules =
+        document.querySelectorAll(
+            "#emploiTable .editable"
+        );
+
+    const donnees = [];
+
+
+    cellules.forEach(function(cellule){
+
+        donnees.push({
+
+            texte:
+                cellule.innerText.trim(),
+
+            classe:
+                cellule.className
+
+        });
+
+    });
+
+
+    const informations = {
+
+        etablissement:
+            document.getElementById(
+                "etablissement"
+            ).value,
+
+        annee:
+            document.getElementById(
+                "annee"
+            ).value,
+
+        enseignant:
+            document.getElementById(
+                "enseignant"
+            ).value,
+
+        cellules: donnees
+
+    };
+
+
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(informations)
+
+    );
+
+
+    afficherMessage(
+        "✅ Emploi du temps enregistré avec succès !"
+    );
+
+}
+
+
+/* =====================================================
+   CHARGER
+===================================================== */
+
+function charger(){
+
+    const sauvegarde =
+        localStorage.getItem(
+            STORAGE_KEY
+        );
+
+
+    if(!sauvegarde){
+
+        return;
+
+    }
+
+
+    try{
+
+        const donnees =
+            JSON.parse(sauvegarde);
+
+
+        if(donnees.etablissement){
+
+            document.getElementById(
+                "etablissement"
+            ).value =
+                donnees.etablissement;
+
+        }
+
+
+        if(donnees.annee){
+
+            document.getElementById(
+                "annee"
+            ).value =
+                donnees.annee;
+
+        }
+
+
+        if(donnees.enseignant){
+
+            document.getElementById(
+                "enseignant"
+            ).value =
+                donnees.enseignant;
+
+        }
+
+
+        const cellules =
+            document.querySelectorAll(
+                "#emploiTable .editable"
+            );
+
+
+        cellules.forEach(
+            function(cellule,index){
+
+                if(donnees.cellules[index]){
+
+                    cellule.innerText =
+                        donnees.cellules[index].texte;
+
+                    cellule.className =
+                        donnees.cellules[index].classe;
+
+                }
+
+            }
+        );
+
+
+    }catch(erreur){
+
+        console.error(
+            "Erreur de chargement :",
+            erreur
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   EXPORT JSON
+===================================================== */
+
+function exporterJSON(){
+
+    const sauvegarde =
+        localStorage.getItem(
+            STORAGE_KEY
+        );
+
+
+    if(!sauvegarde){
+
+        afficherMessage(
+            "⚠️ Aucun emploi du temps enregistré."
+        );
+
+        return;
+
+    }
+
+
+    const blob =
+        new Blob(
+            [sauvegarde],
+            {
+                type:"application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const lien =
+        document.createElement("a");
+
+
+    lien.href = url;
+
+    lien.download =
+        "InfoPro_Emploi_du_Temps.json";
+
+
+    document.body.appendChild(lien);
+
+    lien.click();
+
+    document.body.removeChild(lien);
+
+    URL.revokeObjectURL(url);
+
+
+    afficherMessage(
+        "📥 Fichier JSON exporté !"
+    );
+
+}
+
+
+/* =====================================================
+   IMPORT JSON
+===================================================== */
+
+function importerJSON(event){
+
+    const fichier =
+        event.target.files[0];
+
+
+    if(!fichier){
+
+        return;
+
+    }
+
+
+    const lecteur =
+        new FileReader();
+
+
+    lecteur.onload =
+        function(e){
+
+            try{
+
+                const donnees =
+                    JSON.parse(
+                        e.target.result
+                    );
+
+
+                localStorage.setItem(
+
+                    STORAGE_KEY,
+
+                    JSON.stringify(donnees)
+
+                );
+
+
+                charger();
+
+
+                afficherMessage(
+                    "📤 Emploi du temps importé avec succès !"
+                );
+
+
+            }catch(erreur){
+
+                alert(
+                    "❌ Le fichier JSON est invalide."
+                );
+
+            }
+
+        };
+
+
+    lecteur.readAsText(fichier);
+
+}
+
+
+/* =====================================================
+   RÉINITIALISER
+===================================================== */
+
+function reinitialiser(){
+
+    const confirmation =
+        confirm(
+            "⚠️ Voulez-vous vraiment réinitialiser l'emploi du temps ?\n\nToutes les modifications enregistrées seront supprimées."
+        );
+
+
+    if(!confirmation){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+
+    location.reload();
+
+}
+
+
+/* =====================================================
+   RECHERCHE CLASSE
+===================================================== */
+
+function rechercherClasse(){
+
+    const recherche =
+        document.getElementById(
+            "recherche"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    const cellules =
+        document.querySelectorAll(
+            "#emploiTable .editable"
+        );
+
+
+    cellules.forEach(
+        function(cellule){
+
+            if(!recherche){
+
+                cellule.style.opacity = "1";
+
+                cellule.style.outline = "";
+
+                return;
+
+            }
+
+
+            const texte =
+                cellule.innerText
+                .trim()
+                .toLowerCase();
+
+
+            if(
+                texte.includes(recherche)
+            ){
+
+                cellule.style.opacity = "1";
+
+                cellule.style.outline =
+                    "3px solid #ffc107";
+
+                cellule.scrollIntoView({
+                    behavior:"smooth",
+                    block:"nearest",
+                    inline:"nearest"
+                });
+
+            }else{
+
+                cellule.style.opacity = ".35";
+
+                cellule.style.outline = "";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CTRL + S
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            (event.ctrlKey || event.metaKey)
+            &&
+            event.key.toLowerCase() === "s"
+        ){
+
+            event.preventDefault();
+
+            sauvegarder();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   AUTO-SAVE
+===================================================== */
+
+document.addEventListener(
+    "input",
+    function(event){
+
+        if(
+            event.target.matches(
+                "#emploiTable .editable"
+            )
+        ){
+
+            clearTimeout(
+                window.autoSaveTimer
+            );
+
+
+            window.autoSaveTimer =
+                setTimeout(
+                    function(){
+
+                        sauvegarder();
+
+                    },
+                    1200
+                );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CHARGEMENT AUTOMATIQUE
+===================================================== */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        charger();
+
+    }
+);
+
+</script></body></html>

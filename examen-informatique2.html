@@ -1,0 +1,3048 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Examens Informatique PRO++ | InfoPro</title>
+
+
+<style>
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        linear-gradient(
+            135deg,
+            #061a33,
+            #073b4c,
+            #006d77
+        );
+    color:#17202a;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+    background:
+        linear-gradient(
+            135deg,
+            #03152b,
+            #007c91
+        );
+
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+
+    box-shadow:
+        0 5px 20px #0005;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+header p{
+    margin:8px 0 0;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+    width:min(1100px,94%);
+    margin:25px auto;
+}
+
+
+/* =====================================================
+   CONTROLS
+===================================================== */
+
+.control{
+    background:#ffffffee;
+    border-radius:18px;
+    padding:20px;
+
+    box-shadow:
+        0 8px 30px #0004;
+
+    margin-bottom:20px;
+}
+
+.controls{
+    display:grid;
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:6px;
+}
+
+select{
+    width:100%;
+    padding:12px;
+
+    border:
+        2px solid #cbd5e1;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    background:white;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:18px;
+}
+
+button{
+    border:0;
+
+    padding:
+        12px 16px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:#007c91;
+
+    transition:
+        .2s;
+}
+
+button:hover{
+    transform:
+        translateY(-2px);
+
+    opacity:.9;
+}
+
+.btn-print{
+    background:#2563eb;
+}
+
+.btn-show{
+    background:#16a34a;
+}
+
+.btn-hide{
+    background:#dc2626;
+}
+
+.btn-reset{
+    background:#6b7280;
+}
+
+
+/* =====================================================
+   EXAM
+===================================================== */
+
+.exam{
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:
+        0 10px 35px #0005;
+}
+
+
+/* =====================================================
+   EXAM HEADER
+===================================================== */
+
+.exam-head{
+    border-bottom:
+        3px solid #007c91;
+
+    padding-bottom:18px;
+
+    margin-bottom:20px;
+}
+
+.exam-head h2{
+    color:#006d77;
+
+    margin-top:0;
+}
+
+
+/* =====================================================
+   INFORMATION
+===================================================== */
+
+.info-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:10px;
+}
+
+.info{
+    background:#eef8fa;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section{
+    margin-top:25px;
+}
+
+.section h3{
+    background:
+        linear-gradient(
+            90deg,
+            #006d77,
+            #00a6a6
+        );
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:10px;
+}
+
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+.question{
+    background:#f8fafc;
+
+    border-left:
+        5px solid #007c91;
+
+    padding:15px;
+
+    margin:12px 0;
+
+    border-radius:8px;
+}
+
+.question strong{
+    color:#006d77;
+}
+
+
+/* =====================================================
+   PRACTICAL
+===================================================== */
+
+.pratique{
+    background:#eff6ff;
+
+    border-left:
+        5px solid #2563eb;
+
+    padding:15px;
+
+    margin:12px 0;
+
+    border-radius:8px;
+}
+
+
+/* =====================================================
+   BARÈME
+===================================================== */
+
+.bareme{
+    background:#fff7ed;
+
+    border-left:
+        5px solid #f97316;
+
+    padding:12px;
+
+    margin-top:10px;
+
+    border-radius:8px;
+}
+
+
+/* =====================================================
+   CORRECTION
+===================================================== */
+
+/*
+   IMPORTANT :
+   Le corrigé est caché au départ.
+*/
+
+.corrige{
+    display:none !important;
+
+    background:#ecfdf5;
+
+    border-left:
+        5px solid #16a34a;
+
+    padding:15px;
+
+    margin-top:25px;
+
+    border-radius:8px;
+}
+
+
+/*
+   Cette classe est ajoutée
+   quand on clique sur Afficher corrigé.
+*/
+
+.corrige.visible{
+    display:block !important;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+    text-align:center;
+
+    color:white;
+
+    padding:25px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px){
+
+    .controls,
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .exam{
+        padding:18px;
+    }
+
+    header h1{
+        font-size:23px;
+    }
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print{
+
+    body{
+        background:white;
+    }
+
+    header,
+    .control,
+    .footer{
+        display:none !important;
+    }
+
+    .container{
+        width:100%;
+        margin:0;
+    }
+
+    .exam{
+        box-shadow:none;
+        border-radius:0;
+    }
+
+    /*
+       Le corrigé reste caché
+       lors de l'impression du sujet.
+    */
+
+    .corrige{
+        display:none !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+<h1>
+💻 InfoPro — Examens d'Informatique
+</h1>
+
+<p>
+🚀 Apprendre • Pratiquer • Réussir 🌟
+</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     CONTROLS
+===================================================== -->
+
+<div class="control">
+
+<div class="controls">
+
+
+<div>
+
+<label>
+Classe
+</label>
+
+<select
+    id="classe"
+    onchange="afficherSujet()">
+
+<option value="6eme">
+6ème
+</option>
+
+<option value="5eme">
+5ème
+</option>
+
+<option value="4eme">
+4ème
+</option>
+
+<option value="3eme">
+3ème
+</option>
+
+<option value="2nde">
+2nde
+</option>
+
+<option value="1ere">
+1ère
+</option>
+
+<option value="terminale">
+Terminale
+</option>
+
+</select>
+
+</div>
+
+
+
+<div>
+
+<label>
+Trimestre
+</label>
+
+<select
+    id="trim"
+    onchange="afficherSujet()">
+
+<option value="1">
+1er trimestre
+</option>
+
+<option value="2">
+2ème trimestre
+</option>
+
+<option value="3">
+3ème trimestre
+</option>
+
+</select>
+
+</div>
+
+
+
+<div>
+
+<label>
+Évaluation
+</label>
+
+<select
+    id="evaluation"
+    onchange="afficherSujet()">
+
+<option value="DS">
+DS
+</option>
+
+<option value="EX">
+Examen trimestriel
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+
+<div class="buttons">
+
+<button
+    class="btn-print"
+    onclick="window.print()">
+
+🖨️ Imprimer / PDF
+
+</button>
+
+
+<button
+    class="btn-show"
+    onclick="afficherCorrige()">
+
+✅ Afficher corrigé
+
+</button>
+
+
+<button
+    class="btn-hide"
+    onclick="cacherCorrige()">
+
+❌ Cacher corrigé
+
+</button>
+
+
+<button
+    class="btn-reset"
+    onclick="reinitialiser()">
+
+🔄 Réinitialiser
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     EXAM
+===================================================== -->
+
+<div
+    id="exam"
+    class="exam">
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div class="footer">
+
+💻 Mr Tahiry - Informatique 👨‍🏫
+
+<br>
+
+InfoPro • Examens Informatique
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   BASE DES SUJETS
+===================================================== */
+
+const sujets = {};
+
+
+/*
+==========================================================
+6ème
+==========================================================
+*/
+
+sujets["6eme-1-DS"] = {
+
+titre:"DS1 — Les bases de l'informatique",
+
+theorie:[
+
+["1. Définir un ordinateur.",4],
+
+["2. Citer quatre éléments d'un ordinateur.",4],
+
+["3. Donner le rôle du clavier.",4],
+
+["4. Donner le rôle de la souris.",4],
+
+["5. Différence entre matériel et logiciel ?",4]
+
+],
+
+pratique:[
+
+["1. Identifier l'écran, le clavier et la souris.",7],
+
+["2. Créer un dossier nommé INFO6.",6],
+
+["3. Ouvrir Paint, dessiner puis enregistrer.",7]
+
+],
+
+corrige:[
+
+"Un ordinateur est une machine électronique capable de traiter et stocker des informations.",
+
+"Exemples : écran, clavier, souris, unité centrale et imprimante.",
+
+"Le clavier permet de saisir du texte, des chiffres et des commandes.",
+
+"La souris permet de déplacer le pointeur, sélectionner et ouvrir des éléments.",
+
+"Le matériel correspond aux éléments physiques. Le logiciel correspond aux programmes."
+
+]
+
+};
+
+
+
+sujets["6eme-1-EX"] = {
+
+titre:"Examen1 — Ordinateur, périphériques et fichiers",
+
+theorie:[
+
+["1. Qu'est-ce qu'un périphérique ?",4],
+
+["2. Citer deux périphériques d'entrée.",4],
+
+["3. Citer deux périphériques de sortie.",4],
+
+["4. Qu'est-ce qu'un fichier ?",4],
+
+["5. Qu'est-ce qu'un dossier ?",4]
+
+],
+
+pratique:[
+
+["1. Identifier cinq périphériques.",6],
+
+["2. Créer EXAMEN6 / TEXTES / IMAGES.",7],
+
+["3. Créer un dessin dans Paint et l'enregistrer.",7]
+
+],
+
+corrige:[
+
+"Un périphérique est un équipement connecté à l'ordinateur.",
+
+"Clavier et souris sont des périphériques d'entrée.",
+
+"Écran et imprimante sont des périphériques de sortie.",
+
+"Un fichier est une information enregistrée sous un nom.",
+
+"Un dossier sert à organiser les fichiers."
+
+]
+
+};
+
+
+
+sujets["6eme-2-DS"] = {
+
+titre:"DS2 — Clavier, souris et fichiers",
+
+theorie:[
+
+["1. Donner quatre touches du clavier.",4],
+
+["2. Rôle de la touche Entrée ?",4],
+
+["3. Rôle de la touche Espace ?",4],
+
+["4. Qu'est-ce qu'un clic gauche ?",4],
+
+["5. Qu'est-ce qu'un double-clic ?",4]
+
+],
+
+pratique:[
+
+["1. Créer le dossier DS2.",6],
+
+["2. Créer et renommer trois fichiers.",7],
+
+["3. Déplacer un fichier vers un sous-dossier.",7]
+
+],
+
+corrige:[
+
+"Exemples : Entrée, Espace, Maj, Ctrl, Alt et Échap.",
+
+"Entrée valide une commande ou crée un nouveau paragraphe.",
+
+"Espace sépare les mots.",
+
+"Le clic gauche permet notamment de sélectionner.",
+
+"Le double-clic permet généralement d'ouvrir."
+
+]
+
+};
+
+
+
+sujets["6eme-2-EX"] = {
+
+titre:"Examen2 — Windows et organisation",
+
+theorie:[
+
+["1. Définir le Bureau.",4],
+
+["2. Qu'est-ce qu'une icône ?",4],
+
+["3. Pourquoi organiser les fichiers ?",4],
+
+["4. Donner deux règles de sécurité.",4],
+
+["5. Pourquoi éteindre correctement ?",4]
+
+],
+
+pratique:[
+
+["1. Créer CLASSE6 / COURS / EXERCICES.",7],
+
+["2. Créer et renommer trois fichiers.",6],
+
+["3. Copier un fichier dans EXERCICES.",7]
+
+],
+
+corrige:[
+
+"Le Bureau est l'espace principal affiché après l'ouverture de session.",
+
+"Une icône représente généralement un programme, fichier ou dossier.",
+
+"L'organisation facilite la recherche.",
+
+"Ne pas communiquer son mot de passe et éviter les fichiers inconnus.",
+
+"L'arrêt correct protège le système et les données."
+
+]
+
+};
+
+
+
+sujets["6eme-3-DS"] = {
+
+titre:"DS3 — Traitement de texte et dessin",
+
+theorie:[
+
+["1. Qu'est-ce qu'un traitement de texte ?",4],
+
+["2. Citer deux logiciels.",4],
+
+["3. Qu'est-ce qu'une mise en forme ?",4],
+
+["4. À quoi sert Paint ?",4],
+
+["5. Pourquoi enregistrer ?",4]
+
+],
+
+pratique:[
+
+["1. Saisir un texte de cinq lignes.",6],
+
+["2. Mettre le titre en gras, centré et souligné.",7],
+
+["3. Enregistrer le document.",7]
+
+],
+
+corrige:[
+
+"Un traitement de texte sert à créer et modifier des documents.",
+
+"Word et LibreOffice Writer sont des exemples.",
+
+"La mise en forme modifie l'apparence du texte.",
+
+"Paint permet de créer et modifier des dessins.",
+
+"Enregistrer permet de conserver le travail."
+
+]
+
+};
+
+
+
+sujets["6eme-3-EX"] = {
+
+titre:"Examen3 — Bases pratiques",
+
+theorie:[
+
+["1. Définir matériel et logiciel.",4],
+
+["2. Donner trois logiciels.",4],
+
+["3. Donner trois matériels.",4],
+
+["4. Rôle d'un dossier ?",4],
+
+["5. Pourquoi sauvegarder ?",4]
+
+],
+
+pratique:[
+
+["1. Créer une arborescence scolaire.",7],
+
+["2. Créer un document avec titre et paragraphe.",6],
+
+["3. Enregistrer, renommer et déplacer.",7]
+
+],
+
+corrige:[
+
+"Matériel : partie physique. Logiciel : programme.",
+
+"Exemples : Word, Paint et navigateur.",
+
+"Exemples : clavier, souris et écran.",
+
+"Le dossier sert à classer les fichiers.",
+
+"La sauvegarde évite de perdre le travail."
+
+]
+
+};
+
+
+/*
+==========================================================
+5ème
+==========================================================
+*/
+
+sujets["5eme-1-DS"] = {
+
+titre:"DS1 — Système et environnement informatique",
+
+theorie:[
+
+["1. Définir système d'exploitation.",4],
+
+["2. Donner deux systèmes d'exploitation.",4],
+
+["3. Rôle d'un antivirus ?",4],
+
+["4. Qu'est-ce qu'un périphérique ?",4],
+
+["5. Pourquoi organiser les fichiers ?",4]
+
+],
+
+pratique:[
+
+["1. Créer C5 / COURS / TRAVAUX.",7],
+
+["2. Créer, renommer et déplacer des fichiers.",6],
+
+["3. Rechercher un fichier.",7]
+
+],
+
+corrige:[
+
+"Le système d'exploitation gère les ressources de l'ordinateur.",
+
+"Windows, Linux, Android et macOS sont des exemples.",
+
+"Un antivirus aide à détecter certaines menaces.",
+
+"Un périphérique est un équipement connecté.",
+
+"L'organisation facilite la recherche."
+
+]
+
+};
+
+
+
+sujets["5eme-1-EX"] = {
+
+titre:"Examen1 — Internet et sécurité",
+
+theorie:[
+
+["1. Définir Internet.",4],
+
+["2. Qu'est-ce qu'un navigateur ?",4],
+
+["3. Donner deux navigateurs.",4],
+
+["4. Qu'est-ce qu'un mot de passe sécurisé ?",4],
+
+["5. Donner deux dangers d'Internet.",4]
+
+],
+
+pratique:[
+
+["1. Effectuer une recherche éducative.",6],
+
+["2. Identifier l'URL du site.",6],
+
+["3. Créer un mot de passe fictif sécurisé.",8]
+
+],
+
+corrige:[
+
+"Internet est un réseau mondial.",
+
+"Un navigateur permet de consulter des sites Web.",
+
+"Chrome, Firefox, Edge et Safari sont des exemples.",
+
+"Un mot de passe sécurisé est difficile à deviner.",
+
+"Exemples : arnaques, logiciels malveillants et vol de données."
+
+]
+
+};
+
+
+
+sujets["5eme-2-DS"] = {
+
+titre:"DS2 — Word et traitement de texte",
+
+theorie:[
+
+["1. Qu'est-ce qu'un document texte ?",4],
+
+["2. Définir mise en forme.",4],
+
+["3. À quoi sert le gras ?",4],
+
+["4. À quoi sert l'alignement ?",4],
+
+["5. Pourquoi enregistrer ?",4]
+
+],
+
+pratique:[
+
+["1. Saisir un texte de dix lignes.",6],
+
+["2. Mettre le titre en forme.",7],
+
+["3. Enregistrer en document et PDF.",7]
+
+],
+
+corrige:[
+
+"Un document texte contient principalement des informations écrites.",
+
+"La mise en forme modifie la présentation.",
+
+"Le gras met un texte en évidence.",
+
+"L'alignement détermine la position du texte.",
+
+"Enregistrer conserve le travail."
+
+]
+
+};
+
+
+
+sujets["5eme-2-EX"] = {
+
+titre:"Examen2 — Word : document structuré",
+
+theorie:[
+
+["1. Qu'est-ce qu'un paragraphe ?",4],
+
+["2. Citer quatre outils de mise en forme.",4],
+
+["3. Qu'est-ce qu'une liste à puces ?",4],
+
+["4. Pourquoi utiliser un tableau ?",4],
+
+["5. À quoi sert l'impression ?",4]
+
+],
+
+pratique:[
+
+["1. Créer un document structuré.",7],
+
+["2. Ajouter liste et tableau.",7],
+
+["3. Mettre en page et exporter en PDF.",6]
+
+],
+
+corrige:[
+
+"Un paragraphe est un ensemble de phrases regroupées.",
+
+"Gras, italique, souligné et taille sont des exemples.",
+
+"Une liste à puces organise des éléments.",
+
+"Un tableau présente les informations en lignes et colonnes.",
+
+"L'impression produit une copie papier ou PDF."
+
+]
+
+};
+
+
+
+sujets["5eme-3-DS"] = {
+
+titre:"DS3 — Stockage et fichiers",
+
+theorie:[
+
+["1. Support de stockage ?",4],
+
+["2. Citer trois supports.",4],
+
+["3. Copier ou déplacer ?",4],
+
+["4. Pourquoi sauvegarder ?",4],
+
+["5. Qu'est-ce qu'une extension ?",4]
+
+],
+
+pratique:[
+
+["1. Créer PROJET.",6],
+
+["2. Créer trois fichiers.",7],
+
+["3. Copier puis déplacer.",7]
+
+],
+
+corrige:[
+
+"Un support de stockage conserve les données.",
+
+"Disque dur, clé USB et carte mémoire.",
+
+"Copier conserve l'original ; déplacer change son emplacement.",
+
+"La sauvegarde protège contre la perte.",
+
+"L'extension indique souvent le type du fichier."
+
+]
+
+};
+
+
+
+sujets["5eme-3-EX"] = {
+
+titre:"Examen3 — Projet bureautique",
+
+theorie:[
+
+["1. Définir fichier et dossier.",4],
+
+["2. Donner quatre extensions.",4],
+
+["3. Pourquoi nommer correctement ?",4],
+
+["4. Pourquoi sauvegarder ailleurs ?",4],
+
+["5. Donner deux règles de sécurité.",4]
+
+],
+
+pratique:[
+
+["1. Créer PROJET_FINAL.",6],
+
+["2. Créer un document scolaire.",8],
+
+["3. Organiser et sauvegarder.",6]
+
+],
+
+corrige:[
+
+"Un fichier contient une donnée ; un dossier organise des fichiers.",
+
+".docx, .pdf, .jpg et .xlsx sont des exemples.",
+
+"Un nom clair facilite la recherche.",
+
+"Une deuxième copie sert de secours.",
+
+"Utiliser des mots de passe et éviter les fichiers suspects."
+
+]
+
+};
+
+
+/*
+==========================================================
+4ème
+==========================================================
+*/
+
+sujets["4eme-1-DS"] = {
+
+titre:"DS1 — Word et Internet",
+
+theorie:[
+
+["1. Définir traitement de texte.",4],
+
+["2. Définir navigateur.",4],
+
+["3. Qu'est-ce qu'un moteur de recherche ?",4],
+
+["4. Qu'est-ce qu'une URL ?",4],
+
+["5. Donner deux règles de sécurité.",4]
+
+],
+
+pratique:[
+
+["1. Créer une page avec titre et texte.",7],
+
+["2. Ajouter liste et tableau.",6],
+
+["3. Faire une recherche et citer la source.",7]
+
+],
+
+corrige:[
+
+"Le traitement de texte sert à créer des documents.",
+
+"Le navigateur permet d'accéder au Web.",
+
+"Un moteur de recherche aide à trouver des informations.",
+
+"Une URL est l'adresse d'une ressource Web.",
+
+"Protéger ses mots de passe et vérifier les sources."
+
+]
+
+};
+
+
+
+sujets["4eme-1-EX"] = {
+
+titre:"Examen1 — Recherche d'information",
+
+theorie:[
+
+["1. Définir Internet.",4],
+
+["2. Définir site Web.",4],
+
+["3. Qu'est-ce qu'une URL ?",4],
+
+["4. Pourquoi vérifier une information ?",4],
+
+["5. Qu'est-ce qu'une source ?",4]
+
+],
+
+pratique:[
+
+["1. Rechercher une information scientifique.",6],
+
+["2. Comparer deux sources.",7],
+
+["3. Rédiger un résumé.",7]
+
+],
+
+corrige:[
+
+"Internet est un réseau mondial.",
+
+"Un site Web est un ensemble de pages accessibles sur le Web.",
+
+"Une URL indique l'adresse d'une ressource.",
+
+"Pour éviter les fausses informations.",
+
+"Une source est l'origine d'une information."
+
+]
+
+};
+
+
+
+sujets["4eme-2-DS"] = {
+
+titre:"DS2 — Sécurité informatique",
+
+theorie:[
+
+["1. Définir logiciel malveillant.",4],
+
+["2. Qu'est-ce qu'un virus ?",4],
+
+["3. Pourquoi utiliser un antivirus ?",4],
+
+["4. Qu'est-ce que le phishing ?",4],
+
+["5. Donner deux protections.",4]
+
+],
+
+pratique:[
+
+["1. Analyser un message fictif suspect.",6],
+
+["2. Identifier les éléments dangereux.",7],
+
+["3. Rédiger cinq règles de sécurité.",7]
+
+],
+
+corrige:[
+
+"Un logiciel malveillant cherche à perturber ou exploiter un système.",
+
+"Un virus est un type de programme malveillant.",
+
+"L'antivirus aide à détecter certaines menaces.",
+
+"Le phishing cherche à tromper l'utilisateur.",
+
+"Exemples : mots de passe solides, mises à jour et sauvegardes."
+
+]
+
+};
+
+
+
+sujets["4eme-2-EX"] = {
+
+titre:"Examen2 — Réseaux informatiques",
+
+theorie:[
+
+["1. Définir réseau informatique.",4],
+
+["2. Qu'est-ce qu'un routeur ?",4],
+
+["3. Wi-Fi et câble : différence ?",4],
+
+["4. Qu'est-ce qu'une adresse IP ?",4],
+
+["5. Donner deux avantages d'un réseau.",4]
+
+],
+
+pratique:[
+
+["1. Identifier les équipements d'un réseau.",7],
+
+["2. Réaliser un schéma simple.",6],
+
+["3. Expliquer le chemin vers Internet.",7]
+
+],
+
+corrige:[
+
+"Un réseau relie plusieurs appareils.",
+
+"Un routeur dirige les communications.",
+
+"Le Wi-Fi est sans fil ; le câble utilise une liaison physique.",
+
+"Une adresse IP identifie une interface réseau.",
+
+"Partage de fichiers, imprimantes et connexion."
+
+]
+
+};
+
+
+
+sujets["4eme-3-DS"] = {
+
+titre:"DS3 — Excel et données",
+
+theorie:[
+
+["1. Qu'est-ce qu'un tableur ?",4],
+
+["2. Définir cellule.",4],
+
+["3. Ligne et colonne ?",4],
+
+["4. À quoi sert une formule ?",4],
+
+["5. Donner une fonction Excel.",4]
+
+],
+
+pratique:[
+
+["1. Créer un tableau de notes.",6],
+
+["2. Calculer le total.",7],
+
+["3. Calculer la moyenne.",7]
+
+],
+
+corrige:[
+
+"Un tableur permet de travailler avec des données.",
+
+"Une cellule est l'intersection d'une ligne et d'une colonne.",
+
+"Les lignes sont horizontales et les colonnes verticales.",
+
+"Une formule effectue un calcul.",
+
+"Exemples : SOMME, MOYENNE et SI."
+
+]
+
+};
+
+
+
+sujets["4eme-3-EX"] = {
+
+titre:"Examen3 — Excel : calculs et présentation",
+
+theorie:[
+
+["1. Définir formule Excel.",4],
+
+["2. Formule et fonction : différence ?",4],
+
+["3. Syntaxe d'une somme ?",4],
+
+["4. À quoi sert MOYENNE ?",4],
+
+["5. Pourquoi utiliser un tableau ?",4]
+
+],
+
+pratique:[
+
+["1. Créer un tableau de 10 élèves.",6],
+
+["2. Calculer total et moyenne.",8],
+
+["3. Mettre en forme et trier.",6]
+
+],
+
+corrige:[
+
+"Une formule commence généralement par =.",
+
+"Une fonction est une formule prédéfinie.",
+
+"Exemple : =SOMME(B2:B10).",
+
+"MOYENNE calcule la moyenne.",
+
+"Le tableau organise et facilite l'analyse."
+
+]
+
+};
+
+
+/*
+==========================================================
+3ème
+==========================================================
+*/
+
+sujets["3eme-1-DS"] = {
+
+titre:"DS1 — Excel : bases",
+
+theorie:[
+
+["1. Définir tableur.",4],
+
+["2. Définir cellule.",4],
+
+["3. Définir plage.",4],
+
+["4. À quoi sert SOMME ?",4],
+
+["5. À quoi sert MOYENNE ?",4]
+
+],
+
+pratique:[
+
+["1. Créer un tableau de ventes.",6],
+
+["2. Calculer les totaux.",7],
+
+["3. Calculer les moyennes.",7]
+
+],
+
+corrige:[
+
+"Un tableur organise et calcule les données.",
+
+"Une cellule est une case du tableau.",
+
+"Une plage est un ensemble de cellules.",
+
+"SOMME additionne.",
+
+"MOYENNE calcule la moyenne."
+
+]
+
+};
+
+
+
+sujets["3eme-1-EX"] = {
+
+titre:"Examen1 — Excel : fonctions",
+
+theorie:[
+
+["1. Expliquer SOMME.",4],
+
+["2. Expliquer MOYENNE.",4],
+
+["3. Expliquer MAX.",4],
+
+["4. Expliquer MIN.",4],
+
+["5. Qu'est-ce qu'une formule conditionnelle ?",4]
+
+],
+
+pratique:[
+
+["1. Créer un tableau de résultats.",6],
+
+["2. Utiliser SOMME, MOYENNE, MAX et MIN.",8],
+
+["3. Utiliser SI.",6]
+
+],
+
+corrige:[
+
+"SOMME additionne les valeurs.",
+
+"MOYENNE calcule la moyenne.",
+
+"MAX recherche la plus grande valeur.",
+
+"MIN recherche la plus petite valeur.",
+
+"SI permet une décision selon une condition."
+
+]
+
+};
+
+
+
+sujets["3eme-2-DS"] = {
+
+titre:"DS2 — Excel et classement",
+
+theorie:[
+
+["1. Qu'est-ce qu'un tri ?",4],
+
+["2. Qu'est-ce qu'un filtre ?",4],
+
+["3. Pourquoi trier ?",4],
+
+["4. À quoi sert SI ?",4],
+
+["5. Référence de cellule ?",4]
+
+],
+
+pratique:[
+
+["1. Créer un tableau de 10 personnes.",6],
+
+["2. Calculer moyenne et décision.",7],
+
+["3. Trier les résultats.",7]
+
+],
+
+corrige:[
+
+"Le tri réorganise les données.",
+
+"Le filtre affiche seulement certaines données.",
+
+"Le tri facilite l'analyse.",
+
+"SI permet une décision conditionnelle.",
+
+"Une référence identifie une cellule, par exemple A1."
+
+]
+
+};
+
+
+
+sujets["3eme-2-EX"] = {
+
+titre:"Examen2 — Excel : tableau complet",
+
+theorie:[
+
+["1. Référence relative ?",4],
+
+["2. Référence absolue ?",4],
+
+["3. Donner un exemple de SI.",4],
+
+["4. Pourquoi utiliser le filtre ?",4],
+
+["5. Pourquoi protéger un fichier ?",4]
+
+],
+
+pratique:[
+
+["1. Construire un tableau de résultats.",7],
+
+["2. Calculer total, moyenne et décision.",7],
+
+["3. Trier et filtrer.",6]
+
+],
+
+corrige:[
+
+"Une référence relative change lors de la copie.",
+
+"Une référence absolue utilise $, par exemple $A$1.",
+
+"Exemple : =SI(B2>=10;\"Admis\";\"Ajourné\").",
+
+"Le filtre sélectionne les données affichées.",
+
+"La protection évite certaines modifications non souhaitées."
+
+]
+
+};
+
+
+
+sujets["3eme-3-DS"] = {
+
+titre:"DS3 — Internet et bureautique",
+
+theorie:[
+
+["1. Définir URL.",4],
+
+["2. Définir navigateur.",4],
+
+["3. Document numérique ?",4],
+
+["4. Donner deux formats.",4],
+
+["5. Donner deux règles de sécurité.",4]
+
+],
+
+pratique:[
+
+["1. Rechercher une information.",6],
+
+["2. Créer un document de synthèse.",7],
+
+["3. Insérer un tableau et exporter PDF.",7]
+
+],
+
+corrige:[
+
+"URL : adresse d'une ressource Web.",
+
+"Navigateur : logiciel d'accès au Web.",
+
+"Un document numérique est stocké électroniquement.",
+
+"PDF, DOCX, XLSX et JPG sont des exemples.",
+
+"Protéger les données et vérifier les sites."
+
+]
+
+};
+
+
+
+sujets["3eme-3-EX"] = {
+
+titre:"Examen3 — Projet informatique",
+
+theorie:[
+
+["1. Qu'est-ce qu'un projet informatique ?",4],
+
+["2. Pourquoi organiser les fichiers ?",4],
+
+["3. Pourquoi sauvegarder ?",4],
+
+["4. Qu'est-ce qu'une donnée ?",4],
+
+["5. Pourquoi vérifier les sources ?",4]
+
+],
+
+pratique:[
+
+["1. Créer une structure de dossiers.",6],
+
+["2. Créer un document de projet.",7],
+
+["3. Créer un tableau avec calculs.",7]
+
+],
+
+corrige:[
+
+"Un projet informatique vise un résultat avec des outils numériques.",
+
+"L'organisation facilite la gestion.",
+
+"La sauvegarde protège le travail.",
+
+"Une donnée est une information exploitable.",
+
+"La vérification évite les informations incorrectes."
+
+]
+
+};
+
+
+/*
+==========================================================
+2nde
+==========================================================
+*/
+
+sujets["2nde-1-DS"] = {
+
+titre:"DS1 — Excel avancé",
+
+theorie:[
+
+["1. Définir fonction Excel.",4],
+
+["2. À quoi sert SI ?",4],
+
+["3. À quoi sert SOMME.SI ?",4],
+
+["4. À quoi sert ARRONDI ?",4],
+
+["5. Référence absolue ?",4]
+
+],
+
+pratique:[
+
+["1. Créer un tableau de ventes.",6],
+
+["2. Utiliser SI, SOMME.SI et MOYENNE.",7],
+
+["3. Utiliser ARRONDI.",7]
+
+],
+
+corrige:[
+
+"Une fonction est une formule prédéfinie.",
+
+"SI réalise un test logique.",
+
+"SOMME.SI additionne selon un critère.",
+
+"ARRONDI arrondit une valeur.",
+
+"Une référence absolue ne change pas lors de la copie."
+
+]
+
+};
+
+
+
+sujets["2nde-1-EX"] = {
+
+titre:"Examen1 — Excel : analyse",
+
+theorie:[
+
+["1. Définir donnée.",4],
+
+["2. Définir critère.",4],
+
+["3. Fonction conditionnelle ?",4],
+
+["4. Pourquoi utiliser des graphiques ?",4],
+
+["5. Tableau dynamique : notion ?",4]
+
+],
+
+pratique:[
+
+["1. Créer un tableau de ventes.",7],
+
+["2. Calculer plusieurs indicateurs.",7],
+
+["3. Créer un graphique.",6]
+
+],
+
+corrige:[
+
+"Une donnée est une information traitable.",
+
+"Un critère sert à sélectionner ou tester.",
+
+"Une fonction conditionnelle produit un résultat selon une condition.",
+
+"Un graphique facilite la lecture des tendances.",
+
+"Un tableau dynamique sert à analyser et synthétiser."
+
+]
+
+};
+
+
+
+sujets["2nde-2-DS"] = {
+
+titre:"DS2 — Algorithmique",
+
+theorie:[
+
+["1. Définir algorithme.",4],
+
+["2. Qu'est-ce qu'une variable ?",4],
+
+["3. Qu'est-ce qu'une condition ?",4],
+
+["4. Qu'est-ce qu'une boucle ?",4],
+
+["5. Donner un opérateur.",4]
+
+],
+
+pratique:[
+
+["1. Algorithme demandant deux nombres.",6],
+
+["2. Calculer somme et moyenne.",7],
+
+["3. Trouver le plus grand.",7]
+
+],
+
+corrige:[
+
+"Un algorithme est une suite ordonnée d'instructions.",
+
+"Une variable stocke une valeur.",
+
+"Une condition permet de choisir.",
+
+"Une boucle répète des instructions.",
+
+"Exemples : +, -, *, /, > et <."
+
+]
+
+};
+
+
+
+sujets["2nde-2-EX"] = {
+
+titre:"Examen2 — Algorithmique et logique",
+
+theorie:[
+
+["1. Définir entrée et sortie.",4],
+
+["2. Définir variable.",4],
+
+["3. Définir affectation.",4],
+
+["4. Définir boucle.",4],
+
+["5. Différence SI/boucle ?",4]
+
+],
+
+pratique:[
+
+["1. Algorithme de moyenne.",7],
+
+["2. Déterminer admis/non admis.",7],
+
+["3. Afficher les nombres 1 à 10 avec une boucle.",6]
+
+],
+
+corrige:[
+
+"Entrée : données fournies. Sortie : résultat.",
+
+"Une variable stocke une donnée.",
+
+"L'affectation donne une valeur à une variable.",
+
+"Une boucle répète.",
+
+"SI choisit ; la boucle répète."
+
+]
+
+};
+
+
+
+sujets["2nde-3-DS"] = {
+
+titre:"DS3 — HTML et CSS",
+
+theorie:[
+
+["1. Définir HTML.",4],
+
+["2. Définir CSS.",4],
+
+["3. Qu'est-ce qu'une balise ?",4],
+
+["4. Rôle de <h1> ?",4],
+
+["5. Rôle de CSS ?",4]
+
+],
+
+pratique:[
+
+["1. Créer une page HTML.",7],
+
+["2. Ajouter titre, paragraphe et liste.",6],
+
+["3. Ajouter du CSS.",7]
+
+],
+
+corrige:[
+
+"HTML structure une page Web.",
+
+"CSS décrit sa présentation.",
+
+"Une balise définit un élément HTML.",
+
+"<h1> représente généralement le titre principal.",
+
+"CSS contrôle la présentation."
+
+]
+
+};
+
+
+
+sujets["2nde-3-EX"] = {
+
+titre:"Examen3 — Création d'une page Web",
+
+theorie:[
+
+["1. Définir HTML.",4],
+
+["2. Définir CSS.",4],
+
+["3. Rôle de <body>.",4],
+
+["4. Rôle de <a>.",4],
+
+["5. Rôle de <img>.",4]
+
+],
+
+pratique:[
+
+["1. Créer une page présentant une école.",7],
+
+["2. Ajouter titre, paragraphes, image et lien.",7],
+
+["3. Ajouter une feuille CSS responsive.",6]
+
+],
+
+corrige:[
+
+"HTML structure le contenu.",
+
+"CSS présente le contenu.",
+
+"<body> contient le contenu visible.",
+
+"<a> crée un lien.",
+
+"<img> insère une image."
+
+]
+
+};
+
+
+/*
+==========================================================
+1ère
+==========================================================
+*/
+
+sujets["1ere-1-DS"] = {
+
+titre:"DS1 — Excel avancé et logique",
+
+theorie:[
+
+["1. Définir fonction.",4],
+
+["2. Définir référence absolue.",4],
+
+["3. Définir condition.",4],
+
+["4. Définir graphique.",4],
+
+["5. Donner deux fonctions avancées.",4]
+
+],
+
+pratique:[
+
+["1. Construire un tableau d'analyse.",6],
+
+["2. Utiliser SI, SOMME.SI et MOYENNE.",8],
+
+["3. Créer un graphique.",6]
+
+],
+
+corrige:[
+
+"Une fonction est une formule prédéfinie.",
+
+"Une référence absolue utilise $.",
+
+"Une condition permet une décision logique.",
+
+"Un graphique représente visuellement les données.",
+
+"Exemples : NB.SI, SOMME.SI et RECHERCHEV."
+
+]
+
+};
+
+
+
+sujets["1ere-1-EX"] = {
+
+titre:"Examen1 — Projet Excel",
+
+theorie:[
+
+["1. Pourquoi automatiser les calculs ?",4],
+
+["2. Donnée et résultat ?",4],
+
+["3. Rôle d'un graphique ?",4],
+
+["4. Pourquoi une référence absolue ?",4],
+
+["5. Pourquoi contrôler les données ?",4]
+
+],
+
+pratique:[
+
+["1. Créer une base scolaire simple.",7],
+
+["2. Calculer plusieurs indicateurs.",7],
+
+["3. Produire un graphique.",6]
+
+],
+
+corrige:[
+
+"L'automatisation réduit les erreurs.",
+
+"La donnée est l'information de départ ; le résultat est produit.",
+
+"Le graphique facilite l'analyse.",
+
+"La référence absolue conserve une cellule fixe.",
+
+"Le contrôle réduit les erreurs de saisie."
+
+]
+
+};
+
+
+
+sujets["1ere-2-DS"] = {
+
+titre:"DS2 — HTML, CSS et JavaScript",
+
+theorie:[
+
+["1. Définir HTML.",4],
+
+["2. Définir CSS.",4],
+
+["3. Définir JavaScript.",4],
+
+["4. Différence HTML/CSS/JS ?",4],
+
+["5. Variable JavaScript ?",4]
+
+],
+
+pratique:[
+
+["1. Créer une page HTML.",6],
+
+["2. Ajouter CSS.",6],
+
+["3. Ajouter JavaScript pour un message et un calcul.",8]
+
+],
+
+corrige:[
+
+"HTML structure.",
+
+"CSS présente.",
+
+"JavaScript ajoute du comportement et de l'interactivité.",
+
+"HTML = structure, CSS = présentation, JS = comportement.",
+
+"Une variable stocke une valeur."
+
+]
+
+};
+
+
+
+sujets["1ere-2-EX"] = {
+
+titre:"Examen2 — Application Web interactive",
+
+theorie:[
+
+["1. Qu'est-ce que le DOM ?",4],
+
+["2. Qu'est-ce qu'un événement JavaScript ?",4],
+
+["3. À quoi sert une fonction ?",4],
+
+["4. Qu'est-ce qu'un formulaire ?",4],
+
+["5. Pourquoi valider les données ?",4]
+
+],
+
+pratique:[
+
+["1. Créer un formulaire.",7],
+
+["2. Ajouter une fonction JavaScript.",7],
+
+["3. Afficher le résultat sans recharger.",6]
+
+],
+
+corrige:[
+
+"Le DOM représente la structure de la page manipulable par JavaScript.",
+
+"Un événement est une action comme un clic.",
+
+"Une fonction regroupe des instructions réutilisables.",
+
+"Un formulaire permet de saisir des données.",
+
+"La validation évite certaines erreurs."
+
+]
+
+};
+
+
+
+sujets["1ere-3-DS"] = {
+
+titre:"DS3 — Python",
+
+theorie:[
+
+["1. Définir Python.",4],
+
+["2. Qu'est-ce qu'une variable ?",4],
+
+["3. Qu'est-ce qu'une condition ?",4],
+
+["4. Qu'est-ce qu'une boucle ?",4],
+
+["5. Qu'est-ce qu'une fonction ?",4]
+
+],
+
+pratique:[
+
+["1. Demander le nom de l'utilisateur.",6],
+
+["2. Demander deux nombres et calculer la somme.",7],
+
+["3. Utiliser une condition.",7]
+
+],
+
+corrige:[
+
+"Python est un langage de programmation.",
+
+"Une variable stocke une valeur.",
+
+"Une condition permet une décision.",
+
+"Une boucle répète.",
+
+"Une fonction regroupe des instructions réutilisables."
+
+]
+
+};
+
+
+
+sujets["1ere-3-EX"] = {
+
+titre:"Examen3 — Projet Python",
+
+theorie:[
+
+["1. Pourquoi utiliser Python ?",4],
+
+["2. Définir variable.",4],
+
+["3. Définir fonction.",4],
+
+["4. Définir boucle.",4],
+
+["5. Définir erreur de programmation.",4]
+
+],
+
+pratique:[
+
+["1. Programme calculant une moyenne.",7],
+
+["2. Afficher une appréciation.",7],
+
+["3. Utiliser une boucle.",6]
+
+],
+
+corrige:[
+
+"Python est simple, puissant et largement utilisé.",
+
+"Une variable stocke une donnée.",
+
+"Une fonction est un bloc réutilisable.",
+
+"Une boucle répète des instructions.",
+
+"Une erreur perturbe le fonctionnement attendu."
+
+]
+
+};
+
+
+/*
+==========================================================
+TERMINALE
+==========================================================
+*/
+
+sujets["terminale-1-DS"] = {
+
+titre:"DS1 — Algorithmique avancée",
+
+theorie:[
+
+["1. Définir algorithme.",4],
+
+["2. Définir complexité.",4],
+
+["3. Définir variable.",4],
+
+["4. Définir liste.",4],
+
+["5. Définir fonction.",4]
+
+],
+
+pratique:[
+
+["1. Rechercher le maximum d'une liste.",7],
+
+["2. Calculer une moyenne.",6],
+
+["3. Afficher les valeurs selon une condition.",7]
+
+],
+
+corrige:[
+
+"Un algorithme décrit une méthode de résolution.",
+
+"La complexité décrit notamment le coût en temps ou ressources.",
+
+"Une variable stocke une valeur.",
+
+"Une liste contient plusieurs valeurs.",
+
+"Une fonction est un bloc réutilisable."
+
+]
+
+};
+
+
+
+sujets["terminale-1-EX"] = {
+
+titre:"Examen1 — Algorithmique et programmation",
+
+theorie:[
+
+["1. Définir recherche.",4],
+
+["2. Définir tri.",4],
+
+["3. Définir condition.",4],
+
+["4. Définir boucle.",4],
+
+["5. Pourquoi tester un programme ?",4]
+
+],
+
+pratique:[
+
+["1. Rechercher une valeur.",7],
+
+["2. Parcourir ou trier une liste.",7],
+
+["3. Tester plusieurs cas et corriger.",6]
+
+],
+
+corrige:[
+
+"La recherche consiste à retrouver une donnée.",
+
+"Le tri réorganise les données.",
+
+"La condition effectue un choix.",
+
+"La boucle répète.",
+
+"Les tests vérifient le comportement du programme."
+
+]
+
+};
+
+
+
+sujets["terminale-2-DS"] = {
+
+titre:"DS2 — Python et structures de données",
+
+theorie:[
+
+["1. Définir liste Python.",4],
+
+["2. Définir dictionnaire.",4],
+
+["3. Définir fonction.",4],
+
+["4. Définir module.",4],
+
+["5. Définir exception.",4]
+
+],
+
+pratique:[
+
+["1. Créer et parcourir une liste.",7],
+
+["2. Calculer maximum et moyenne.",6],
+
+["3. Écrire une fonction réutilisable.",7]
+
+],
+
+corrige:[
+
+"Une liste stocke plusieurs valeurs ordonnées.",
+
+"Un dictionnaire associe des clés à des valeurs.",
+
+"Une fonction regroupe du code réutilisable.",
+
+"Un module contient du code réutilisable.",
+
+"Une exception signale une situation particulière."
+
+]
+
+};
+
+
+
+sujets["terminale-2-EX"] = {
+
+titre:"Examen2 — Python : application complète",
+
+theorie:[
+
+["1. Pourquoi utiliser des fonctions ?",4],
+
+["2. Pourquoi utiliser des listes ?",4],
+
+["3. Pourquoi tester les entrées ?",4],
+
+["4. Programme modulaire ?",4],
+
+["5. Pourquoi commenter ?",4]
+
+],
+
+pratique:[
+
+["1. Créer une application de gestion de notes.",8],
+
+["2. Calculer moyenne, maximum et minimum.",6],
+
+["3. Afficher une appréciation.",6]
+
+],
+
+corrige:[
+
+"Les fonctions évitent la répétition.",
+
+"Les listes regroupent plusieurs données.",
+
+"La validation limite les erreurs.",
+
+"Un programme modulaire est divisé en parties.",
+
+"Les commentaires facilitent la compréhension."
+
+]
+
+};
+
+
+
+sujets["terminale-3-DS"] = {
+
+titre:"DS3 — Web, bases de données et réseaux",
+
+theorie:[
+
+["1. Définir base de données.",4],
+
+["2. Définir table.",4],
+
+["3. Définir réseau informatique.",4],
+
+["4. Définir serveur.",4],
+
+["5. Définir client.",4]
+
+],
+
+pratique:[
+
+["1. Concevoir une petite base de données élèves.",7],
+
+["2. Identifier les champs.",6],
+
+["3. Réaliser un schéma client-serveur.",7]
+
+],
+
+corrige:[
+
+"Une base de données organise des informations.",
+
+"Une table stocke des données structurées.",
+
+"Un réseau relie des appareils.",
+
+"Un serveur fournit un service.",
+
+"Un client utilise un service."
+
+]
+
+};
+
+
+
+sujets["terminale-3-EX"] = {
+
+titre:"Examen3 — Projet informatique final",
+
+theorie:[
+
+["1. Définir système informatique.",4],
+
+["2. Définir base de données.",4],
+
+["3. Définir réseau.",4],
+
+["4. Définir intelligence artificielle.",4],
+
+["5. Citer trois règles de cybersécurité.",4]
+
+],
+
+pratique:[
+
+["1. Concevoir un mini-projet informatique.",7],
+
+["2. Réaliser une partie fonctionnelle.",7],
+
+["3. Présenter données et sécurité.",6]
+
+],
+
+corrige:[
+
+"Un système informatique associe matériel, logiciels, données et utilisateurs.",
+
+"Une base de données organise et conserve les informations.",
+
+"Un réseau permet la communication entre appareils.",
+
+"L'intelligence artificielle regroupe des techniques permettant à des systèmes d'effectuer certaines tâches nécessitant habituellement des capacités humaines.",
+
+"Exemples : mots de passe solides, sauvegardes, mises à jour et vigilance."
+
+]
+
+};
+
+
+/* =====================================================
+   AFFICHER LE SUJET
+===================================================== */
+
+function afficherSujet(){
+
+    const classe =
+        document.getElementById("classe").value;
+
+    const trim =
+        document.getElementById("trim").value;
+
+    const evaluation =
+        document.getElementById("evaluation").value;
+
+
+    const cle =
+        classe +
+        "-" +
+        trim +
+        "-" +
+        evaluation;
+
+
+    const sujet =
+        sujets[cle];
+
+
+    const zone =
+        document.getElementById("exam");
+
+
+    if(!sujet){
+
+        zone.innerHTML = `
+
+        <div class="question">
+
+        <h2>⚠️ Sujet non disponible</h2>
+
+        <p>
+        Ce sujet n'est pas encore enregistré.
+        </p>
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    let html = `
+
+    <div class="exam-head">
+
+        <h2>
+        ${sujet.titre}
+        </h2>
+
+
+        <div class="info-grid">
+
+            <div class="info">
+
+                Classe :
+                ${
+                    document
+                    .getElementById("classe")
+                    .selectedOptions[0]
+                    .text
+                }
+
+            </div>
+
+
+            <div class="info">
+
+                Trimestre :
+                ${
+                    document
+                    .getElementById("trim")
+                    .selectedOptions[0]
+                    .text
+                }
+
+            </div>
+
+
+            <div class="info">
+
+                Évaluation :
+                ${
+                    document
+                    .getElementById("evaluation")
+                    .selectedOptions[0]
+                    .text
+                }
+
+            </div>
+
+
+            <div class="info">
+
+                Durée :
+                1h30
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+
+        <strong>
+
+        Théorie : /20
+
+        &nbsp; | &nbsp;
+
+        Pratique : /20
+
+        &nbsp; | &nbsp;
+
+        TOTAL : /40
+
+        &nbsp; | &nbsp;
+
+        DURÉE : 1H30
+
+        </strong>
+
+    </div>
+
+
+    <!-- THEORIE -->
+
+    <div class="section">
+
+        <h3>
+        📘 PARTIE A — THÉORIE /20
+        </h3>
+    `;
+
+
+    sujet.theorie.forEach(
+        (q,index)=>{
+
+            html += `
+
+            <div class="question">
+
+                <strong>
+                ${q[0]}
+                </strong>
+
+                <div class="bareme">
+
+                Barème :
+                ${q[1]} point(s)
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+    </div>
+
+
+    <!-- PRATIQUE -->
+
+    <div class="section">
+
+        <h3>
+        💻 PARTIE B — PRATIQUE /20
+        </h3>
+    `;
+
+
+    sujet.pratique.forEach(
+        (q,index)=>{
+
+            html += `
+
+            <div class="pratique">
+
+                <strong>
+                ${q[0]}
+                </strong>
+
+                <div class="bareme">
+
+                Barème :
+                ${q[1]} point(s)
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    );
+
+
+    /*
+       IMPORTANT :
+       Le bouton Afficher corrigé
+       cherche cet ID.
+    */
+
+    html += `
+
+    </div>
+
+
+    <!-- CORRIGE -->
+
+    <div
+        id="correction"
+        class="section corrige"
+    >
+
+        <h3>
+        ✅ CORRIGÉ DÉTAILLÉ
+        </h3>
+
+    `;
+
+
+    sujet.corrige.forEach(
+        (rep,index)=>{
+
+            html += `
+
+            <div class="question">
+
+                <strong>
+                Réponse ${index+1}
+                </strong>
+
+                <p>
+                ${rep}
+                </p>
+
+            </div>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+        <div class="bareme">
+
+            <strong>
+            📊 BARÈME GÉNÉRAL
+            </strong>
+
+            <br><br>
+
+            Théorie :
+            <strong>20 points</strong>
+
+            <br>
+
+            Pratique :
+            <strong>20 points</strong>
+
+            <br>
+
+            Total :
+            <strong>40 points</strong>
+
+            <br><br>
+
+            Durée :
+            <strong>1h30 — 90 minutes</strong>
+
+        </div>
+
+
+    </div>
+
+    `;
+
+
+    zone.innerHTML = html;
+
+
+    /*
+       IMPORTANT :
+       Après changement de sujet,
+       le corrigé est toujours caché.
+    */
+
+}
+
+
+/* =====================================================
+   AFFICHER LE CORRIGÉ
+===================================================== */
+
+function afficherCorrige(){
+
+    const correction =
+        document.getElementById("correction");
+
+
+    if(!correction){
+
+        alert(
+            "⚠️ Le corrigé n'a pas été trouvé."
+        );
+
+        return;
+    }
+
+
+    /*
+       On ajoute la classe visible.
+       !important dans le CSS garantit
+       que le corrigé apparaît.
+    */
+
+    correction.classList.add("visible");
+
+
+    /*
+       Faire descendre automatiquement
+       vers le corrigé.
+    */
+
+    setTimeout(function(){
+
+        correction.scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"start"
+
+        });
+
+    },100);
+
+}
+
+
+/* =====================================================
+   CACHER LE CORRIGÉ
+===================================================== */
+
+function cacherCorrige(){
+
+    const correction =
+        document.getElementById("correction");
+
+
+    if(!correction){
+
+        return;
+    }
+
+
+    correction.classList.remove("visible");
+
+
+    /*
+       Retour vers le début du sujet.
+    */
+
+    document
+        .getElementById("exam")
+        .scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"start"
+
+        });
+
+}
+
+
+/* =====================================================
+   REINITIALISER
+===================================================== */
+
+function reinitialiser(){
+
+    document
+        .getElementById("classe")
+        .value =
+        "6eme";
+
+
+    document
+        .getElementById("trim")
+        .value =
+        "1";
+
+
+    document
+        .getElementById("evaluation")
+        .value =
+        "DS";
+
+
+    afficherSujet();
+
+}
+
+
+/* =====================================================
+   LANCEMENT INITIAL
+===================================================== */
+
+afficherSujet();
+
+</script>
+
+
+</body>
+
+</html>

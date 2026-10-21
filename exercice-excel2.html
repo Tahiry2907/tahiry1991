@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercices Interactifs Excel</title>
+<style>
+body { font-family: Arial; margin:0; background:#f3f3f3; padding:20px;}
+header { background:#1976d2; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;}
+header h1 { margin:0; font-size:20px;}
+.lang button { background:white; color:#1976d2; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; margin-left:5px;}
+.exercise { background:white; padding:15px; margin-bottom:15px; border-radius:10px; box-shadow:0 0 8px rgba(0,0,0,0.1);}
+.exercise h3 { color:#1976d2;}
+.exercise input { width:80%; padding:5px; margin-top:5px;}
+.result { margin-top:5px; font-weight:bold;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>📊 Exercices Interactifs Excel</h1>
+<div class="lang">
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('ml')">ML</button>
+</div>
+</header>
+
+<div id="content"></div>
+
+<script>
+let lang="fr";
+
+function setLang(l){ lang=l; load(); }
+
+function load(){
+let container = document.getElementById('content');
+if(lang==='fr'){
+container.innerHTML=`
+<!-- SOMME -->
+<div class="exercise">
+<h3>Exercice SOMME</h3>
+<p>Tableau : 10, 20, 30. Tapez la formule pour calculer le total :</p>
+<input type="text" data-correct="=SOMME(A1:A3)">
+<p class="result"></p>
+</div>
+
+<!-- MOYENNE -->
+<div class="exercise">
+<h3>Exercice MOYENNE</h3>
+<p>Tableau : 10, 20, 30. Tapez la formule pour calculer la moyenne :</p>
+<input type="text" data-correct="=MOYENNE(A1:A3)">
+<p class="result"></p>
+</div>
+
+<!-- SI -->
+<div class="exercise">
+<h3>Exercice SI</h3>
+<p>Note : 15. Tapez la formule pour afficher "Admis" si >=10 sinon "Non admis" :</p>
+<input type="text" data-correct='=SI(A1>=10,"Admis","Non admis")'>
+<p class="result"></p>
+</div>
+
+<!-- SOMME.SI -->
+<div class="exercise">
+<h3>Exercice SOMME.SI</h3>
+<p>Tableau A1:A3 : 10, 20, 30. SOMME.SI(A1:A3;">=20")</p>
+<input type="text" data-correct='=SOMME.SI(A1:A3,">=20")'>
+<p class="result"></p>
+</div>
+
+<!-- RECHERCHEV -->
+<div class="exercise">
+<h3>Exercice RECHERCHEV</h3>
+<p>Tableau : Client - Vente (A1:B3), chercher la vente du Client "B" :</p>
+<input type="text" data-correct='=RECHERCHEV("B",A1:B3,2,FALSE)'>
+<p class="result"></p>
+</div>
+`;
+} else {
+container.innerHTML=`
+<!-- SOMME -->
+<div class="exercise">
+<h3>Fanazaran-tena SOMME</h3>
+<p>Tableau : 10, 20, 30. Soraty ny formule mba hahazoana total :</p>
+<input type="text" data-correct="=SOMME(A1:A3)">
+<p class="result"></p>
+</div>
+
+<!-- MOYENNE -->
+<div class="exercise">
+<h3>Fanazaran-tena MOYENNE</h3>
+<p>Tableau : 10, 20, 30. Soraty ny formule mba hahazoana moyenne :</p>
+<input type="text" data-correct="=MOYENNE(A1:A3)">
+<p class="result"></p>
+</div>
+
+<!-- SI -->
+<div class="exercise">
+<h3>Fanazaran-tena SI</h3>
+<p>Note : 15. Soraty ny formule mba hiseho "Admis" raha >=10, raha tsy izany "Non admis" :</p>
+<input type="text" data-correct='=SI(A1>=10,"Admis","Non admis")'>
+<p class="result"></p>
+</div>
+
+<!-- SOMME.SI -->
+<div class="exercise">
+<h3>Fanazaran-tena SOMME.SI</h3>
+<p>Tableau A1:A3 : 10, 20, 30. SOMME.SI(A1:A3;">=20")</p>
+<input type="text" data-correct='=SOMME.SI(A1:A3,">=20")'>
+<p class="result"></p>
+</div>
+
+<!-- RECHERCHEV -->
+<div class="exercise">
+<h3>Fanazaran-tena RECHERCHEV</h3>
+<p>Tableau : Client - Vente (A1:B3), tadiavo ny vente ho an'ny Client "B" :</p>
+<input type="text" data-correct='=RECHERCHEV("B",A1:B3,2,FALSE)'>
+<p class="result"></p>
+</div>
+`;
+}
+
+// Auto-check pour chaque input
+document.querySelectorAll('.exercise input').forEach(input => {
+  input.addEventListener('input', ()=>{
+    let user = input.value.replace(/\s/g,'').toUpperCase();
+    let correct = input.getAttribute('data-correct').replace(/\s/g,'').toUpperCase();
+    let res = input.nextElementSibling;
+    if(user === correct){
+      res.innerHTML = "✔ Correct !";
+      res.style.color = "green";
+    } else {
+      res.innerHTML = "❌ Incorrect";
+      res.style.color = "red";
+    }
+  });
+});
+}
+
+// Charger au démarrage
+load();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Graphique PRO</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body { font-family: Arial; margin:0; background:#f5f5f5;}
+header { background:#1e88e5; color:white; padding:15px; display:flex; justify-content:space-between;}
+.lang button { background:white; color:#1e88e5; border:none; padding:5px 10px; border-radius:5px;}
+.container { padding:20px;}
+.card { background:white; padding:20px; margin-bottom:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+input { padding:5px; margin:5px;}
+h2 { color:#1e88e5;}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>📊 Dashboard Graphique</h2>
+<div>
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('ml')">ML</button>
+</div>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2 id="title">Ajouter données</h2>
+<input type="text" id="label" placeholder="Mois">
+<input type="number" id="value" placeholder="Valeur">
+<button onclick="addData()">Ajouter</button>
+</div>
+
+<div class="card">
+<canvas id="myChart"></canvas>
+</div>
+
+<div class="card">
+<h2 id="analysis">Analyse</h2>
+<p id="result"></p>
+</div>
+
+</div>
+
+<script>
+let lang="fr";
+
+function setLang(l){
+lang=l;
+updateLang();
+}
+
+function updateLang(){
+if(lang==="fr"){
+document.getElementById("title").innerText="Ajouter données";
+document.getElementById("analysis").innerText="Analyse";
+}else{
+document.getElementById("title").innerText="Ampidiro data";
+document.getElementById("analysis").innerText="Fanadihadiana";
+}
+}
+
+let labels=[];
+let data=[];
+
+const ctx=document.getElementById('myChart').getContext('2d');
+
+const chart=new Chart(ctx,{
+type:'bar',
+data:{
+labels:labels,
+datasets:[{
+label:'Valeurs',
+data:data
+}]
+}
+});
+
+function addData(){
+let l=document.getElementById("label").value;
+let v=parseFloat(document.getElementById("value").value);
+
+if(!l || isNaN(v)) return;
+
+labels.push(l);
+data.push(v);
+
+chart.update();
+
+analyse();
+}
+
+function analyse(){
+let total=data.reduce((a,b)=>a+b,0);
+let max=Math.max(...data);
+let min=Math.min(...data);
+
+document.getElementById("result").innerHTML=
+(lang==="fr" ?
+"Total: "+total+"<br>Max: "+max+"<br>Min: "+min :
+"Total: "+total+"<br>Ambony indrindra: "+max+"<br>Ambany indrindra: "+min);
+}
+</script>
+
+</body>
+</html>

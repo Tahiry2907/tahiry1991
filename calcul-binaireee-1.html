@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opérations Binaires</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background:#f4f6f9;
+}
+
+header{
+  background:#1e2a38;
+  color:white;
+  padding:15px;
+  text-align:center;
+}
+
+.container{
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.01);
+}
+
+.content{
+  display:none;
+  margin-top:10px;
+}
+
+.code{
+  background:#0f172a;
+  color:#00ff99;
+  padding:10px;
+  border-radius:8px;
+  font-family: monospace;
+  overflow-x:auto;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+💻 Lesona : Opérations en Binaire
+</header>
+
+<div class="container">
+
+<!-- ADDITION -->
+<div class="card" onclick="toggle('a1')">
+➕ 1. Addition binaire
+<div class="content" id="a1">
+
+<p><b>Règles :</b></p>
+<ul>
+<li>0 + 0 = 0</li>
+<li>0 + 1 = 1</li>
+<li>1 + 0 = 1</li>
+<li>1 + 1 = 10 (retenue 1)</li>
+</ul>
+
+<p><b>Exemple :</b></p>
+<div class="code">
+   1011  
++  1101  
+---------
+  11000
+</div>
+
+<p><b>Explication :</b> misy retenue rehefa 1+1.</p>
+
+</div>
+</div>
+
+<!-- SOUSTRACTION -->
+<div class="card" onclick="toggle('a2')">
+➖ 2. Soustraction binaire
+<div class="content" id="a2">
+
+<p><b>Règles :</b></p>
+<ul>
+<li>0 - 0 = 0</li>
+<li>1 - 0 = 1</li>
+<li>1 - 1 = 0</li>
+<li>0 - 1 = 1 (emprunt 1)</li>
+</ul>
+
+<p><b>Exemple :</b></p>
+<div class="code">
+   1101  
+-  0110  
+---------
+   0111
+</div>
+
+<p><b>Explication :</b> mila “emprunt” rehefa 0 - 1.</p>
+
+</div>
+</div>
+
+<!-- MULTIPLICATION -->
+<div class="card" onclick="toggle('a3')">
+✖️ 3. Multiplication binaire
+<div class="content" id="a3">
+
+<p><b>Règles :</b></p>
+<ul>
+<li>0 × 0 = 0</li>
+<li>0 × 1 = 0</li>
+<li>1 × 0 = 0</li>
+<li>1 × 1 = 1</li>
+</ul>
+
+<p><b>Exemple :</b></p>
+<div class="code">
+   101  
+×   11  
+--------
+   101  
+  101   
+--------
+  1111
+</div>
+
+<p><b>Explication :</b> multiplication toy decimal fa 0/1 ihany.</p>
+
+</div>
+</div>
+
+<!-- DIVISION -->
+<div class="card" onclick="toggle('a4')">
+➗ 4. Division binaire
+<div class="content" id="a4">
+
+<p><b>Methode :</b> division longue (comme en décimal)</p>
+
+<p><b>Exemple :</b></p>
+<div class="code">
+  1100 ÷ 10 = 110
+</div>
+
+<p><b>Étapes :</b></p>
+<ul>
+<li>Check if divisor fits</li>
+<li>Soustraction répétée</li>
+<li>Descendre bits</li>
+</ul>
+
+<p><b>Explication :</b> 10 en binaire = 2 en décimal.</p>
+
+</div>
+</div>
+
+<!-- RESUME -->
+<div class="card" onclick="toggle('a5')">
+📌 5. Résumé
+<div class="content" id="a5">
+
+<ul>
+<li>Addition → misy retenue</li>
+<li>Soustraction → misy emprunt</li>
+<li>Multiplication → shifting + addition</li>
+<li>Division → soustraction répétée</li>
+</ul>
+
+<p><b>Ny binaire dia fototry ny processeur rehetra.</b></p>
+
+</div>
+</div>
+
+</div>
+
+<script>
+function toggle(id){
+  var x = document.getElementById(id);
+  x.style.display = (x.style.display === "block") ? "none" : "block";
+}
+</script>
+
+</body>
+</html>

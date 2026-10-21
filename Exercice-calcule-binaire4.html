@@ -1,0 +1,112 @@
+<div class="container">
+
+<h1>💻 Addition Binaire Interactive</h1>
+
+<button onclick="toggleLang()">🌍 FR / ML</button>
+
+<!-- OPERATION -->
+<div class="section">
+<pre>
+  110101
++ 101011
+--------
+</pre>
+</div>
+
+<!-- ETAPES -->
+<div class="section">
+<h2>🧠 <span class="fr">Démarche</span><span class="ml" style="display:none">Dingana</span></h2>
+
+<div id="steps">
+
+<p class="step fr">1 + 1 = 10 → écrire 0, retenir 1</p>
+<p class="step ml" style="display:none">1 + 1 = 10 → soraty 0, mitondra 1</p>
+
+<p class="step fr">0 + 1 + 1 = 10 → écrire 0, retenir 1</p>
+<p class="step ml" style="display:none">0 + 1 + 1 = 10 → soraty 0, mitondra 1</p>
+
+<p class="step fr">1 + 0 + 1 = 10 → écrire 0, retenir 1</p>
+<p class="step ml" style="display:none">1 + 0 + 1 = 10 → soraty 0, mitondra 1</p>
+
+<p class="step fr">0 + 1 + 1 = 10 → écrire 0, retenir 1</p>
+<p class="step ml" style="display:none">0 + 1 + 1 = 10 → soraty 0, mitondra 1</p>
+
+<p class="step fr">1 + 0 + 1 = 10 → écrire 0, retenir 1</p>
+<p class="step ml" style="display:none">1 + 0 + 1 = 10 → soraty 0, mitondra 1</p>
+
+<p class="step fr">1 + 1 + 1 = 11 → écrire 1, retenir 1</p>
+<p class="step ml" style="display:none">1 + 1 + 1 = 11 → soraty 1, mitondra 1</p>
+
+<p class="step fr"><b>Résultat = 1010000</b></p>
+<p class="step ml" style="display:none"><b>Valiny = 1010000</b></p>
+
+</div>
+
+<button onclick="nextStep()">➡️ Suivant</button>
+</div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+let current = 0;
+let steps = document.querySelectorAll(".step");
+
+steps.forEach((s,i) => {
+  s.style.display = (i === 0) ? "block" : "none";
+});
+
+function nextStep() {
+  if (current < steps.length - 1) {
+    steps[current].style.display = "none";
+    current++;
+    steps[current].style.display = "block";
+  }
+}
+
+function toggleLang() {
+  let fr = document.querySelectorAll(".fr");
+  let ml = document.querySelectorAll(".ml");
+
+  fr.forEach(el => {
+    el.style.display = (el.style.display === "none") ? "block" : "none";
+  });
+
+  ml.forEach(el => {
+    el.style.display = (el.style.display === "none") ? "block" : "none";
+  });
+}
+</script>
+
+<!-- STYLE -->
+<style>
+.container {
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial;
+}
+
+.section {
+  background: #f4f4f4;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+pre {
+  background: black;
+  color: lime;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+</style>

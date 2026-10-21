@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation Excel Pro</title>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f4f7fb;
+}
+
+header {
+  background: #2e7d32;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lang button {
+  background: white;
+  color: #2e7d32;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.container {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.correct { color: green; }
+.wrong { color: red; }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2 id="title">📊 Formation Excel</h2>
+  <div class="lang">
+    <button onclick="setLang('fr')">FR</button>
+    <button onclick="setLang('ml')">ML</button>
+  </div>
+</header>
+
+<div class="container">
+
+<div class="card" id="content"></div>
+
+<div class="nav">
+<button onclick="prev()">⬅️</button>
+<button onclick="next()">➡️</button>
+</div>
+
+</div>
+
+<script>
+
+let lang = "fr";
+let step = 0;
+
+const lessons = [
+
+{
+fr: `<h2>Introduction</h2>
+<p>Excel est un logiciel de tableur puissant utilisé pour organiser et analyser les données.</p>
+<p>Il est utilisé dans les écoles, entreprises et administrations.</p>`,
+
+ml: `<h2>Fampidirana</h2>
+<p>Excel dia logiciel matanjaka hanaovana tableau sy kajy.</p>
+<p>Ampiasaina amin'ny sekoly sy asa.</p>`
+},
+
+{
+fr: `<h2>Interface Excel</h2>
+<ul>
+<li>Classeur</li>
+<li>Feuille</li>
+<li>Cellule (A1)</li>
+<li>Barre de formule</li>
+</ul>`,
+
+ml: `<h2>Fizarana Excel</h2>
+<ul>
+<li>Boky (Classeur)</li>
+<li>Pejy (Feuille)</li>
+<li>Cellule (A1)</li>
+<li>Barre formule</li>
+</ul>`
+},
+
+{
+fr: `<h2>Saisie des données</h2>
+<p>Vous pouvez entrer :</p>
+<ul>
+<li>Texte</li>
+<li>Nombres</li>
+<li>Dates</li>
+</ul>`,
+
+ml: `<h2>Fampidirana données</h2>
+<ul>
+<li>Soratra</li>
+<li>Isa</li>
+<li>Daty</li>
+</ul>`
+},
+
+{
+fr: `<h2>Formules de base</h2>
+<p>=A1+B1 (Addition)</p>
+<p>=A1*B1 (Multiplication)</p>
+<p>=A1/B1 (Division)</p>`,
+
+ml: `<h2>Formule fototra</h2>
+<p>=A1+B1</p>
+<p>=A1*B1</p>
+<p>=A1/B1</p>`
+},
+
+{
+fr: `<h2>Fonctions importantes</h2>
+<p>=SOMME(A1:A10)</p>
+<p>=MOYENNE(A1:A10)</p>
+<p>=MAX(A1:A10)</p>`,
+
+ml: `<h2>Fonction manan-danja</h2>
+<p>SOMME</p>
+<p>MOYENNE</p>
+<p>MAX</p>`
+},
+
+{
+fr: `<h2>Mise en forme</h2>
+<p>Changer couleur, bordures, alignement pour rendre le tableau professionnel.</p>`,
+
+ml: `<h2>Fanatsarana</h2>
+<p>Fanovana loko sy bordure mba hahatsara ny tableau.</p>`
+},
+
+{
+fr: `<h2>Graphiques</h2>
+<p>Créer des graphiques pour visualiser les données (barres, camembert).</p>`,
+
+ml: `<h2>Graphique</h2>
+<p>Afaka manao graphique mba hahitana tsara ny données.</p>`
+},
+
+{
+fr: `<h2>Fonctions avancées</h2>
+<p>=SI(A1>10;"Grand";"Petit")</p>
+<p>=RECHERCHEV(...)</p>`,
+
+ml: `<h2>Niveau avancé</h2>
+<p>Fonction SI</p>
+<p>RECHERCHEV</p>`
+},
+
+{
+fr: `<h2>Projet final</h2>
+<p>Créer un bulletin scolaire avec calcul automatique.</p>`,
+
+ml: `<h2>Projet farany</h2>
+<p>Mamorona bulletin scolaire automatique.</p>`
+},
+
+{
+fr: `<h2>Quiz</h2>
+<p>Excel est un :</p>
+<button onclick="answer(true)">Logiciel</button>
+<button onclick="answer(false)">Jeu</button>
+<p id="res"></p>`,
+
+ml: `<h2>Quiz</h2>
+<p>Excel dia :</p>
+<button onclick="answer(true)">Logiciel</button>
+<button onclick="answer(false)">Jeu</button>
+<p id="res"></p>`
+}
+
+];
+
+function show(){
+document.getElementById("content").innerHTML = lessons[step][lang];
+}
+
+function next(){
+if(step < lessons.length-1){
+step++;
+show();
+}
+}
+
+function prev(){
+if(step > 0){
+step--;
+show();
+}
+}
+
+function setLang(l){
+lang = l;
+show();
+}
+
+function answer(correct){
+document.getElementById("res").innerHTML = correct ? "✔️ Marina" : "❌ Diso";
+}
+
+show();
+
+</script>
+
+<div class="boutton">
+ <a href="fonction-somme-5eme .html"class="button" >fonction SOMME</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-multiple-5eme.html"class="button" >fonction somme multiple</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-conditionnel-5eme.html"class="button" >fonction somme conditionnelle</a>
+</div>
+
+< class="boutton">
+ <a href="fonction-somme-si-4eme.html"class="button" >fonction somme SI</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-somme-si-ens-4eme.html"class="button" >fonction somme SI ens</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-moyenne-5eme.html"class="button" >fonction MOYENNE</a>
+
+</body>
+</html>

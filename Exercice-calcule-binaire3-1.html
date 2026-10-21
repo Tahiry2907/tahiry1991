@@ -1,0 +1,168 @@
+<div class="container">
+
+<h1>💻 Addition Binaire - Règles</h1>
+
+<button onclick="toggleLang()">🌍 FR / ML</button>
+
+<!-- ===================== -->
+<!-- REGLES -->
+<!-- ===================== -->
+
+<div class="section">
+<h2>🧠 <span class="fr">Règles de base</span><span class="ml" style="display:none">Fitsipika fototra</span></h2>
+
+<ul class="fr">
+<li>0 + 0 = 0</li>
+<li>0 + 1 = 1</li>
+<li>1 + 0 = 1</li>
+<li>1 + 1 = 10 (écrire 0, retenir 1)</li>
+</ul>
+
+<ul class="ml" style="display:none">
+<li>0 + 0 = 0</li>
+<li>0 + 1 = 1</li>
+<li>1 + 0 = 1</li>
+<li>1 + 1 = 10 (soraty 0, mitondra 1)</li>
+</ul>
+</div>
+
+<!-- ===================== -->
+<!-- RETENUE -->
+<!-- ===================== -->
+
+<div class="section">
+<h2>🔁 <span class="fr">Avec retenue</span><span class="ml" style="display:none">Misy mitondra</span></h2>
+
+<p class="fr">1 + 1 + 1 = 11 (écrire 1, retenir 1)</p>
+<p class="ml" style="display:none">1 + 1 + 1 = 11 (soraty 1, mitondra 1)</p>
+
+</div>
+
+<!-- ===================== -->
+<!-- METHODE -->
+<!-- ===================== -->
+
+<div class="section">
+<h2>📏 <span class="fr">Méthode</span><span class="ml" style="display:none">Dingana</span></h2>
+
+<ol class="fr">
+<li>Commencer par la droite</li>
+<li>Ajouter colonne par colonne</li>
+<li>Ajouter la retenue</li>
+<li>Continuer vers la gauche</li>
+<li>Écrire la retenue finale</li>
+</ol>
+
+<ol class="ml" style="display:none">
+<li>Atomboka ankavanana</li>
+<li>Atao tsanganana tsirairay</li>
+<li>Ampiana ny mitondra</li>
+<li>Tohizana miankavia</li>
+<li>Soraty ny mitondra farany</li>
+</ol>
+
+</div>
+
+<!-- ===================== -->
+<!-- EXEMPLE -->
+<!-- ===================== -->
+
+<div class="section">
+<h2 onclick="toggleExample()">💡 <span class="fr">Exemple détaillé</span><span class="ml" style="display:none">Ohatra</span></h2>
+
+<div id="example" style="display:none">
+
+<pre>
+   1011
+ + 0101
+ -------
+</pre>
+
+<p class="fr">
+1+1 = 10 → écrire 0, retenir 1<br>
+1+0+1 = 10 → écrire 0, retenir 1<br>
+0+1+1 = 10 → écrire 0, retenir 1<br>
+1+0+1 = 10 → écrire 0, retenir 1<br>
+<b>Résultat = 10000</b>
+</p>
+
+<p class="ml" style="display:none">
+1+1 = 10 → soraty 0, mitondra 1<br>
+1+0+1 = 10 → soraty 0, mitondra 1<br>
+0+1+1 = 10 → soraty 0, mitondra 1<br>
+1+0+1 = 10 → soraty 0, mitondra 1<br>
+<b>Valiny = 10000</b>
+</p>
+
+</div>
+</div>
+
+</div>
+
+<!-- ===================== -->
+<!-- SCRIPT -->
+<!-- ===================== -->
+
+<script>
+function toggleLang() {
+  let fr = document.querySelectorAll(".fr");
+  let ml = document.querySelectorAll(".ml");
+
+  fr.forEach(el => {
+    el.style.display = (el.style.display === "none") ? "block" : "none";
+  });
+
+  ml.forEach(el => {
+    el.style.display = (el.style.display === "none") ? "block" : "none";
+  });
+}
+
+function toggleExample() {
+  let ex = document.getElementById("example");
+  ex.style.display = (ex.style.display === "none") ? "block" : "none";
+}
+</script>
+
+<!-- ===================== -->
+<!-- STYLE -->
+<!-- ===================== -->
+
+<style>
+.container {
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial;
+}
+
+h1 {
+  text-align: center;
+}
+
+.section {
+  background: #f4f4f4;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+button {
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  background: #28a745;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+pre {
+  background: black;
+  color: lime;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+h2 {
+  cursor: pointer;
+}
+</style>

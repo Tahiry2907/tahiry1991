@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Excel 1ère | Mr Tahiry</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    margin:0;
+    background:linear-gradient(135deg,#e3f2fd,#f5f9ff);
+    color:#222;
+    min-height:100vh;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+    background:linear-gradient(135deg,#0d47a1,#1565c0,#1976d2);
+    color:white;
+
+    padding:18px 25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.25);
+}
+
+header h2{
+    font-size:23px;
+}
+
+/* =====================================================
+   LANGUE
+===================================================== */
+
+.lang{
+    display:flex;
+    gap:6px;
+}
+
+.lang button{
+    background:white;
+    color:#0d47a1;
+
+    border:none;
+
+    padding:7px 13px;
+
+    margin-left:5px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.lang button:hover{
+    transform:scale(1.08);
+    background:#e3f2fd;
+}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:25px 15px;
+}
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+
+    animation:fadeIn .5s ease;
+}
+
+.card h2{
+    color:#0d47a1;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#1565c0;
+    margin:20px 0 10px;
+}
+
+.card p{
+    line-height:1.7;
+    margin:10px 0;
+}
+
+.card ul{
+    padding-left:25px;
+    line-height:1.9;
+}
+
+/* =====================================================
+   FORMULE
+===================================================== */
+
+.formule{
+    background:#e3f2fd;
+
+    border-left:5px solid #0d47a1;
+
+    padding:15px;
+
+    margin:15px 0;
+
+    border-radius:8px;
+
+    font-family:monospace;
+
+    overflow-x:auto;
+}
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-box{
+    margin-bottom:20px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:6px;
+
+    font-size:14px;
+    color:#555;
+}
+
+.progress{
+    width:100%;
+    height:10px;
+
+    background:#ddd;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+
+    background:linear-gradient(
+        90deg,
+        #0d47a1,
+        #1976d2
+    );
+
+    transition:.4s;
+}
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin:20px 0;
+}
+
+.nav button,
+button{
+    background:linear-gradient(
+        135deg,
+        #0d47a1,
+        #1565c0
+    );
+
+    color:white;
+
+    border:none;
+
+    padding:11px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.nav button:hover,
+button:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(13,71,161,.35);
+}
+
+.nav button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    transform:none;
+}
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quiz-btn{
+    display:block;
+
+    width:100%;
+
+    margin:10px 0;
+
+    text-align:left;
+}
+
+.correct{
+    color:green;
+    font-weight:bold;
+}
+
+.wrong{
+    color:red;
+    font-weight:bold;
+}
+
+#res{
+    margin-top:15px;
+    font-size:18px;
+}
+
+/* =====================================================
+   TITRE DES LIENS
+===================================================== */
+
+.links-title{
+    text-align:center;
+
+    color:#0d47a1;
+
+    margin:30px 0 20px;
+}
+
+/* =====================================================
+   BOUTONS / LIENS
+===================================================== */
+
+.boutton{
+    margin:10px 0;
+}
+
+.boutton a{
+    display:block;
+
+    background:white;
+
+    color:#0d47a1;
+
+    text-decoration:none;
+
+    padding:14px 18px;
+
+    border-radius:10px;
+
+    border-left:5px solid #1565c0;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.10);
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.boutton a:hover{
+    transform:translateX(7px);
+
+    background:#e3f2fd;
+}
+
+/* =====================================================
+   INFO
+===================================================== */
+
+.info-box{
+    background:#e3f2fd;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin:15px 0;
+
+    border-left:5px solid #0d47a1;
+}
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
+
+#topBtn{
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+
+    z-index:999;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer-pro{
+    background:linear-gradient(
+        270deg,
+        #141e30,
+        #243b55
+    );
+
+    color:white;
+
+    text-align:center;
+
+    padding:30px 20px;
+
+    margin-top:45px;
+
+    border-radius:15px 15px 0 0;
+
+    box-shadow:
+        0 -5px 15px rgba(0,0,0,.4);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.footer-pro::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:200%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.2),
+        transparent
+    );
+
+    animation:shine 5s infinite;
+}
+
+.footer-pro h2{
+    margin-bottom:10px;
+
+    color:#00e5ff;
+
+    position:relative;
+}
+
+.footer-pro p{
+    margin:8px 0;
+
+    font-size:14px;
+
+    position:relative;
+}
+
+.socials{
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin:15px 0;
+
+    position:relative;
+}
+
+.socials a{
+    color:white;
+
+    text-decoration:none;
+
+    background:rgba(255,255,255,.1);
+
+    padding:8px 12px;
+
+    border-radius:20px;
+
+    transition:.3s;
+}
+
+.socials a:hover{
+    background:rgba(255,255,255,.25);
+
+    transform:translateY(-2px);
+}
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes shine{
+
+    0%{
+        left:-100%;
+    }
+
+    50%{
+        left:100%;
+    }
+
+    100%{
+        left:100%;
+    }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    header{
+        padding:15px;
+
+        flex-direction:column;
+
+        gap:12px;
+
+        text-align:center;
+    }
+
+    header h2{
+        font-size:20px;
+    }
+
+    .container{
+        padding:15px 10px;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .nav button{
+        flex:1;
+    }
+
+    .boutton a{
+        font-size:14px;
+    }
+
+    .footer-pro{
+        padding:25px 12px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+<h2 id="pageTitle">
+📊 Excel 1ère — Expert
+</h2>
+
+<div class="lang">
+
+<button onclick="setLang('fr')">
+🇫🇷 FR
+</button>
+
+<button onclick="setLang('ml')">
+🇲🇬 ML
+</button>
+
+</div>
+
+</header>
+
+
+<!-- =====================================================
+     COURS
+===================================================== -->
+
+<div class="container">
+
+<div class="progress-box">
+
+<div class="progress-info">
+
+<span id="stepText">
+Étape 1 / 8
+</span>
+
+<span id="percentText">
+0%
+</span>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card" id="content"></div>
+
+
+<div class="nav">
+
+<button
+id="prevBtn"
+onclick="prev()">
+
+⬅️ Précédent
+
+</button>
+
+
+<button
+id="nextBtn"
+onclick="next()">
+
+Suivant ➡️
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     LIENS EXCEL
+===================================================== -->
+
+<div class="container">
+
+<h2 class="links-title">
+
+📚 Ressources Excel
+
+</h2>
+
+
+<div class="boutton">
+<a href="fonction-somme-5eme .html"
+class="button">
+📊 Fonction SOMME
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="fonction-somme-multiple-5eme.html"
+class="button">
+➕ Fonction somme multiple
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="fonction-somme-conditionnel-5eme.html"
+class="button">
+📈 Fonction somme conditionnelle
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="fonction-somme-si-4eme.html"
+class="button">
+🔢 Fonction somme SI
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="fonction-somme-si-ens-4eme.html"
+class="button">
+📊 Fonction somme SI ENS
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="fonction-somme-si-4eme.html"
+class="button">
+🔢 Fonction somme SI
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="fonction-moyenne-plusieur-plage-3eme.html"
+class="button">
+📐 Fonction moyenne plusieurs plages
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="fonction-moyenne-5eme.html"
+class="button">
+📊 Fonction MOYENNE
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="fonction-moyenne-conditionnelle.3eme.html"
+class="button">
+📈 Fonction MOYENNE conditionnelle
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="foncton-SI.html"
+class="button">
+🔢 Fonction SI
+</a>
+</div>
+
+
+<div class="boutton">
+<a href="foncton-SI-imbriquer.html"
+class="button">
+🔐 Fonction SI imbriquée
+</a>
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     TOP
+===================================================== -->
+
+<button
+id="topBtn"
+onclick="topPage()">
+
+⬆️
+
+</button>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer-pro">
+
+<h2>
+💻 Mr Tahiry - Informatique 👨‍🏫
+</h2>
+
+<p>
+📅
+<span id="dateFooter"></span>
+</p>
+
+<div class="socials">
+
+<a href="#">
+📘 Facebook
+</a>
+
+<a href="#">
+💬 WhatsApp
+</a>
+
+<a href="#">
+📧 Email
+</a>
+
+</div>
+
+<p>
+🚀 Apprendre • Pratiquer • Réussir 🌟
+</p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   LANGUE
+===================================================== */
+
+let lang =
+localStorage.getItem("excel1ereLang") || "fr";
+
+let step = 0;
+
+
+/* =====================================================
+   LESSONS
+===================================================== */
+
+const lessons = [
+
+/* =====================================================
+   1
+===================================================== */
+
+{
+
+fr:`
+
+<h2>1️⃣ Tableau croisé dynamique</h2>
+
+<p>
+Le tableau croisé dynamique permet d'analyser
+rapidement une grande quantité de données.
+</p>
+
+<h3>📌 Utilisation</h3>
+
+<ul>
+
+<li>
+Sélectionner les données.
+</li>
+
+<li>
+Aller dans <b>Insertion → Tableau croisé dynamique</b>.
+</li>
+
+<li>
+Choisir les champs à analyser.
+</li>
+
+<li>
+Créer le tableau.
+</li>
+
+</ul>
+
+<div class="info-box">
+
+💡 Il est particulièrement utile pour
+les statistiques, les ventes et les résultats scolaires.
+
+</div>
+
+`,
+
+ml:`
+
+<h2>1️⃣ Tableau croisé dynamique</h2>
+
+<p>
+Ny tableau croisé dynamique dia manampy
+amin'ny famakafakana données betsaka haingana.
+</p>
+
+<h3>📌 Fomba fampiasana</h3>
+
+<ul>
+
+<li>
+Misafidiana ny données.
+</li>
+
+<li>
+Mandehana amin'ny <b>Insertion → Tableau croisé dynamique</b>.
+</li>
+
+<li>
+Misafidiana ireo champs.
+</li>
+
+<li>
+Mamorona ilay tableau.
+</li>
+
+</ul>
+
+<div class="info-box">
+
+💡 Tena ilaina amin'ny statistiques,
+vente ary résultat scolaire.
+
+</div>
+
+`
+
+},
+
+
+/* =====================================================
+   2
+===================================================== */
+
+{
+
+fr:`
+
+<h2>2️⃣ Fonction RECHERCHEX</h2>
+
+<p>
+RECHERCHEX est une fonction moderne permettant
+de rechercher une valeur dans un tableau.
+</p>
+
+<div class="formule">
+
+=RECHERCHEX(A2;A1:A10;B1:B10)
+
+</div>
+
+<h3>📌 Avantage</h3>
+
+<ul>
+
+<li>Recherche plus flexible.</li>
+
+<li>Peut rechercher à gauche ou à droite.</li>
+
+<li>Plus moderne que RECHERCHEV.</li>
+
+</ul>
+
+`,
+
+ml:`
+
+<h2>2️⃣ Fonction RECHERCHEX</h2>
+
+<p>
+RECHERCHEX dia fonction vaovao ampiasaina
+hitadiavana valeur ao anaty tableau.
+</p>
+
+<div class="formule">
+
+=RECHERCHEX(A2;A1:A10;B1:B10)
+
+</div>
+
+<h3>📌 Tombony</h3>
+
+<ul>
+
+<li>Flexible kokoa.</li>
+
+<li>Afaka mikaroka ankavia na ankavanana.</li>
+
+<li>Modern kokoa noho ny RECHERCHEV.</li>
+
+</ul>
+
+`
+
+},
+
+
+/* =====================================================
+   3
+===================================================== */
+
+{
+
+fr:`
+
+<h2>3️⃣ Analyse de données</h2>
+
+<p>
+L'analyse de données permet d'interpréter
+les informations contenues dans un tableau.
+</p>
+
+<ul>
+
+<li>🔎 Filtres</li>
+
+<li>📊 Tableaux</li>
+
+<li>📈 Graphiques</li>
+
+<li>📌 Tri des données</li>
+
+</ul>
+
+<div class="info-box">
+
+🎯 Objectif : transformer les données
+en informations utiles.
+
+</div>
+
+`,
+
+ml:`
+
+<h2>3️⃣ Analyse de données</h2>
+
+<p>
+Ny analyse données dia manampy hahatakatra
+ny information ao anaty tableau.
+</p>
+
+<ul>
+
+<li>🔎 Filtres</li>
+
+<li>📊 Tableau</li>
+
+<li>📈 Graphique</li>
+
+<li>📌 Tri des données</li>
+
+</ul>
+
+<div class="info-box">
+
+🎯 Tanjona : mamadika données
+ho information ilaina.
+
+</div>
+
+`
+
+},
+
+
+/* =====================================================
+   4
+===================================================== */
+
+{
+
+fr:`
+
+<h2>4️⃣ Dashboard Excel</h2>
+
+<p>
+Un dashboard est un tableau de bord permettant
+de présenter plusieurs indicateurs sur une même page.
+</p>
+
+<h3>📊 Éléments possibles</h3>
+
+<ul>
+
+<li>Graphiques</li>
+
+<li>Indicateurs</li>
+
+<li>Tableaux</li>
+
+<li>Filtres</li>
+
+</ul>
+
+`,
+
+ml:`
+
+<h2>4️⃣ Dashboard Excel</h2>
+
+<p>
+Dashboard dia tableau iray ahitana
+indicateurs sy graphiques samihafa.
+</p>
+
+<h3>📊 Zavatra azo ampidirina</h3>
+
+<ul>
+
+<li>Graphiques</li>
+
+<li>Indicateurs</li>
+
+<li>Tableaux</li>
+
+<li>Filtres</li>
+
+</ul>
+
+`
+
+},
+
+
+/* =====================================================
+   5
+===================================================== */
+
+{
+
+fr:`
+
+<h2>5️⃣ Automatisation</h2>
+
+<p>
+Les formules Excel permettent d'automatiser
+de nombreux calculs.
+</p>
+
+<h3>📌 Exemple</h3>
+
+<div class="formule">
+
+=MOYENNE(B2:D2)
+
+</div>
+
+<div class="formule">
+
+=SI(E2>=10;"Admis";"Échec")
+
+</div>
+
+<p>
+Une modification des données peut automatiquement
+modifier le résultat.
+</p>
+
+`,
+
+ml:`
+
+<h2>5️⃣ Automatisation</h2>
+
+<p>
+Ny formule Excel dia afaka manao calcul
+automatique.
+</p>
+
+<h3>📌 Ohatra</h3>
+
+<div class="formule">
+
+=MOYENNE(B2:D2)
+
+</div>
+
+<div class="formule">
+
+=SI(E2>=10;"Admis";"Échec")
+
+</div>
+
+<p>
+Rehefa ovaina ny données dia afaka miova
+automatique koa ny résultat.
+
+</p>
+
+`
+
+},
+
+
+/* =====================================================
+   6
+===================================================== */
+
+{
+
+fr:`
+
+<h2>6️⃣ Projet réel</h2>
+
+<p>
+Créer un système complet de gestion
+des notes des élèves.
+</p>
+
+<h3>🎯 Éléments du projet</h3>
+
+<ul>
+
+<li>🧑‍🎓 Liste des élèves</li>
+
+<li>📚 Matières</li>
+
+<li>📝 Notes</li>
+
+<li>📊 Moyenne automatique</li>
+
+<li>📈 Graphique</li>
+
+<li>🏆 Résultat final</li>
+
+</ul>
+
+`,
+
+ml:`
+
+<h2>6️⃣ Projet tena izy</h2>
+
+<p>
+Mamorona système iray hitantanana
+ny naotin'ny mpianatra.
+</p>
+
+<h3>🎯 Zavatra ao amin'ny projet</h3>
+
+<ul>
+
+<li>🧑‍🎓 Lisitry ny mpianatra</li>
+
+<li>📚 Matières</li>
+
+<li>📝 Naoty</li>
+
+<li>📊 Moyenne automatique</li>
+
+<li>📈 Graphique</li>
+
+<li>🏆 Résultat final</li>
+
+</ul>
+
+`
+
+},
+
+
+/* =====================================================
+   7
+===================================================== */
+
+{
+
+fr:`
+
+<h2>7️⃣ Interprétation des résultats</h2>
+
+<p>
+L'objectif n'est pas seulement de calculer,
+mais également de comprendre les résultats.
+</p>
+
+<h3>📌 Exemple</h3>
+
+<ul>
+
+<li>
+Moyenne élevée → bon résultat.
+</li>
+
+<li>
+Moyenne faible → identifier les difficultés.
+</li>
+
+<li>
+Graphique → comparaison visuelle.
+</li>
+
+</ul>
+
+`,
+
+ml:`
+
+<h2>7️⃣ Famakafakana ny résultats</h2>
+
+<p>
+Tsy ny calcul ihany no zava-dehibe,
+fa ny fahatakarana ny résultat koa.
+</p>
+
+<ul>
+
+<li>
+Moyenne avo → résultat tsara.
+</li>
+
+<li>
+Moyenne ambany → tadiavo ny olana.
+</li>
+
+<li>
+Graphique → mampitaha mora kokoa.
+</li>
+
+</ul>
+
+`
+
+},
+
+
+/* =====================================================
+   8 QUIZ
+===================================================== */
+
+{
+
+fr:`
+
+<h2>8️⃣ Quiz Excel 1ère</h2>
+
+<p>
+<b>À quoi sert principalement un tableau
+croisé dynamique ?</b>
+</p>
+
+<button
+class="quiz-btn"
+onclick="answer(true)">
+
+✅ Analyser rapidement des données
+
+</button>
+
+<button
+class="quiz-btn"
+onclick="answer(false)">
+
+❌ Jouer à un jeu
+
+</button>
+
+<p id="res"></p>
+
+`,
+
+ml:`
+
+<h2>8️⃣ Quiz Excel 1ère</h2>
+
+<p>
+<b>Inona no tena ampiasana
+Tableau croisé dynamique ?</b>
+</p>
+
+<button
+class="quiz-btn"
+onclick="answer(true)">
+
+✅ Mamakafaka données haingana
+
+</button>
+
+<button
+class="quiz-btn"
+onclick="answer(false)">
+
+❌ Milalao jeu
+
+</button>
+
+<p id="res"></p>
+
+`
+
+}
+
+];
+
+
+/* =====================================================
+   SHOW
+===================================================== */
+
+function show(){
+
+document.getElementById("content").innerHTML =
+lessons[step][lang];
+
+updateProgress();
+
+document.getElementById("prevBtn").disabled =
+step === 0;
+
+document.getElementById("nextBtn").disabled =
+step === lessons.length - 1;
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+function updateProgress(){
+
+const total = lessons.length;
+
+const current = step + 1;
+
+const percent =
+Math.round((current / total) * 100);
+
+document.getElementById("stepText").innerText =
+"Étape " + current + " / " + total;
+
+document.getElementById("percentText").innerText =
+percent + "%";
+
+document.getElementById("progressBar").style.width =
+percent + "%";
+
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function next(){
+
+if(step < lessons.length - 1){
+
+step++;
+
+show();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+}
+
+
+/* =====================================================
+   PREVIOUS
+===================================================== */
+
+function prev(){
+
+if(step > 0){
+
+step--;
+
+show();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+function setLang(l){
+
+lang = l;
+
+localStorage.setItem(
+"excel1ereLang",
+l
+);
+
+document.documentElement.lang =
+l === "fr" ? "fr" : "mg";
+
+show();
+
+updateDate();
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+function answer(correct){
+
+const res =
+document.getElementById("res");
+
+if(correct){
+
+res.innerHTML =
+'<span class="correct">✔️ Marina ! Bonne réponse.</span>';
+
+}else{
+
+res.innerHTML =
+'<span class="wrong">❌ Diso ! Avereno vakiana ny lesona.</span>';
+
+}
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function updateDate(){
+
+const date =
+new Date();
+
+document.getElementById("dateFooter").innerText =
+date.toLocaleDateString("fr-FR");
+
+}
+
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
+
+window.addEventListener(
+"scroll",
+function(){
+
+const btn =
+document.getElementById("topBtn");
+
+if(window.scrollY > 300){
+
+btn.style.display="flex";
+
+}else{
+
+btn.style.display="none";
+
+}
+
+}
+);
+
+
+function topPage(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+show();
+
+updateDate();
+
+</script>
+
+</body>
+</html>

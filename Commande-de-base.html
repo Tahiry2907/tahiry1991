@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMD - Introduction & Commandes de base</title>
+<style>
+body{font-family:Arial; margin:0; background:#0f172a; color:white;}
+header{background:#1e293b; padding:15px; display:flex; justify-content:space-between;}
+button{padding:6px 10px; border:none; border-radius:5px; cursor:pointer;}
+.lang button{margin-left:5px;}
+.container{padding:20px;}
+.section{background:#1e293b; margin:15px 0; padding:15px; border-radius:10px;}
+h2{color:#38bdf8;}
+code{background:black; color:#00ff00; display:block; padding:5px;}
+.correct{color:lightgreen;}
+.wrong{color:red;}
+.terminal{background:black; height:200px; overflow:auto; padding:10px; border-radius:10px; font-family:monospace;}
+input{width:100%; padding:10px; background:black; color:#00ff00; border:none;}
+</style>
+</head>
+<body>
+
+<header>
+<div id="title">💻 CMD - Introduction</div>
+<div class="lang">
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('mg')">MG</button>
+</div>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2 id="defTitle">📌 Famaritana</h2>
+<p id="defText">CMD dia outil ahafahanao mifehy ordinateur amin'ny alalan'ny commandes.</p>
+</div>
+
+<div class="section">
+<h2>📂 Commandes de base</h2>
+<p>dir</p><code>dir</code>
+<p>cd</p><code>cd dossier</code>
+<p>mkdir</p><code>mkdir test</code>
+<p>del</p><code>del fichier.txt</code>
+<p>cls</p><code>cls</code>
+</div>
+
+<div class="section">
+<h2>💻 Simulateur</h2>
+<div class="terminal" id="terminal"></div>
+<input id="cmd" placeholder="Ecrire une commande..." onkeydown="run(event)">
+</div>
+
+<div class="section">
+<h2>🧠 Quiz</h2>
+<p>dir = ?</p>
+<button onclick="quiz(this,true)">Voir fichiers</button>
+<button onclick="quiz(this,false)">Supprimer</button>
+<p>mkdir = ?</p>
+<button onclick="quiz(this,true)">Créer dossier</button>
+<button onclick="quiz(this,false)">Voir fichiers</button>
+</div>
+
+<div class="section">
+<button onclick="nextPage()">➡ Page suivante : Commandes avancées</button>
+</div>
+
+</div>
+
+<script>
+// SIMULATEUR
+function run(e){
+if(e.key==="Enter"){
+let cmd=document.getElementById("cmd").value;
+let term=document.getElementById("terminal");
+term.innerHTML+="<div>> "+cmd+"</div>";
+
+if(cmd==="dir"){
+term.innerHTML+="<div>Documents Images test.txt note.doc</div>";
+}else if(cmd.startsWith("cd")){
+term.innerHTML+="<div>Dossier changé</div>";
+}else if(cmd.startsWith("mkdir")){
+term.innerHTML+="<div>Dossier créé</div>";
+}else if(cmd.startsWith("del")){
+term.innerHTML+="<div>Fichier supprimé</div>";
+}else if(cmd==="cls"){
+term.innerHTML="";
+}else{
+term.innerHTML+="<div>Commande inconnue</div>";
+}
+document.getElementById("cmd").value="";
+term.scrollTop=term.scrollHeight;
+}
+}
+
+// QUIZ
+function quiz(btn,good){
+if(good){btn.classList.add("correct");}else{btn.classList.add("wrong");}
+}
+
+// LANGUE
+function setLang(lang){
+if(lang==="fr"){
+document.getElementById("title").innerHTML="💻 CMD - Introduction";
+document.getElementById("defTitle").innerHTML="📌 Définition";
+document.getElementById("defText").innerHTML="CMD est un outil pour contrôler l'ordinateur via des commandes.";
+}
+if(lang==="mg"){
+document.getElementById("title").innerHTML="💻 CMD - Fampidirana";
+document.getElementById("defTitle").innerHTML="📌 Famaritana";
+document.getElementById("defText").innerHTML="CMD dia outil ahafahanao mifehy ordinateur amin'ny alalan'ny commandes.";
+}
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Gestion des Élèves | InfoPro</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(135deg,#eef4ff,#f8fafc);
+    color:#172033;
+}
+
+header{
+    background:linear-gradient(135deg,#062b63,#0d47a1,#00838f);
+    color:white;
+    padding:22px 15px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+header p{
+    margin:8px 0 0;
+    opacity:.9;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:18px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:10px;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.25);
+    font-weight:bold;
+}
+
+nav a:hover{
+    background:white;
+    color:#0d47a1;
+}
+
+.container{
+    max-width:1500px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(15,23,42,.08);
+}
+
+.card h2{
+    margin-top:0;
+    color:#0d47a1;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+input,
+select{
+    width:100%;
+    padding:11px;
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    font-size:14px;
+    background:white;
+}
+
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#1976d2;
+    box-shadow:0 0 0 3px rgba(25,118,210,.12);
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:18px;
+}
+
+button,
+.file-button{
+    border:0;
+    padding:11px 15px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+button:hover,
+.file-button:hover{
+    transform:translateY(-1px);
+    opacity:.92;
+}
+
+.primary{background:#1976d2;color:white}
+.success{background:#2e7d32;color:white}
+.warning{background:#f9a825;color:white}
+.danger{background:#c62828;color:white}
+.dark{background:#263238;color:white}
+.info{background:#00838f;color:white}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.stat{
+    background:white;
+    padding:17px;
+    border-radius:14px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.stat strong{
+    display:block;
+    font-size:26px;
+    color:#0d47a1;
+    margin-bottom:5px;
+}
+
+.table-wrap{
+    overflow:auto;
+    border-radius:12px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1000px;
+}
+
+th,
+td{
+    border:1px solid #cbd5e1;
+    padding:9px;
+    text-align:center;
+}
+
+thead th{
+    background:#0d47a1;
+    color:white;
+}
+
+tbody tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tbody tr:hover{
+    background:#e3f2fd;
+}
+
+.nom{
+    text-align:left;
+    font-weight:bold;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.garcon{
+    background:#e3f2fd;
+    color:#1565c0;
+}
+
+.fille{
+    background:#fce4ec;
+    color:#ad1457;
+}
+
+.status{
+    margin-top:15px;
+    padding:12px;
+    background:#e8f5e9;
+    color:#1b5e20;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.storage-box{
+    background:#f8fafc;
+    border:2px dashed #90a4ae;
+    border-radius:14px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.storage-content{
+    display:none;
+    margin-top:15px;
+    background:#172033;
+    color:#d7f9ff;
+    padding:15px;
+    border-radius:10px;
+    max-height:350px;
+    overflow:auto;
+    white-space:pre-wrap;
+    font-family:monospace;
+    font-size:12px;
+}
+
+.storage-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:12px;
+}
+
+.storage-item{
+    background:white;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    border:1px solid #ddd;
+}
+
+.storage-item strong{
+    display:block;
+    color:#0d47a1;
+    font-size:20px;
+}
+
+.empty{
+    padding:25px;
+    text-align:center;
+    color:#64748b;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#64748b;
+}
+
+@media(max-width:1100px){
+
+    .form-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stats{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:650px){
+
+    .container{
+        padding:10px;
+    }
+
+    .form-grid,
+    .stats,
+    .storage-info{
+        grid-template-columns:1fr;
+    }
+
+    header h1{
+        font-size:22px;
+    }
+
+    .card{
+        padding:14px;
+    }
+}
+
+@media print{
+
+    body{
+        background:white;
+    }
+
+    header,
+    nav,
+    .no-print,
+    footer{
+        display:none!important;
+    }
+
+    .container{
+        padding:0;
+    }
+
+    .card{
+        box-shadow:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>👨‍🎓 GESTION DES ÉLÈVES</h1>
+
+<p>
+InfoPro — Gestion professionnelle des classes
+</p>
+
+<nav>
+
+<a href="index.html">🏠 Accueil</a>
+
+<a href="cahier-notes.html">📊 Cahier de notes</a>
+
+<a href="plan-classe.html">🏫 Plan de classe</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<!-- FORMULAIRE -->
+
+<div class="card no-print">
+
+<h2>➕ Ajouter / Modifier un élève</h2>
+
+<div class="form-grid">
+
+<div>
+<label>Matricule</label>
+<input id="matricule" placeholder="Ex : INF-001">
+</div>
+
+<div>
+<label>Nom</label>
+<input id="nom" placeholder="Nom">
+</div>
+
+<div>
+<label>Prénom</label>
+<input id="prenom" placeholder="Prénom">
+</div>
+
+<div>
+<label>Sexe</label>
+
+<select id="sexe">
+
+<option value="">-- Choisir --</option>
+<option value="M">👦 Garçon</option>
+<option value="F">👧 Fille</option>
+
+</select>
+</div>
+
+<div>
+
+<label>Classe</label>
+
+<select id="classe">
+
+<option>6èmeI</option>
+<option>6èmeII</option>
+<option>6èmeIII</option>
+
+<option>5èmeI</option>
+<option>5èmeII</option>
+
+<option>4èmeI</option>
+<option>4èmeII</option>
+
+<option>3èmeI</option>
+<option>3èmeII</option>
+
+<option>2ndI</option>
+<option>2ndII</option>
+
+<option>1èreL</option>
+<option>1èreS</option>
+
+<option>TL</option>
+<option>TS</option>
+
+<option>7èmeI</option>
+<option>7èmeII</option>
+
+<option>8èmeI</option>
+<option>8èmeII</option>
+
+<option>9èmeI</option>
+<option>9èmeII</option>
+
+<option>10èmeI</option>
+<option>10èmeII</option>
+
+<option>11èmeI</option>
+<option>11èmeII</option>
+
+<option>12èmeI</option>
+<option>12èmeII</option>
+
+<option>MaterneleI</option>
+<option>MaterneleII</option>
+
+<option>7èmeMLV</option>
+<option>8èmeMLV</option>
+<option>9èmeMLV</option>
+<option>10èmeMLV</option>
+<option>11èmeMLV</option>
+<option>12èmeMLV</option>
+<option>MaterneleMLV</option>
+
+</select>
+
+</div>
+
+<div>
+<label>Date de naissance</label>
+<input type="date" id="naissance">
+</div>
+
+<div>
+<label>Téléphone parent</label>
+<input id="telephone" placeholder="Téléphone">
+</div>
+
+<div>
+<label>Observation</label>
+<input id="observation" placeholder="Observation">
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button class="primary"
+onclick="enregistrerEleve()"
+id="btnEnregistrer">
+➕ Ajouter l'élève
+</button>
+
+<button class="warning"
+onclick="annulerModification()">
+↩️ Annuler
+</button>
+
+<button class="success"
+onclick="sauvegarder()">
+💾 Sauvegarder
+</button>
+
+<button class="info"
+onclick="ouvrirStorage()">
+📂 Ouvrir Storage
+</button>
+
+<button class="dark"
+onclick="exporterJSON()">
+⬇️ Exporter JSON
+</button>
+
+<label class="file-button info">
+
+⬆️ Importer JSON
+
+<input
+type="file"
+accept=".json"
+onchange="importerJSON(event)"
+hidden>
+
+</label>
+
+<button class="warning"
+onclick="window.print()">
+🖨️ Imprimer
+</button>
+
+</div>
+
+<div id="status" class="status">
+💾 Données sauvegardées automatiquement sur cet appareil.
+</div>
+
+<!-- STORAGE -->
+
+<div class="storage-box">
+
+<h3>📂 Storage local InfoPro</h3>
+
+<p>
+Ity no toerana itahirizan'ny navigateur ny données an'ny site.
+</p>
+
+<div class="buttons">
+
+<button class="info"
+onclick="ouvrirStorage()">
+📂 Ouvrir Storage
+</button>
+
+<button class="dark"
+onclick="actualiserStorage()">
+🔄 Actualiser
+</button>
+
+<button class="danger"
+onclick="viderStorageEleves()">
+🗑️ Vider les élèves
+</button>
+
+</div>
+
+<div class="storage-info">
+
+<div class="storage-item">
+<strong id="storageNombre">0</strong>
+Élèves
+</div>
+
+<div class="storage-item">
+<strong id="storageTaille">0</strong>
+Caractères
+</div>
+
+<div class="storage-item">
+<strong id="storageClasses">0</strong>
+Classes
+</div>
+
+</div>
+
+<pre id="storageContent"
+class="storage-content"></pre>
+
+</div>
+
+</div>
+
+
+<!-- RECHERCHE -->
+
+<div class="card no-print">
+
+<h2>🔎 Recherche et filtre</h2>
+
+<div class="form-grid">
+
+<div>
+
+<label>Rechercher</label>
+
+<input
+id="recherche"
+placeholder="Nom, prénom, matricule..."
+oninput="afficherEleves()">
+
+</div>
+
+<div>
+
+<label>Filtrer par classe</label>
+
+<select
+id="filtreClasse"
+onchange="afficherEleves()">
+
+<option value="">
+Toutes les classes
+</option>
+
+<option>6èmeI</option>
+<option>6èmeII</option>
+<option>6èmeIII</option>
+
+<option>5èmeI</option>
+<option>5èmeII</option>
+
+<option>4èmeI</option>
+<option>4èmeII</option>
+
+<option>3èmeI</option>
+<option>3èmeII</option>
+
+<option>2ndI</option>
+<option>2ndII</option>
+
+<option>1èreL</option>
+<option>1èreS</option>
+
+<option>TL</option>
+<option>TS</option>
+
+<option>7èmeI</option>
+<option>7èmeII</option>
+
+<option>8èmeI</option>
+<option>8èmeII</option>
+
+<option>9èmeI</option>
+<option>9èmeII</option>
+
+<option>10èmeI</option>
+<option>10èmeII</option>
+
+<option>11èmeI</option>
+<option>11èmeII</option>
+
+<option>12èmeI</option>
+<option>12èmeII</option>
+
+<option>MaterneleI</option>
+<option>MaterneleII</option>
+
+<option>7èmeMLV</option>
+<option>8èmeMLV</option>
+<option>9èmeMLV</option>
+<option>10èmeMLV</option>
+<option>11èmeMLV</option>
+<option>12èmeMLV</option>
+<option>MaterneleMLV</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STATISTIQUES -->
+
+<div class="stats">
+
+<div class="stat">
+<strong id="totalEleves">0</strong>
+Élèves affichés
+</div>
+
+<div class="stat">
+<strong id="totalGeneral">0</strong>
+Total élèves
+</div>
+
+<div class="stat">
+<strong id="totalGarcons">0</strong>
+Garçons
+</div>
+
+<div class="stat">
+<strong id="totalFilles">0</strong>
+Filles
+</div>
+
+<div class="stat">
+<strong id="totalClasses">0</strong>
+Classes
+</div>
+
+</div>
+
+
+<!-- LISTE -->
+
+<div class="card">
+
+<h2>📋 Liste des élèves</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>N°</th>
+<th>Matricule</th>
+<th>Nom & Prénom</th>
+<th>Sexe</th>
+<th>Classe</th>
+<th>Date naissance</th>
+<th>Téléphone parent</th>
+<th>Observation</th>
+<th class="no-print">Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="listeEleves"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+💻 Mr Tahiry - Informatique 👨‍🏫
+</footer>
+
+
+<script>
+
+const STORAGE_KEY="infoProEleves";
+
+let eleves=[];
+let indexModification=-1;
+
+
+/* ================= CHARGER ================= */
+
+function chargerDonnees(){
+
+    try{
+
+        const data=
+            localStorage.getItem(STORAGE_KEY);
+
+        eleves=data
+            ? JSON.parse(data)
+            : [];
+
+        if(!Array.isArray(eleves))
+            eleves=[];
+
+    }catch(e){
+
+        eleves=[];
+
+    }
+
+    afficherEleves();
+    actualiserStorage();
+}
+
+
+/* ================= SAUVEGARDER ================= */
+
+function sauvegarder(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(eleves)
+    );
+
+    document.getElementById("status")
+    .textContent=
+    "💾 Données sauvegardées : "+
+    new Date().toLocaleString();
+
+    actualiserStorage();
+}
+
+
+/* ================= MATRICULE ================= */
+
+function genererMatricule(){
+
+    let numero=1;
+
+    let matricule;
+
+    do{
+
+        matricule=
+            "INF-"+
+            String(numero).padStart(3,"0");
+
+        numero++;
+
+    }while(
+        eleves.some(
+            e=>e.matricule===matricule
+        )
+    );
+
+    return matricule;
+}
+
+
+/* ================= ENREGISTRER ================= */
+
+function enregistrerEleve(){
+
+    const matricule=
+        document.getElementById("matricule")
+        .value.trim();
+
+    const nom=
+        document.getElementById("nom")
+        .value.trim();
+
+    const prenom=
+        document.getElementById("prenom")
+        .value.trim();
+
+    const sexe=
+        document.getElementById("sexe")
+        .value;
+
+    const classe=
+        document.getElementById("classe")
+        .value;
+
+    const naissance=
+        document.getElementById("naissance")
+        .value;
+
+    const telephone=
+        document.getElementById("telephone")
+        .value.trim();
+
+    const observation=
+        document.getElementById("observation")
+        .value.trim();
+
+
+    if(!nom){
+
+        alert("❌ Veuillez entrer le nom.");
+        return;
+
+    }
+
+    if(!prenom){
+
+        alert("❌ Veuillez entrer le prénom.");
+        return;
+
+    }
+
+    if(!sexe){
+
+        alert("❌ Veuillez choisir le sexe.");
+        return;
+
+    }
+
+
+    const matriculeFinal=
+        matricule || genererMatricule();
+
+
+    if(indexModification>=0){
+
+        const ancien=
+            eleves[indexModification];
+
+        eleves[indexModification]={
+
+            ...ancien,
+
+            matricule:matriculeFinal,
+            nom,
+            prenom,
+            sexe,
+            classe,
+            naissance,
+            telephone,
+            observation
+
+        };
+
+        alert("✅ Élève modifié.");
+
+    }else{
+
+        const existe=
+            eleves.some(
+                e=>e.matricule===matriculeFinal
+            );
+
+        if(existe){
+
+            alert(
+                "❌ Ce matricule existe déjà."
+            );
+
+            return;
+        }
+
+        eleves.push({
+
+            matricule:matriculeFinal,
+            nom,
+            prenom,
+            sexe,
+            classe,
+            naissance,
+            telephone,
+            observation
+
+        });
+
+        alert("✅ Élève ajouté avec succès.");
+
+    }
+
+    sauvegarder();
+    viderFormulaire();
+    afficherEleves();
+}
+
+
+/* ================= AFFICHER ================= */
+
+function afficherEleves(){
+
+    const tbody=
+        document.getElementById("listeEleves");
+
+    tbody.innerHTML="";
+
+    const recherche=
+        document.getElementById("recherche")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const filtreClasse=
+        document.getElementById("filtreClasse")
+        .value;
+
+    const filtres=
+        eleves.filter(e=>{
+
+            const texte=(
+
+                (e.matricule||"")+" "+
+                (e.nom||"")+" "+
+                (e.prenom||"")+" "+
+                (e.classe||"")
+
+            ).toLowerCase();
+
+            const rechercheOK=
+                !recherche ||
+                texte.includes(recherche);
+
+            const classeOK=
+                !filtreClasse ||
+                e.classe===filtreClasse;
+
+            return rechercheOK && classeOK;
+
+        });
+
+
+    if(filtres.length===0){
+
+        tbody.innerHTML=`
+        <tr>
+            <td colspan="9" class="empty">
+                👨‍🎓 Aucun élève trouvé.
+            </td>
+        </tr>`;
+
+    }
+
+
+    filtres.forEach((e,index)=>{
+
+        const tr=
+            document.createElement("tr");
+
+        const sexeBadge=
+            e.sexe==="F"
+
+            ?
+
+            `<span class="badge fille">
+                👧 Fille
+            </span>`
+
+            :
+
+            `<span class="badge garcon">
+                👦 Garçon
+            </span>`;
+
+
+        tr.innerHTML=`
+
+        <td>${index+1}</td>
+
+        <td>
+            <strong>
+            ${securiser(e.matricule)}
+            </strong>
+        </td>
+
+        <td class="nom">
+            ${securiser(e.nom)}
+            ${securiser(e.prenom)}
+        </td>
+
+        <td>${sexeBadge}</td>
+
+        <td>
+            <strong>
+            ${securiser(e.classe)}
+            </strong>
+        </td>
+
+        <td>
+            ${e.naissance
+                ? securiser(e.naissance)
+                : "-"}
+        </td>
+
+        <td>
+            ${e.telephone
+                ? securiser(e.telephone)
+                : "-"}
+        </td>
+
+        <td>
+            ${e.observation
+                ? securiser(e.observation)
+                : "-"}
+        </td>
+
+        <td class="no-print">
+
+            <button
+                class="warning"
+                onclick="modifierEleve(${eleves.indexOf(e)})">
+                ✏️
+            </button>
+
+            <button
+                class="danger"
+                onclick="supprimerEleve(${eleves.indexOf(e)})">
+                🗑️
+            </button>
+
+        </td>
+
+        `;
+
+        tbody.appendChild(tr);
+
+    });
+
+
+    document.getElementById("totalEleves")
+        .textContent=filtres.length;
+
+    document.getElementById("totalGeneral")
+        .textContent=eleves.length;
+
+    document.getElementById("totalGarcons")
+        .textContent=
+        eleves.filter(e=>e.sexe==="M").length;
+
+    document.getElementById("totalFilles")
+        .textContent=
+        eleves.filter(e=>e.sexe==="F").length;
+
+    document.getElementById("totalClasses")
+        .textContent=
+        new Set(
+            eleves.map(e=>e.classe)
+        ).size;
+
+}
+
+
+/* ================= SECURITE ================= */
+
+function securiser(txt){
+
+    return String(txt??"")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* ================= MODIFIER ================= */
+
+function modifierEleve(index){
+
+    const e=eleves[index];
+
+    if(!e)return;
+
+    indexModification=index;
+
+    document.getElementById("matricule").value=
+        e.matricule||"";
+
+    document.getElementById("nom").value=
+        e.nom||"";
+
+    document.getElementById("prenom").value=
+        e.prenom||"";
+
+    document.getElementById("sexe").value=
+        e.sexe||"";
+
+    document.getElementById("classe").value=
+        e.classe||"6èmeI";
+
+    document.getElementById("naissance").value=
+        e.naissance||"";
+
+    document.getElementById("telephone").value=
+        e.telephone||"";
+
+    document.getElementById("observation").value=
+        e.observation||"";
+
+    document.getElementById("btnEnregistrer")
+        .textContent=
+        "💾 Enregistrer modification";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* ================= ANNULER ================= */
+
+function annulerModification(){
+
+    indexModification=-1;
+
+    viderFormulaire();
+
+}
+
+
+/* ================= VIDER ================= */
+
+function viderFormulaire(){
+
+    document.getElementById("matricule").value="";
+    document.getElementById("nom").value="";
+    document.getElementById("prenom").value="";
+    document.getElementById("sexe").value="";
+    document.getElementById("naissance").value="";
+    document.getElementById("telephone").value="";
+    document.getElementById("observation").value="";
+
+    indexModification=-1;
+
+    document.getElementById("btnEnregistrer")
+        .textContent=
+        "➕ Ajouter l'élève";
+}
+
+
+/* ================= SUPPRIMER ================= */
+
+function supprimerEleve(index){
+
+    const e=eleves[index];
+
+    if(!e)return;
+
+    if(!confirm(
+        "⚠️ Supprimer définitivement :\n\n"+
+        e.nom+" "+e.prenom+
+        "\n\nCette action est irréversible."
+    ))return;
+
+    eleves.splice(index,1);
+
+    sauvegarder();
+    afficherEleves();
+
+}
+
+
+/* ================= EXPORT ================= */
+
+function exporterJSON(){
+
+    const blob=
+        new Blob(
+            [
+                JSON.stringify(
+                    eleves,
+                    null,
+                    2
+                )
+            ],
+            {type:"application/json"}
+        );
+
+    const url=
+        URL.createObjectURL(blob);
+
+    const a=
+        document.createElement("a");
+
+    a.href=url;
+    a.download=
+        "infoPro-eleves.json";
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/* ================= IMPORT ================= */
+
+function importerJSON(event){
+
+    const fichier=
+        event.target.files[0];
+
+    if(!fichier)return;
+
+    const reader=
+        new FileReader();
+
+    reader.onload=function(){
+
+        try{
+
+            const data=
+                JSON.parse(reader.result);
+
+            if(!Array.isArray(data)){
+
+                alert(
+                    "❌ Format JSON incorrect."
+                );
+
+                return;
+            }
+
+            let ajoutes=0;
+
+            data.forEach(nouvelEleve=>{
+
+                if(!nouvelEleve.matricule)
+                    nouvelEleve.matricule=
+                        genererMatricule();
+
+                const existe=
+                    eleves.some(
+                        e=>
+                        e.matricule===
+                        nouvelEleve.matricule
+                    );
+
+                if(!existe){
+
+                    eleves.push(
+                        nouvelEleve
+                    );
+
+                    ajoutes++;
+
+                }
+
+            });
+
+            sauvegarder();
+            afficherEleves();
+
+            alert(
+                "✅ Importation terminée.\n\n"+
+                ajoutes+
+                " élève(s) ajouté(s)."
+            );
+
+        }catch(e){
+
+            alert(
+                "❌ Fichier JSON invalide."
+            );
+
+        }
+
+    };
+
+    reader.readAsText(fichier);
+
+    event.target.value="";
+
+}
+
+
+/* ================= OUVRIR STORAGE ================= */
+
+function ouvrirStorage(){
+
+    const zone=
+        document.getElementById(
+            "storageContent"
+        );
+
+    if(
+        zone.style.display==="block"
+    ){
+
+        zone.style.display="none";
+        return;
+
+    }
+
+    zone.textContent=
+        JSON.stringify(
+            eleves,
+            null,
+            2
+        );
+
+    zone.style.display="block";
+
+    actualiserStorage();
+
+}
+
+
+/* ================= STORAGE INFO ================= */
+
+function actualiserStorage(){
+
+    const data=
+        localStorage.getItem(
+            STORAGE_KEY
+        ) || "";
+
+    let dataJSON=[];
+
+    try{
+
+        dataJSON=
+            data
+            ? JSON.parse(data)
+            : [];
+
+    }catch(e){
+
+        dataJSON=[];
+
+    }
+
+    document.getElementById(
+        "storageNombre"
+    ).textContent=
+        dataJSON.length;
+
+    document.getElementById(
+        "storageTaille"
+    ).textContent=
+        data.length;
+
+    document.getElementById(
+        "storageClasses"
+    ).textContent=
+        new Set(
+            dataJSON.map(
+                e=>e.classe
+            )
+        ).size;
+
+    const zone=
+        document.getElementById(
+            "storageContent"
+        );
+
+    if(
+        zone.style.display==="block"
+    ){
+
+        zone.textContent=
+            JSON.stringify(
+                dataJSON,
+                null,
+                2
+            );
+
+    }
+
+}
+
+
+/* ================= VIDER STORAGE ================= */
+
+function viderStorageEleves(){
+
+    if(!confirm(
+        "⚠️ ATTENTION\n\n"+
+        "Cela supprimera TOUS les élèves "+
+        "enregistrés dans infoProEleves.\n\n"+
+        "Continuer ?"
+    ))return;
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+    eleves=[];
+
+    afficherEleves();
+    actualiserStorage();
+
+    document.getElementById("status")
+        .textContent=
+        "🗑️ Les données élèves ont été supprimées.";
+
+    alert(
+        "✅ Storage des élèves vidé."
+    );
+
+}
+
+
+/* ================= DEMARRAGE ================= */
+
+chargerDonnees();
+
+</script>
+
+</body>
+</html>

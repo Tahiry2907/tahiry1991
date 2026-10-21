@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Emploi du temps - Informatique</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eef4ff, #f8fbff);
+    color: #222;
+    padding: 20px;
+}
+
+/* ===== TITRE ===== */
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 28px;
+    color: #164a8a;
+    margin-bottom: 6px;
+}
+
+.header p {
+    color: #666;
+    font-size: 15px;
+}
+
+/* ===== CONTENEUR ===== */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* ===== BOUTONS ===== */
+
+.actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    border: none;
+    padding: 11px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.btn-save {
+    background: #198754;
+    color: white;
+}
+
+.btn-print {
+    background: #0d6efd;
+    color: white;
+}
+
+.btn-reset {
+    background: #dc3545;
+    color: white;
+}
+
+/* ===== TABLE ===== */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+    text-align: center;
+    overflow: hidden;
+}
+
+th,
+td {
+    border: 2px solid white;
+    padding: 13px 8px;
+    min-width: 120px;
+}
+
+thead th {
+    background: #164a8a;
+    color: white;
+    font-size: 16px;
+}
+
+thead th:first-child {
+    background: #102f58;
+}
+
+.time {
+    background: #e9eef5;
+    color: #183b61;
+    font-weight: bold;
+    width: 110px;
+}
+
+/* ===== CELLULES ===== */
+
+td.editable {
+    cursor: text;
+    font-weight: bold;
+    min-height: 50px;
+    transition: 0.2s;
+}
+
+td.editable:hover {
+    filter: brightness(0.95);
+    outline: 3px solid #ffc107;
+}
+
+/* Couleurs classes */
+
+.c-3 {
+    background: #dbeafe;
+    color: #075985;
+}
+
+.c-4 {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.c-5 {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.c-6 {
+    background: #ede9fe;
+    color: #5b21b6;
+}
+
+.c-1 {
+    background: #fce7f3;
+    color: #9d174d;
+}
+
+.c-2 {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.c-terminale {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ===== LEGENDE ===== */
+
+.legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.legend span {
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.l3 { background:#dbeafe; color:#075985; }
+.l4 { background:#d1fae5; color:#065f46; }
+.l5 { background:#fef3c7; color:#92400e; }
+.l6 { background:#ede9fe; color:#5b21b6; }
+.l1 { background:#fce7f3; color:#9d174d; }
+.l2 { background:#ffedd5; color:#9a3412; }
+.lt { background:#fee2e2; color:#991b1b; }
+
+/* ===== MESSAGE ===== */
+
+.message {
+    text-align: center;
+    margin-top: 15px;
+    color: #198754;
+    font-weight: bold;
+    min-height: 22px;
+}
+
+/* ===== FOOTER ===== */
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    font-size: 14px;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    .header h1 {
+        font-size: 21px;
+    }
+
+    .header p {
+        font-size: 13px;
+    }
+
+    button {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+}
+
+/* ===== IMPRESSION ===== */
+
+@media print {
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .container {
+        box-shadow: none;
+        max-width: 100%;
+    }
+
+    .actions,
+    .message {
+        display: none;
+    }
+
+    table {
+        min-width: 100%;
+    }
+
+    .header h1 {
+        color: black;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>📅 EMPLOI DU TEMPS</h1>
+
+    <p>
+        <strong>Discipline :</strong> Informatique
+        &nbsp; | &nbsp;
+        <strong>Enseignant :</strong> M. Tahiry
+    </p>
+
+</div>
+
+
+<div class="container">
+
+    <!-- BOUTONS -->
+
+    <div class="actions">
+
+        <button class="btn-save" onclick="sauvegarder()">
+            💾 Enregistrer
+        </button>
+
+        <button class="btn-print" onclick="window.print()">
+            🖨️ Imprimer
+        </button>
+
+        <button class="btn-reset" onclick="reinitialiser()">
+            🔄 Réinitialiser
+        </button>
+
+    </div>
+
+
+    <!-- TABLEAU -->
+
+    <div class="table-wrapper">
+
+        <table id="emploiTable">
+
+            <thead>
+
+                <tr>
+                    <th>⏰ Heure</th>
+                    <th>📘 Lundi</th>
+                    <th>📗 Mardi</th>
+                    <th>📙 Mercredi</th>
+                    <th>📕 Jeudi</th>
+                    <th>📒 Vendredi</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td class="time">07h – 08h</td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable c-3" contenteditable="true">3II</td>
+
+                    <td class="editable c-5" contenteditable="true">5I</td>
+
+                    <td class="editable c-6" contenteditable="true">6C</td>
+                </tr>
+
+
+                <tr>
+                    <td class="time">08h – 09h</td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable c-3" contenteditable="true">3II</td>
+
+                    <td class="editable c-5" contenteditable="true">5I</td>
+
+                    <td class="editable c-6" contenteditable="true">6C</td>
+                </tr>
+
+
+                <tr>
+                    <td class="time">09h – 10h</td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable c-4" contenteditable="true">4I</td>
+
+                    <td class="editable c-6" contenteditable="true">6II</td>
+
+                    <td class="editable" contenteditable="true"></td>
+                </tr>
+
+
+                <tr>
+                    <td class="time">10h – 11h</td>
+
+                    <td class="editable c-1" contenteditable="true">1S</td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable c-4" contenteditable="true">4I</td>
+
+                    <td class="editable c-6" contenteditable="true">6II</td>
+
+                    <td class="editable c-3" contenteditable="true">3I</td>
+                </tr>
+
+
+                <tr>
+                    <td class="time">11h – 12h</td>
+
+                    <td class="editable c-1" contenteditable="true">1S</td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable c-terminale" contenteditable="true">TL</td>
+
+                    <td class="editable c-terminale" contenteditable="true">TS</td>
+
+                    <td class="editable c-3" contenteditable="true">3I</td>
+                </tr>
+
+
+                <!-- PAUSE -->
+
+                <tr>
+                    <td class="time">12h – 14h</td>
+
+                    <td colspan="5"
+                        style="
+                        background:#f1f3f5;
+                        color:#777;
+                        font-weight:bold;
+                        ">
+                        🍽️ PAUSE
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="time">14h – 15h</td>
+
+                    <td class="editable c-4" contenteditable="true">4II</td>
+
+                    <td class="editable c-2" contenteditable="true">2I</td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable c-5" contenteditable="true">5I</td>
+                </tr>
+
+
+                <tr>
+                    <td class="time">15h – 16h</td>
+
+                    <td class="editable c-4" contenteditable="true">4II</td>
+
+                    <td class="editable c-2" contenteditable="true">2I</td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable c-6" contenteditable="true">6III</td>
+
+                    <td class="editable c-5" contenteditable="true">5I</td>
+                </tr>
+
+
+                <tr>
+                    <td class="time">16h – 17h</td>
+
+                    <td class="editable c-1" contenteditable="true">1L</td>
+
+                    <td class="editable c-2" contenteditable="true">2II</td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable c-6" contenteditable="true">6III</td>
+
+                    <td class="editable" contenteditable="true"></td>
+                </tr>
+
+
+                <tr>
+                    <td class="time">17h – 18h</td>
+
+                    <td class="editable c-1" contenteditable="true">1L</td>
+
+                    <td class="editable c-2" contenteditable="true">2II</td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable" contenteditable="true"></td>
+
+                    <td class="editable" contenteditable="true"></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- LEGENDE -->
+
+    <div class="legend">
+
+        <span class="l6">6ème</span>
+        <span class="l5">5ème</span>
+        <span class="l4">4ème</span>
+        <span class="l3">3ème</span>
+        <span class="l2">2nde</span>
+        <span class="l1">1ère</span>
+        <span class="lt">Terminale</span>
+
+    </div>
+
+
+    <div id="message" class="message"></div>
+
+
+    <div class="footer">
+        💻 Plateforme pédagogique informatique —
+        <strong>Mr Tahiry</strong>
+        <br>
+        © 2026
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   SAUVEGARDE EMPLOI DU TEMPS
+===================================== */
+
+function sauvegarder() {
+
+    const cellules =
+        document.querySelectorAll("#emploiTable .editable");
+
+    const donnees = [];
+
+    cellules.forEach((cellule) => {
+
+        donnees.push({
+            texte: cellule.innerText,
+            classe: cellule.className
+        });
+
+    });
+
+    localStorage.setItem(
+        "emploiDuTempsTahiry",
+        JSON.stringify(donnees)
+    );
+
+    afficherMessage("✅ Emploi du temps enregistré !");
+
+}
+
+
+/* =====================================
+   CHARGER LES DONNÉES
+===================================== */
+
+function charger() {
+
+    const sauvegarde =
+        localStorage.getItem("emploiDuTempsTahiry");
+
+    if (!sauvegarde) return;
+
+    const donnees = JSON.parse(sauvegarde);
+
+    const cellules =
+        document.querySelectorAll("#emploiTable .editable");
+
+    cellules.forEach((cellule, index) => {
+
+        if (donnees[index]) {
+
+            cellule.innerText =
+                donnees[index].texte;
+
+            cellule.className =
+                donnees[index].classe;
+
+        }
+
+    });
+
+}
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+function afficherMessage(texte) {
+
+    const message =
+        document.getElementById("message");
+
+    message.innerText = texte;
+
+    setTimeout(() => {
+
+        message.innerText = "";
+
+    }, 2500);
+
+}
+
+
+/* =====================================
+   RÉINITIALISER
+===================================== */
+
+function reinitialiser() {
+
+    const confirmation =
+        confirm(
+            "Voulez-vous vraiment réinitialiser l'emploi du temps ?"
+        );
+
+    if (!confirmation) return;
+
+    localStorage.removeItem(
+        "emploiDuTempsTahiry"
+    );
+
+    location.reload();
+
+}
+
+
+/* =====================================
+   CHARGEMENT AUTOMATIQUE
+===================================== */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    charger
+);
+
+
+/* =====================================
+   SAUVEGARDE AVEC CTRL + S
+===================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            (event.ctrlKey || event.metaKey)
+            && event.key.toLowerCase() === "s"
+        ) {
+
+            event.preventDefault();
+
+            sauvegarder();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

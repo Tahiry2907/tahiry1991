@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel 2nde</title>
+
+<style>
+body {font-family: Arial; margin:0; background:#f0f4f8;}
+
+header {
+  background:#6a1b9a;
+  color:white;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.lang button {
+  background:white;
+  color:#6a1b9a;
+  border:none;
+  padding:5px 10px;
+  margin-left:5px;
+  border-radius:5px;
+}
+
+.container {padding:20px;}
+
+.card {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.nav {display:flex; justify-content:space-between;}
+
+button {
+  background:#6a1b9a;
+  color:white;
+  border:none;
+  padding:10px;
+  border-radius:5px;
+}
+
+.correct{color:green;}
+.wrong{color:red;}
+.card i {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: hsl(0, 80%, 53%);
+}
+.footer-pro h2 {
+  margin-bottom: 10px;
+  color: #00e5ff;
+}
+
+.footer-pro p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+.footer-pro {
+  background: linear-gradient(270deg, #141e30, #243b55);
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+  border-radius: 15px 15px 0 0;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* effet lumière animé */
+.footer-pro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shine 5s infinite;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>📊 Excel 2nde</h2>
+<div class="lang">
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('ml')">ML</button>
+</div>
+</header>
+
+<div class="container">
+<div class="card" id="content"></div>
+
+<div class="nav">
+<button onclick="prev()">⬅️</button>
+<button onclick="next()">➡️</button>
+</div>
+</div>
+
+<script>
+
+let lang="fr";
+let step=0;
+
+const lessons=[
+
+// 1
+{
+fr:`<h2>Fonction SI imbriquée</h2>
+<p>=SI(A1>=10;"Admis";SI(A1>=8;"Rattrapage";"Echec"))</p>
+<p>Permet plusieurs conditions.</p>`,
+
+ml:`<h2>SI imbriqué</h2>
+<p>Condition maro ao anaty formule iray.</p>`
+},
+
+// 2
+{
+fr:`<h2>RECHERCHEV approfondie</h2>
+<p>Recherche une information dans une base de données.</p>`,
+
+ml:`<h2>RECHERCHEV lalina</h2>
+<p>Mikaroka données ao tableau.</p>`
+},
+
+// 3
+{
+fr:`<h2>Fonction NB.SI</h2>
+<p>=NB.SI(A1:A10;">10")</p>
+<p>Compte selon condition.</p>`,
+
+ml:`<h2>NB.SI</h2>
+<p>Manisa arakaraka condition.</p>`
+},
+
+// 4
+{
+fr:`<h2>Fonction SOMME.SI</h2>
+<p>=SOMME.SI(A1:A10;">10")</p>
+<p>Somme conditionnelle.</p>`,
+
+ml:`<h2>SOMME.SI</h2>
+<p>Manisa total misy condition.</p>`
+},
+
+// 5
+{
+fr:`<h2>Gestion de budget</h2>
+<ul>
+<li>Revenus</li>
+<li>Dépenses</li>
+<li>Solde</li>
+</ul>`,
+
+ml:`<h2>Gestion budget</h2>
+<p>Vola miditra sy mivoaka.</p>`
+},
+
+// 6
+{
+fr:`<h2>Gestion de stock</h2>
+<p>Suivi produits, quantités et prix.</p>`,
+
+ml:`<h2>Gestion stock</h2>
+<p>Fanaraha-maso entana.</p>`
+},
+
+// 7
+{
+fr:`<h2>Graphiques avancés</h2>
+<p>Analyser visuellement les données.</p>`,
+
+ml:`<h2>Graphique</h2>
+<p>Famakafakana sary.</p>`
+},
+
+// 8
+{
+fr:`<h2>Mini Projet</h2>
+<p>Créer un tableau budget automatique.</p>`,
+
+ml:`<h2>Projet</h2>
+<p>Mamorona tableau budget.</p>`
+},
+
+// QUIZ
+{
+fr:`<h2>Quiz</h2>
+<p>NB.SI sert à :</p>
+<button onclick="answer(true)">Compter</button>
+<button onclick="answer(false)">Dessiner</button>
+<p id="res"></p>`,
+
+ml:`<h2>Quiz</h2>
+<p>NB.SI dia:</p>
+<button onclick="answer(true)">Manisa</button>
+<button onclick="answer(false)">Manao dessin</button>
+<p id="res"></p>`
+}
+
+];
+
+function show(){
+document.getElementById("content").innerHTML=lessons[step][lang];
+}
+
+function next(){ if(step<lessons.length-1){step++;show();}}
+function prev(){ if(step>0){step--;show();}}
+
+function setLang(l){ lang=l; show(); }
+
+function answer(correct){
+document.getElementById("res").innerHTML= correct ? "✔️ Marina" : "❌ Diso";
+}
+
+show();
+
+</script>
+
+
+<div class="boutton">
+ <a href="fonction-somme-5eme .html"class="button" >fonction SOMME</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-multiple-5eme.html"class="button" >fonction somme multiple</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-conditionnel-5eme.html"class="button" >fonction somme conditionnelle</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-si-4eme.html"class="button" >fonction somme SI</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-somme-si-ens-4eme.html"class="button" >fonction somme SI ens</a>
+</div>
+
+
+<div class="boutton">
+ <a href="fonction-somme-si-4eme.html"class="button" >fonction somme SI</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-moyenne-plusieur-plage-3eme.html"class="button" >fonction moyenne plusieur plage</a>
+</div>
+
+<div class="boutton">
+ <a href="fonction-moyenne-5eme.html"class="button" >fonction MOYENNE</a>
+ 
+
+<div class="boutton">
+  
+<a href="fonction-moyenne-conditionnelle.3eme.html"class="button" >fonction MOYENNE conditionnelle</a>
+</div>
+
+<div class="boutton">
+ <a href="foncton-SI.html"class="button" >fonction SI</a>
+ </div>
+<div class="boutton">
+ <a href="foncton-SI-imbriquer.html"class="button" >fonction SI imbriqué</a> 
+</div>
+<div class="boutton">
+ <a href="foncton-SI-ET-OU.html"class="button" >fonction SI ET/UO</a> 
+ </div>
+
+<div class="boutton">
+ <a href="fonction-text.html"class="button" >fonction text</a>  
+ </div>
+<div class="boutton">
+ <a href="fonction-date.html"class="button" >fonction date</a>
+ </div>
+<div class="boutton">
+ <a href="fonction-date-heur.html"class="button" >fonction date et heure</a> 
+ 
+</div>
+<div class="boutton">
+ <a href="fonction-rechervev-text.html"class="button" >fonction recherchev text</a>
+ </div>
+</div>
+<div class="boutton">
+ <a href="fonction-trouve-cherche.html"class="button" >fonction-trouve-cherche.html</a>
+ </div> 
+<div class="boutton">
+ <a href="fonction-nombre-letre.html"class="button" >fonction-nombre-letre</a>
+ </div>  
+<div class="boutton">
+ <a href="fonction-NB-SI.html"class="button" >fonction NB SI</a>
+ </div>   
+<div class="boutton">
+ <a href="gestion-budget.html"class="button" >gestion budget</a>
+ </div>    
+<div class="boutton">
+ <a href="gestion-stock.html"class="boutton">gestion stock</a>
+ </div> 
+<div class="boutton">
+ <a href="tableau-croisé.html"class="boutton">tableau croisé dynamique</a>
+ </div>   
+ 
+<div class="boutton">
+ <a href="Graphique.html"class="boutton">Graphique</a>
+ </div>   
+ 
+ <div class="boutton">
+ <a href="exercice-excel.html"class="boutton">exercice excel</a>
+ </div> 
+ 
+ <div class="boutton">
+ <a href="exercice-excel2.html"class="boutton">exercice excel</a>
+ </div> 
+
+ <div class="card">
+ <a href="<!-- EXCEL SECURISE PRO -->
+<div class="section">
+
+<div class="boutton">
+ <a href="Fonction-arrondi.html"class="boutton">Foction arrondi</a>
+ </div> 
+ 
+<div class="boutton">
+ <a href="Fonction-arrondii.html"class="boutton">Foction arrondi2</a>
+ </div> 
+ 
+ 
+<div class="boutton">
+ <a href="fonction-date-heur2.html"class="boutton">fonction-date-heur</a>
+ </div> 
+ 
+ <div class="boutton">
+ <a href="Nombre-de-jour.html"class="boutton">Nombre-de- jour</a>
+ </div> 
+ 
+ 
+ <div class="boutton">
+ <a href="Nombre-de-jour2.html"class="boutton">Nombre-de- jour</a>
+ </div> 
+ 
+
+<h2 onclick="toggle(this)">🔐 Excel Sécurisé - Projet Notes</h2>
+
+<div class="content">
+
+<p><b>👨‍🏫 Objectif :</b> Gestion des notes avec protection (zone élève + zone professeur)</p>
+
+<!-- ZONE ELEVE -->
+<h3>🧑‍🎓 Zone Élève (modifiable)</h3>
+
+<table border="1" style="border-collapse:collapse;text-align:center;">
+<tr>
+<th>Nom</th><th>Math</th><th>Français</th><th>Info</th>
+</tr>
+
+<tr>
+<td>Élève 1</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr>
+
+<tr>
+<td>Élève 2</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr>
+
+</table>
+
+ </div>  
+ <footer class="footer-pro">
+
+  <h2>💻 Mr Tahiry - Informatique 👨‍🏫</h2>
+
+  <p>📅 <span id="dateFooter"></span></p>
+
+  <div class="socials">
+    <a href="#">📘 Facebook</a>
+    <a href="#">💬 WhatsApp</a>
+    <a href="#">📧 Email</a>
+  </div>
+
+  <p class="devise">🚀 Apprendre • Pratiquer • Réussir 🌟</p>
+
+</footer>
+ 
+</body>
+</html>

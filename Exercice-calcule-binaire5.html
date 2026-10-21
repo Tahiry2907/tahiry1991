@@ -1,0 +1,100 @@
+<div class="container">
+
+<h1>💻 Convertisseur Binaire (illimité)</h1>
+
+<div class="section">
+
+<h3>🔢 Entrer un nombre</h3>
+
+<input type="text" id="input" placeholder="Ex: 25, 100, 255">
+
+<br><br>
+
+<button onclick="toBinary()">➡️ Décimal → Binaire</button>
+<button onclick="toDecimal()">⬅️ Binaire → Décimal</button>
+
+</div>
+
+<div class="section">
+<h3>📌 Résultat</h3>
+<p id="result">---</p>
+</div>
+
+</div>
+
+<script>
+
+function toBinary(){
+  let n = document.getElementById("input").value;
+
+  if(n === "" || isNaN(n)){
+    document.getElementById("result").innerText = "❌ Entrer un nombre décimal valide";
+    return;
+  }
+
+  let num = Number(n);
+
+  if(num < 0){
+    document.getElementById("result").innerText = "❌ Nombre positif seulement";
+    return;
+  }
+
+  let binary = num.toString(2);
+  document.getElementById("result").innerText = "Binaire = " + binary;
+}
+
+function toDecimal(){
+  let b = document.getElementById("input").value;
+
+  if(b === "" || /[^01]/.test(b)){
+    document.getElementById("result").innerText = "❌ Entrer un binaire valide (0 et 1)";
+    return;
+  }
+
+  let decimal = parseInt(b, 2);
+  document.getElementById("result").innerText = "Décimal = " + decimal;
+}
+
+</script>
+
+<style>
+
+.container{
+  max-width:600px;
+  margin:auto;
+  font-family:Arial;
+  text-align:center;
+}
+
+.section{
+  background:#f4f4f4;
+  padding:15px;
+  margin-top:15px;
+  border-radius:10px;
+}
+
+input{
+  padding:10px;
+  width:85%;
+  font-size:16px;
+}
+
+button{
+  padding:10px;
+  margin:5px;
+  border:none;
+  background:#673ab7;
+  color:white;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#4527a0;
+}
+
+#result{
+  font-size:20px;
+  font-weight:bold;
+}
+</style>

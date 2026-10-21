@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connectivité</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(120deg, #1d2b64, #f8cdda);
+  color: white;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+}
+
+.lang {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.fr { background: #3498db; color: white; }
+.ml { background: #2ecc71; color: white; }
+
+/* CONTAINER */
+.container {
+  padding: 20px;
+}
+
+/* GLASS CARD */
+.card {
+  background: rgba(255,255,255,0.15);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* TIMELINE STYLE */
+.timeline {
+  border-left: 3px solid white;
+  padding-left: 15px;
+}
+
+.step {
+  margin-bottom: 15px;
+}
+
+/* ICON */
+.icon {
+  font-size: 25px;
+}
+</style>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll("[data-fr]").forEach(el=>{
+    el.innerHTML = el.getAttribute("data-"+lang);
+  });
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1 data-fr="🌐 Connectivité"
+    data-ml="🌐 Fifandraisana">
+</h1>
+
+<div class="lang">
+<button class="fr" onclick="setLang('fr')">FR</button>
+<button class="ml" onclick="setLang('ml')">ML</button>
+</div>
+</header>
+
+<div class="container">
+
+<!-- DEFINITION -->
+<div class="card">
+<h2 data-fr="📘 Définition"
+    data-ml="📘 Famaritana"></h2>
+
+<p data-fr="La connectivité désigne la capacité d’un ordinateur à se connecter à d’autres appareils ou réseaux."
+   data-ml="Ny connectivité dia fahaizan’ny ordinatera mifandray amin’ny fitaovana na tambajotra hafa."></p>
+</div>
+
+<!-- TYPES -->
+<div class="card">
+<h2 data-fr="🔗 Types de connexion"
+    data-ml="🔗 Karazana fifandraisana"></h2>
+
+<div class="timeline">
+
+<div class="step">
+<span class="icon">📡</span>
+<p data-fr="Wi-Fi : connexion sans fil"
+   data-ml="Wi-Fi : fifandraisana tsy misy tariby"></p>
+</div>
+
+<div class="step">
+<span class="icon">🔌</span>
+<p data-fr="Câble Ethernet : connexion filaire"
+   data-ml="Câble Ethernet : fifandraisana misy tariby"></p>
+</div>
+
+<div class="step">
+<span class="icon">📱</span>
+<p data-fr="Bluetooth : connexion entre appareils proches"
+   data-ml="Bluetooth : fifandraisana akaiky"></p>
+</div>
+
+</div>
+</div>
+
+<!-- UTILITE -->
+<div class="card">
+<h2 data-fr="🎯 Utilité"
+    data-ml="🎯 Antony maha-zava-dehibe"></h2>
+
+<ul>
+<li data-fr="Accès à Internet"
+    data-ml="Fidirana amin’ny Internet"></li>
+<li data-fr="Partage de fichiers"
+    data-ml="Fizarana rakitra"></li>
+<li data-fr="Communication (email, réseaux sociaux)"
+    data-ml="Fifandraisana (mailaka, tambajotra sosialy)"></li>
+</ul>
+</div>
+
+<!-- AVANTAGE -->
+<div class="card">
+<h2 data-fr="⚡ Avantages"
+    data-ml="⚡ Tombony"></h2>
+
+<p data-fr="Connexion rapide et communication facile."
+   data-ml="Fifandraisana haingana sy mora."></p>
+</div>
+
+<!-- EXERCICE -->
+<div class="card">
+<h2 data-fr="📝 Exercice"
+    data-ml="📝 Fanazaran-tena"></h2>
+
+<ol>
+<li data-fr="Qu’est-ce que la connectivité ?"
+    data-ml="Inona ny connectivité ?"></li>
+<li data-fr="Donnez 2 types de connexion"
+    data-ml="Omeo karazana connexion 2"></li>
+<li data-fr="À quoi sert Internet ?"
+    data-ml="Inona no ilàna Internet ?"></li>
+</ol>
+</div>
+
+</div>
+
+</body>
+</html>

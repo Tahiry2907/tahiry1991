@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculatrice Binaire</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+.container {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    margin: auto;
+    box-shadow: 0 0 10px black;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #22c55e;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #38bdf8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Calculatrice Binaire</h2>
+
+    <input type="text" id="a" placeholder="A (ex: 1010)">
+    <input type="text" id="b" placeholder="B (ex: 1101)">
+    <input type="text" id="c" placeholder="C (ex: 0110)">
+
+    <button onclick="calculer()">Calculer A + B + C</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+function estBinaire(val) {
+    return /^[01]+$/.test(val);
+}
+
+function calculer() {
+    let a = document.getElementById("a").value;
+    let b = document.getElementById("b").value;
+    let c = document.getElementById("c").value;
+
+    if (!estBinaire(a) || !estBinaire(b) || !estBinaire(c)) {
+        document.getElementById("result").innerHTML = "⚠️ Ampidiro isa binaire (0 sy 1 ihany)";
+        return;
+    }
+
+    let somme = parseInt(a, 2) + parseInt(b, 2) + parseInt(c, 2);
+    let resultatBinaire = somme.toString(2);
+
+    document.getElementById("result").innerHTML =
+        "Résultat: " + resultatBinaire + " (binaire)";
+}
+</script>
+
+</body>
+</html>

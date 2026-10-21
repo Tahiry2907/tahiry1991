@@ -1,0 +1,189 @@
+<style>
+.container{max-width:900px;margin:auto;font-family:Arial}
+h2{background:#34495e;color:white;padding:10px;border-radius:8px;cursor:pointer}
+.content{display:none;padding:10px;background:#f4f4f4;border-radius:8px;margin-bottom:10px}
+button{margin:5px;padding:8px 12px;border:none;border-radius:6px;cursor:pointer}
+.correct{background:green;color:white}
+.wrong{background:red;color:white}
+.lang-btn{float:right;background:#333;color:white;padding:8px;border:none;border-radius:6px;cursor:pointer}
+.score{font-weight:bold;font-size:18px;margin:10px 0}
+.correction{display:none;background:#dff0d8;padding:10px;border-radius:8px;margin-top:10px}
+.toggle-corr{background:#555;color:white}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+td,th{border:1px solid #ccc;padding:8px;text-align:center}
+</style>
+
+<div class="container">
+
+<button class="lang-btn" onclick="toggleLang()">🌐 FR / ML</button>
+
+<h1 class="fr">🧑‍🏫 SI - Plusieurs possibilités (Version Professeur)</h1>
+<h1 class="ml" style="display:none">🧑‍🏫 SI - Safidy maro (Mpampianatra)</h1>
+
+<div class="score">Score: <span id="score">0</span>/3</div>
+
+---
+
+# 🟢 EXERCICE 1 – Statut stock
+<h2 onclick="toggle('p1')">🟢 Stock produit</h2>
+<div id="p1" class="content">
+
+<table>
+<tr><th>Produit</th><th>Stock</th></tr>
+<tr><td>Stylo</td><td>10</td></tr>
+<tr><td>Cahier</td><td>0</td></tr>
+<tr><td>Livre</td><td>3</td></tr>
+</table>
+
+<p class="fr">
+Règle :<br>
+- 0 → "Rupture"<br>
+- 1 à 5 → "Stock faible"<br>
+- >5 → "Disponible"
+</p>
+
+<p class="ml" style="display:none">
+Fitsipika :<br>
+- 0 → "Rupture"<br>
+- 1 hatramin’ny 5 → "Vitsy"<br>
+- >5 → "Misy"
+</p>
+
+<div class="quiz">
+<p>Bonne formule ?</p>
+<button onclick="answer(this,true,1)">
+=SI(B2=0;"Rupture";SI(B2<=5;"Stock faible";"Disponible"))
+</button>
+<button onclick="answer(this,false,1)">=SOMME(B2:B4)</button>
+</div>
+
+<button class="toggle-corr" onclick="toggleCorr(1)">📌 Voir correction</button>
+
+<div id="corr1" class="correction">
+✔ Formule correcte :
+<pre>=SI(B2=0;"Rupture";SI(B2<=5;"Stock faible";"Disponible"))</pre>
+
+👉 Explication :
+- 1er SI = rupture
+- 2e SI = stock faible
+- sinon = disponible
+</div>
+
+</div>
+
+---
+
+# 🟡 EXERCICE 2 – Livraison client
+<h2 onclick="toggle('p2')">🟡 Livraison</h2>
+<div id="p2" class="content">
+
+<table>
+<tr><th>Client</th><th>Livraison</th></tr>
+<tr><td>A</td><td>Oui</td></tr>
+<tr><td>B</td><td>Non</td></tr>
+<tr><td>C</td><td>En attente</td></tr>
+</table>
+
+<p class="fr">
+- Oui → "Validé"<br>
+- Non → "Refusé"<br>
+- Autre → "En attente"
+</p>
+
+<div class="quiz">
+<p>Bonne formule ?</p>
+<button onclick="answer(this,true,2)">
+=SI(B2="Oui";"Validé";SI(B2="Non";"Refusé";"En attente"))
+</button>
+<button onclick="answer(this,false,2)">=SI(B2="Oui";"OK";"Non OK")</button>
+</div>
+
+<button class="toggle-corr" onclick="toggleCorr(2)">📌 Voir correction</button>
+
+<div id="corr2" class="correction">
+✔ Formule correcte :
+<pre>=SI(B2="Oui";"Validé";SI(B2="Non";"Refusé";"En attente"))</pre>
+
+👉 Très utilisé dans gestion de livraison et suivi client.
+</div>
+
+</div>
+
+---
+
+# 🔴 EXERCICE 3 – Décision entreprise
+<h2 onclick="toggle('p3')">🔴 Décision salaire</h2>
+<div id="p3" class="content">
+
+<table>
+<tr><th>Employé</th><th>Performance</th></tr>
+<tr><td>A</td><td>Excellent</td></tr>
+<tr><td>B</td><td>Moyen</td></tr>
+<tr><td>C</td><td>Faible</td></tr>
+</table>
+
+<p class="fr">
+- Excellent → "Bonus 20%"<br>
+- Moyen → "Bonus 10%"<br>
+- Faible → "Aucun bonus"
+</p>
+
+<div class="quiz">
+<p>Bonne formule ?</p>
+<button onclick="answer(this,true,3)">
+=SI(B2="Excellent";"Bonus 20%";SI(B2="Moyen";"Bonus 10%";"Aucun bonus"))
+</button>
+<button onclick="answer(this,false,3)">=SOMME(B2:B4)</button>
+</div>
+
+<button class="toggle-corr" onclick="toggleCorr(3)">📌 Voir correction</button>
+
+<div id="corr3" class="correction">
+✔ Formule correcte :
+<pre>=SI(B2="Excellent";"Bonus 20%";SI(B2="Moyen";"Bonus 10%";"Aucun bonus"))</pre>
+
+👉 Utilisé en gestion RH et évaluation employé.
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let score=0;
+let done={};
+
+function toggle(id){
+let el=document.getElementById(id);
+el.style.display = el.style.display==="block"?"none":"block";
+}
+
+function answer(btn,correct,id){
+if(done[id]) return;
+done[id]=true;
+
+if(correct){
+btn.classList.add("correct");
+score++;
+}else{
+btn.classList.add("wrong");
+}
+
+document.getElementById("score").innerText=score;
+}
+
+function toggleLang(){
+let fr=document.querySelectorAll('.fr');
+let ml=document.querySelectorAll('.ml');
+
+fr.forEach(e=>e.style.display = e.style.display==="none"?"block":"none");
+ml.forEach(e=>e.style.display = e.style.display==="none"?"block":"none");
+}
+
+function toggleCorr(id){
+let c=document.getElementById("corr"+id);
+c.style.display = c.style.display==="block"?"none":"block";
+}
+
+</script>

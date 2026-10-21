@@ -1,0 +1,126 @@
+<style>
+.container{max-width:900px;margin:auto;font-family:Arial}
+h2{background:#dc3545;color:white;padding:10px;border-radius:8px;cursor:pointer}
+.content{display:none;padding:10px;background:#f4f4f4;border-radius:8px;margin-bottom:10px}
+button{margin:5px;padding:8px 12px;border:none;border-radius:6px;cursor:pointer}
+.correct{background:green;color:white}
+.wrong{background:red;color:white}
+.lang-btn{float:right;background:#333;color:white;padding:8px;border:none;border-radius:6px;cursor:pointer}
+.score{font-weight:bold;font-size:18px;margin:10px 0}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+td,th{border:1px solid #ccc;padding:8px;text-align:center}
+</style>
+
+<div class="container">
+
+<button class="lang-btn" onclick="toggleLang()">🌐 FR / ML</button>
+
+<h1 class="fr">🧠 Exercice Fonction SI (Excel)</h1>
+<h1 class="ml" style="display:none">🧠 Fanazaran-tena Fonction SI (Excel)</h1>
+
+<div class="score">Score: <span id="score">0</span>/3</div>
+
+---
+
+# 🟢 FACILE
+<h2 onclick="toggle('si1')">🟢 Niveau Facile</h2>
+<div id="si1" class="content">
+
+<p class="fr">Si la note ≥ 10 alors "Admis" sinon "Ajourné"</p>
+<p class="ml" style="display:none">Raha ≥ 10 dia "Admis", raha tsy izany "Ajourné"</p>
+
+<table>
+<tr><td>12</td><td>8</td><td>15</td><td>9</td></tr>
+</table>
+
+<div class="quiz">
+<p>Bonne formule ?</p>
+<button onclick="answer(this,true,1)">=SI(A1>=10;"Admis";"Ajourné")</button>
+<button onclick="answer(this,false,1)">=SOMME(A1:D1)</button>
+</div>
+
+</div>
+
+---
+
+# 🟡 MOYEN
+<h2 onclick="toggle('si2')">🟡 Niveau Moyen</h2>
+<div id="si2" class="content">
+
+<p class="fr">Si vente ≥ 1000 alors "OK" sinon "Faible"</p>
+<p class="ml" style="display:none">Raha ≥ 1000 dia "OK", raha tsy izany "Faible"</p>
+
+<table>
+<tr><th>Vendeur</th><th>Vente</th></tr>
+<tr><td>Jean</td><td>800</td></tr>
+<tr><td>Marie</td><td>1500</td></tr>
+<tr><td>Paul</td><td>2000</td></tr>
+</table>
+
+<div class="quiz">
+<p>Bonne formule ?</p>
+<button onclick="answer(this,true,2)">=SI(B2>=1000;"OK";"Faible")</button>
+<button onclick="answer(this,false,2)">=SOMME(B2:B4)</button>
+</div>
+
+</div>
+
+---
+
+# 🔴 DIFFICILE
+<h2 onclick="toggle('si3')">🔴 Niveau Difficile</h2>
+<div id="si3" class="content">
+
+<p class="fr">Si note ≥ 10 = "Admis", sinon "Redouble"</p>
+<p class="ml" style="display:none">Raha ≥ 10 dia "Admis", raha tsy izany "Redouble"</p>
+
+<table>
+<tr><th>Élève</th><th>Note</th></tr>
+<tr><td>Aina</td><td>12</td></tr>
+<tr><td>Jean</td><td>9</td></tr>
+<tr><td>Marie</td><td>15</td></tr>
+</table>
+
+<div class="quiz">
+<p>Bonne formule ?</p>
+<button onclick="answer(this,true,3)">=SI(B2>=10;"Admis";"Redouble")</button>
+<button onclick="answer(this,false,3)">=MOYENNE(B2:B4)</button>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let score=0;
+let done={};
+
+function toggle(id){
+let el=document.getElementById(id);
+el.style.display = el.style.display==="block"?"none":"block";
+}
+
+function answer(btn,correct,id){
+if(done[id]) return;
+done[id]=true;
+
+if(correct){
+btn.classList.add("correct");
+score++;
+}else{
+btn.classList.add("wrong");
+}
+
+document.getElementById("score").innerText=score;
+}
+
+function toggleLang(){
+let fr=document.querySelectorAll('.fr');
+let ml=document.querySelectorAll('.ml');
+
+fr.forEach(e=>e.style.display = e.style.display==="none"?"block":"none");
+ml.forEach(e=>e.style.display = e.style.display==="none"?"block":"none");
+}
+
+</script>

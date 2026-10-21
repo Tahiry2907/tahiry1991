@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMD - Commande DIR Complète</title>
+<style>
+body{font-family:Arial; margin:0; background:#0f172a; color:white;}
+header{background:#1e293b; padding:15px; display:flex; justify-content:space-between;}
+button{padding:6px 10px; border:none; border-radius:5px; cursor:pointer;}
+.lang button{margin-left:5px;}
+.container{padding:20px;}
+.section{background:#1e293b; margin:15px 0; padding:15px; border-radius:10px;}
+h2{color:#38bdf8;}
+code{background:black; color:#00ff00; display:block; padding:5px;}
+.correct{color:lightgreen;}
+.wrong{color:red;}
+.terminal{background:black; height:200px; overflow:auto; padding:10px; border-radius:10px; font-family:monospace;}
+input{width:100%; padding:10px; background:black; color:#00ff00; border:none;}
+</style>
+</head>
+<body>
+
+<header>
+<div id="title">💻 CMD - Commande DIR Complète</div>
+<div class="lang">
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('mg')">MG</button>
+</div>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2 id="defTitle">📌 Définition</h2>
+<p id="defText">dir est une commande qui affiche tous les fichiers et dossiers d’un répertoire. Elle peut être combinée avec plusieurs options pour filtrer, trier ou sauvegarder les résultats.</p>
+</div>
+
+<div class="section">
+<h2>📂 Fampiasana Fototra</h2>
+<code>dir</code>
+<p>Afficher fichiers et dossiers dans le dossier courant.</p>
+<code>dir C:\Users</code>
+<p>Afficher fichiers dans un dossier spécifique.</p>
+<code>dir *.txt</code>
+<p>Afficher uniquement les fichiers .txt</p>
+</div>
+
+<div class="section">
+<h2>⚙ Options Avancées</h2>
+<ul>
+<li><code>/p</code> : pause après chaque page</li>
+<li><code>/w</code> : format compact</li>
+<li><code>/a</code> : inclure fichiers cachés et system</li>
+<li><code>/o:n</code> : trier par nom</li>
+<li><code>/s</code> : inclure sous-dossiers</li>
+<li><code>/b</code> : format minimal</li>
+<li><code>/q</code> : montrer propriétaire</li>
+<li><code>/t:c</code> : afficher date/heure de création</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>💾 Redirection</h2>
+<code>dir > liste.txt</code> : sauvegarder résultat dans fichier<br>
+<code>dir /s > tous_les_fichiers.txt</code> : inclure sous-dossiers
+</div>
+
+<div class="section">
+<h2>💻 Simulateur DIR</h2>
+<div class="terminal" id="terminal"></div>
+<input id="cmd" placeholder="Ecrire une commande..." onkeydown="run(event)">
+</div>
+
+<div class="section">
+<h2>🧠 Quiz</h2>
+<p>dir /a /s = ?</p>
+<button onclick="quiz(this,true)">Inclure hidden + sous-dossiers</button>
+<button onclick="quiz(this,false)">Voir fichiers seulement</button>
+
+<p>dir > liste.txt = ?</p>
+<button onclick="quiz(this,true)">Sauvegarde résultat dans fichier</button>
+<button onclick="quiz(this,false)">Afficher seulement</button>
+
+<p>dir *.txt = ?</p>
+<button onclick="quiz(this,true)">Afficher fichiers .txt uniquement</button>
+<button onclick="quiz(this,false)">Tous les fichiers</button>
+</div>
+
+</div>
+
+<script>
+// SIMULATEUR
+function run(e){
+if(e.key==="Enter"){
+let cmd=document.getElementById("cmd").value.toLowerCase();
+let term=document.getElementById("terminal");
+term.innerHTML+="<div>> "+cmd+"</div>";
+
+if(cmd==="dir"){
+term.innerHTML+="<div>Documents Images test.txt note.doc</div>";
+}else if(cmd==="dir /a /s"){
+term.innerHTML+="<div>Documents Images test.txt note.doc hidden_file.txt</div>";
+}else if(cmd==="dir > liste.txt"){
+term.innerHTML+="<div>Résultat sauvegardé dans liste.txt</div>";
+}else if(cmd==="dir *.txt"){
+term.innerHTML+="<div>test.txt note.doc</div>";
+}else{
+term.innerHTML+="<div>Commande inconnue</div>";
+}
+
+document.getElementById("cmd").value="";
+term.scrollTop=term.scrollHeight;
+}
+}
+
+// QUIZ
+function quiz(btn,good){
+if(good){btn.classList.add("correct");}else{btn.classList.add("wrong");}
+}
+
+// LANGUE
+function setLang(lang){
+if(lang==="fr"){
+document.getElementById("title").innerHTML="💻 CMD - Commande DIR Complète";
+document.getElementById("defTitle").innerHTML="📌 Définition";
+document.getElementById("defText").innerHTML="dir est une commande qui affiche tous les fichiers et dossiers d’un répertoire. Elle peut être combinée avec plusieurs options pour filtrer, trier ou sauvegarder les résultats.";
+}
+if(lang==="mg"){
+document.getElementById("title").innerHTML="💻 CMD - Commande DIR Feno";
+document.getElementById("defTitle").innerHTML="📌 Famaritana";
+document.getElementById("defText").innerHTML="dir dia baiko mampiseho rehetra fichiers sy dossiers ao amin'ny dossier iray. Afaka ampiasaina miaraka amin'ny options mba hanaovana filtration, sorting na sauvegarde.";
+}
+}
+</script>
+
+</body>
+</html>

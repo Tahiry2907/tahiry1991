@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Binaire & Couleurs RGB | Mr Tahiry</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#0f172a;
+  color:#e5e7eb;
+  line-height:1.7;
+}
+
+/* ================= HEADER ================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:linear-gradient(135deg,#020617,#1e293b);
+  padding:15px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  box-shadow:0 4px 20px rgba(0,0,0,.35);
+}
+
+.logo{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#38bdf8;
+}
+
+.lang{
+  display:flex;
+  gap:7px;
+}
+
+.lang button{
+  border:none;
+  padding:8px 13px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+  background:#334155;
+  color:white;
+  transition:.3s;
+}
+
+.lang button:hover{
+  transform:scale(1.05);
+}
+
+.lang button.active{
+  background:#38bdf8;
+  color:#082f49;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  text-align:center;
+  padding:55px 20px;
+  background:
+  radial-gradient(circle at top,#2563eb,#020617 65%);
+}
+
+.hero h1{
+  font-size:clamp(30px,6vw,50px);
+  margin-bottom:12px;
+}
+
+.hero h1 span{
+  color:#38bdf8;
+}
+
+.hero p{
+  max-width:800px;
+  margin:auto;
+  color:#cbd5e1;
+  font-size:17px;
+}
+
+.hero-nav{
+  margin-top:25px;
+}
+
+.hero-nav a{
+  display:inline-block;
+  padding:10px 16px;
+  margin:5px;
+  background:#38bdf8;
+  color:#082f49;
+  text-decoration:none;
+  border-radius:9px;
+  font-weight:bold;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+  width:92%;
+  max-width:1050px;
+  margin:35px auto;
+}
+
+/* ================= CARD ================= */
+
+.card{
+  background:#111827;
+  border:1px solid #334155;
+  margin-bottom:18px;
+  padding:22px;
+  border-radius:16px;
+  transition:.3s;
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  border-color:#38bdf8;
+}
+
+.card h2{
+  color:#38bdf8;
+  margin-bottom:12px;
+}
+
+.card h3{
+  color:#93c5fd;
+  margin:18px 0 8px;
+}
+
+/* ================= ACCORDION ================= */
+
+.accordion{
+  cursor:pointer;
+}
+
+.content{
+  display:none;
+  margin-top:15px;
+  padding-top:15px;
+  border-top:1px solid #334155;
+}
+
+.content.open{
+  display:block;
+}
+
+/* ================= INFO ================= */
+
+.info{
+  background:#082f49;
+  border-left:5px solid #38bdf8;
+  padding:15px;
+  border-radius:8px;
+  margin:15px 0;
+}
+
+.warning{
+  background:#422006;
+  border-left:5px solid #f59e0b;
+  padding:15px;
+  border-radius:8px;
+  margin:15px 0;
+}
+
+.success{
+  background:#052e16;
+  border-left:5px solid #22c55e;
+  padding:15px;
+  border-radius:8px;
+  margin:15px 0;
+}
+
+/* ================= RGB CARDS ================= */
+
+.color-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px;
+  margin-top:20px;
+}
+
+.color-card{
+  background:#020617;
+  border:1px solid #334155;
+  border-radius:14px;
+  padding:18px;
+  transition:.3s;
+}
+
+.color-card:hover{
+  transform:translateY(-5px);
+}
+
+.colorBox{
+  width:100%;
+  height:70px;
+  border-radius:10px;
+  margin:12px 0;
+  border:2px solid #475569;
+}
+
+.binary{
+  background:#020617;
+  color:#4ade80;
+  padding:12px;
+  border-radius:8px;
+  font-family:Consolas,monospace;
+  overflow-x:auto;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  min-width:500px;
+  border-collapse:collapse;
+  margin-top:15px;
+}
+
+th,td{
+  border:1px solid #475569;
+  padding:10px;
+  text-align:center;
+}
+
+th{
+  background:#1d4ed8;
+  color:white;
+}
+
+tr:nth-child(even){
+  background:#1e293b;
+}
+
+/* ================= COLOR PICKER ================= */
+
+.color-picker{
+  background:#020617;
+  padding:22px;
+  border-radius:15px;
+  border:1px solid #334155;
+}
+
+.color-picker label{
+  display:block;
+  margin-top:12px;
+  font-weight:bold;
+}
+
+.color-picker input[type="range"]{
+  width:100%;
+}
+
+.number{
+  display:inline-block;
+  min-width:45px;
+  color:#38bdf8;
+  font-weight:bold;
+}
+
+.preview{
+  width:100%;
+  height:130px;
+  border-radius:15px;
+  margin-top:20px;
+  border:3px solid #475569;
+}
+
+.result{
+  background:#020617;
+  padding:15px;
+  margin-top:15px;
+  border-radius:10px;
+  font-family:Consolas,monospace;
+  color:#4ade80;
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+  border:none;
+  padding:11px 17px;
+  margin-top:12px;
+  border-radius:9px;
+  cursor:pointer;
+  background:#2563eb;
+  color:white;
+  font-weight:bold;
+}
+
+.btn:hover{
+  background:#1d4ed8;
+}
+
+/* ================= EXERCISE ================= */
+
+.exercise{
+  background:#020617;
+  padding:20px;
+  border-radius:12px;
+  margin-top:15px;
+  border:1px solid #334155;
+}
+
+.answer{
+  display:none;
+  margin-top:15px;
+  background:#052e16;
+  border-left:5px solid #22c55e;
+  padding:15px;
+  border-radius:8px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  margin-top:50px;
+  padding:35px 20px;
+  text-align:center;
+  background:#020617;
+  border-top:1px solid #334155;
+}
+
+footer h2{
+  color:#38bdf8;
+}
+
+footer p{
+  color:#94a3b8;
+  margin-top:7px;
+}
+
+/* ================= TOP ================= */
+
+.top{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#2563eb;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-decoration:none;
+  font-size:20px;
+}
+
+/* ================= LANGUAGE ================= */
+
+.ml{
+  display:none;
+}
+
+body.lang-ml .fr{
+  display:none;
+}
+
+body.lang-ml .ml{
+  display:inline;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+  header{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .container{
+    width:94%;
+  }
+
+  .card{
+    padding:18px;
+  }
+
+  .hero{
+    padding:40px 15px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body id="top">
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<div class="logo">
+
+💻
+
+<span class="fr">Binaire & Couleurs RGB</span>
+<span class="ml">Binaire sy Loko RGB</span>
+
+</div>
+
+
+<div class="lang">
+
+<button id="frBtn"
+class="active"
+onclick="setLang('fr')">
+
+🇫🇷 FR
+
+</button>
+
+<button id="mlBtn"
+onclick="setLang('ml')">
+
+🇲🇬 ML
+
+</button>
+
+</div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<h1>
+
+🎨
+
+<span class="fr">
+Binaire & <span>Couleurs</span>
+</span>
+
+<span class="ml">
+Binaire sy <span>Loko</span>
+</span>
+
+</h1>
+
+
+<p class="fr">
+
+Comprendre comment les couleurs numériques sont représentées
+avec les valeurs RGB et le système binaire.
+
+</p>
+
+
+<p class="ml">
+
+Mianatra ny fomba anehoan'ny ordinateur ny loko amin'ny alalan'ny
+RGB sy ny système binaire.
+
+</p>
+
+
+<div class="hero-nav">
+
+<a href="#rgb">🎨 RGB</a>
+<a href="#binary">🔢 Binaire</a>
+<a href="#picker">🖌️ Color Picker</a>
+<a href="#exercise">✏️ Exercice</a>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- ================================================= -->
+<!-- DEFINITION -->
+<!-- ================================================= -->
+
+<div class="card accordion"
+onclick="toggle('c1')">
+
+<h2>
+
+🎨
+
+<span class="fr">
+1️⃣ Qu'est-ce qu'une couleur numérique ?
+</span>
+
+<span class="ml">
+1️⃣ Inona ny loko numérique ?
+</span>
+
+</h2>
+
+
+<div class="content" id="c1">
+
+
+<div class="fr">
+
+<p>
+
+Une couleur affichée sur un écran est généralement composée
+de trois composantes principales :
+
+<strong>Rouge (Red), Vert (Green) et Bleu (Blue)</strong>.
+
+</p>
+
+<p>
+
+On appelle ce système <strong>RGB</strong> ou
+<strong>RVB</strong> en français.
+
+</p>
+
+</div>
+
+
+<div class="ml">
+
+<p>
+
+Ny loko asehon'ny écran dia matetika ahitana composantes telo :
+
+<strong>Rouge, Vert ary Bleu</strong>.
+
+</p>
+
+<p>
+
+Antsoina hoe <strong>RGB</strong> izany système izany.
+
+</p>
+
+</div>
+
+
+<div class="info">
+
+💡
+
+<span class="fr">
+
+RGB = Red + Green + Blue
+
+</span>
+
+<span class="ml">
+
+RGB = Rouge + Vert + Bleu
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- RGB -->
+<!-- ================================================= -->
+
+<div class="card" id="rgb">
+
+<h2>
+
+🌈
+
+<span class="fr">
+2️⃣ Le système RGB
+</span>
+
+<span class="ml">
+2️⃣ Ny système RGB
+</span>
+
+</h2>
+
+
+<div class="fr">
+
+<p>
+
+Chaque composante RGB possède généralement une valeur
+comprise entre <strong>0 et 255</strong>.
+
+</p>
+
+<p>
+
+Cela signifie qu'une couleur possède trois valeurs :
+
+<strong>R, G et B</strong>.
+
+</p>
+
+</div>
+
+
+<div class="ml">
+
+<p>
+
+Ny composante RGB tsirairay dia manana valeur eo anelanelan'ny
+<strong>0 sy 255</strong>.
+
+</p>
+
+<p>
+
+Noho izany dia misy valeurs telo :
+
+<strong>R, G ary B</strong>.
+
+</p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+
+<th>Couleur</th>
+<th>RGB</th>
+<th>Binaire</th>
+
+</tr>
+
+
+<tr>
+
+<td>🔴 Rouge</td>
+
+<td>255, 0, 0</td>
+
+<td>11111111 00000000 00000000</td>
+
+</tr>
+
+
+<tr>
+
+<td>🟢 Vert</td>
+
+<td>0, 255, 0</td>
+
+<td>00000000 11111111 00000000</td>
+
+</tr>
+
+
+<tr>
+
+<td>🔵 Bleu</td>
+
+<td>0, 0, 255</td>
+
+<td>00000000 00000000 11111111</td>
+
+</tr>
+
+
+<tr>
+
+<td>⚫ Noir</td>
+
+<td>0, 0, 0</td>
+
+<td>00000000 00000000 00000000</td>
+
+</tr>
+
+
+<tr>
+
+<td>⚪ Blanc</td>
+
+<td>255, 255, 255</td>
+
+<td>11111111 11111111 11111111</td>
+
+</tr>
+
+
+<tr>
+
+<td>🟡 Jaune</td>
+
+<td>255, 255, 0</td>
+
+<td>11111111 11111111 00000000</td>
+
+</tr>
+
+
+<tr>
+
+<td>🟣 Magenta</td>
+
+<td>255, 0, 255</td>
+
+<td>11111111 00000000 11111111</td>
+
+</tr>
+
+
+<tr>
+
+<td>🔵 Cyan</td>
+
+<td>0, 255, 255</td>
+
+<td>00000000 11111111 11111111</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- 8 BITS -->
+<!-- ================================================= -->
+
+<div class="card accordion"
+onclick="toggle('c3')">
+
+<h2>
+
+🔢
+
+<span class="fr">
+3️⃣ Pourquoi 8 bits par couleur ?
+</span>
+
+<span class="ml">
+3️⃣ Nahoana no bits 8 isaky ny couleur ?
+</span>
+
+</h2>
+
+
+<div class="content" id="c3">
+
+
+<div class="fr">
+
+<p>
+
+Une composante RGB utilise généralement <strong>8 bits</strong>.
+
+</p>
+
+<p>
+
+Avec 8 bits, on peut représenter :
+
+</p>
+
+<div class="binary">
+
+00000000 → 0
+
+<br>
+
+11111111 → 255
+
+</div>
+
+<p>
+
+Il existe donc <strong>256 valeurs possibles</strong>
+pour chaque composante.
+
+</p>
+
+</div>
+
+
+<div class="ml">
+
+<p>
+
+Ny composante RGB iray dia mampiasa <strong>bits 8</strong> matetika.
+
+</p>
+
+<div class="binary">
+
+00000000 → 0
+
+<br>
+
+11111111 → 255
+
+</div>
+
+<p>
+
+Noho izany dia misy <strong>valeurs 256</strong>
+azo ampiasaina amin'ny composante iray.
+
+</p>
+
+</div>
+
+
+<div class="success">
+
+<strong>
+
+8 bits → 256 valeurs → 0 à 255
+
+</strong>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- PIXEL -->
+<!-- ================================================= -->
+
+<div class="card accordion"
+onclick="toggle('c4')">
+
+<h2>
+
+🖥️
+
+<span class="fr">
+4️⃣ Pixel et couleur
+</span>
+
+<span class="ml">
+4️⃣ Pixel sy couleur
+</span>
+
+</h2>
+
+
+<div class="content" id="c4">
+
+
+<div class="fr">
+
+<p>
+
+Un écran est composé de nombreux petits points appelés
+<strong>pixels</strong>.
+
+</p>
+
+<p>
+
+Chaque pixel peut recevoir une couleur déterminée par
+les valeurs RGB.
+
+</p>
+
+</div>
+
+
+<div class="ml">
+
+<p>
+
+Ny écran dia misy teboka madinika maro antsoina hoe
+<strong>pixels</strong>.
+
+</p>
+
+<p>
+
+Ny pixel tsirairay dia afaka manana couleur iray voafaritra
+amin'ny valeurs RGB.
+
+</p>
+
+</div>
+
+
+<div class="info">
+
+💡
+
+<span class="fr">
+
+Un pixel RGB utilise généralement 24 bits :
+8 bits Rouge + 8 bits Vert + 8 bits Bleu.
+
+</span>
+
+<span class="ml">
+
+Ny pixel RGB iray dia mampiasa bits 24 matetika :
+8 bits Rouge + 8 bits Vert + 8 bits Bleu.
+
+</span>
+
+</div>
+
+
+<div class="binary">
+
+R = 11111111
+
+<br>
+
+G = 00000000
+
+<br>
+
+B = 00000000
+
+<br><br>
+
+Total = 24 bits
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- COULEURS -->
+<!-- ================================================= -->
+
+<div class="card" id="binary">
+
+<h2>
+
+🌈
+
+<span class="fr">
+5️⃣ Exemples de couleurs
+</span>
+
+<span class="ml">
+5️⃣ Ohatra amin'ny couleurs
+</span>
+
+</h2>
+
+
+<div class="color-grid">
+
+
+<!-- ROUGE -->
+
+<div class="color-card">
+
+<h3>🔴 Rouge</h3>
+
+<div
+class="colorBox"
+style="background:rgb(255,0,0);">
+</div>
+
+<p>RGB : 255, 0, 0</p>
+
+<div class="binary">
+
+11111111 00000000 00000000
+
+</div>
+
+</div>
+
+
+<!-- VERT -->
+
+<div class="color-card">
+
+<h3>🟢 Vert</h3>
+
+<div
+class="colorBox"
+style="background:rgb(0,255,0);">
+</div>
+
+<p>RGB : 0, 255, 0</p>
+
+<div class="binary">
+
+00000000 11111111 00000000
+
+</div>
+
+</div>
+
+
+<!-- BLEU -->
+
+<div class="color-card">
+
+<h3>🔵 Bleu</h3>
+
+<div
+class="colorBox"
+style="background:rgb(0,0,255);">
+</div>
+
+<p>RGB : 0, 0, 255</p>
+
+<div class="binary">
+
+00000000 00000000 11111111
+
+</div>
+
+</div>
+
+
+<!-- JAUNE -->
+
+<div class="color-card">
+
+<h3>🟡 Jaune</h3>
+
+<div
+class="colorBox"
+style="background:rgb(255,255,0);">
+</div>
+
+<p>RGB : 255, 255, 0</p>
+
+<div class="binary">
+
+11111111 11111111 00000000
+
+</div>
+
+</div>
+
+
+<!-- BLANC -->
+
+<div class="color-card">
+
+<h3>⚪ Blanc</h3>
+
+<div
+class="colorBox"
+style="background:white;">
+</div>
+
+<p>RGB : 255, 255, 255</p>
+
+<div class="binary">
+
+11111111 11111111 11111111
+
+</div>
+
+</div>
+
+
+<!-- NOIR -->
+
+<div class="color-card">
+
+<h3>⚫ Noir</h3>
+
+<div
+class="colorBox"
+style="background:black;">
+</div>
+
+<p>RGB : 0, 0, 0</p>
+
+<div class="binary">
+
+00000000 00000000 00000000
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- COLOR PICKER -->
+<!-- ================================================= -->
+
+<div class="card" id="picker">
+
+<h2>
+
+🖌️
+
+<span class="fr">
+6️⃣ Créateur de couleur RGB
+</span>
+
+<span class="ml">
+6️⃣ Mpamorona loko RGB
+</span>
+
+</h2>
+
+
+<div class="color-picker">
+
+
+<label>
+🔴 Rouge :
+<span class="number" id="rValue">128</span>
+</label>
+
+<input
+type="range"
+id="red"
+min="0"
+max="255"
+value="128"
+oninput="updateColor()">
+
+
+<label>
+🟢 Vert :
+<span class="number" id="gValue">128</span>
+</label>
+
+<input
+type="range"
+id="green"
+min="0"
+max="255"
+value="128"
+oninput="updateColor()">
+
+
+<label>
+🔵 Bleu :
+<span class="number" id="bValue">128</span>
+</label>
+
+<input
+type="range"
+id="blue"
+min="0"
+max="255"
+value="128"
+oninput="updateColor()">
+
+
+<div
+class="preview"
+id="preview">
+</div>
+
+
+<div
+class="result"
+id="rgbResult">
+RGB : (128, 128, 128)
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- HEX -->
+<!-- ================================================= -->
+
+<div class="card accordion"
+onclick="toggle('c7')">
+
+<h2>
+
+🔷
+
+<span class="fr">
+7️⃣ RGB et code HEX
+</span>
+
+<span class="ml">
+7️⃣ RGB sy code HEX
+</span>
+
+</h2>
+
+
+<div class="content" id="c7">
+
+
+<div class="fr">
+
+<p>
+
+Les couleurs peuvent également être écrites avec le système
+hexadécimal.
+
+</p>
+
+<p>
+
+Par exemple :
+
+</p>
+
+<div class="binary">
+
+Rouge
+
+<br>
+
+RGB : (255, 0, 0)
+
+<br>
+
+HEX : #FF0000
+
+</div>
+
+<p>
+
+Le code HEX utilise 6 caractères :
+deux pour Rouge, deux pour Vert et deux pour Bleu.
+
+</p>
+
+</div>
+
+
+<div class="ml">
+
+<p>
+
+Azo soratana amin'ny système hexadécimal ihany koa ny couleurs.
+
+</p>
+
+<div class="binary">
+
+Rouge
+
+<br>
+
+RGB : (255, 0, 0)
+
+<br>
+
+HEX : #FF0000
+
+</div>
+
+<p>
+
+Ny code HEX dia mampiasa caractères 6 :
+roa ho an'ny Rouge, roa ho an'ny Vert ary roa ho an'ny Bleu.
+
+</p>
+
+</div>
+
+
+<div class="warning">
+
+⚠️
+
+<span class="fr">
+RGB et HEX sont deux façons différentes de représenter
+la même couleur.
+</span>
+
+<span class="ml">
+RGB sy HEX dia fomba roa samihafa hanehoana
+ny couleur iray ihany.
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- EXERCICES -->
+<!-- ================================================= -->
+
+<div class="card" id="exercise">
+
+<h2>
+
+✏️
+
+<span class="fr">
+8️⃣ Exercices
+</span>
+
+<span class="ml">
+8️⃣ Fanazaran-tena
+</span>
+
+</h2>
+
+
+<div class="exercise">
+
+<strong>
+
+<span class="fr">
+Exercice 1 : Quelle est la valeur RGB du rouge ?
+</span>
+
+<span class="ml">
+Fanazaran-tena 1 : Inona ny RGB an'ny rouge ?
+</span>
+
+</strong>
+
+<br>
+
+<button
+class="btn"
+onclick="showAnswer('a1')">
+
+Voir la correction
+
+</button>
+
+
+<div
+class="answer"
+id="a1">
+
+<strong>
+RGB = (255, 0, 0)
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="exercise">
+
+<strong>
+
+<span class="fr">
+Exercice 2 : Écrire le rouge en binaire.
+</span>
+
+<span class="ml">
+Fanazaran-tena 2 : Soraty amin'ny binaire ny rouge.
+</span>
+
+</strong>
+
+<br>
+
+<button
+class="btn"
+onclick="showAnswer('a2')">
+
+Voir la correction
+
+</button>
+
+
+<div
+class="answer"
+id="a2">
+
+11111111 00000000 00000000
+
+</div>
+
+</div>
+
+
+<div class="exercise">
+
+<strong>
+
+<span class="fr">
+Exercice 3 : Combien de bits contient un pixel RGB ?
+</span>
+
+<span class="ml">
+Fanazaran-tena 3 : Bits firy no misy amin'ny pixel RGB ?
+</span>
+
+<br>
+
+<button
+class="btn"
+onclick="showAnswer('a3')">
+
+Voir la correction
+
+</button>
+
+
+<div
+class="answer"
+id="a3">
+
+<strong>
+24 bits = 8 bits Rouge + 8 bits Vert + 8 bits Bleu
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="exercise">
+
+<strong>
+
+<span class="fr">
+Exercice 4 : Quel est le RGB du jaune ?
+</span>
+
+<span class="ml">
+Fanazaran-tena 4 : Inona ny RGB an'ny jaune ?
+</span>
+
+<br>
+
+<button
+class="btn"
+onclick="showAnswer('a4')">
+
+Voir la correction
+
+</button>
+
+
+<div
+class="answer"
+id="a4">
+
+<strong>
+RGB = (255, 255, 0)
+</strong>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- RESUME -->
+<!-- ================================================= -->
+
+<div class="card">
+
+<h2>
+
+📚
+
+<span class="fr">
+9️⃣ Résumé
+</span>
+
+<span class="ml">
+9️⃣ Famintinana
+</span>
+
+</h2>
+
+
+<div class="fr">
+
+<ul>
+
+<li>RGB signifie Rouge, Vert et Bleu.</li>
+
+<li>Chaque composante utilise généralement 8 bits.</li>
+
+<li>8 bits permettent 256 valeurs : 0 à 255.</li>
+
+<li>Un pixel RGB utilise généralement 24 bits.</li>
+
+<li>Les valeurs RGB peuvent être représentées en binaire.</li>
+
+<li>Les couleurs peuvent également être représentées en HEX.</li>
+
+</ul>
+
+</div>
+
+
+<div class="ml">
+
+<ul>
+
+<li>RGB dia Rouge, Vert ary Bleu.</li>
+
+<li>Bits 8 no ampiasaina matetika amin'ny composante iray.</li>
+
+<li>Bits 8 dia manome valeurs 256 : 0 hatramin'ny 255.</li>
+
+<li>Pixel RGB iray dia mampiasa bits 24 matetika.</li>
+
+<li>Azo aseho amin'ny binaire ny valeurs RGB.</li>
+
+<li>Azo aseho amin'ny HEX ihany koa ny couleurs.</li>
+
+</ul>
+
+</div>
+
+
+<div class="success">
+
+🎯
+
+<strong>
+
+<span class="fr">
+Objectif : comprendre le lien entre couleur, RGB et binaire.
+</span>
+
+<span class="ml">
+Tanjona : mahafantatra ny fifandraisan'ny couleur, RGB ary binaire.
+</span>
+
+</strong>
+
+</div>
+
+</div>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h2>
+💻 Mr Tahiry - Informatique 👨‍🏫
+</h2>
+
+<p>
+
+<span class="fr">
+Cours de Code Binaire et Couleurs numériques
+</span>
+
+<span class="ml">
+Lesona Kaody Binaire sy Loko numérique
+</span>
+
+</p>
+
+<p>
+📅 <span id="dateFooter"></span>
+</p>
+
+<p>
+© 2026 - Plateforme pédagogique
+</p>
+
+</footer>
+
+
+<a
+href="#top"
+class="top">
+
+↑
+
+</a>
+
+
+<script>
+
+/* ============================================
+   LANGUAGE
+============================================ */
+
+function setLang(lang){
+
+if(lang === "fr"){
+
+document.body.classList.remove("lang-ml");
+
+document.getElementById("frBtn")
+.classList.add("active");
+
+document.getElementById("mlBtn")
+.classList.remove("active");
+
+localStorage.setItem(
+"colorBinaryLang",
+"fr"
+);
+
+}
+
+else{
+
+document.body.classList.add("lang-ml");
+
+document.getElementById("mlBtn")
+.classList.add("active");
+
+document.getElementById("frBtn")
+.classList.remove("active");
+
+localStorage.setItem(
+"colorBinaryLang",
+"ml"
+);
+
+}
+
+}
+
+
+/* ============================================
+   RESTORE LANGUAGE
+============================================ */
+
+const savedLang =
+localStorage.getItem("colorBinaryLang");
+
+if(savedLang === "ml"){
+
+setLang("ml");
+
+}
+else{
+
+setLang("fr");
+
+}
+
+
+/* ============================================
+   ACCORDION
+============================================ */
+
+function toggle(id){
+
+const element =
+document.getElementById(id);
+
+element.classList.toggle("open");
+
+}
+
+
+/* ============================================
+   RGB COLOR PICKER
+============================================ */
+
+function updateColor(){
+
+const r =
+Number(document.getElementById("red").value);
+
+const g =
+Number(document.getElementById("green").value);
+
+const b =
+Number(document.getElementById("blue").value);
+
+
+/* valeurs affichées */
+
+document.getElementById("rValue")
+.textContent = r;
+
+document.getElementById("gValue")
+.textContent = g;
+
+document.getElementById("bValue")
+.textContent = b;
+
+
+/* couleur */
+
+const rgb =
+`rgb(${r}, ${g}, ${b})`;
+
+document.getElementById("preview")
+.style.background = rgb;
+
+
+/* résultat */
+
+document.getElementById("rgbResult")
+.innerHTML =
+`RGB : (${r}, ${g}, ${b})<br>
+Binaire :
+${r.toString(2).padStart(8,"0")}
+${g.toString(2).padStart(8,"0")}
+${b.toString(2).padStart(8,"0")}`;
+
+}
+
+
+/* ============================================
+   EXERCISE ANSWER
+============================================ */
+
+function showAnswer(id){
+
+const answer =
+document.getElementById(id);
+
+if(answer.style.display === "block"){
+
+answer.style.display = "none";
+
+}
+else{
+
+answer.style.display = "block";
+
+}
+
+}
+
+
+/* ============================================
+   DATE
+============================================ */
+
+document.getElementById("dateFooter")
+.textContent =
+new Date().toLocaleDateString("fr-FR");
+
+
+/* ============================================
+   START COLOR
+============================================ */
+
+updateColor();
+
+</script>
+
+</body>
+</html>

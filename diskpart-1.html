@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesona CMD - Diskpart</title>
+
+<style>
+body {font-family:Arial; background:#f4f4f4; margin:0;}
+header {background:#343a40; color:white; padding:15px; display:flex; justify-content:space-between;}
+header button {padding:6px 12px; border:none; border-radius:5px; cursor:pointer;}
+.container {max-width:950px; margin:20px auto; background:white; padding:25px; border-radius:10px;}
+h2 {color:#333;}
+pre {background:#111; color:#0f0; padding:12px; border-radius:8px;}
+ul {margin-left:20px;}
+.buttons {display:flex; justify-content:space-between; margin-top:20px;}
+.buttons button {padding:10px 20px; border:none; background:#007bff; color:white; border-radius:6px;}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2 id="title">Lesona CMD : Diskpart</h2>
+<div>
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('ml')">ML</button>
+</div>
+</header>
+
+<div class="container">
+<div id="content"></div>
+
+<div class="buttons">
+<button onclick="prev()">← Previous</button>
+<button onclick="next()">Next →</button>
+</div>
+</div>
+
+<script>
+const lesson = {
+
+fr: `
+<h2>1️⃣ Qu’est-ce que Diskpart ?</h2>
+<p>Diskpart est un outil puissant de gestion des disques sous Windows. 
+Il permet de gérer les disques, partitions et volumes.</p>
+
+<h2>2️⃣ Lancer Diskpart</h2>
+<pre>diskpart</pre>
+
+<h2>3️⃣ Commandes principales</h2>
+<ul>
+<li>list disk : affiche les disques</li>
+<li>select disk X : sélectionne un disque</li>
+<li>list partition : affiche les partitions</li>
+<li>select partition X</li>
+<li>create partition primary</li>
+<li>delete partition</li>
+<li>format fs=fat32 quick</li>
+<li>assign : donne une lettre</li>
+<li>exit</li>
+</ul>
+
+<h2>4️⃣ Exemple complet (clé USB)</h2>
+<pre>
+diskpart
+list disk
+select disk 1
+clean
+create partition primary
+format fs=fat32 quick
+assign
+exit
+</pre>
+
+<h2>5️⃣ Commandes avancées</h2>
+<ul>
+<li>attributes disk clear readonly</li>
+<li>shrink : réduire partition</li>
+<li>extend : agrandir partition</li>
+<li>active : rendre bootable</li>
+</ul>
+
+<h2>6️⃣ Remarques importantes</h2>
+<ul>
+<li>Très puissant ⚠️</li>
+<li>clean supprime tout définitivement</li>
+<li>toujours vérifier le disque sélectionné</li>
+</ul>
+`,
+
+ml: `
+<h2>1️⃣ Inona ny Diskpart ?</h2>
+<p>Diskpart dia outil matanjaka ao amin'ny Windows 
+ampiasaina hitantanana disques sy partitions.</p>
+
+<h2>2️⃣ Fanombohana azy</h2>
+<pre>diskpart</pre>
+
+<h2>3️⃣ Baiko lehibe</h2>
+<ul>
+<li>list disk : mampiseho disques</li>
+<li>select disk X : mifidy disque</li>
+<li>list partition : mampiseho partitions</li>
+<li>select partition X</li>
+<li>create partition primary</li>
+<li>delete partition</li>
+<li>format fs=fat32 quick</li>
+<li>assign : manome lettre</li>
+<li>exit</li>
+</ul>
+
+<h2>4️⃣ Ohatra feno (clé USB)</h2>
+<pre>
+diskpart
+list disk
+select disk 1
+clean
+create partition primary
+format fs=fat32 quick
+assign
+exit
+</pre>
+
+<h2>5️⃣ Baiko mandroso</h2>
+<ul>
+<li>attributes disk clear readonly</li>
+<li>shrink : mampihena partition</li>
+<li>extend : manitatra partition</li>
+<li>active : atao bootable</li>
+</ul>
+
+<h2>6️⃣ Fanamarihana</h2>
+<ul>
+<li>Tena matanjaka ⚠️</li>
+<li>clean dia mamafa rehetra</li>
+<li>jereo tsara ny disque fidina</li>
+</ul>
+`
+};
+
+function setLang(lang){
+document.getElementById("content").innerHTML = lesson[lang];
+}
+setLang('fr');
+
+function prev(){
+window.location.href = "usb-repair.html";
+}
+function next(){
+window.location.href = "network-tools.html";
+}
+</script>
+
+</body>
+</html>

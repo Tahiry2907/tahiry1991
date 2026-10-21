@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesona CMD - copy / xcopy / robocopy</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin:0; padding:0;}
+        header { background-color: #007bff; color:white; padding:15px 30px; display:flex; justify-content:space-between; align-items:center;}
+        header h1 { margin:0; font-size:20px;}
+        header button { background-color:white; color:#007bff; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;}
+        header button:hover { background-color:#e6e6e6;}
+        .container { max-width:900px; margin:30px auto; background-color:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+        h2 { color:#333; }
+        pre { background-color:#272822; color:#f8f8f2; padding:15px; border-radius:8px; overflow-x:auto; }
+        ul { margin-left:20px; }
+        .buttons { margin-top:30px; display:flex; justify-content:space-between; }
+        .buttons button { background-color:#007bff; border:none; color:white; padding:10px 20px; font-size:16px; border-radius:8px; cursor:pointer; transition:0.3s; }
+        .buttons button:hover { background-color:#0056b3; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 id="title">Lesona CMD : copy / xcopy / robocopy</h1>
+    <div>
+        <button onclick="switchLang('fr')">FR</button>
+        <button onclick="switchLang('ml')">ML</button>
+    </div>
+</header>
+
+<div class="container">
+    <div id="content"></div>
+
+    <div class="buttons">
+        <button id="prevBtn">← Previous</button>
+        <button id="nextBtn">Next →</button>
+    </div>
+</div>
+
+<script>
+    const lesson = {
+        fr: `
+<h2>1️⃣ Commande COPY</h2>
+<pre>copy source destination</pre>
+<p>Permet de copier des fichiers simples.</p>
+<pre>
+copy fichier.txt D:\Backup\
+</pre>
+
+<h2>2️⃣ Commande XCOPY</h2>
+<pre>xcopy source destination [options]</pre>
+<ul>
+<li>/s : copie dossiers et sous-dossiers (sauf vides)</li>
+<li>/e : copie dossiers et sous-dossiers, y compris vides</li>
+<li>/i : si la destination n'existe pas, la considère comme un dossier</li>
+<li>/y : écrase les fichiers existants sans confirmation</li>
+</ul>
+<pre>
+xcopy C:\Documents D:\Backup /s /i
+xcopy C:\Docs D:\Backup /e /i /y
+</pre>
+
+<h2>3️⃣ Commande ROBOCOPY</h2>
+<pre>robocopy source destination [options]</pre>
+<ul>
+<li>/e : copie tout, y compris sous-dossiers vides</li>
+<li>/mir : miroir source → destination (supprime fichiers absents)</li>
+<li>/xo : ignore fichiers plus anciens</li>
+<li>/log:log.txt : enregistre dans un fichier log</li>
+</ul>
+<pre>
+robocopy C:\Documents D:\Backup /e /mir /log:backup_log.txt
+robocopy C:\Projet D:\Backup /xo
+</pre>
+
+<h2>4️⃣ Remarques</h2>
+<ul>
+<li>COPY est simple pour un ou deux fichiers.</li>
+<li>XCOPY permet copier des dossiers plus complexes.</li>
+<li>ROBOCOPY est plus robuste, idéal pour sauvegarde et scripts automatiques.</li>
+<li>Attention aux options /mir et /xo, elles peuvent supprimer des fichiers si mal utilisées.</li>
+</ul>
+        `,
+        ml: `
+<h2>1️⃣ Baiko COPY</h2>
+<pre>copy source destination</pre>
+<p>Mampiasa mba hamerina fichier tsotra.</p>
+<pre>
+copy fichier.txt D:\Backup\
+</pre>
+
+<h2>2️⃣ Baiko XCOPY</h2>
+<pre>xcopy source destination [options]</pre>
+<ul>
+<li>/s : mamindra dossiers sy sous-dossiers (afa-tsy foana)</li>
+<li>/e : mamindra dossiers sy sous-dossiers, miaraka amin'ny folders foana</li>
+<li>/i : raha tsy misy ny destination, mihevitra azy ho dossier</li>
+<li>/y : man-overwrite fichiers efa misy tsy misy fanamafisana</li>
+</ul>
+<pre>
+xcopy C:\Documents D:\Backup /s /i
+xcopy C:\Docs D:\Backup /e /i /y
+</pre>
+
+<h2>3️⃣ Baiko ROBOCOPY</h2>
+<pre>robocopy source destination [options]</pre>
+<ul>
+<li>/e : mamindra rehetra, anisan'izany dossiers foana</li>
+<li>/mir : manao miroir source → destination (mamafa fichiers tsy misy)</li>
+<li>/xo : tsy mandefa fichiers efa antitra</li>
+<li>/log:log.txt : mitahiry log</li>
+</ul>
+<pre>
+robocopy C:\Documents D:\Backup /e /mir /log:backup_log.txt
+robocopy C:\Projet D:\Backup /xo
+</pre>
+
+<h2>4️⃣ Fanamarihana</h2>
+<ul>
+<li>COPY dia tsotra ho an'ny fichier vitsivitsy.</li>
+<li>XCOPY dia afaka mandefa dossiers sarotra kokoa.</li>
+<li>ROBOCOPY dia matanjaka, tsara ho backup sy scripts automatique.</li>
+<li>Mitandrema amin'ny /mir sy /xo, mety hamafa fichiers raha tsy ampy fitandremana.</li>
+</ul>
+        `
+    };
+
+    function loadLesson(lang='fr') {
+        document.getElementById('title').textContent = lang === 'fr' ? "Lesona CMD : copy / xcopy / robocopy" : "Lesona CMD : copy / xcopy / robocopy";
+        document.getElementById('content').innerHTML = lesson[lang];
+    }
+
+    function switchLang(lang) {
+        loadLesson(lang);
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        window.location.href = "13_rmdir.html"; // URL pejy teo aloha
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        window.location.href = "14_move.html"; // URL pejy manaraka
+    });
+
+    loadLesson('fr');
+</script>
+
+</body>
+</html>

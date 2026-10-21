@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Table ASCII</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#f4f6f9;
+    text-align:center;
+}
+
+h1{
+    margin-top:20px;
+}
+
+table{
+    border-collapse: collapse;
+    margin:20px auto;
+    width:90%;
+    background:white;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+th, td{
+    border:1px solid #ddd;
+    padding:8px;
+    text-align:center;
+}
+
+th{
+    background:#007BFF;
+    color:white;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+tr:hover{
+    background:#ddd;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Table ASCII</h1>
+
+<table>
+<tr>
+<th>Décimal</th>
+<th>Binaire</th>
+<th>Caractère</th>
+</tr>
+
+<script>
+for(let i=0;i<=127;i++){
+    let binary = i.toString(2).padStart(8,"0");
+
+    let char;
+    if(i<32 || i==127){
+        char = "Non affichable";
+    }else{
+        char = String.fromCharCode(i);
+    }
+
+    document.write("<tr>");
+    document.write("<td>"+i+"</td>");
+    document.write("<td>"+binary+"</td>");
+    document.write("<td>"+char+"</td>");
+    document.write("</tr>");
+}
+</script>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>HTML / CSS - FR / ML</title>
+
+<style>
+body{
+  margin:0;
+  font-family:"Segoe UI", sans-serif;
+  background: linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+  padding:20px;
+}
+
+/* HEADER FR-ML */
+header{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.lang-box{
+  display:inline-block;
+  padding:8px 15px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  font-size:14px;
+  color:#38bdf8;
+}
+
+/* TITLE */
+h1{
+  text-align:center;
+  color:#38bdf8;
+}
+
+/* CARD */
+.card{
+  max-width:900px;
+  margin:auto;
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* TOGGLE */
+.toggle{
+  padding:18px;
+  background: linear-gradient(90deg,#22c55e,#3b82f6);
+  font-weight:bold;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.toggle::after{
+  content:"▸";
+  transition:0.3s;
+}
+
+.card.active .toggle::after{
+  transform:rotate(90deg);
+}
+
+/* CONTENT */
+.content{
+  max-height:0;
+  overflow:hidden;
+  transition:0.6s ease;
+  padding:0 18px;
+}
+
+.card.active .content{
+  max-height:12000px;
+  padding:18px;
+}
+
+/* TEXT */
+h3{
+  color:#facc15;
+}
+
+p, li{
+  color:#e5e7eb;
+  line-height:1.6;
+}
+
+/* BOX */
+.box{
+  background:rgba(255,255,255,0.05);
+  padding:10px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.1);
+  margin:6px 0;
+}
+
+/* CODE */
+code{
+  display:block;
+  background:#111827;
+  padding:10px;
+  border-left:4px solid #38bdf8;
+  border-radius:6px;
+  margin:6px 0;
+  color:#fff;
+}
+
+/* QUIZ */
+.quiz{
+  margin-top:15px;
+  padding:10px;
+  border:1px dashed #94a3b8;
+  border-radius:10px;
+  background:rgba(255,255,255,0.05);
+}
+
+button{
+  margin:5px;
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* NOTE */
+.note{
+  background:rgba(56,189,248,0.1);
+  border-left:4px solid #38bdf8;
+  padding:10px;
+  border-radius:6px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="lang-box">
+    🌍 FR / ML : Français - Malagasy
+  </div>
+</header>
+
+<h1>🌍 HTML / CSS</h1>
+
+<div class="card">
+
+<div class="toggle" onclick="toggleCard(this)">
+🌍 HTML / CSS - Structure Web
+</div>
+
+<div class="content">
+
+<h3>📘 Définition</h3>
+
+<p>
+<b>FR :</b> HTML crée la structure d’une page web.<br>
+<b>ML :</b> HTML dia mamorona structure ny site web.
+</p>
+
+<p>
+<b>FR :</b> CSS sert à styliser la page.<br>
+<b>ML :</b> CSS dia manamboatra endrika (couleur, design).
+</p>
+
+<hr>
+
+<h3>🧠 HTML</h3>
+
+<ul>
+<li>Créer titres</li>
+<li>Créer paragraphes</li>
+<li>Ajouter images</li>
+<li>Créer liens</li>
+</ul>
+
+<div class="quiz">
+
+<p>👉 HTML sert à ...</p>
+<button onclick="answer(this,true)">Créer pages web</button>
+<button onclick="answer(this,false)">Calculer</button>
+<button onclick="answer(this,false)">Dessiner</button>
+
+</div>
+
+<hr>
+
+<h3>🎨 CSS</h3>
+
+<ul>
+<li>Couleur</li>
+<li>Taille</li>
+<li>Position</li>
+<li>Design</li>
+</ul>
+
+<hr>
+
+<h3>📄 Structure HTML</h3>
+
+<code>
+&lt;html&gt;<br>
+&lt;head&gt;&lt;title&gt;Page&lt;/title&gt;&lt;/head&gt;<br>
+&lt;body&gt;Hello&lt;/body&gt;<br>
+&lt;/html&gt;
+</code>
+
+<hr>
+
+<h3>📚 Résumé</h3>
+
+<p class="note">
+HTML = structure 🧱 | CSS = style 🎨 | Web = combinaison des deux
+</p>
+
+<hr>
+
+<h3>🎯 Quiz</h3>
+
+<div class="quiz">
+
+<p>👉 CSS sert à :</p>
+<button onclick="answer(this,true)">Styliser</button>
+<button onclick="answer(this,false)">Créer dossiers</button>
+
+<br>
+
+<p>👉 HTML est :</p>
+<button onclick="answer(this,true)">Structure</button>
+<button onclick="answer(this,false)">Logiciel</button>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+function toggleCard(el){
+  el.parentElement.classList.toggle("active");
+}
+
+function answer(btn,correct){
+  if(correct){
+    btn.style.background="#22c55e";
+    btn.style.color="white";
+    btn.innerText="✔ Correct";
+  }else{
+    btn.style.background="#ef4444";
+    btn.style.color="white";
+    btn.innerText="✘ Faux";
+  }
+}
+
+</script>
+
+</body>
+</html>

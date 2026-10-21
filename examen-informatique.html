@@ -1,0 +1,709 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Examens Informatique | InfoPro</title><style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#061826,#073b4c,#0b7285);
+    color:#17202a;
+}
+
+header{
+    background:linear-gradient(135deg,#061826,#0b7285);
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.35);
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+}
+
+header h1{
+    margin:8px 0;
+}
+
+header p{
+    margin:5px;
+    opacity:.9;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.control{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+
+.control label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:8px;
+}
+
+select{
+    width:100%;
+    padding:14px;
+    border:2px solid #0b7285;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+button{
+    border:none;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.btn-print{
+    background:#0b7285;
+    color:white;
+}
+
+.btn-corrige{
+    background:#f59f00;
+    color:white;
+}
+
+.btn-hide{
+    background:#495057;
+    color:white;
+}
+
+.exam{
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+
+.exam-header{
+    text-align:center;
+    border-bottom:3px solid #0b7285;
+    padding-bottom:15px;
+    margin-bottom:20px;
+}
+
+.exam-header h2{
+    color:#075985;
+    margin:5px;
+}
+
+.infos{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin:20px 0;
+}
+
+.info-box{
+    border:1px solid #ccc;
+    padding:10px;
+    min-height:42px;
+}
+
+.student{
+    margin:20px 0;
+}
+
+.student-line{
+    border-bottom:1px solid #555;
+    display:inline-block;
+    min-width:250px;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section h3{
+    background:#075985;
+    color:white;
+    padding:12px;
+    border-radius:8px;
+}
+
+.question{
+    margin:18px 0;
+    padding:15px;
+    background:#f8f9fa;
+    border-left:5px solid #0b7285;
+    border-radius:8px;
+}
+
+.question strong{
+    color:#075985;
+}
+
+.answer{
+    display:none;
+    background:#fff3cd;
+    border-left:5px solid #f59f00;
+    padding:12px;
+    margin-top:10px;
+}
+
+.practice{
+    background:#eef7f8;
+    border:2px solid #0b7285;
+    padding:20px;
+    border-radius:12px;
+}
+
+.barème{
+    font-weight:bold;
+    color:#075985;
+}
+
+footer{
+    text-align:center;
+    color:white;
+    padding:25px;
+}
+
+.small{
+    font-size:13px;
+    color:#666;
+}
+
+@media(max-width:700px){
+    .infos{
+        grid-template-columns:1fr;
+    }
+
+    .exam{
+        padding:18px;
+    }
+
+    .logo{
+        font-size:25px;
+    }
+}
+
+@media print{
+    body{
+        background:white;
+    }
+
+    header,
+    .control,
+    footer{
+        display:none !important;
+    }
+
+    .container{
+        padding:0;
+        max-width:none;
+    }
+
+    .exam{
+        box-shadow:none;
+        border-radius:0;
+    }
+
+    .answer{
+        display:none !important;
+    }
+
+    .practice{
+        break-inside:avoid;
+    }
+}
+</style></head><body><header>
+    <div class="logo">💻 InfoPro</div>
+    <h1>EXAMENS D’INFORMATIQUE</h1>
+    <p>Théorie + Pratique • 6ème → Terminale</p>
+    <p>🚀 Apprendre • Pratiquer • Réussir 🌟</p>
+</header><div class="container"><div class="control"><label for="classe">📚 Choisir la classe :</label>
+
+<select id="classe" onchange="changerClasse()">
+    <option value="6">6ème</option>
+    <option value="5">5ème</option>
+    <option value="4">4ème</option>
+    <option value="3">3ème</option>
+    <option value="2">2nde</option>
+    <option value="1">1ère</option>
+    <option value="T">Terminale</option>
+</select><div class="buttons">
+    <button class="btn-print" onclick="window.print()">
+        🖨️ Imprimer / PDF
+    </button><button class="btn-corrige" onclick="afficherCorrige()">
+    🔑 Afficher corrigé
+</button>
+
+<button class="btn-hide" onclick="cacherCorrige()">
+    🔒 Cacher corrigé
+</button>
+
+</div></div><!-- =====================================================
+     6ème
+===================================================== --><div class="exam" id="exam6"><div class="exam-header">
+<h2>EXAMEN D’INFORMATIQUE — 6ème</h2>
+<p><b>Théorie : /20 — Pratique : /20</b></p>
+</div><div class="infos">
+<div class="info-box"><b>Établissement :</b> __________________________</div>
+<div class="info-box"><b>Année scolaire :</b> 2026 - 2027</div>
+<div class="info-box"><b>Professeur :</b> M. Tahiry</div>
+<div class="info-box"><b>Date :</b> __________________</div>
+</div><div class="student">
+<b>Nom et prénom :</b>
+<span class="student-line"></span>
+</div><div class="section"><h3>ÉPREUVE 1 — THÉORIE /20</h3><div class="question">
+<strong>1. Définition — /4</strong><br>
+Qu’est-ce qu’un ordinateur ?<br><br>
+................................................................................<br>
+................................................................................
+</div><div class="question">
+<strong>2. Citer — /4</strong><br>
+Cite quatre éléments ou périphériques d’un ordinateur.
+</div><div class="question">
+<strong>3. Associer — /4</strong><br>
+Associe chaque élément à sa fonction :<br><br>
+Clavier — Souris — Écran — Imprimante<br><br>
+a) Afficher les informations<br>
+b) Saisir du texte<br>
+c) Imprimer un document<br>
+d) Déplacer le pointeur
+</div><div class="question">
+<strong>4. Vrai ou Faux — /4</strong><br>
+a) Le clavier permet d’écrire du texte. ______<br>
+b) La souris est un périphérique de sortie. ______<br>
+c) L’écran permet de voir les informations. ______<br>
+d) Une imprimante permet d’imprimer un document. ______
+</div><div class="question">
+<strong>5. Questions — /4</strong><br>
+Quelle est la différence entre le matériel et le logiciel ?
+</div></div><div class="section"><h3>ÉPREUVE 2 — PRATIQUE /20</h3><div class="practice">
+<b>Travail demandé :</b><p>1. Allume correctement l’ordinateur.</p>
+<p>2. Ouvre le logiciel <b>Paint</b>.</p>
+<p>3. Dessine une maison comprenant :</p>
+<ul>
+<li>un carré pour la maison ;</li>
+<li>un triangle pour le toit ;</li>
+<li>une porte ;</li>
+<li>deux fenêtres ;</li>
+<li>un soleil.</li>
+</ul><p>4. Utilise au moins trois couleurs.</p>
+<p>5. Enregistre ton travail sous le nom :</p><b>Examen_6eme_Nom_Prenom.png</b>
+
+<p><b>Barème :</b></p>
+<ul>
+<li>Manipulation souris : 4 pts</li>
+<li>Utilisation des outils : 5 pts</li>
+<li>Dessin demandé : 6 pts</li>
+<li>Couleurs : 2 pts</li>
+<li>Enregistrement : 3 pts</li>
+</ul>
+</div></div><div class="answer">
+<b>🔑 CORRIGÉ 6ème — Théorie</b><br><br>
+1. Un ordinateur est une machine électronique permettant de traiter, stocker et restituer des informations.<br>
+2. Exemples : clavier, souris, écran, imprimante.<br>
+3. Clavier → b ; Souris → d ; Écran → a ; Imprimante → c.<br>
+4. Vrai ; Faux ; Vrai ; Vrai.<br>
+5. Le matériel correspond aux éléments physiques de l’ordinateur ; le logiciel correspond aux programmes utilisés par l’ordinateur.
+</div></div><!-- =====================================================
+     5ème
+===================================================== --><div class="exam" id="exam5" style="display:none"><div class="exam-header">
+<h2>EXAMEN D’INFORMATIQUE — 5ème</h2>
+<p><b>Théorie : /20 — Pratique : /20</b></p>
+</div><div class="infos">
+<div class="info-box"><b>Établissement :</b> __________________________</div>
+<div class="info-box"><b>Année scolaire :</b> 2026 - 2027</div>
+<div class="info-box"><b>Professeur :</b> M. Tahiry</div>
+<div class="info-box"><b>Date :</b> __________________</div>
+</div><div class="student">
+<b>Nom et prénom :</b>
+<span class="student-line"></span>
+</div><div class="section">
+<h3>ÉPREUVE 1 — THÉORIE /20</h3><div class="question">
+<strong>1. /4</strong><br>
+Définis : fichier, dossier, logiciel et système d’exploitation.
+</div><div class="question">
+<strong>2. /4</strong><br>
+Cite quatre périphériques d’entrée et deux périphériques de sortie.
+</div><div class="question">
+<strong>3. /4</strong><br>
+Quelle est la différence entre un fichier et un dossier ?
+</div><div class="question">
+<strong>4. /4</strong><br>
+Vrai ou Faux :<br>
+a) Windows est un système d’exploitation. _____<br>
+b) Un dossier peut contenir plusieurs fichiers. _____<br>
+c) Le clavier est un périphérique de sortie. _____<br>
+d) Une clé USB peut stocker des fichiers. _____
+</div><div class="question">
+<strong>5. /4</strong><br>
+Pourquoi faut-il protéger son ordinateur et ses fichiers ?
+</div>
+</div><div class="section">
+<h3>ÉPREUVE 2 — PRATIQUE /20</h3><div class="practice">
+<p>1. Crée sur le Bureau un dossier nommé <b>EXAMEN_INFO_5EME</b>.</p><p>2. À l’intérieur, crée trois dossiers :</p>
+<ul>
+<li>TEXTES</li>
+<li>IMAGES</li>
+<li>TRAVAUX</li>
+</ul><p>3. Ouvre Word et écris un petit texte de 8 lignes sur :</p><b>« L’importance de l’informatique dans notre vie »</b>
+
+<p>4. Mets le titre en gras, centré et souligné.</p><p>5. Enregistre le document dans le dossier TEXTES sous :</p><b>informatique_5eme.docx</b>
+
+<p>6. Copie ensuite le fichier dans le dossier TRAVAUX.</p>
+</div>
+</div><div class="answer">
+<b>🔑 CORRIGÉ 5ème</b><br><br>
+Fichier : élément contenant des données. Dossier : emplacement permettant de classer les fichiers. Logiciel : programme informatique. Système d’exploitation : logiciel principal qui gère l’ordinateur.<br><br>
+V/F : Vrai, Vrai, Faux, Vrai.
+</div></div><!-- =====================================================
+     4ème
+===================================================== --><div class="exam" id="exam4" style="display:none"><div class="exam-header">
+<h2>EXAMEN D’INFORMATIQUE — 4ème</h2>
+<p><b>Théorie : /20 — Pratique : /20</b></p>
+</div><div class="infos">
+<div class="info-box"><b>Établissement :</b> __________________________</div>
+<div class="info-box"><b>Année scolaire :</b> 2026 - 2027</div>
+<div class="info-box"><b>Professeur :</b> M. Tahiry</div>
+<div class="info-box"><b>Date :</b> __________________</div>
+</div><div class="student">
+<b>Nom et prénom :</b>
+<span class="student-line"></span>
+</div><div class="section">
+<h3>ÉPREUVE 1 — THÉORIE /20</h3><div class="question">
+<strong>1. /4</strong><br>
+Qu’est-ce qu’un traitement de texte ? Donne un exemple.
+</div><div class="question">
+<strong>2. /4</strong><br>
+Cite quatre outils de mise en forme dans Word.
+</div><div class="question">
+<strong>3. /4</strong><br>
+Qu’est-ce qu’Internet ? Cite deux services disponibles sur Internet.
+</div><div class="question">
+<strong>4. /4</strong><br>
+Donne quatre règles de sécurité sur Internet.
+</div><div class="question">
+<strong>5. /4</strong><br>
+Explique la différence entre « Enregistrer » et « Enregistrer sous ».
+</div>
+</div><div class="section">
+<h3>ÉPREUVE 2 — PRATIQUE /20</h3><div class="practice">
+<p>Dans Word, réalise une page intitulée :</p><h3>« L’INFORMATIQUE À L’ÉCOLE »</h3><p>Le document doit contenir :</p><ul>
+<li>un titre centré, gras et souligné ;</li>
+<li>un texte de 12 lignes ;</li>
+<li>une liste à puces de cinq avantages de l’informatique ;</li>
+<li>une image ;</li>
+<li>un tableau de 3 colonnes et 4 lignes ;</li>
+<li>un pied de page avec ton nom.</li>
+</ul><p>Enregistre sous :</p><b>Examen_4eme_Nom.docx</b>
+
+</div>
+</div><div class="answer">
+<b>🔑 CORRIGÉ 4ème</b><br><br>
+Traitement de texte : logiciel permettant de créer et modifier des documents textuels, par exemple Microsoft Word.<br>
+Sécurité Internet : mot de passe fort, ne pas communiquer ses informations personnelles, éviter les liens suspects, utiliser des sources fiables.
+</div></div><!-- =====================================================
+     3ème
+===================================================== --><div class="exam" id="exam3" style="display:none"><div class="exam-header">
+<h2>EXAMEN D’INFORMATIQUE — 3ème</h2>
+<p><b>Théorie : /20 — Pratique : /20</b></p>
+</div><div class="infos">
+<div class="info-box"><b>Établissement :</b> __________________________</div>
+<div class="info-box"><b>Année scolaire :</b> 2026 - 2027</div>
+<div class="info-box"><b>Professeur :</b> M. Tahiry</div>
+<div class="info-box"><b>Date :</b> __________________</div>
+</div><div class="student">
+<b>Nom et prénom :</b>
+<span class="student-line"></span>
+</div><div class="section">
+<h3>ÉPREUVE 1 — THÉORIE /20</h3><div class="question">
+<strong>1. Excel — /4</strong><br>
+Qu’est-ce qu’une cellule ? Qu’est-ce qu’une formule ?
+</div><div class="question">
+<strong>2. Formules — /4</strong><br>
+Écris les formules permettant de calculer :<br>
+a) une somme<br>
+b) une moyenne<br>
+c) le maximum<br>
+d) le minimum
+</div><div class="question">
+<strong>3. /4</strong><br>
+Qu’est-ce qu’un navigateur Web ? Donne deux exemples.
+</div><div class="question">
+<strong>4. /4</strong><br>
+Explique ce qu’est une adresse e-mail.
+</div><div class="question">
+<strong>5. /4</strong><br>
+Pourquoi faut-il sauvegarder régulièrement son travail ?
+</div>
+</div><div class="section">
+<h3>ÉPREUVE 2 — PRATIQUE /20</h3><div class="practice"><p>Dans Excel, crée le tableau suivant :</p><table border="1" cellpadding="8" style="border-collapse:collapse;width:100%;text-align:center">
+<tr>
+<th>Élève</th>
+<th>Math</th>
+<th>Français</th>
+<th>Informatique</th>
+<th>Moyenne</th>
+</tr>
+<tr>
+<td>Rakoto</td><td>14</td><td>12</td><td>16</td><td></td>
+</tr>
+<tr>
+<td>Rabe</td><td>10</td><td>15</td><td>13</td><td></td>
+</tr>
+<tr>
+<td>Rasoa</td><td>17</td><td>14</td><td>18</td><td></td>
+</tr>
+<tr>
+<td>Soa</td><td>12</td><td>13</td><td>15</td><td></td>
+</tr>
+</table><p>Travail :</p><ol>
+<li>Calculer la moyenne de chaque élève.</li>
+<li>Calculer la moyenne générale.</li>
+<li>Déterminer la meilleure note en Informatique.</li>
+<li>Mettre les titres en gras.</li>
+<li>Appliquer des bordures.</li>
+<li>Enregistrer sous <b>Examen_3eme.xlsx</b>.</li>
+</ol></div>
+</div><div class="answer">
+<b>🔑 CORRIGÉ 3ème</b><br><br>
+Somme : =SOMME(B2:D2)<br>
+Moyenne : =MOYENNE(B2:D2)<br>
+Maximum : =MAX(B2:D2)<br>
+Minimum : =MIN(B2:D2)<br>
+Navigateur : logiciel permettant d'accéder aux sites Web, par exemple Chrome ou Firefox.
+</div></div><!-- =====================================================
+     2nde
+===================================================== --><div class="exam" id="exam2" style="display:none"><div class="exam-header">
+<h2>EXAMEN D’INFORMATIQUE — 2nde</h2>
+<p><b>Théorie : /20 — Pratique : /20</b></p>
+</div><div class="infos">
+<div class="info-box"><b>Établissement :</b> __________________________</div>
+<div class="info-box"><b>Année scolaire :</b> 2026 - 2027</div>
+<div class="info-box"><b>Professeur :</b> M. Tahiry</div>
+<div class="info-box"><b>Date :</b> __________________</div>
+</div><div class="student">
+<b>Nom et prénom :</b>
+<span class="student-line"></span>
+</div><div class="section">
+<h3>ÉPREUVE 1 — THÉORIE /20</h3><div class="question">
+<strong>1. /4</strong><br>
+Explique le rôle d’un système d’exploitation.
+</div><div class="question">
+<strong>2. /4</strong><br>
+Qu’est-ce qu’un réseau informatique ? Cite deux types de réseaux.
+</div><div class="question">
+<strong>3. /4</strong><br>
+Qu’est-ce qu’un algorithme ?
+</div><div class="question">
+<strong>4. /4</strong><br>
+Donne la différence entre HTML et CSS.
+</div><div class="question">
+<strong>5. /4</strong><br>
+Explique ce qu’est une sauvegarde informatique.
+</div>
+</div><div class="section">
+<h3>ÉPREUVE 2 — PRATIQUE /20</h3><div class="practice"><p><b>PARTIE A — Excel /10</b></p><p>Créer un tableau de ventes avec :</p><ul>
+<li>Produit</li>
+<li>Quantité</li>
+<li>Prix unitaire</li>
+<li>Total</li>
+</ul><p>Calculer automatiquement le total avec une formule.</p><p><b>PARTIE B — HTML /10</b></p><p>Créer un fichier <b>index.html</b> contenant :</p><ul>
+<li>un titre « Mon premier site » ;</li>
+<li>un paragraphe de présentation ;</li>
+<li>une liste de trois éléments ;</li>
+<li>une image ;</li>
+<li>un lien vers un autre site.</li>
+</ul></div>
+</div><div class="answer">
+<b>🔑 CORRIGÉ 2nde</b><br><br>
+Un système d’exploitation gère le matériel et les logiciels de l’ordinateur.<br>
+Un réseau informatique permet de relier plusieurs appareils pour communiquer et partager des ressources.<br>
+HTML structure une page Web ; CSS permet de définir sa présentation.
+</div></div><!-- =====================================================
+     1ère
+===================================================== --><div class="exam" id="exam1" style="display:none"><div class="exam-header">
+<h2>EXAMEN D’INFORMATIQUE — 1ère</h2>
+<p><b>Théorie : /20 — Pratique : /20</b></p>
+</div><div class="infos">
+<div class="info-box"><b>Établissement :</b> __________________________</div>
+<div class="info-box"><b>Année scolaire :</b> 2026 - 2027</div>
+<div class="info-box"><b>Professeur :</b> M. Tahiry</div>
+<div class="info-box"><b>Date :</b> __________________</div>
+</div><div class="student">
+<b>Nom et prénom :</b>
+<span class="student-line"></span>
+</div><div class="section">
+<h3>ÉPREUVE 1 — THÉORIE /20</h3><div class="question">
+<strong>1. Algorithmique — /4</strong><br>
+Définis une variable et une constante.
+</div><div class="question">
+<strong>2. /4</strong><br>
+Qu’est-ce qu’une condition dans un programme ?
+</div><div class="question">
+<strong>3. /4</strong><br>
+Quelle est la différence entre une boucle FOR et une boucle WHILE ?
+</div><div class="question">
+<strong>4. Web — /4</strong><br>
+Quel est le rôle de HTML, CSS et JavaScript ?
+</div><div class="question">
+<strong>5. Excel — /4</strong><br>
+Explique le rôle des fonctions SI, SOMME.SI et MOYENNE.
+</div>
+</div><div class="section">
+<h3>ÉPREUVE 2 — PRATIQUE /20</h3><div class="practice"><p><b>PARTIE A — Excel /8</b></p><p>Créer un tableau contenant :</p><table border="1" cellpadding="8" style="border-collapse:collapse;width:100%;text-align:center">
+<tr>
+<th>Élève</th>
+<th>Math</th>
+<th>Français</th>
+<th>Info</th>
+<th>Moyenne</th>
+<th>Décision</th>
+</tr>
+<tr>
+<td>Élève 1</td><td>15</td><td>12</td><td>16</td><td></td><td></td>
+</tr>
+<tr>
+<td>Élève 2</td><td>8</td><td>11</td><td>10</td><td></td><td></td>
+</tr>
+<tr>
+<td>Élève 3</td><td>17</td><td>15</td><td>18</td><td></td><td></td>
+</tr>
+</table><p>Calculer la moyenne et afficher « Admis » si moyenne ≥ 10, sinon « À renforcer ».</p><p><b>PARTIE B — JavaScript /6</b></p><p>Créer un programme qui demande deux nombres et affiche leur somme.</p><p><b>PARTIE C — HTML/CSS /6</b></p><p>Créer une page Web avec un titre, un paragraphe, une liste et une mise en forme CSS.</p></div>
+</div><div class="answer">
+<b>🔑 CORRIGÉ 1ère</b><br><br>
+Une variable est une donnée pouvant changer de valeur. Une constante garde une valeur fixe.<br>
+SI permet d'effectuer un test logique. SOMME.SI additionne selon un critère. MOYENNE calcule une moyenne.<br>
+HTML = structure ; CSS = présentation ; JavaScript = comportement/interactivité.
+</div></div><!-- =====================================================
+     TERMINALE
+===================================================== --><div class="exam" id="examT" style="display:none"><div class="exam-header">
+<h2>EXAMEN D’INFORMATIQUE — TERMINALE</h2>
+<p><b>Théorie : /20 — Pratique : /20</b></p>
+</div><div class="infos">
+<div class="info-box"><b>Établissement :</b> __________________________</div>
+<div class="info-box"><b>Année scolaire :</b> 2026 - 2027</div>
+<div class="info-box"><b>Professeur :</b> M. Tahiry</div>
+<div class="info-box"><b>Date :</b> __________________</div>
+</div><div class="student">
+<b>Nom et prénom :</b>
+<span class="student-line"></span>
+</div><div class="section"><h3>ÉPREUVE 1 — THÉORIE /20</h3><div class="question">
+<strong>1. Algorithmique — /4</strong><br>
+Explique les notions suivantes : variable, condition, boucle et fonction.
+</div><div class="question">
+<strong>2. Python — /4</strong><br>
+Quel est le rôle de la fonction <b>input()</b> ? Et de <b>print()</b> ?
+</div><div class="question">
+<strong>3. Réseau — /4</strong><br>
+Explique la différence entre une adresse IP et une adresse MAC.
+</div><div class="question">
+<strong>4. Base de données — /4</strong><br>
+Qu’est-ce qu’une table, un champ et un enregistrement ?
+</div><div class="question">
+<strong>5. Web — /4</strong><br>
+Explique le rôle de HTML, CSS, JavaScript et PHP.
+</div></div><div class="section"><h3>ÉPREUVE 2 — PRATIQUE /20</h3><div class="practice"><p><b>PARTIE A — Python /10</b></p><p>
+Écrire un programme Python qui demande les notes de trois matières,
+calcule la moyenne et affiche :
+</p><ul>
+<li>« Admis » si la moyenne est supérieure ou égale à 10 ;</li>
+<li>« À renforcer » si la moyenne est inférieure à 10.</li>
+</ul><p>Le programme doit également afficher la moyenne obtenue.</p><hr><p><b>PARTIE B — Web /10</b></p><p>Créer une page Web intitulée :</p><b>« Mon projet informatique »</b>
+
+<p>La page doit contenir :</p><ul>
+<li>un en-tête ;</li>
+<li>un menu de navigation ;</li>
+<li>un titre principal ;</li>
+<li>deux paragraphes ;</li>
+<li>une liste ;</li>
+<li>une image ;</li>
+<li>un formulaire simple ;</li>
+<li>un pied de page.</li>
+</ul><p>Utiliser HTML et CSS.</p></div></div><div class="answer">
+<b>🔑 CORRIGÉ TERMINALE</b><br><br><b>Python :</b><br>
+input() permet de recevoir une donnée saisie par l'utilisateur.<br>
+print() permet d'afficher une information.<br><br>
+
+<b>Réseau :</b><br>
+Une adresse IP identifie une interface sur un réseau IP. Une adresse MAC identifie une interface réseau au niveau matériel.<br><br>
+
+<b>Base de données :</b><br>
+Une table organise les données. Un champ représente une propriété. Un enregistrement représente une ligne de données.<br><br>
+
+<b>Web :</b><br>
+HTML structure la page, CSS définit sa présentation, JavaScript ajoute de l'interactivité et PHP permet notamment de traiter des données côté serveur.
+
+</div></div></div><footer>
+💻 <b>Mr Tahiry - Informatique 👨‍🏫</b><br>
+InfoPro • Apprendre • Pratiquer • Réussir 🌟
+</footer><script>
+
+function changerClasse(){
+
+    const classe = document.getElementById("classe").value;
+
+    const examens = [
+        "exam6",
+        "exam5",
+        "exam4",
+        "exam3",
+        "exam2",
+        "exam1",
+        "examT"
+    ];
+
+    examens.forEach(function(id){
+        document.getElementById(id).style.display = "none";
+    });
+
+    document.getElementById("exam" + classe).style.display = "block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+function afficherCorrige(){
+
+    const corrections = document.querySelectorAll(".answer");
+
+    corrections.forEach(function(c){
+        c.style.display = "block";
+    });
+}
+
+
+function cacherCorrige(){
+
+    const corrections = document.querySelectorAll(".answer");
+
+    corrections.forEach(function(c){
+        c.style.display = "none";
+    });
+}
+
+</script></body>
+</html>

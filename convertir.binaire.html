@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Conversion ASCII Binaire</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#eef2f7;
+    text-align:center;
+}
+
+.container{
+    background:white;
+    padding:20px;
+    width:400px;
+    margin:auto;
+    margin-top:40px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+input, select, button{
+    margin:10px;
+    padding:10px;
+    width:85%;
+    font-size:16px;
+}
+
+#steps{
+    text-align:left;
+    background:#000;
+    color:#0f0;
+    padding:10px;
+    height:220px;
+    overflow:auto;
+    font-family:monospace;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Conversion ASCII ↔ Binaire</h2>
+
+<input type="text" id="input" placeholder="Ex: A na 01000001">
+
+<select id="mode">
+<option value="textToBin">Lettre ➜ Binaire</option>
+<option value="binToText">Binaire ➜ Lettre</option>
+</select>
+
+<button onclick="convert()">Convertir</button>
+
+<h3>Étapes :</h3>
+<div id="steps"></div>
+
+</div>
+
+<script>
+
+function log(msg){
+    document.getElementById("steps").innerHTML += msg + "<br>";
+}
+
+function reset(){
+    document.getElementById("steps").innerHTML = "";
+}
+
+// ================= LETTRE → BINAIRE =================
+function textToBinary(text){
+    let result = "";
+
+    for(let i=0; i<text.length; i++){
+        let char = text[i];
+        let ascii = char.charCodeAt(0);
+
+        log(`Lettre: ${char}`);
+        log(`ASCII: ${ascii}`);
+
+        let binary = ascii.toString(2).padStart(8,"0");
+
+        log(`Binaire (8 bits): ${binary}`);
+        log("------------------");
+
+        result += binary + " ";
+    }
+
+    return result;
+}
+
+// ================= BINAIRE → LETTRE =================
+function binaryToText(bin){
+    let result = "";
+
+    let parts = bin.split(" ");
+
+    parts.forEach((b,i)=>{
+        let decimal = parseInt(b,2);
+
+        log(`Bloc ${i+1}: ${b}`);
+        log(`Decimal: ${decimal}`);
+
+        let char = String.fromCharCode(decimal);
+
+        log(`Lettre: ${char}`);
+        log("------------------");
+
+        result += char;
+    });
+
+    return result;
+}
+
+// ================= MAIN =================
+function convert(){
+    reset();
+
+    let input = document.getElementById("input").value.trim();
+    let mode = document.getElementById("mode").value;
+
+    if(!input){
+        log("Ampidiro zavatra!");
+        return;
+    }
+
+    let result="";
+
+    if(mode==="textToBin"){
+        result = textToBinary(input);
+    }else{
+        result = binaryToText(input);
+    }
+
+    log("====== RESULTAT ======");
+    log(result);
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMD - Commande CD</title>
+<style>
+body{font-family:Arial; margin:0; background:#0f172a; color:white;}
+header{background:#1e293b; padding:15px; display:flex; justify-content:space-between;}
+button{padding:6px 10px; border:none; border-radius:5px; cursor:pointer;}
+.lang button{margin-left:5px;}
+.container{padding:20px;}
+.section{background:#1e293b; margin:15px 0; padding:15px; border-radius:10px;}
+h2{color:#38bdf8;}
+code{background:black; color:#00ff00; display:block; padding:5px;}
+.correct{color:lightgreen;}
+.wrong{color:red;}
+.terminal{background:black; height:200px; overflow:auto; padding:10px; border-radius:10px; font-family:monospace;}
+input{width:100%; padding:10px; background:black; color:#00ff00; border:none;}
+</style>
+</head>
+<body>
+
+<header>
+<div id="title">💻 CMD - Commande CD</div>
+<div class="lang">
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('mg')">MG</button>
+</div>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2 id="defTitle">📌 Définition</h2>
+<p id="defText">La commande <code>cd</code> permet de changer de répertoire dans CMD.</p>
+</div>
+
+<div class="section">
+<h2>📂 Syntaxe</h2>
+<code>cd [chemin]</code>
+<p>Exemples :</p>
+<code>cd C:\Users\Jean\Documents</code>
+<code>cd ..</code> <!-- remonte d’un dossier -->
+<code>cd \</code> <!-- va à la racine du lecteur -->
+</div>
+
+<div class="section">
+<h2>💻 Mini Simulateur CD</h2>
+<div class="terminal" id="terminal"></div>
+<input id="cmd" placeholder="Ecrire une commande CD..." onkeydown="run(event)">
+</div>
+
+<div class="section">
+<h2>🧠 Quiz</h2>
+<p>cd .. = ?</p>
+<button onclick="quiz(this,true)">Remonter d’un dossier</button>
+<button onclick="quiz(this,false)">Aller à un dossier spécifique</button>
+
+<p>cd \ = ?</p>
+<button onclick="quiz(this,true)">Aller à la racine</button>
+<button onclick="quiz(this,false)">Remonter d’un dossier</button>
+</div>
+
+<div class="section">
+<button onclick="prevPage()">⬅ Page précédente</button>
+<button onclick="nextPage()">➡ Page suivante : mkdir / rmdir</button>
+</div>
+
+</div>
+
+<script>
+// SIMULATEUR CD
+let currentDir = "C:\\Users\\Jean";
+function run(e){
+if(e.key==="Enter"){
+let cmd=document.getElementById("cmd").value.trim();
+let term=document.getElementById("terminal");
+term.innerHTML+="<div>> "+cmd+"</div>";
+
+if(cmd.startsWith("cd ")){
+let path = cmd.slice(3);
+if(path===".."){
+let parts = currentDir.split("\\");
+if(parts.length>1){parts.pop(); currentDir = parts.join("\\");}
+term.innerHTML+="<div>"+currentDir+"</div>";
+}else if(path==="\\"){
+currentDir = "C:\\";
+term.innerHTML+="<div>"+currentDir+"</div>";
+}else{
+currentDir = path;
+term.innerHTML+="<div>"+currentDir+"</div>";
+}
+}else{
+term.innerHTML+="<div>Commande inconnue</div>";
+}
+
+document.getElementById("cmd").value="";
+term.scrollTop=term.scrollHeight;
+}
+}
+
+// QUIZ
+function quiz(btn,good){
+if(good){btn.classList.add("correct");}else{btn.classList.add("wrong");}
+}
+
+// LANGUE
+function setLang(lang){
+if(lang==="fr"){
+document.getElementById("title").innerHTML="💻 CMD - Commande CD";
+document.getElementById("defTitle").innerHTML="📌 Définition";
+document.getElementById("defText").innerHTML="La commande cd permet de changer de répertoire dans CMD.";
+}
+if(lang==="mg"){
+document.getElementById("title").innerHTML="💻 CMD - Commande CD";
+document.getElementById("defTitle").innerHTML="📌 Famaritana";
+document.getElementById("defText").innerHTML="Baiko cd dia ahafahanao manova dossier ao amin'ny CMD.";
+}
+}
+
+// NAVIGATION PAGE
+function nextPage(){alert("Page suivante : mkdir / rmdir");}
+function prevPage(){alert("Page précédente : Commande DIR");}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,5762 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Exercices | InfoPro - Mr Tahiry</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:linear-gradient(135deg,#e3f2fd,#f5f7fa);
+    color:#222;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:linear-gradient(135deg,#0d47a1,#1976d2);
+    color:white;
+    padding:15px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 3px 12px rgba(0,0,0,.25);
+}
+
+.header-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.lang button{
+    border:none;
+    padding:8px 12px;
+    border-radius:20px;
+    cursor:pointer;
+    margin:2px;
+    font-weight:bold;
+}
+
+.search{
+    margin-top:12px;
+}
+
+.search input{
+    width:100%;
+    padding:12px 15px;
+    border:none;
+    border-radius:25px;
+    font-size:16px;
+    outline:none;
+}
+
+/* ================= TITRE ================= */
+
+.hero{
+    text-align:center;
+    padding:35px 15px 20px;
+}
+
+.hero h1{
+    color:#0d47a1;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#555;
+}
+
+/* ================= FILTRE ================= */
+
+.filters{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:10px 15px 25px;
+}
+
+.filters button{
+    border:none;
+    background:#fff;
+    color:#0d47a1;
+    padding:10px 17px;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+.filters button:hover,
+.filters button.active{
+    background:#0d47a1;
+    color:white;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:10px 15px 40px;
+}
+
+.level-title{
+    background:#0d47a1;
+    color:white;
+    padding:13px 18px;
+    border-radius:12px;
+    margin:25px 0 15px;
+    font-size:21px;
+}
+
+/* ================= CARDS ================= */
+
+.exercise-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
+    transition:.3s;
+    border-left:5px solid #1976d2;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 22px rgba(0,0,0,.18);
+}
+
+.badge{
+    display:inline-block;
+    background:#e3f2fd;
+    color:#0d47a1;
+    padding:5px 10px;
+    border-radius:15px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.card h3{
+    color:#0d47a1;
+    margin-bottom:10px;
+}
+
+.card p{
+    line-height:1.6;
+    margin-bottom:12px;
+}
+
+.card button{
+    border:none;
+    background:#1976d2;
+    color:white;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.card button:hover{
+    background:#0d47a1;
+}
+
+/* ================= EXERCICE INTERACTIF ================= */
+
+.exercise-box{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    background:#f1f8ff;
+    border-radius:10px;
+}
+
+.question{
+    margin-bottom:15px;
+}
+
+.question label{
+    display:block;
+    padding:7px;
+    cursor:pointer;
+}
+
+.question input{
+    margin-right:7px;
+}
+
+.result{
+    margin-top:12px;
+    padding:10px;
+    border-radius:8px;
+    font-weight:bold;
+    display:none;
+}
+
+.correct{
+    background:#d4edda;
+    color:#155724;
+}
+
+.wrong{
+    background:#f8d7da;
+    color:#721c24;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#0d47a1;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    .logo{
+        font-size:18px;
+    }
+
+    .hero h1{
+        font-size:25px;
+    }
+
+    .level-title{
+        font-size:18px;
+    }
+
+    .exercise-grid{
+        grid-template-columns:1fr;
+    }
+}
+/* =====================================================
+   TABLEAU EVALUATION
+===================================================== */
+
+.evaluation-panel{
+
+    max-width:1100px;
+
+    margin:30px auto;
+
+    padding:25px;
+
+    background:rgba(255,255,255,0.96);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.15);
+
+    text-align:center;
+
+}
+
+
+.evaluation-panel h2{
+
+    color:#0d47a1;
+
+    margin-bottom:10px;
+
+}
+
+
+.evaluation-panel p{
+
+    color:#555;
+
+    margin-bottom:20px;
+
+}
+
+
+/* PROGRESSION */
+
+.progress-container{
+
+    width:100%;
+
+    height:22px;
+
+    background:#e0e0e0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:15px 0;
+
+}
+
+
+#progressFill{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1565c0,
+            #00c853
+        );
+
+    border-radius:20px;
+
+    transition:
+        width .5s ease;
+
+}
+
+
+#progressText{
+
+    font-weight:bold;
+
+    color:#333;
+
+    margin-bottom:20px;
+
+}
+
+
+/* SCORE */
+
+.score-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    margin:15px 0;
+
+}
+
+
+.score-box span{
+
+    background:#f1f8ff;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    color:#0d47a1;
+
+    font-weight:bold;
+
+}
+
+
+/* BUTTONS */
+
+.evaluation-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+
+}
+
+
+.evaluation-buttons button{
+
+    border:none;
+
+    padding:13px 22px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:#1565c0;
+
+    transition:.3s;
+
+}
+
+
+.evaluation-buttons button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 6px 15px
+        rgba(0,0,0,.2);
+
+}
+
+
+.evaluation-buttons button:last-child{
+
+    background:#ef6c00;
+
+}
+
+
+/* RESULTAT FINAL */
+
+.final-result{
+
+    max-width:700px;
+
+    margin:30px auto;
+
+    padding:25px;
+
+}
+
+
+.final-score{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.18);
+
+}
+
+
+.final-score h2{
+
+    color:#0d47a1;
+
+}
+
+
+.big-score{
+
+    font-size:55px;
+
+    font-weight:bold;
+
+    margin:20px;
+
+    color:#1565c0;
+
+}
+
+
+.note{
+
+    font-size:25px;
+
+    margin:15px;
+
+}
+
+
+.mention{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin:20px;
+
+}
+
+
+.retry-btn{
+
+    border:none;
+
+    background:#2e7d32;
+
+    color:white;
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
+   DIFFICULTE
+===================================================== */
+
+.difficulty{
+
+    display:inline-block;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+
+.difficulty.easy{
+
+    background:#e8f5e9;
+
+    color:#2e7d32;
+
+}
+
+
+.difficulty.medium{
+
+    background:#fff3e0;
+
+    color:#ef6c00;
+
+}
+
+
+.difficulty.hard{
+
+    background:#ffebee;
+
+    color:#c62828;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .evaluation-panel{
+
+        margin:15px;
+
+        padding:18px;
+
+    }
+
+
+    .score-box{
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+
+    .evaluation-buttons{
+
+        flex-direction:column;
+
+    }
+
+
+    .evaluation-buttons button{
+
+        width:100%;
+
+    }
+
+
+    .big-score{
+
+        font-size:42px;
+
+    }
+
+}
+/* =====================================================
+   MODE ELEVE / RESPONSABLE
+===================================================== */
+
+.mode-panel{
+
+    max-width:1100px;
+
+    margin:25px auto;
+
+    padding:25px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.96);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.12);
+
+}
+
+.mode-panel h2{
+
+    color:#0d47a1;
+
+    margin-bottom:8px;
+
+}
+
+.mode-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+
+}
+
+.mode-buttons button{
+
+    border:none;
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    background:#1565c0;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.mode-buttons button:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+/* =====================================================
+   LOGIN RESPONSABLE
+===================================================== */
+
+.responsable-login{
+
+    max-width:500px;
+
+    margin:25px auto;
+
+    padding:25px;
+
+    background:white;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.15);
+
+}
+
+.responsable-login h2{
+
+    color:#b71c1c;
+
+}
+
+.responsable-login input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin:15px 0;
+
+    border:1px solid #ccc;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+}
+
+.responsable-login button{
+
+    border:none;
+
+    background:#b71c1c;
+
+    color:white;
+
+    padding:13px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+#loginMessage{
+
+    font-weight:bold;
+
+    margin-top:15px;
+
+}
+
+
+/* =====================================================
+   TABLEAU RESPONSABLE
+===================================================== */
+
+.responsable-panel{
+
+    max-width:1100px;
+
+    margin:25px auto;
+
+    padding:25px;
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.15);
+
+}
+
+.responsable-panel h2{
+
+    text-align:center;
+
+    color:#0d47a1;
+
+    margin-bottom:25px;
+
+}
+
+.responsable-cards{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.admin-card{
+
+    padding:25px;
+
+    text-align:center;
+
+    border-radius:16px;
+
+    background:#f5f8ff;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.admin-card span{
+
+    font-size:30px;
+
+}
+
+.admin-card strong{
+
+    font-size:28px;
+
+    color:#1565c0;
+
+}
+
+.admin-card small{
+
+    color:#666;
+
+}
+
+.admin-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-top:25px;
+
+}
+
+.admin-actions button{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    background:#1565c0;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+.admin-actions button:last-child{
+
+    background:#c62828;
+
+}
+
+
+/* =====================================================
+   CORRECTION
+===================================================== */
+
+body.responsable-mode .result{
+
+    display:block !important;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .responsable-cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .mode-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .mode-buttons button{
+
+        width:100%;
+
+    }
+
+    .admin-actions{
+
+        flex-direction:column;
+
+    }
+
+    .admin-actions button{
+
+        width:100%;
+
+    }
+
+}
+/* =====================================================
+   RESULTATS ELEVES
+===================================================== */
+
+.students-results{
+
+    margin-top:30px;
+
+    padding:25px;
+
+    background:#f8fbff;
+
+    border-radius:18px;
+
+}
+
+
+.students-results h2{
+
+    text-align:center;
+
+    color:#0d47a1;
+
+    margin-bottom:25px;
+
+}
+
+
+/* FORMULAIRE */
+
+.student-form{
+
+    display:grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr auto;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+}
+
+
+.student-form input,
+.student-form select{
+
+    padding:12px;
+
+    border:1px solid #ccc;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+}
+
+
+.student-form button{
+
+    border:none;
+
+    background:#1565c0;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+
+/* RECHERCHE */
+
+.results-tools{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+}
+
+
+.results-tools input{
+
+    flex:1;
+
+    padding:12px;
+
+    border:1px solid #ccc;
+
+    border-radius:10px;
+
+}
+
+
+.results-tools button{
+
+    border:none;
+
+    background:#c62828;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+
+/* TABLE */
+
+.table-container{
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+
+#studentsTable{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+}
+
+
+#studentsTable th{
+
+    background:#0d47a1;
+
+    color:white;
+
+    padding:12px;
+
+    white-space:nowrap;
+
+}
+
+
+#studentsTable td{
+
+    padding:11px;
+
+    border-bottom:1px solid #ddd;
+
+    text-align:center;
+
+    white-space:nowrap;
+
+}
+
+
+#studentsTable tr:hover{
+
+    background:#f1f8ff;
+
+}
+
+
+/* NOTE */
+
+.good-note{
+
+    color:#2e7d32;
+
+    font-weight:bold;
+
+}
+
+
+.average-note{
+
+    color:#ef6c00;
+
+    font-weight:bold;
+
+}
+
+
+.low-note{
+
+    color:#c62828;
+
+    font-weight:bold;
+
+}
+
+
+/* ACTION */
+
+.delete-student{
+
+    border:none;
+
+    background:#e53935;
+
+    color:white;
+
+    padding:7px 10px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .student-form{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .results-tools{
+
+        flex-direction:column;
+
+    }
+
+
+    .results-tools button{
+
+        width:100%;
+
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-top">
+
+<div class="logo">
+💻 InfoPro | Exercices
+</div>
+
+<div class="lang">
+<button onclick="showFR()">🇫🇷 Français</button>
+<button onclick="showMG()">🇲🇬 Malagasy</button>
+</div>
+
+</div>
+
+<div class="search">
+<input
+type="text"
+id="searchInput"
+placeholder="🔎 Rechercher un exercice, un niveau..."
+onkeyup="searchExercises()">
+</div>
+
+</header>
+<!-- =====================================================
+     CHOIX DU MODE
+===================================================== -->
+
+<section class="mode-panel">
+
+    <h2>👥 Espace utilisateur</h2>
+
+    <p>Choisissez votre espace :</p>
+
+    <div class="mode-buttons">
+
+        <button onclick="modeEleve()">
+            👨‍🎓 Espace Élève
+        </button>
+
+        <button onclick="modeResponsable()">
+            👨‍🏫 Espace Responsable
+        </button>
+
+    </div>
+<!-- =====================================================
+     GESTION DES RESULTATS ELEVES
+===================================================== -->
+
+<section class="students-results">
+
+    <h2>📊 Résultats des élèves</h2>
+
+    <div class="student-form">
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Nom et prénom de l'élève">
+
+        <select id="studentLevel">
+
+            <option value="">
+                -- Niveau --
+            </option>
+
+            <option>6ème</option>
+            <option>5ème</option>
+            <option>4ème</option>
+            <option>3ème</option>
+            <option>2nde</option>
+            <option>1ère</option>
+            <option>Terminale</option>
+
+        </select>
+
+        <input
+            type="text"
+            id="studentClass"
+            placeholder="Classe">
+
+        <button onclick="saveStudentResult()">
+            💾 Enregistrer le résultat
+        </button>
+
+    </div>
+
+
+    <div class="results-tools">
+
+        <input
+            type="text"
+            id="searchStudent"
+            placeholder="🔎 Rechercher un élève..."
+            oninput="searchStudent()">
+
+        <button onclick="clearAllStudents()">
+            🗑️ Effacer les résultats
+        </button>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table id="studentsTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>#</th>
+
+                    <th>Élève</th>
+
+                    <th>Niveau</th>
+
+                    <th>Classe</th>
+
+                    <th>Score</th>
+
+                    <th>Note /20</th>
+
+                    <th>Date</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="studentsBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+</section>
+
+
+<!-- =====================================================
+     ESPACE RESPONSABLE
+===================================================== -->
+
+<section
+    id="responsableLogin"
+    class="responsable-login"
+    style="display:none;">
+
+    <h2>🔐 Accès Responsable</h2>
+
+    <p>
+        Entrez le code responsable pour accéder
+        aux outils pédagogiques.
+    </p>
+
+    <input
+        type="password"
+        id="responsableCode"
+        placeholder="Code d'accès">
+
+    <button onclick="verifierResponsable()">
+        🔓 Se connecter
+    </button>
+
+    <p id="loginMessage"></p>
+
+</section>
+
+
+<!-- =====================================================
+     TABLEAU RESPONSABLE
+===================================================== -->
+
+<section
+    id="responsablePanel"
+    class="responsable-panel"
+    style="display:none;">
+
+    <h2>👨‍🏫 Tableau de bord Responsable</h2>
+
+    <div class="responsable-cards">
+
+        <div class="admin-card">
+            <span>📚</span>
+            <strong id="adminTotal">
+                70
+            </strong>
+            <small>Exercices</small>
+        </div>
+
+        <div class="admin-card">
+            <span>🎯</span>
+            <strong id="adminScore">
+                0
+            </strong>
+            <small>Réponses correctes</small>
+        </div>
+
+        <div class="admin-card">
+            <span>📝</span>
+            <strong id="adminNote">
+                -
+            </strong>
+            <small>Note /20</small>
+        </div>
+
+    </div>
+
+    <div class="admin-actions">
+
+        <button onclick="showCorrections()">
+            📖 Voir les corrections
+        </button>
+
+        <button onclick="resetEvaluation()">
+            🔄 Réinitialiser l'évaluation
+        </button>
+
+        <button onclick="deconnexionResponsable()">
+            🚪 Déconnexion
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     TABLEAU DE BORD EVALUATION
+===================================================== -->
+
+<section class="evaluation-panel">
+
+    <h2>🎯 Plateforme d'évaluation</h2>
+
+    <p>
+        Répondez aux exercices puis cliquez sur
+        <strong>Terminer l'évaluation</strong>.
+    </p>
+
+    <div class="progress-container">
+
+        <div id="progressFill"></div>
+
+    </div>
+
+    <div id="progressText">
+        Progression : 0 / 70 (0%)
+    </div>
+
+    <div class="score-box">
+
+        <span id="scoreText">
+            🎯 Score : 0 / 70
+        </span>
+
+        <span>
+            📚 Total :
+            <strong id="totalQuestions">
+                70
+            </strong>
+        </span>
+
+    </div>
+
+    <div class="evaluation-buttons">
+
+        <button
+            onclick="finishEvaluation()">
+
+            🏁 Terminer l'évaluation
+
+        </button>
+
+        <button
+            onclick="resetEvaluation()">
+
+            🔄 Réinitialiser
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- RESULTAT FINAL -->
+
+<section
+    id="finalResult"
+    class="final-result"
+    style="display:none;">
+
+</section>
+<section class="hero">
+
+<div id="fr">
+
+<h1>📝 Exercices d’Informatique</h1>
+
+<p>
+Exercices classés par niveau, de la 6ème à la Terminale.
+</p>
+
+</div>
+
+<div id="mg" style="display:none">
+
+<h1>📝 Fanazaran-tena Informatika</h1>
+
+<p>
+Fanazaran-tena voalamina araka ny kilasy, manomboka 6ème hatramin’ny Terminale.
+</p>
+
+</div>
+
+</section>
+
+
+<div class="filters">
+
+<button class="active" onclick="filterLevel('all',this)">📚 Tous</button>
+<button onclick="filterLevel('6eme',this)">6ème</button>
+<button onclick="filterLevel('5eme',this)">5ème</button>
+<button onclick="filterLevel('4eme',this)">4ème</button>
+<button onclick="filterLevel('3eme',this)">3ème</button>
+<button onclick="filterLevel('2nde',this)">2nde</button>
+<button onclick="filterLevel('1ere',this)">1ère</button>
+<button onclick="filterLevel('tle',this)">Terminale</button>
+
+</div>
+
+
+<main class="container">
+
+
+<!-- ================= 6EME ================= -->
+
+<section class="level" data-level="6eme">
+
+<div class="level-title">
+🟢 6ème — Initiation informatique
+</div>
+
+<div class="exercise-grid">
+
+<div class="card">
+<span class="badge">6ème • Initiation</span>
+<h3>🖥️ Exercice 1 : L’ordinateur</h3>
+
+<p>
+Un ordinateur est une machine électronique capable de recevoir,
+traiter, stocker et restituer des informations.
+</p>
+
+<button onclick="toggle('ex1')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex1">
+
+<div class="question">
+<b>1. Que fait principalement un ordinateur ?</b>
+
+<label>
+<input type="radio" name="q1" value="a">
+Il traite des informations
+</label>
+
+<label>
+<input type="radio" name="q1" value="b">
+Il fabrique de l’électricité
+</label>
+
+<label>
+<input type="radio" name="q1" value="c">
+Il remplace Internet
+</label>
+</div>
+
+<button onclick="check('q1','a','r1')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r1"></div>
+
+</div>
+</div>
+
+
+<div class="card">
+<span class="badge">6ème • Matériel</span>
+<h3>⌨️ Exercice 2 : Clavier et souris</h3>
+
+<p>
+Identifier les principaux périphériques utilisés pour communiquer
+avec l’ordinateur.
+</p>
+
+<button onclick="toggle('ex2')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex2">
+
+<div class="question">
+<b>1. Quel périphérique permet principalement de saisir du texte ?</b>
+
+<label>
+<input type="radio" name="q2" value="a">
+Le clavier
+</label>
+
+<label>
+<input type="radio" name="q2" value="b">
+L’écran
+</label>
+
+<label>
+<input type="radio" name="q2" value="c">
+L’imprimante
+</label>
+</div>
+
+<button onclick="check('q2','a','r2')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r2"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= 5EME ================= -->
+
+<section class="level" data-level="5eme">
+
+<div class="level-title">
+🔵 5ème — Bureautique
+</div>
+
+<div class="exercise-grid">
+
+<div class="card">
+<span class="badge">5ème • Word</span>
+
+<h3>📄 Exercice 1 : Microsoft Word</h3>
+
+<p>
+Identifier les fonctions principales d’un logiciel de traitement
+de texte.
+</p>
+
+<button onclick="toggle('ex3')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex3">
+
+<div class="question">
+
+<b>1. Quel logiciel permet principalement de créer un document texte ?</b>
+
+<label>
+<input type="radio" name="q3" value="a">
+Word
+</label>
+
+<label>
+<input type="radio" name="q3" value="b">
+Paint
+</label>
+
+<label>
+<input type="radio" name="q3" value="c">
+Calculatrice
+</label>
+
+</div>
+
+<button onclick="check('q3','a','r3')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r3"></div>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<span class="badge">5ème • Excel</span>
+
+<h3>📊 Exercice 2 : Excel</h3>
+
+<p>
+Une feuille contient les valeurs suivantes :
+10, 20, 30 et 40.
+Calculez leur somme.
+</p>
+
+<button onclick="toggle('ex4')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex4">
+
+<div class="question">
+
+<b>Quelle est la somme ?</b>
+
+<label>
+<input type="radio" name="q4" value="a">
+90
+</label>
+
+<label>
+<input type="radio" name="q4" value="b">
+100
+</label>
+
+<label>
+<input type="radio" name="q4" value="c">
+110
+</label>
+
+</div>
+
+<button onclick="check('q4','b','r4')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r4"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= 4EME ================= -->
+
+<section class="level" data-level="4eme">
+
+<div class="level-title">
+🟠 4ème — Composants et bureautique
+</div>
+
+<div class="exercise-grid">
+
+<div class="card">
+
+<span class="badge">4ème • Matériel</span>
+
+<h3>🧠 Exercice 1 : Processeur</h3>
+
+<p>
+Le processeur exécute les instructions et participe au traitement
+des informations.
+</p>
+
+<button onclick="toggle('ex5')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex5">
+
+<div class="question">
+
+<b>Quel composant exécute les instructions ?</b>
+
+<label>
+<input type="radio" name="q5" value="a">
+Processeur
+</label>
+
+<label>
+<input type="radio" name="q5" value="b">
+Clavier
+</label>
+
+<label>
+<input type="radio" name="q5" value="c">
+Écran
+</label>
+
+</div>
+
+<button onclick="check('q5','a','r5')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r5"></div>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<span class="badge">4ème • Stockage</span>
+
+<h3>💾 Exercice 2 : RAM et stockage</h3>
+
+<p>
+Distinguer la mémoire vive RAM des dispositifs de stockage.
+</p>
+
+<button onclick="toggle('ex6')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex6">
+
+<div class="question">
+
+<b>Quelle mémoire est principalement utilisée temporairement pendant
+l’exécution des programmes ?</b>
+
+<label>
+<input type="radio" name="q6" value="a">
+RAM
+</label>
+
+<label>
+<input type="radio" name="q6" value="b">
+Disque dur
+</label>
+
+<label>
+<input type="radio" name="q6" value="c">
+Clavier
+</label>
+
+</div>
+
+<button onclick="check('q6','a','r6')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r6"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= 3EME ================= -->
+
+<section class="level" data-level="3eme">
+
+<div class="level-title">
+🔴 3ème — Web, binaire et sécurité
+</div>
+
+<div class="exercise-grid">
+
+<div class="card">
+
+<span class="badge">3ème • Binaire</span>
+
+<h3>🔢 Exercice 1 : Conversion binaire</h3>
+
+<p>
+Convertir le nombre décimal <b>5</b> en binaire.
+</p>
+
+<button onclick="toggle('ex7')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex7">
+
+<div class="question">
+
+<b>5 en binaire = ?</b>
+
+<label>
+<input type="radio" name="q7" value="a">
+101
+</label>
+
+<label>
+<input type="radio" name="q7" value="b">
+110
+</label>
+
+<label>
+<input type="radio" name="q7" value="c">
+111
+</label>
+
+</div>
+
+<button onclick="check('q7','a','r7')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r7"></div>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<span class="badge">3ème • HTML</span>
+
+<h3>🌐 Exercice 2 : HTML</h3>
+
+<p>
+Identifier la balise utilisée pour créer un titre principal.
+</p>
+
+<button onclick="toggle('ex8')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex8">
+
+<div class="question">
+
+<b>Quelle balise crée un titre principal ?</b>
+
+<label>
+<input type="radio" name="q8" value="a">
+&lt;h1&gt;
+</label>
+
+<label>
+<input type="radio" name="q8" value="b">
+&lt;p&gt;
+</label>
+
+<label>
+<input type="radio" name="q8" value="c">
+&lt;img&gt;
+</label>
+
+</div>
+
+<button onclick="check('q8','a','r8')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r8"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= 2NDE ================= -->
+
+<section class="level" data-level="2nde">
+
+<div class="level-title">
+🟣 2nde — HTML, CSS et algorithmique
+</div>
+
+<div class="exercise-grid">
+
+<div class="card">
+
+<span class="badge">2nde • CSS</span>
+
+<h3>🎨 Exercice 1 : CSS</h3>
+
+<p>
+Quelle propriété CSS permet de modifier la couleur du texte ?
+</p>
+
+<button onclick="toggle('ex9')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex9">
+
+<div class="question">
+
+<b>Choisissez la bonne propriété :</b>
+
+<label>
+<input type="radio" name="q9" value="a">
+color
+</label>
+
+<label>
+<input type="radio" name="q9" value="b">
+text-size
+</label>
+
+<label>
+<input type="radio" name="q9" value="c">
+font-coloring
+</label>
+
+</div>
+
+<button onclick="check('q9','a','r9')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r9"></div>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<span class="badge">2nde • Algorithmique</span>
+
+<h3>🧩 Exercice 2 : Algorithme</h3>
+
+<p>
+Un algorithme est une suite d’instructions permettant de résoudre
+un problème.
+</p>
+
+<button onclick="toggle('ex10')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex10">
+
+<div class="question">
+
+<b>Un algorithme sert principalement à :</b>
+
+<label>
+<input type="radio" name="q10" value="a">
+Résoudre un problème
+</label>
+
+<label>
+<input type="radio" name="q10" value="b">
+Décorer un écran
+</label>
+
+<label>
+<input type="radio" name="q10" value="c">
+Imprimer uniquement
+</label>
+
+</div>
+
+<button onclick="check('q10','a','r10')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r10"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= 1ERE ================= -->
+
+<section class="level" data-level="1ere">
+
+<div class="level-title">
+🟡 1ère — Programmation
+</div>
+
+<div class="exercise-grid">
+
+<div class="card">
+
+<span class="badge">1ère • JavaScript</span>
+
+<h3>⚙️ Exercice 1 : JavaScript</h3>
+
+<p>
+Identifier le mot-clé utilisé pour déclarer une variable moderne
+en JavaScript.
+</p>
+
+<button onclick="toggle('ex11')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex11">
+
+<div class="question">
+
+<b>Quelle instruction est correcte ?</b>
+
+<label>
+<input type="radio" name="q11" value="a">
+let age = 15;
+</label>
+
+<label>
+<input type="radio" name="q11" value="b">
+variable age = 15;
+</label>
+
+<label>
+<input type="radio" name="q11" value="c">
+int age := 15;
+</label>
+
+</div>
+
+<button onclick="check('q11','a','r11')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r11"></div>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<span class="badge">1ère • Python</span>
+
+<h3>🐍 Exercice 2 : Python</h3>
+
+<p>
+Identifier l’instruction Python utilisée pour afficher une information.
+</p>
+
+<button onclick="toggle('ex12')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex12">
+
+<div class="question">
+
+<b>Quelle instruction permet d’afficher du texte ?</b>
+
+<label>
+<input type="radio" name="q12" value="a">
+print()
+</label>
+
+<label>
+<input type="radio" name="q12" value="b">
+displayText()
+</label>
+
+<label>
+<input type="radio" name="q12" value="c">
+echoText()
+</label>
+
+</div>
+
+<button onclick="check('q12','a','r12')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r12"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= TERMINALE ================= -->
+
+<section class="level" data-level="tle">
+
+<div class="level-title">
+⚫ Terminale — Informatique avancée
+</div>
+
+<div class="exercise-grid">
+
+<div class="card">
+
+<span class="badge">Terminale • Réseaux</span>
+
+<h3>🌐 Exercice 1 : Réseau informatique</h3>
+
+<p>
+Un réseau informatique permet à plusieurs appareils de communiquer
+et de partager des ressources.
+</p>
+
+<button onclick="toggle('ex13')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex13">
+
+<div class="question">
+
+<b>Quel équipement permet notamment de relier plusieurs appareils
+dans un réseau local ?</b>
+
+<label>
+<input type="radio" name="q13" value="a">
+Switch
+</label>
+
+<label>
+<input type="radio" name="q13" value="b">
+Clavier
+</label>
+
+<label>
+<input type="radio" name="q13" value="c">
+Scanner
+</label>
+
+</div>
+
+<button onclick="check('q13','a','r13')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r13"></div>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<span class="badge">Terminale • IA</span>
+
+<h3>🤖 Exercice 2 : Intelligence artificielle</h3>
+
+<p>
+Comprendre le principe général de l’intelligence artificielle
+et de l’apprentissage automatique.
+</p>
+
+<button onclick="toggle('ex14')">
+▶ Commencer
+</button>
+
+<div class="exercise-box" id="ex14">
+
+<div class="question">
+
+<b>
+L’apprentissage automatique permet à un système informatique de :
+</b>
+
+<label>
+<input type="radio" name="q14" value="a">
+Apprendre des modèles à partir de données
+</label>
+
+<label>
+<input type="radio" name="q14" value="b">
+Fonctionner sans aucune donnée
+</label>
+
+<label>
+<input type="radio" name="q14" value="c">
+Remplacer automatiquement tous les humains
+</label>
+
+</div>
+
+<button onclick="check('q14','a','r14')">
+✅ Vérifier
+</button>
+
+<div class="result" id="r14"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+</main>
+<!-- =========================================================
+     BIBLIOTHÈQUE D'EXERCICES — 6ème à 3ème
+     40 exercices — 10 par niveau
+     À placer dans <main class="container"> de exercices.html
+========================================================= -->
+
+
+<!-- =========================================================
+     6ème — 10 EXERCICES
+========================================================= -->
+
+<section class="level" data-level="6eme">
+
+<div class="level-title">🟢 6ème — Initiation informatique</div>
+
+<div class="exercise-grid">
+
+
+<!-- 6EME 1 -->
+<div class="card">
+<span class="badge">6ème • Informatique</span>
+<h3>🖥️ Exercice 1 : Définition</h3>
+<p>Qu'est-ce qu'un ordinateur ?</p>
+
+<button onclick="toggle('6e1')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e1">
+<div class="question">
+<label><input type="radio" name="6q1" value="a">
+Une machine qui traite des informations
+</label>
+<label><input type="radio" name="6q1" value="b">
+Un simple écran
+</label>
+<label><input type="radio" name="6q1" value="c">
+Une imprimante
+</label>
+</div>
+
+<button onclick="check('6q1','a','6r1')">✅ Vérifier</button>
+<div class="result" id="6r1"></div>
+</div>
+</div>
+
+
+<!-- 6EME 2 -->
+<div class="card">
+<span class="badge">6ème • Matériel</span>
+<h3>⌨️ Exercice 2 : Clavier</h3>
+<p>Quel périphérique permet principalement de saisir du texte ?</p>
+
+<button onclick="toggle('6e2')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e2">
+
+<label><input type="radio" name="6q2" value="a">Écran</label>
+<label><input type="radio" name="6q2" value="b">Clavier</label>
+<label><input type="radio" name="6q2" value="c">Haut-parleur</label>
+
+<br>
+
+<button onclick="check('6q2','b','6r2')">✅ Vérifier</button>
+<div class="result" id="6r2"></div>
+
+</div>
+</div>
+
+
+<!-- 6EME 3 -->
+<div class="card">
+<span class="badge">6ème • Souris</span>
+<h3>🖱️ Exercice 3 : Souris</h3>
+<p>À quoi sert principalement la souris ?</p>
+
+<button onclick="toggle('6e3')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e3">
+
+<label><input type="radio" name="6q3" value="a">
+À déplacer le pointeur et sélectionner des éléments
+</label>
+
+<label><input type="radio" name="6q3" value="b">
+À imprimer
+</label>
+
+<label><input type="radio" name="6q3" value="c">
+À stocker les fichiers
+</label>
+
+<br>
+
+<button onclick="check('6q3','a','6r3')">✅ Vérifier</button>
+<div class="result" id="6r3"></div>
+
+</div>
+</div>
+
+
+<!-- 6EME 4 -->
+<div class="card">
+<span class="badge">6ème • Écran</span>
+<h3>🖥️ Exercice 4 : Moniteur</h3>
+<p>Quel appareil permet de voir les informations affichées ?</p>
+
+<button onclick="toggle('6e4')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e4">
+
+<label><input type="radio" name="6q4" value="a">Clavier</label>
+<label><input type="radio" name="6q4" value="b">Écran</label>
+<label><input type="radio" name="6q4" value="c">Souris</label>
+
+<br>
+
+<button onclick="check('6q4','b','6r4')">✅ Vérifier</button>
+<div class="result" id="6r4"></div>
+
+</div>
+</div>
+
+
+<!-- 6EME 5 -->
+<div class="card">
+<span class="badge">6ème • Fichiers</span>
+<h3>📁 Exercice 5 : Fichier</h3>
+<p>Un fichier peut contenir :</p>
+
+<button onclick="toggle('6e5')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e5">
+
+<label><input type="radio" name="6q5" value="a">
+Des informations
+</label>
+
+<label><input type="radio" name="6q5" value="b">
+Uniquement de l'électricité
+</label>
+
+<label><input type="radio" name="6q5" value="c">
+Uniquement une souris
+</label>
+
+<br>
+
+<button onclick="check('6q5','a','6r5')">✅ Vérifier</button>
+<div class="result" id="6r5"></div>
+
+</div>
+</div>
+
+
+<!-- 6EME 6 -->
+<div class="card">
+<span class="badge">6ème • Dossiers</span>
+<h3>📂 Exercice 6 : Dossier</h3>
+<p>À quoi sert principalement un dossier ?</p>
+
+<button onclick="toggle('6e6')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e6">
+
+<label><input type="radio" name="6q6" value="a">
+À organiser les fichiers
+</label>
+
+<label><input type="radio" name="6q6" value="b">
+À afficher une vidéo uniquement
+</label>
+
+<label><input type="radio" name="6q6" value="c">
+À remplacer le clavier
+</label>
+
+<br>
+
+<button onclick="check('6q6','a','6r6')">✅ Vérifier</button>
+<div class="result" id="6r6"></div>
+
+</div>
+</div>
+
+
+<!-- 6EME 7 -->
+<div class="card">
+<span class="badge">6ème • Périphériques</span>
+<h3>🖨️ Exercice 7 : Imprimante</h3>
+<p>Quelle est la fonction principale d'une imprimante ?</p>
+
+<button onclick="toggle('6e7')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e7">
+
+<label><input type="radio" name="6q7" value="a">
+Imprimer des documents
+</label>
+
+<label><input type="radio" name="6q7" value="b">
+Calculer uniquement
+</label>
+
+<label><input type="radio" name="6q7" value="c">
+Naviguer sur Internet
+</label>
+
+<br>
+
+<button onclick="check('6q7','a','6r7')">✅ Vérifier</button>
+<div class="result" id="6r7"></div>
+
+</div>
+</div>
+
+
+<!-- 6EME 8 -->
+<div class="card">
+<span class="badge">6ème • Clavier</span>
+<h3>🔤 Exercice 8 : Touches</h3>
+<p>Quelle touche permet généralement de créer un espace entre les mots ?</p>
+
+<button onclick="toggle('6e8')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e8">
+
+<label><input type="radio" name="6q8" value="a">
+Entrée
+</label>
+
+<label><input type="radio" name="6q8" value="b">
+Barre d'espace
+</label>
+
+<label><input type="radio" name="6q8" value="c">
+Échap
+</label>
+
+<br>
+
+<button onclick="check('6q8','b','6r8')">✅ Vérifier</button>
+<div class="result" id="6r8"></div>
+
+</div>
+</div>
+
+
+<!-- 6EME 9 -->
+<div class="card">
+<span class="badge">6ème • Sécurité</span>
+<h3>🔐 Exercice 9 : Mot de passe</h3>
+<p>Quel mot de passe est généralement le plus difficile à deviner ?</p>
+
+<button onclick="toggle('6e9')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e9">
+
+<label><input type="radio" name="6q9" value="a">
+123456
+</label>
+
+<label><input type="radio" name="6q9" value="b">
+password
+</label>
+
+<label><input type="radio" name="6q9" value="c">
+Une combinaison longue et unique
+</label>
+
+<br>
+
+<button onclick="check('6q9','c','6r9')">✅ Vérifier</button>
+<div class="result" id="6r9"></div>
+
+</div>
+</div>
+
+
+<!-- 6EME 10 -->
+<div class="card">
+<span class="badge">6ème • Révision</span>
+<h3>💻 Exercice 10 : Matériel</h3>
+<p>Lequel est un périphérique d'entrée ?</p>
+
+<button onclick="toggle('6e10')">▶ Commencer</button>
+
+<div class="exercise-box" id="6e10">
+
+<label><input type="radio" name="6q10" value="a">Clavier</label>
+<label><input type="radio" name="6q10" value="b">Écran</label>
+<label><input type="radio" name="6q10" value="c">Projecteur</label>
+
+<br>
+
+<button onclick="check('6q10','a','6r10')">✅ Vérifier</button>
+<div class="result" id="6r10"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+
+<!-- =========================================================
+     5ème — 10 EXERCICES
+========================================================= -->
+
+<section class="level" data-level="5eme">
+
+<div class="level-title">🔵 5ème — Word, Excel et Internet</div>
+
+<div class="exercise-grid">
+
+
+<!-- 5EME 1 -->
+<div class="card">
+<span class="badge">5ème • Word</span>
+<h3>📄 Exercice 1 : Word</h3>
+<p>Quel logiciel est principalement utilisé pour créer des documents texte ?</p>
+
+<button onclick="toggle('5e1')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e1">
+
+<label><input type="radio" name="5q1" value="a">Word</label>
+<label><input type="radio" name="5q1" value="b">Paint</label>
+<label><input type="radio" name="5q1" value="c">Calculatrice</label>
+
+<br>
+
+<button onclick="check('5q1','a','5r1')">✅ Vérifier</button>
+<div class="result" id="5r1"></div>
+
+</div>
+</div>
+
+
+<!-- 5EME 2 -->
+<div class="card">
+<span class="badge">5ème • Word</span>
+<h3>📝 Exercice 2 : Gras</h3>
+<p>Quelle commande permet de mettre un texte en gras ?</p>
+
+<button onclick="toggle('5e2')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e2">
+
+<label><input type="radio" name="5q2" value="a">B / Gras</label>
+<label><input type="radio" name="5q2" value="b">I / Italique</label>
+<label><input type="radio" name="5q2" value="c">U / Souligné</label>
+
+<br>
+
+<button onclick="check('5q2','a','5r2')">✅ Vérifier</button>
+<div class="result" id="5r2"></div>
+
+</div>
+</div>
+
+
+<!-- 5EME 3 -->
+<div class="card">
+<span class="badge">5ème • Word</span>
+<h3>📑 Exercice 3 : Copier</h3>
+<p>Quel raccourci clavier permet généralement de copier une sélection ?</p>
+
+<button onclick="toggle('5e3')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e3">
+
+<label><input type="radio" name="5q3" value="a">Ctrl + C</label>
+<label><input type="radio" name="5q3" value="b">Ctrl + V</label>
+<label><input type="radio" name="5q3" value="c">Ctrl + X</label>
+
+<br>
+
+<button onclick="check('5q3','a','5r3')">✅ Vérifier</button>
+<div class="result" id="5r3"></div>
+
+</div>
+</div>
+
+
+<!-- 5EME 4 -->
+<div class="card">
+<span class="badge">5ème • Word</span>
+<h3>📋 Exercice 4 : Coller</h3>
+<p>Quel raccourci permet de coller une information copiée ?</p>
+
+<button onclick="toggle('5e4')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e4">
+
+<label><input type="radio" name="5q4" value="a">Ctrl + P</label>
+<label><input type="radio" name="5q4" value="b">Ctrl + V</label>
+<label><input type="radio" name="5q4" value="c">Ctrl + S</label>
+
+<br>
+
+<button onclick="check('5q4','b','5r4')">✅ Vérifier</button>
+<div class="result" id="5r4"></div>
+
+</div>
+</div>
+
+
+<!-- 5EME 5 -->
+<div class="card">
+<span class="badge">5ème • Excel</span>
+<h3>📊 Exercice 5 : SOMME</h3>
+<p>Quelle fonction Excel permet d'additionner plusieurs nombres ?</p>
+
+<button onclick="toggle('5e5')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e5">
+
+<label><input type="radio" name="5q5" value="a">=SOMME()</label>
+<label><input type="radio" name="5q5" value="b">=TEXTE()</label>
+<label><input type="radio" name="5q5" value="c">=IMAGE()</label>
+
+<br>
+
+<button onclick="check('5q5','a','5r5')">✅ Vérifier</button>
+<div class="result" id="5r5"></div>
+
+</div>
+</div>
+
+
+<!-- 5EME 6 -->
+<div class="card">
+<span class="badge">5ème • Excel</span>
+<h3>📈 Exercice 6 : Moyenne</h3>
+<p>Quelle fonction Excel calcule une moyenne ?</p>
+
+<button onclick="toggle('5e6')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e6">
+
+<label><input type="radio" name="5q6" value="a">=MOYENNE()</label>
+<label><input type="radio" name="5q6" value="b">=SOMME()</label>
+<label><input type="radio" name="5q6" value="c">=SI()</label>
+
+<br>
+
+<button onclick="check('5q6','a','5r6')">✅ Vérifier</button>
+<div class="result" id="5r6"></div>
+
+</div>
+</div>
+
+
+<!-- 5EME 7 -->
+<div class="card">
+<span class="badge">5ème • Excel</span>
+<h3>🔢 Exercice 7 : Calcul</h3>
+<p>Quelle est la somme de 15 + 25 + 10 ?</p>
+
+<button onclick="toggle('5e7')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e7">
+
+<label><input type="radio" name="5q7" value="a">40</label>
+<label><input type="radio" name="5q7" value="b">50</label>
+<label><input type="radio" name="5q7" value="c">60</label>
+
+<br>
+
+<button onclick="check('5q7','b','5r7')">✅ Vérifier</button>
+<div class="result" id="5r7"></div>
+
+</div>
+</div>
+
+
+<!-- 5EME 8 -->
+<div class="card">
+<span class="badge">5ème • Internet</span>
+<h3>🌐 Exercice 8 : Navigateur</h3>
+<p>Quel logiciel permet d'accéder aux sites Web ?</p>
+
+<button onclick="toggle('5e8')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e8">
+
+<label><input type="radio" name="5q8" value="a">Navigateur Web</label>
+<label><input type="radio" name="5q8" value="b">Calculatrice</label>
+<label><input type="radio" name="5q8" value="c">Bloc-notes uniquement</label>
+
+<br>
+
+<button onclick="check('5q8','a','5r8')">✅ Vérifier</button>
+<div class="result" id="5r8"></div>
+
+</div>
+</div>
+
+
+<!-- 5EME 9 -->
+<div class="card">
+<span class="badge">5ème • Internet</span>
+<h3>🔎 Exercice 9 : Recherche</h3>
+<p>Quel outil permet de rechercher des informations sur Internet ?</p>
+
+<button onclick="toggle('5e9')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e9">
+
+<label><input type="radio" name="5q9" value="a">Moteur de recherche</label>
+<label><input type="radio" name="5q9" value="b">Clavier uniquement</label>
+<label><input type="radio" name="5q9" value="c">Imprimante</label>
+
+<br>
+
+<button onclick="check('5q9','a','5r9')">✅ Vérifier</button>
+<div class="result" id="5r9"></div>
+
+</div>
+</div>
+
+
+<!-- 5EME 10 -->
+<div class="card">
+<span class="badge">5ème • Sécurité</span>
+<h3>🔐 Exercice 10 : Internet sécurisé</h3>
+<p>Quelle information doit-on éviter de partager publiquement ?</p>
+
+<button onclick="toggle('5e10')">▶ Commencer</button>
+
+<div class="exercise-box" id="5e10">
+
+<label><input type="radio" name="5q10" value="a">
+Mot de passe personnel
+</label>
+
+<label><input type="radio" name="5q10" value="b">
+Une information générale
+</label>
+
+<label><input type="radio" name="5q10" value="c">
+Le nom d'un logiciel connu
+</label>
+
+<br>
+
+<button onclick="check('5q10','a','5r10')">✅ Vérifier</button>
+<div class="result" id="5r10"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+
+<!-- =========================================================
+     4ème — 10 EXERCICES
+========================================================= -->
+
+<section class="level" data-level="4eme">
+
+<div class="level-title">🟠 4ème — Composants, bureautique et présentation</div>
+
+<div class="exercise-grid">
+
+
+<!-- 4EME 1 -->
+<div class="card">
+<span class="badge">4ème • Processeur</span>
+<h3>🧠 Exercice 1 : CPU</h3>
+<p>Quel composant est souvent considéré comme le « cerveau » de l'ordinateur ?</p>
+
+<button onclick="toggle('4e1')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e1">
+
+<label><input type="radio" name="4q1" value="a">Processeur</label>
+<label><input type="radio" name="4q1" value="b">Souris</label>
+<label><input type="radio" name="4q1" value="c">Écran</label>
+
+<br>
+
+<button onclick="check('4q1','a','4r1')">✅ Vérifier</button>
+<div class="result" id="4r1"></div>
+
+</div>
+</div>
+
+
+<!-- 4EME 2 -->
+<div class="card">
+<span class="badge">4ème • RAM</span>
+<h3>💾 Exercice 2 : Mémoire vive</h3>
+<p>Que signifie RAM ?</p>
+
+<button onclick="toggle('4e2')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e2">
+
+<label><input type="radio" name="4q2" value="a">Random Access Memory</label>
+<label><input type="radio" name="4q2" value="b">Read Access Machine</label>
+<label><input type="radio" name="4q2" value="c">Rapid Application Mode</label>
+
+<br>
+
+<button onclick="check('4q2','a','4r2')">✅ Vérifier</button>
+<div class="result" id="4r2"></div>
+
+</div>
+</div>
+
+
+<!-- 4EME 3 -->
+<div class="card">
+<span class="badge">4ème • Stockage</span>
+<h3>💽 Exercice 3 : SSD</h3>
+<p>Le SSD sert principalement à :</p>
+
+<button onclick="toggle('4e3')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e3">
+
+<label><input type="radio" name="4q3" value="a">Stocker des données</label>
+<label><input type="radio" name="4q3" value="b">Afficher une image</label>
+<label><input type="radio" name="4q3" value="c">Saisir du texte</label>
+
+<br>
+
+<button onclick="check('4q3','a','4r3')">✅ Vérifier</button>
+<div class="result" id="4r3"></div>
+
+</div>
+</div>
+
+
+<!-- 4EME 4 -->
+<div class="card">
+<span class="badge">4ème • Carte mère</span>
+<h3>🔧 Exercice 4 : Carte mère</h3>
+<p>Quel est le rôle général de la carte mère ?</p>
+
+<button onclick="toggle('4e4')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e4">
+
+<label><input type="radio" name="4q4" value="a">
+Relier les principaux composants de l'ordinateur
+</label>
+
+<label><input type="radio" name="4q4" value="b">
+Imprimer uniquement
+</label>
+
+<label><input type="radio" name="4q4" value="c">
+Afficher uniquement les vidéos
+</label>
+
+<br>
+
+<button onclick="check('4q4','a','4r4')">✅ Vérifier</button>
+<div class="result" id="4r4"></div>
+
+</div>
+</div>
+
+
+<!-- 4EME 5 -->
+<div class="card">
+<span class="badge">4ème • PowerPoint</span>
+<h3>📽️ Exercice 5 : Présentation</h3>
+<p>Quel logiciel permet de créer des présentations avec des diapositives ?</p>
+
+<button onclick="toggle('4e5')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e5">
+
+<label><input type="radio" name="4q5" value="a">PowerPoint</label>
+<label><input type="radio" name="4q5" value="b">Paint</label>
+<label><input type="radio" name="4q5" value="c">Calculatrice</label>
+
+<br>
+
+<button onclick="check('4q5','a','4r5')">✅ Vérifier</button>
+<div class="result" id="4r5"></div>
+
+</div>
+</div>
+
+
+<!-- 4EME 6 -->
+<div class="card">
+<span class="badge">4ème • PowerPoint</span>
+<h3>🖼️ Exercice 6 : Diapositive</h3>
+<p>Une présentation PowerPoint est composée principalement de :</p>
+
+<button onclick="toggle('4e6')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e6">
+
+<label><input type="radio" name="4q6" value="a">Diapositives</label>
+<label><input type="radio" name="4q6" value="b">Dossiers uniquement</label>
+<label><input type="radio" name="4q6" value="c">Cellules uniquement</label>
+
+<br>
+
+<button onclick="check('4q6','a','4r6')">✅ Vérifier</button>
+<div class="result" id="4r6"></div>
+
+</div>
+</div>
+
+
+<!-- 4EME 7 -->
+<div class="card">
+<span class="badge">4ème • Excel</span>
+<h3>📊 Exercice 7 : Cellule</h3>
+<p>Dans Excel, l'intersection d'une ligne et d'une colonne forme :</p>
+
+<button onclick="toggle('4e7')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e7">
+
+<label><input type="radio" name="4q7" value="a">Une cellule</label>
+<label><input type="radio" name="4q7" value="b">Une diapositive</label>
+<label><input type="radio" name="4q7" value="c">Un paragraphe</label>
+
+<br>
+
+<button onclick="check('4q7','a','4r7')">✅ Vérifier</button>
+<div class="result" id="4r7"></div>
+
+</div>
+</div>
+
+
+<!-- 4EME 8 -->
+<div class="card">
+<span class="badge">4ème • Excel</span>
+<h3>➕ Exercice 8 : Formule</h3>
+<p>Quelle formule additionne A1 et A2 ?</p>
+
+<button onclick="toggle('4e8')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e8">
+
+<label><input type="radio" name="4q8" value="a">=A1+A2</label>
+<label><input type="radio" name="4q8" value="b">A1+A2 seulement</label>
+<label><input type="radio" name="4q8" value="c">ADD(A1,A2)</label>
+
+<br>
+
+<button onclick="check('4q8','a','4r8')">✅ Vérifier</button>
+<div class="result" id="4r8"></div>
+
+</div>
+</div>
+
+
+<!-- 4EME 9 -->
+<div class="card">
+<span class="badge">4ème • Internet</span>
+<h3>🌐 Exercice 9 : URL</h3>
+<p>Une URL permet notamment de :</p>
+
+<button onclick="toggle('4e9')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e9">
+
+<label><input type="radio" name="4q9" value="a">
+Identifier l'adresse d'une ressource Web
+</label>
+
+<label><input type="radio" name="4q9" value="b">
+Augmenter la RAM
+</label>
+
+<label><input type="radio" name="4q9" value="c">
+Imprimer un document
+</label>
+
+<br>
+
+<button onclick="check('4q9','a','4r9')">✅ Vérifier</button>
+<div class="result" id="4r9"></div>
+
+</div>
+</div>
+
+
+<!-- 4EME 10 -->
+<div class="card">
+<span class="badge">4ème • Sécurité</span>
+<h3>🛡️ Exercice 10 : Antivirus</h3>
+<p>Quel est le rôle général d'un antivirus ?</p>
+
+<button onclick="toggle('4e10')">▶ Commencer</button>
+
+<div class="exercise-box" id="4e10">
+
+<label><input type="radio" name="4q10" value="a">
+Détecter et aider à traiter des logiciels malveillants
+</label>
+
+<label><input type="radio" name="4q10" value="b">
+Créer automatiquement Internet
+</label>
+
+<label><input type="radio" name="4q10" value="c">
+Remplacer le processeur
+</label>
+
+<br>
+
+<button onclick="check('4q10','a','4r10')">✅ Vérifier</button>
+<div class="result" id="4r10"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+
+<!-- =========================================================
+     3ème — 10 EXERCICES
+========================================================= -->
+
+<section class="level" data-level="3eme">
+
+<div class="level-title">🔴 3ème — Binaire, HTML, CSS et sécurité</div>
+
+<div class="exercise-grid">
+
+
+<!-- 3EME 1 -->
+<div class="card">
+<span class="badge">3ème • Binaire</span>
+<h3>🔢 Exercice 1 : Décimal → binaire</h3>
+<p>Convertir 5 en binaire.</p>
+
+<button onclick="toggle('3e1')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e1">
+
+<label><input type="radio" name="3q1" value="a">101</label>
+<label><input type="radio" name="3q1" value="b">110</label>
+<label><input type="radio" name="3q1" value="c">111</label>
+
+<br>
+
+<button onclick="check('3q1','a','3r1')">✅ Vérifier</button>
+<div class="result" id="3r1"></div>
+
+</div>
+</div>
+
+
+<!-- 3EME 2 -->
+<div class="card">
+<span class="badge">3ème • Binaire</span>
+<h3>🔢 Exercice 2 : Décimal → binaire</h3>
+<p>Convertir 10 en binaire.</p>
+
+<button onclick="toggle('3e2')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e2">
+
+<label><input type="radio" name="3q2" value="a">1001</label>
+<label><input type="radio" name="3q2" value="b">1010</label>
+<label><input type="radio" name="3q2" value="c">1110</label>
+
+<br>
+
+<button onclick="check('3q2','b','3r2')">✅ Vérifier</button>
+<div class="result" id="3r2"></div>
+
+</div>
+</div>
+
+
+<!-- 3EME 3 -->
+<div class="card">
+<span class="badge">3ème • Binaire</span>
+<h3>🔢 Exercice 3 : Binaire → décimal</h3>
+<p>Convertir 101 en décimal.</p>
+
+<button onclick="toggle('3e3')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e3">
+
+<label><input type="radio" name="3q3" value="a">4</label>
+<label><input type="radio" name="3q3" value="b">5</label>
+<label><input type="radio" name="3q3" value="c">6</label>
+
+<br>
+
+<button onclick="check('3q3','b','3r3')">✅ Vérifier</button>
+<div class="result" id="3r3"></div>
+
+</div>
+</div>
+
+
+<!-- 3EME 4 -->
+<div class="card">
+<span class="badge">3ème • HTML</span>
+<h3>🌐 Exercice 4 : Titre</h3>
+<p>Quelle balise HTML crée le titre principal ?</p>
+
+<button onclick="toggle('3e4')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e4">
+
+<label><input type="radio" name="3q4" value="a">&lt;h1&gt;</label>
+<label><input type="radio" name="3q4" value="b">&lt;p&gt;</label>
+<label><input type="radio" name="3q4" value="c">&lt;img&gt;</label>
+
+<br>
+
+<button onclick="check('3q4','a','3r4')">✅ Vérifier</button>
+<div class="result" id="3r4"></div>
+
+</div>
+</div>
+
+
+<!-- 3EME 5 -->
+<div class="card">
+<span class="badge">3ème • HTML</span>
+<h3>🔗 Exercice 5 : Lien</h3>
+<p>Quelle balise permet de créer un lien hypertexte ?</p>
+
+<button onclick="toggle('3e5')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e5">
+
+<label><input type="radio" name="3q5" value="a">&lt;a&gt;</label>
+<label><input type="radio" name="3q5" value="b">&lt;linktext&gt;</label>
+<label><input type="radio" name="3q5" value="c">&lt;url&gt;</label>
+
+<br>
+
+<button onclick="check('3q5','a','3r5')">✅ Vérifier</button>
+<div class="result" id="3r5"></div>
+
+</div>
+</div>
+
+
+<!-- 3EME 6 -->
+<div class="card">
+<span class="badge">3ème • HTML</span>
+<h3>🖼️ Exercice 6 : Image</h3>
+<p>Quelle balise HTML permet d'insérer une image ?</p>
+
+<button onclick="toggle('3e6')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e6">
+
+<label><input type="radio" name="3q6" value="a">&lt;img&gt;</label>
+<label><input type="radio" name="3q6" value="b">&lt;picturetext&gt;</label>
+<label><input type="radio" name="3q6" value="c">&lt;photo&gt;</label>
+
+<br>
+
+<button onclick="check('3q6','a','3r6')">✅ Vérifier</button>
+<div class="result" id="3r6"></div>
+
+</div>
+</div>
+
+
+<!-- 3EME 7 -->
+<div class="card">
+<span class="badge">3ème • CSS</span>
+<h3>🎨 Exercice 7 : Couleur</h3>
+<p>Quelle propriété CSS modifie la couleur du texte ?</p>
+
+<button onclick="toggle('3e7')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e7">
+
+<label><input type="radio" name="3q7" value="a">color</label>
+<label><input type="radio" name="3q7" value="b">font-color-text</label>
+<label><input type="radio" name="3q7" value="c">text-paint</label>
+
+<br>
+
+<button onclick="check('3q7','a','3r7')">✅ Vérifier</button>
+<div class="result" id="3r7"></div>
+
+</div>
+</div>
+
+
+<!-- 3EME 8 -->
+<div class="card">
+<span class="badge">3ème • CSS</span>
+<h3>📐 Exercice 8 : Taille</h3>
+<p>Quelle propriété CSS permet de modifier la taille du texte ?</p>
+
+<button onclick="toggle('3e8')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e8">
+
+<label><input type="radio" name="3q8" value="a">font-size</label>
+<label><input type="radio" name="3q8" value="b">text-big</label>
+<label><input type="radio" name="3q8" value="c">size-font-text</label>
+
+<br>
+
+<button onclick="check('3q8','a','3r8')">✅ Vérifier</button>
+<div class="result" id="3r8"></div>
+
+</div>
+</div>
+
+
+<!-- 3EME 9 -->
+<div class="card">
+<span class="badge">3ème • Sécurité</span>
+<h3>🔐 Exercice 9 : Phishing</h3>
+<p>Le phishing cherche généralement à :</p>
+
+<button onclick="toggle('3e9')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e9">
+
+<label><input type="radio" name="3q9" value="a">
+Tromper l'utilisateur pour obtenir des informations
+</label>
+
+<label><input type="radio" name="3q9" value="b">
+Augmenter la vitesse du processeur
+</label>
+
+<label><input type="radio" name="3q9" value="c">
+Créer une présentation
+</label>
+
+<br>
+
+<button onclick="check('3q9','a','3r9')">✅ Vérifier</button>
+<div class="result" id="3r9"></div>
+
+</div>
+</div>
+
+
+<!-- 3EME 10 -->
+<div class="card">
+<span class="badge">3ème • Sécurité</span>
+<h3>🛡️ Exercice 10 : Sécurité</h3>
+<p>Quelle pratique améliore la sécurité d'un compte ?</p>
+
+<button onclick="toggle('3e10')">▶ Commencer</button>
+
+<div class="exercise-box" id="3e10">
+
+<label><input type="radio" name="3q10" value="a">
+Utiliser un mot de passe unique et robuste
+</label>
+
+<label><input type="radio" name="3q10" value="b">
+Partager son mot de passe avec tout le monde
+</label>
+
+<label><input type="radio" name="3q10" value="c">
+Utiliser 123456 partout
+</label>
+
+<br>
+
+<button onclick="check('3q10','a','3r10')">✅ Vérifier</button>
+<div class="result" id="3r10"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+<!-- =========================================================
+     2NDE — 10 EXERCICES
+========================================================= -->
+
+<section class="level" data-level="2nde">
+
+<div class="level-title">🟣 2nde — HTML, CSS, algorithmique et Internet</div>
+
+<div class="exercise-grid">
+
+
+<!-- 2NDE 1 -->
+<div class="card">
+<span class="badge">2nde • HTML</span>
+<h3>🌐 Exercice 1 : Structure HTML</h3>
+<p>Quelle balise contient généralement le contenu visible de la page ?</p>
+
+<button onclick="toggle('2e1')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e1">
+
+<label><input type="radio" name="2q1" value="a">&lt;body&gt;</label>
+<label><input type="radio" name="2q1" value="b">&lt;head&gt;</label>
+<label><input type="radio" name="2q1" value="c">&lt;title&gt;</label>
+
+<br><br>
+
+<button onclick="check('2q1','a','2r1')">✅ Vérifier</button>
+<div class="result" id="2r1"></div>
+
+</div>
+</div>
+
+
+<!-- 2NDE 2 -->
+<div class="card">
+<span class="badge">2nde • HTML</span>
+<h3>📝 Exercice 2 : Paragraphe</h3>
+<p>Quelle balise permet de créer un paragraphe ?</p>
+
+<button onclick="toggle('2e2')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e2">
+
+<label><input type="radio" name="2q2" value="a">&lt;p&gt;</label>
+<label><input type="radio" name="2q2" value="b">&lt;paragraph&gt;</label>
+<label><input type="radio" name="2q2" value="c">&lt;text&gt;</label>
+
+<br><br>
+
+<button onclick="check('2q2','a','2r2')">✅ Vérifier</button>
+<div class="result" id="2r2"></div>
+
+</div>
+</div>
+
+
+<!-- 2NDE 3 -->
+<div class="card">
+<span class="badge">2nde • HTML</span>
+<h3>🔗 Exercice 3 : Hyperlien</h3>
+<p>Quelle propriété de la balise &lt;a&gt; indique généralement la destination du lien ?</p>
+
+<button onclick="toggle('2e3')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e3">
+
+<label><input type="radio" name="2q3" value="a">href</label>
+<label><input type="radio" name="2q3" value="b">src</label>
+<label><input type="radio" name="2q3" value="c">link</label>
+
+<br><br>
+
+<button onclick="check('2q3','a','2r3')">✅ Vérifier</button>
+<div class="result" id="2r3"></div>
+
+</div>
+</div>
+
+
+<!-- 2NDE 4 -->
+<div class="card">
+<span class="badge">2nde • CSS</span>
+<h3>🎨 Exercice 4 : Couleur</h3>
+<p>Quelle propriété CSS permet de modifier la couleur du texte ?</p>
+
+<button onclick="toggle('2e4')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e4">
+
+<label><input type="radio" name="2q4" value="a">color</label>
+<label><input type="radio" name="2q4" value="b">background-text</label>
+<label><input type="radio" name="2q4" value="c">font-coloring</label>
+
+<br><br>
+
+<button onclick="check('2q4','a','2r4')">✅ Vérifier</button>
+<div class="result" id="2r4"></div>
+
+</div>
+</div>
+
+
+<!-- 2NDE 5 -->
+<div class="card">
+<span class="badge">2nde • CSS</span>
+<h3>📦 Exercice 5 : Marge</h3>
+<p>Quelle propriété CSS permet de créer un espace extérieur autour d'un élément ?</p>
+
+<button onclick="toggle('2e5')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e5">
+
+<label><input type="radio" name="2q5" value="a">margin</label>
+<label><input type="radio" name="2q5" value="b">outside-space</label>
+<label><input type="radio" name="2q5" value="c">border-space</label>
+
+<br><br>
+
+<button onclick="check('2q5','a','2r5')">✅ Vérifier</button>
+<div class="result" id="2r5"></div>
+
+</div>
+</div>
+
+
+<!-- 2NDE 6 -->
+<div class="card">
+<span class="badge">2nde • Algorithmique</span>
+<h3>🧩 Exercice 6 : Algorithme</h3>
+<p>Un algorithme est :</p>
+
+<button onclick="toggle('2e6')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e6">
+
+<label><input type="radio" name="2q6" value="a">
+Une suite d'instructions pour résoudre un problème
+</label>
+
+<label><input type="radio" name="2q6" value="b">
+Un composant matériel
+</label>
+
+<label><input type="radio" name="2q6" value="c">
+Un câble réseau
+</label>
+
+<br><br>
+
+<button onclick="check('2q6','a','2r6')">✅ Vérifier</button>
+<div class="result" id="2r6"></div>
+
+</div>
+</div>
+
+
+<!-- 2NDE 7 -->
+<div class="card">
+<span class="badge">2nde • Algorithmique</span>
+<h3>🔢 Exercice 7 : Variable</h3>
+<p>Une variable sert principalement à :</p>
+
+<button onclick="toggle('2e7')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e7">
+
+<label><input type="radio" name="2q7" value="a">
+Stocker une valeur
+</label>
+
+<label><input type="radio" name="2q7" value="b">
+Afficher uniquement une image
+</label>
+
+<label><input type="radio" name="2q7" value="c">
+Éteindre l'ordinateur
+</label>
+
+<br><br>
+
+<button onclick="check('2q7','a','2r7')">✅ Vérifier</button>
+<div class="result" id="2r7"></div>
+
+</div>
+</div>
+
+
+<!-- 2NDE 8 -->
+<div class="card">
+<span class="badge">2nde • Internet</span>
+<h3>🌍 Exercice 8 : Internet</h3>
+<p>Internet est principalement :</p>
+
+<button onclick="toggle('2e8')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e8">
+
+<label><input type="radio" name="2q8" value="a">
+Un réseau mondial de réseaux
+</label>
+
+<label><input type="radio" name="2q8" value="b">
+Un seul ordinateur
+</label>
+
+<label><input type="radio" name="2q8" value="c">
+Un logiciel de traitement de texte
+</label>
+
+<br><br>
+
+<button onclick="check('2q8','a','2r8')">✅ Vérifier</button>
+<div class="result" id="2r8"></div>
+
+</div>
+</div>
+
+
+<!-- 2NDE 9 -->
+<div class="card">
+<span class="badge">2nde • Sécurité</span>
+<h3>🔐 Exercice 9 : Mot de passe</h3>
+<p>Quelle pratique est recommandée pour un mot de passe important ?</p>
+
+<button onclick="toggle('2e9')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e9">
+
+<label><input type="radio" name="2q9" value="a">
+Utiliser un mot de passe unique et difficile à deviner
+</label>
+
+<label><input type="radio" name="2q9" value="b">
+Utiliser son prénom uniquement
+</label>
+
+<label><input type="radio" name="2q9" value="c">
+Utiliser 123456
+</label>
+
+<br><br>
+
+<button onclick="check('2q9','a','2r9')">✅ Vérifier</button>
+<div class="result" id="2r9"></div>
+
+</div>
+</div>
+
+
+<!-- 2NDE 10 -->
+<div class="card">
+<span class="badge">2nde • Révision</span>
+<h3>💻 Exercice 10 : Web</h3>
+<p>HTML sert principalement à :</p>
+
+<button onclick="toggle('2e10')">▶ Commencer</button>
+
+<div class="exercise-box" id="2e10">
+
+<label><input type="radio" name="2q10" value="a">
+Structurer le contenu d'une page Web
+</label>
+
+<label><input type="radio" name="2q10" value="b">
+Remplacer le processeur
+</label>
+
+<label><input type="radio" name="2q10" value="c">
+Créer uniquement des antivirus
+</label>
+
+<br><br>
+
+<button onclick="check('2q10','a','2r10')">✅ Vérifier</button>
+<div class="result" id="2r10"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+
+<!-- =========================================================
+     1ère — 10 EXERCICES
+========================================================= -->
+
+<section class="level" data-level="1ere">
+
+<div class="level-title">🟡 1ère — JavaScript, Python, Excel et sécurité</div>
+
+<div class="exercise-grid">
+
+
+<!-- 1ERE 1 -->
+<div class="card">
+<span class="badge">1ère • JavaScript</span>
+<h3>⚙️ Exercice 1 : Variable</h3>
+<p>Quelle instruction permet de déclarer une variable avec let ?</p>
+
+<button onclick="toggle('1e1')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e1">
+
+<label><input type="radio" name="1q1" value="a">let age = 15;</label>
+<label><input type="radio" name="1q1" value="b">variable age = 15;</label>
+<label><input type="radio" name="1q1" value="c">make age = 15;</label>
+
+<br><br>
+
+<button onclick="check('1q1','a','1r1')">✅ Vérifier</button>
+<div class="result" id="1r1"></div>
+
+</div>
+</div>
+
+
+<!-- 1ERE 2 -->
+<div class="card">
+<span class="badge">1ère • JavaScript</span>
+<h3>🖥️ Exercice 2 : Affichage</h3>
+<p>Quelle instruction affiche un message dans la console du navigateur ?</p>
+
+<button onclick="toggle('1e2')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e2">
+
+<label><input type="radio" name="1q2" value="a">console.log()</label>
+<label><input type="radio" name="1q2" value="b">console.print()</label>
+<label><input type="radio" name="1q2" value="c">browser.show()</label>
+
+<br><br>
+
+<button onclick="check('1q2','a','1r2')">✅ Vérifier</button>
+<div class="result" id="1r2"></div>
+
+</div>
+</div>
+
+
+<!-- 1ERE 3 -->
+<div class="card">
+<span class="badge">1ère • JavaScript</span>
+<h3>🔀 Exercice 3 : Condition</h3>
+<p>Quel mot-clé permet de commencer une condition en JavaScript ?</p>
+
+<button onclick="toggle('1e3')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e3">
+
+<label><input type="radio" name="1q3" value="a">if</label>
+<label><input type="radio" name="1q3" value="b">condition</label>
+<label><input type="radio" name="1q3" value="c">when</label>
+
+<br><br>
+
+<button onclick="check('1q3','a','1r3')">✅ Vérifier</button>
+<div class="result" id="1r3"></div>
+
+</div>
+</div>
+
+
+<!-- 1ERE 4 -->
+<div class="card">
+<span class="badge">1ère • JavaScript</span>
+<h3>🔁 Exercice 4 : Boucle</h3>
+<p>Quel mot-clé est couramment utilisé pour une boucle for ?</p>
+
+<button onclick="toggle('1e4')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e4">
+
+<label><input type="radio" name="1q4" value="a">for</label>
+<label><input type="radio" name="1q4" value="b">repeatonly</label>
+<label><input type="radio" name="1q4" value="c">looping</label>
+
+<br><br>
+
+<button onclick="check('1q4','a','1r4')">✅ Vérifier</button>
+<div class="result" id="1r4"></div>
+
+</div>
+</div>
+
+
+<!-- 1ERE 5 -->
+<div class="card">
+<span class="badge">1ère • Python</span>
+<h3>🐍 Exercice 5 : Affichage Python</h3>
+<p>Quelle instruction affiche « Bonjour » en Python ?</p>
+
+<button onclick="toggle('1e5')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e5">
+
+<label><input type="radio" name="1q5" value="a">print("Bonjour")</label>
+<label><input type="radio" name="1q5" value="b">echo("Bonjour")</label>
+<label><input type="radio" name="1q5" value="c">show("Bonjour")</label>
+
+<br><br>
+
+<button onclick="check('1q5','a','1r5')">✅ Vérifier</button>
+<div class="result" id="1r5"></div>
+
+</div>
+</div>
+
+
+<!-- 1ERE 6 -->
+<div class="card">
+<span class="badge">1ère • Python</span>
+<h3>🔢 Exercice 6 : Calcul</h3>
+<p>Quelle valeur produit <b>5 + 3</b> en Python ?</p>
+
+<button onclick="toggle('1e6')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e6">
+
+<label><input type="radio" name="1q6" value="a">7</label>
+<label><input type="radio" name="1q6" value="b">8</label>
+<label><input type="radio" name="1q6" value="c">9</label>
+
+<br><br>
+
+<button onclick="check('1q6','b','1r6')">✅ Vérifier</button>
+<div class="result" id="1r6"></div>
+
+</div>
+</div>
+
+
+<!-- 1ERE 7 -->
+<div class="card">
+<span class="badge">1ère • Excel</span>
+<h3>📊 Exercice 7 : SI</h3>
+<p>Quelle fonction Excel permet de tester une condition ?</p>
+
+<button onclick="toggle('1e7')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e7">
+
+<label><input type="radio" name="1q7" value="a">SI</label>
+<label><input type="radio" name="1q7" value="b">TESTER</label>
+<label><input type="radio" name="1q7" value="c">CONDITION</label>
+
+<br><br>
+
+<button onclick="check('1q7','a','1r7')">✅ Vérifier</button>
+<div class="result" id="1r7"></div>
+
+</div>
+</div>
+
+
+<!-- 1ERE 8 -->
+<div class="card">
+<span class="badge">1ère • Excel</span>
+<h3>📈 Exercice 8 : Moyenne</h3>
+<p>Quelle fonction calcule la moyenne de A1 à A5 ?</p>
+
+<button onclick="toggle('1e8')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e8">
+
+<label><input type="radio" name="1q8" value="a">=MOYENNE(A1:A5)</label>
+<label><input type="radio" name="1q8" value="b">=SOMME(A1:A5)</label>
+<label><input type="radio" name="1q8" value="c">=SI(A1:A5)</label>
+
+<br><br>
+
+<button onclick="check('1q8','a','1r8')">✅ Vérifier</button>
+<div class="result" id="1r8"></div>
+
+</div>
+</div>
+
+
+<!-- 1ERE 9 -->
+<div class="card">
+<span class="badge">1ère • Sécurité</span>
+<h3>🛡️ Exercice 9 : Mise à jour</h3>
+<p>Pourquoi faut-il maintenir les logiciels à jour ?</p>
+
+<button onclick="toggle('1e9')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e9">
+
+<label><input type="radio" name="1q9" value="a">
+Pour bénéficier notamment de corrections de sécurité
+</label>
+
+<label><input type="radio" name="1q9" value="b">
+Pour supprimer Internet
+</label>
+
+<label><input type="radio" name="1q9" value="c">
+Pour réduire toujours la mémoire RAM
+</label>
+
+<br><br>
+
+<button onclick="check('1q9','a','1r9')">✅ Vérifier</button>
+<div class="result" id="1r9"></div>
+
+</div>
+</div>
+
+
+<!-- 1ERE 10 -->
+<div class="card">
+<span class="badge">1ère • Projet</span>
+<h3>💻 Exercice 10 : Programmation</h3>
+<p>Quelle est une étape importante avant de programmer une solution ?</p>
+
+<button onclick="toggle('1e10')">▶ Commencer</button>
+
+<div class="exercise-box" id="1e10">
+
+<label><input type="radio" name="1q10" value="a">
+Analyser et définir le problème
+</label>
+
+<label><input type="radio" name="1q10" value="b">
+Supprimer le programme
+</label>
+
+<label><input type="radio" name="1q10" value="c">
+Éteindre l'ordinateur
+</label>
+
+<br><br>
+
+<button onclick="check('1q10','a','1r10')">✅ Vérifier</button>
+<div class="result" id="1r10"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+
+<!-- =========================================================
+     TERMINALE — 10 EXERCICES
+========================================================= -->
+
+<section class="level" data-level="tle">
+
+<div class="level-title">⚫ Terminale — Algorithmique, programmation, réseaux et IA</div>
+
+<div class="exercise-grid">
+
+
+<!-- TLE 1 -->
+<div class="card">
+<span class="badge">Terminale • Algorithmique</span>
+<h3>🧩 Exercice 1 : Algorithme</h3>
+<p>Quelle est la première étape logique lorsqu'on veut résoudre un problème informatique ?</p>
+
+<button onclick="toggle('te1')">▶ Commencer</button>
+
+<div class="exercise-box" id="te1">
+
+<label><input type="radio" name="tq1" value="a">
+Analyser le problème
+</label>
+
+<label><input type="radio" name="tq1" value="b">
+Choisir une couleur d'écran
+</label>
+
+<label><input type="radio" name="tq1" value="c">
+Imprimer immédiatement
+</label>
+
+<br><br>
+
+<button onclick="check('tq1','a','tr1')">✅ Vérifier</button>
+<div class="result" id="tr1"></div>
+
+</div>
+</div>
+
+
+<!-- TLE 2 -->
+<div class="card">
+<span class="badge">Terminale • Algorithmique</span>
+<h3>🔢 Exercice 2 : Condition</h3>
+<p>Quel élément permet de choisir entre plusieurs traitements selon une condition ?</p>
+
+<button onclick="toggle('te2')">▶ Commencer</button>
+
+<div class="exercise-box" id="te2">
+
+<label><input type="radio" name="tq2" value="a">
+Une structure conditionnelle
+</label>
+
+<label><input type="radio" name="tq2" value="b">
+Une imprimante
+</label>
+
+<label><input type="radio" name="tq2" value="c">
+Un disque dur
+</label>
+
+<br><br>
+
+<button onclick="check('tq2','a','tr2')">✅ Vérifier</button>
+<div class="result" id="tr2"></div>
+
+</div>
+</div>
+
+
+<!-- TLE 3 -->
+<div class="card">
+<span class="badge">Terminale • Boucles</span>
+<h3>🔁 Exercice 3 : Répétition</h3>
+<p>Une boucle sert principalement à :</p>
+
+<button onclick="toggle('te3')">▶ Commencer</button>
+
+<div class="exercise-box" id="te3">
+
+<label><input type="radio" name="tq3" value="a">
+Répéter une ou plusieurs instructions
+</label>
+
+<label><input type="radio" name="tq3" value="b">
+Stocker physiquement des fichiers
+</label>
+
+<label><input type="radio" name="tq3" value="c">
+Afficher uniquement des images
+</label>
+
+<br><br>
+
+<button onclick="check('tq3','a','tr3')">✅ Vérifier</button>
+<div class="result" id="tr3"></div>
+
+</div>
+</div>
+
+
+<!-- TLE 4 -->
+<div class="card">
+<span class="badge">Terminale • Réseaux</span>
+<h3>🌐 Exercice 4 : Adresse IP</h3>
+<p>Une adresse IP sert notamment à :</p>
+
+<button onclick="toggle('te4')">▶ Commencer</button>
+
+<div class="exercise-box" id="te4">
+
+<label><input type="radio" name="tq4" value="a">
+Identifier une interface ou un appareil sur un réseau
+</label>
+
+<label><input type="radio" name="tq4" value="b">
+Augmenter automatiquement la capacité du disque
+</label>
+
+<label><input type="radio" name="tq4" value="c">
+Créer un document Word
+</label>
+
+<br><br>
+
+<button onclick="check('tq4','a','tr4')">✅ Vérifier</button>
+<div class="result" id="tr4"></div>
+
+</div>
+</div>
+
+
+<!-- TLE 5 -->
+<div class="card">
+<span class="badge">Terminale • Réseaux</span>
+<h3>🔌 Exercice 5 : Switch</h3>
+<p>Quel équipement est couramment utilisé pour relier plusieurs appareils dans un réseau local ?</p>
+
+<button onclick="toggle('te5')">▶ Commencer</button>
+
+<div class="exercise-box" id="te5">
+
+<label><input type="radio" name="tq5" value="a">Switch</label>
+<label><input type="radio" name="tq5" value="b">Clavier</label>
+<label><input type="radio" name="tq5" value="c">Scanner</label>
+
+<br><br>
+
+<button onclick="check('tq5','a','tr5')">✅ Vérifier</button>
+<div class="result" id="tr5"></div>
+
+</div>
+</div>
+
+
+<!-- TLE 6 -->
+<div class="card">
+<span class="badge">Terminale • Bases de données</span>
+<h3>🗄️ Exercice 6 : Base de données</h3>
+<p>Une base de données sert principalement à :</p>
+
+<button onclick="toggle('te6')">▶ Commencer</button>
+
+<div class="exercise-box" id="te6">
+
+<label><input type="radio" name="tq6" value="a">
+Organiser et gérer des données
+</label>
+
+<label><input type="radio" name="tq6" value="b">
+Remplacer un écran
+</label>
+
+<label><input type="radio" name="tq6" value="c">
+Créer de l'électricité
+</label>
+
+<br><br>
+
+<button onclick="check('tq6','a','tr6')">✅ Vérifier</button>
+<div class="result" id="tr6"></div>
+
+</div>
+</div>
+
+
+<!-- TLE 7 -->
+<div class="card">
+<span class="badge">Terminale • SQL</span>
+<h3>🗃️ Exercice 7 : SQL</h3>
+<p>Quel mot-clé SQL est couramment utilisé pour récupérer des données ?</p>
+
+<button onclick="toggle('te7')">▶ Commencer</button>
+
+<div class="exercise-box" id="te7">
+
+<label><input type="radio" name="tq7" value="a">SELECT</label>
+<label><input type="radio" name="tq7" value="b">SHOWDATAONLY</label>
+<label><input type="radio" name="tq7" value="c">GETTABLE</label>
+
+<br><br>
+
+<button onclick="check('tq7','a','tr7')">✅ Vérifier</button>
+<div class="result" id="tr7"></div>
+
+</div>
+</div>
+
+
+<!-- TLE 8 -->
+<div class="card">
+<span class="badge">Terminale • IA</span>
+<h3>🤖 Exercice 8 : Intelligence artificielle</h3>
+<p>L'apprentissage automatique utilise notamment :</p>
+
+<button onclick="toggle('te8')">▶ Commencer</button>
+
+<div class="exercise-box" id="te8">
+
+<label><input type="radio" name="tq8" value="a">
+Des données pour apprendre des modèles
+</label>
+
+<label><input type="radio" name="tq8" value="b">
+Uniquement un clavier
+</label>
+
+<label><input type="radio" name="tq8" value="c">
+Aucune information
+</label>
+
+<br><br>
+
+<button onclick="check('tq8','a','tr8')">✅ Vérifier</button>
+<div class="result" id="tr8"></div>
+
+</div>
+</div>
+
+
+<!-- TLE 9 -->
+<div class="card">
+<span class="badge">Terminale • Cybersécurité</span>
+<h3>🛡️ Exercice 9 : Authentification</h3>
+<p>Quel mécanisme peut renforcer la sécurité d'un compte en plus du mot de passe ?</p>
+
+<button onclick="toggle('te9')">▶ Commencer</button>
+
+<div class="exercise-box" id="te9">
+
+<label><input type="radio" name="tq9" value="a">
+Authentification à deux facteurs
+</label>
+
+<label><input type="radio" name="tq9" value="b">
+Partage du mot de passe
+</label>
+
+<label><input type="radio" name="tq9" value="c">
+Mot de passe identique partout
+</label>
+
+<br><br>
+
+<button onclick="check('tq9','a','tr9')">✅ Vérifier</button>
+<div class="result" id="tr9"></div>
+
+</div>
+</div>
+
+
+<!-- TLE 10 -->
+<div class="card">
+<span class="badge">Terminale • Projet</span>
+<h3>🚀 Exercice 10 : Projet informatique</h3>
+<p>Quelle étape vient généralement après l'analyse d'un problème ?</p>
+
+<button onclick="toggle('te10')">▶ Commencer</button>
+
+<div class="exercise-box" id="te10">
+
+<label><input type="radio" name="tq10" value="a">
+Concevoir une solution / un algorithme
+</label>
+
+<label><input type="radio" name="tq10" value="b">
+Supprimer toutes les données
+</label>
+
+<label><input type="radio" name="tq10" value="c">
+Éteindre immédiatement l'ordinateur
+</label>
+
+<br><br>
+
+<button onclick="check('tq10','a','tr10')">✅ Vérifier</button>
+<div class="result" id="tr10"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<script>
+
+/* =====================================================
+   INFOPRO - SYSTEME D'EVALUATION
+   70 EXERCICES
+===================================================== */
+
+let score = 0;
+let answered = new Set();
+let correctAnswered = new Set();
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    updateTotal();
+    addDifficulty();
+    loadScore();
+
+});
+
+
+/* =====================================================
+   CALCUL DU TOTAL
+===================================================== */
+
+function getQuestions(){
+
+    const names = new Set();
+
+    document.querySelectorAll(
+        '.card input[type="radio"]'
+    ).forEach(input => {
+
+        if(input.name){
+            names.add(input.name);
+        }
+
+    });
+
+    return [...names];
+
+}
+
+
+/* =====================================================
+   TOTAL EXERCICES
+===================================================== */
+
+function updateTotal(){
+
+    const total = getQuestions().length;
+
+    const totalElement =
+        document.getElementById("totalQuestions");
+
+    if(totalElement){
+        totalElement.textContent = total;
+    }
+
+    updateProgress();
+
+}
+
+
+/* =====================================================
+   CHECK REPONSE
+===================================================== */
+
+function check(question, correct, result){
+
+    const selected =
+        document.querySelector(
+            'input[name="' + question + '"]:checked'
+        );
+
+    const box =
+        document.getElementById(result);
+
+    if(!selected){
+
+        box.style.display = "block";
+
+        box.className =
+            "result wrong";
+
+        box.innerHTML =
+            "⚠️ Veuillez choisir une réponse.";
+
+        return;
+
+    }
+
+
+    /* affichage résultat */
+
+    box.style.display = "block";
+
+
+    if(selected.value === correct){
+
+        box.className =
+            "result correct";
+
+        box.innerHTML =
+            "✔️ Bonne réponse ! Félicitations 🎉";
+
+
+        /* SCORE */
+
+        if(!correctAnswered.has(question)){
+
+            score++;
+
+            correctAnswered.add(question);
+
+        }
+
+
+    }else{
+
+        box.className =
+            "result wrong";
+
+        box.innerHTML =
+            "❌ Mauvaise réponse. Réessayez !";
+
+    }
+
+
+    /* question considérée comme répondue */
+
+    answered.add(question);
+
+
+    updateProgress();
+
+    saveScore();
+
+}
+
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+function updateProgress(){
+
+    const questions = getQuestions();
+
+    const total = questions.length;
+
+    if(total === 0) return;
+
+
+    let answeredVisible = 0;
+
+    questions.forEach(name => {
+
+        const radios =
+            document.querySelectorAll(
+                'input[name="' + name + '"]'
+            );
+
+        if(radios.length === 0) return;
+
+        let visible = false;
+
+        radios.forEach(radio => {
+
+            const card =
+                radio.closest(".card");
+
+            if(card){
+
+                const style =
+                    window.getComputedStyle(card);
+
+                if(
+                    style.display !== "none" &&
+                    card.offsetParent !== null
+                ){
+                    visible = true;
+                }
+
+            }
+
+        });
+
+
+        if(
+            visible &&
+            answered.has(name)
+        ){
+            answeredVisible++;
+        }
+
+    });
+
+
+    const percent =
+        Math.round(
+            (answeredVisible / total) * 100
+        );
+
+
+    const fill =
+        document.getElementById("progressFill");
+
+    const progressText =
+        document.getElementById("progressText");
+
+    const scoreText =
+        document.getElementById("scoreText");
+
+
+    if(fill){
+
+        fill.style.width =
+            percent + "%";
+
+    }
+
+
+    if(progressText){
+
+        progressText.innerHTML =
+            "Progression : " +
+            answeredVisible +
+            " / " +
+            total +
+            " (" +
+            percent +
+            "%)";
+
+    }
+
+
+    if(scoreText){
+
+        scoreText.innerHTML =
+            "🎯 Score : " +
+            score +
+            " / " +
+            total;
+
+    }
+
+}
+
+
+/* =====================================================
+   TERMINER EVALUATION
+===================================================== */
+
+function finishEvaluation(){
+
+    const questions =
+        getQuestions();
+
+    const total =
+        questions.length;
+
+
+    if(total === 0) return;
+
+
+    const note =
+        (score / total) * 20;
+
+
+    let mention = "";
+
+
+    if(note >= 16){
+
+        mention =
+            "🏆 Très bien !";
+
+    }
+
+    else if(note >= 14){
+
+        mention =
+            "🥇 Bien !";
+
+    }
+
+    else if(note >= 12){
+
+        mention =
+            "👍 Assez bien !";
+
+    }
+
+    else if(note >= 10){
+
+        mention =
+            "✔️ Passable";
+
+    }
+
+    else{
+
+        mention =
+            "📚 À améliorer";
+
+    }
+
+
+    const resultBox =
+        document.getElementById("finalResult");
+
+
+    if(resultBox){
+
+        resultBox.style.display =
+            "block";
+
+
+        resultBox.innerHTML = `
+
+            <div class="final-score">
+
+                <h2>🏁 Résultat de l'évaluation</h2>
+
+                <div class="big-score">
+
+                    ${score} / ${total}
+
+                </div>
+
+                <div class="note">
+
+                    Note :
+                    <strong>
+                        ${note.toFixed(2)} / 20
+                    </strong>
+
+                </div>
+
+                <div class="mention">
+
+                    ${mention}
+
+                </div>
+
+                <p>
+
+                    Questions répondues :
+                    <strong>
+                        ${answered.size}
+                    </strong>
+                    / ${total}
+
+                </p>
+
+                <button
+                    class="retry-btn"
+                    onclick="resetEvaluation()">
+
+                    🔄 Réessayer
+
+                </button>
+
+            </div>
+
+        `;
+
+
+        resultBox.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+
+    saveScore();
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetEvaluation(){
+
+    score = 0;
+
+    answered.clear();
+
+    correctAnswered.clear();
+
+
+    /* décocher toutes les réponses */
+
+    document
+        .querySelectorAll(
+            '.card input[type="radio"]'
+        )
+        .forEach(input => {
+
+            input.checked = false;
+
+        });
+
+
+    /* cacher résultats */
+
+    document
+        .querySelectorAll(".result")
+        .forEach(result => {
+
+            result.style.display =
+                "none";
+
+        });
+
+
+    const finalResult =
+        document.getElementById(
+            "finalResult"
+        );
+
+    if(finalResult){
+
+        finalResult.style.display =
+            "none";
+
+        finalResult.innerHTML = "";
+
+    }
+
+
+    localStorage.removeItem(
+        "infoproExerciseScore"
+    );
+
+
+    updateProgress();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   SAUVEGARDE
+===================================================== */
+
+function saveScore(){
+
+    const data = {
+
+        score: score,
+
+        answered:
+            [...answered],
+
+        correct:
+            [...correctAnswered],
+
+        date:
+            new Date().toLocaleString()
+
+    };
+
+
+    localStorage.setItem(
+        "infoproExerciseScore",
+        JSON.stringify(data)
+    );
+
+}
+
+
+/* =====================================================
+   CHARGER SCORE
+===================================================== */
+
+function loadScore(){
+
+    const saved =
+        localStorage.getItem(
+            "infoproExerciseScore"
+        );
+
+
+    if(!saved) return;
+
+
+    try{
+
+        const data =
+            JSON.parse(saved);
+
+
+        score =
+            data.score || 0;
+
+
+        answered =
+            new Set(
+                data.answered || []
+            );
+
+
+        correctAnswered =
+            new Set(
+                data.correct || []
+            );
+
+
+        updateProgress();
+
+
+    }catch(error){
+
+        console.log(
+            "Impossible de charger le score."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   FILTRE NIVEAU
+===================================================== */
+
+function filterLevel(level,button){
+
+    document
+        .querySelectorAll(
+            ".filters button"
+        )
+        .forEach(btn => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    if(button){
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+
+    document
+        .querySelectorAll(".level")
+        .forEach(section => {
+
+            if(level === "all"){
+
+                section.style.display =
+                    "block";
+
+            }
+
+            else if(
+                section.dataset.level === level
+            ){
+
+                section.style.display =
+                    "block";
+
+            }
+
+            else{
+
+                section.style.display =
+                    "none";
+
+            }
+
+        });
+
+
+    updateProgress();
+
+}
+
+
+/* =====================================================
+   RECHERCHE
+===================================================== */
+
+function searchExercises(){
+
+    const search =
+        document
+        .getElementById(
+            "searchInput"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    document
+        .querySelectorAll(".level")
+        .forEach(section => {
+
+            let found = false;
+
+
+            section
+                .querySelectorAll(".card")
+                .forEach(card => {
+
+                    const text =
+                        card.innerText
+                        .toLowerCase();
+
+
+                    if(
+                        text.includes(search)
+                    ){
+
+                        card.style.display =
+                            "block";
+
+                        found = true;
+
+                    }
+
+                    else{
+
+                        card.style.display =
+                            "none";
+
+                    }
+
+                });
+
+
+            if(
+                found ||
+                search === ""
+            ){
+
+                section.style.display =
+                    "block";
+
+            }
+
+            else{
+
+                section.style.display =
+                    "none";
+
+            }
+
+        });
+
+
+    updateProgress();
+
+}
+
+
+/* =====================================================
+   DIFFICULTE AUTOMATIQUE
+===================================================== */
+
+function addDifficulty(){
+
+    document
+        .querySelectorAll(".level")
+        .forEach(section => {
+
+            const cards =
+                section.querySelectorAll(
+                    ".card"
+                );
+
+
+            cards.forEach(
+                (card,index) => {
+
+
+                    if(
+                        card.querySelector(
+                            ".difficulty"
+                        )
+                    ){
+                        return;
+                    }
+
+
+                    let text = "";
+                    let className = "";
+
+
+                    if(index < 3){
+
+                        text =
+                            "🟢 Facile";
+
+                        className =
+                            "easy";
+
+                    }
+
+                    else if(index < 7){
+
+                        text =
+                            "🟠 Moyen";
+
+                        className =
+                            "medium";
+
+                    }
+
+                    else{
+
+                        text =
+                            "🔴 Difficile";
+
+                        className =
+                            "hard";
+
+                    }
+
+
+                    const badge =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    badge.className =
+                        "difficulty " +
+                        className;
+
+
+                    badge.textContent =
+                        text;
+
+
+                    card.prepend(badge);
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   FRANÇAIS / MALAGASY
+===================================================== */
+
+function showFR(){
+
+    const fr =
+        document.getElementById("fr");
+
+    const mg =
+        document.getElementById("mg");
+
+
+    if(fr) fr.style.display =
+        "block";
+
+    if(mg) mg.style.display =
+        "none";
+
+}
+
+
+function showMG(){
+
+    const fr =
+        document.getElementById("fr");
+
+    const mg =
+        document.getElementById("mg");
+
+
+    if(fr) fr.style.display =
+        "none";
+
+    if(mg) mg.style.display =
+        "block";
+
+}
+/* =====================================================
+   MODE ELEVE
+===================================================== */
+
+function modeEleve(){
+
+    document.body.classList.remove(
+        "responsable-mode"
+    );
+
+    document.getElementById(
+        "responsableLogin"
+    ).style.display = "none";
+
+    document.getElementById(
+        "responsablePanel"
+    ).style.display = "none";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   MODE RESPONSABLE
+===================================================== */
+
+function modeResponsable(){
+
+    document.getElementById(
+        "responsableLogin"
+    ).style.display = "block";
+
+    document.getElementById(
+        "responsablePanel"
+    ).style.display = "none";
+
+    document.getElementById(
+        "responsableCode"
+    ).focus();
+
+}
+
+
+/* =====================================================
+   CODE RESPONSABLE
+===================================================== */
+
+function verifierResponsable(){
+
+    /*
+       ⚠️ CODE TEMPORAIRE POUR VERSION LOCALE
+    */
+
+    const codeCorrect =
+        "14021991Lucie";
+
+
+    const code =
+        document.getElementById(
+            "responsableCode"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+
+    if(code === codeCorrect){
+
+        document.body.classList.add(
+            "responsable-mode"
+        );
+
+        document.getElementById(
+            "responsableLogin"
+        ).style.display = "none";
+
+        document.getElementById(
+            "responsablePanel"
+        ).style.display = "block";
+
+        message.innerHTML =
+            "";
+
+        updateAdminDashboard();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+    else{
+
+        message.innerHTML =
+            "❌ Code incorrect.";
+
+        message.style.color =
+            "#c62828";
+
+    }
+
+}
+
+
+/* =====================================================
+   DASHBOARD RESPONSABLE
+===================================================== */
+
+function updateAdminDashboard(){
+
+    const total =
+        getQuestions().length;
+
+
+    const adminTotal =
+        document.getElementById(
+            "adminTotal"
+        );
+
+    const adminScore =
+        document.getElementById(
+            "adminScore"
+        );
+
+    const adminNote =
+        document.getElementById(
+            "adminNote"
+        );
+
+
+    if(adminTotal){
+
+        adminTotal.textContent =
+            total;
+
+    }
+
+
+    if(adminScore){
+
+        adminScore.textContent =
+            score;
+
+    }
+
+
+    if(adminNote){
+
+        if(total > 0){
+
+            const note =
+                (score / total) * 20;
+
+            adminNote.textContent =
+                note.toFixed(2) + " /20";
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   CORRECTIONS
+===================================================== */
+
+function showCorrections(){
+
+    document.body.classList.add(
+        "responsable-mode"
+    );
+
+
+    document
+        .querySelectorAll(".result")
+        .forEach(result => {
+
+            if(
+                result.innerHTML.trim() !== ""
+            ){
+
+                result.style.display =
+                    "block";
+
+            }
+
+        });
+
+
+    updateAdminDashboard();
+
+
+    alert(
+        "📖 Mode correction activé."
+    );
+
+}
+
+
+/* =====================================================
+   DECONNEXION
+===================================================== */
+
+function deconnexionResponsable(){
+
+    document.body.classList.remove(
+        "responsable-mode"
+    );
+
+
+    document.getElementById(
+        "responsablePanel"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "responsableLogin"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "responsableCode"
+    ).value = "";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+</script>
+
+<footer>
+
+💻 <b>Mr Tahiry - Informatique 👨‍🏫</b>
+<br><br>
+© 2026 — Plateforme pédagogique InfoPro
+
+</footer>
+
+
+<script>
+
+/* ================= OUVRIR / FERMER ================= */
+
+function toggle(id){
+
+    const box=document.getElementById(id);
+
+    if(box.style.display==="block"){
+        box.style.display="none";
+    }else{
+        box.style.display="block";
+    }
+}
+
+
+/* ================= CORRECTION ================= */
+
+function check(question,correct,result){
+
+    const selected=document.querySelector(
+        'input[name="'+question+'"]:checked'
+    );
+
+    const box=document.getElementById(result);
+
+    box.style.display="block";
+
+    if(!selected){
+
+        box.className="result wrong";
+        box.innerHTML="⚠️ Veuillez choisir une réponse.";
+
+        return;
+    }
+
+    if(selected.value===correct){
+
+        box.className="result correct";
+        box.innerHTML="✔️ Bonne réponse ! Félicitations 🎉";
+
+    }else{
+
+        box.className="result wrong";
+        box.innerHTML="❌ Mauvaise réponse. Réessayez !";
+
+    }
+}
+
+
+/* ================= FILTRE ================= */
+
+function filterLevel(level,button){
+
+    document.querySelectorAll(".filters button")
+    .forEach(btn=>btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document.querySelectorAll(".level")
+    .forEach(section=>{
+
+        if(level==="all"){
+            section.style.display="block";
+        }
+        else if(section.dataset.level===level){
+            section.style.display="block";
+        }
+        else{
+            section.style.display="none";
+        }
+
+    });
+}
+
+
+/* ================= RECHERCHE ================= */
+
+function searchExercises(){
+
+    const search=
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    document.querySelectorAll(".level").forEach(section=>{
+
+        let found=false;
+
+        section.querySelectorAll(".card").forEach(card=>{
+
+            const text=card.innerText.toLowerCase();
+
+            if(text.includes(search)){
+
+                card.style.display="block";
+                found=true;
+
+            }else{
+
+                card.style.display="none";
+
+            }
+
+        });
+
+        if(found || search===""){
+            section.style.display="block";
+        }else{
+            section.style.display="none";
+        }
+
+    });
+}
+
+
+/* ================= LANGUE ================= */
+
+function showFR(){
+
+    document.getElementById("fr").style.display="block";
+    document.getElementById("mg").style.display="none";
+
+}
+
+function showMG(){
+
+    document.getElementById("fr").style.display="none";
+    document.getElementById("mg").style.display="block";
+
+}
+/* =====================================================
+   RESULTATS ELEVES
+===================================================== */
+
+let studentsResults =
+    JSON.parse(
+        localStorage.getItem(
+            "infoproStudentsResults"
+        )
+    ) || [];
+
+
+/* =====================================================
+   ENREGISTRER UN ELEVE
+===================================================== */
+
+function saveStudentResult(){
+
+    const name =
+        document
+        .getElementById("studentName")
+        .value
+        .trim();
+
+    const level =
+        document
+        .getElementById("studentLevel")
+        .value;
+
+    const studentClass =
+        document
+        .getElementById("studentClass")
+        .value
+        .trim();
+
+
+    if(!name || !level || !studentClass){
+
+        alert(
+            "⚠️ Veuillez remplir tous les champs."
+        );
+
+        return;
+
+    }
+
+
+    const total =
+        getQuestions().length;
+
+
+    const note =
+        total > 0
+        ? ((score / total) * 20)
+        : 0;
+
+
+    const result = {
+
+        id:Date.now(),
+
+        name:name,
+
+        level:level,
+
+        studentClass:studentClass,
+
+        score:score,
+
+        total:total,
+
+        note:note.toFixed(2),
+
+        date:
+            new Date()
+            .toLocaleString("fr-FR")
+
+    };
+
+
+    studentsResults.push(result);
+
+
+    localStorage.setItem(
+
+        "infoproStudentsResults",
+
+        JSON.stringify(
+            studentsResults
+        )
+
+    );
+
+
+    document
+        .getElementById("studentName")
+        .value = "";
+
+    document
+        .getElementById("studentLevel")
+        .value = "";
+
+    document
+        .getElementById("studentClass")
+        .value = "";
+
+
+    displayStudents();
+
+
+    alert(
+        "✅ Résultat enregistré avec succès."
+    );
+
+}
+
+
+/* =====================================================
+   AFFICHER LES ELEVES
+===================================================== */
+
+function displayStudents(){
+
+    const body =
+        document.getElementById(
+            "studentsBody"
+        );
+
+
+    if(!body) return;
+
+
+    body.innerHTML = "";
+
+
+    if(studentsResults.length === 0){
+
+        body.innerHTML = `
+
+            <tr>
+
+                <td colspan="8">
+
+                    📭 Aucun résultat enregistré.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    studentsResults.forEach(
+        (student,index) => {
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            let noteClass =
+                "low-note";
+
+
+            if(student.note >= 14){
+
+                noteClass =
+                    "good-note";
+
+            }
+
+            else if(student.note >= 10){
+
+                noteClass =
+                    "average-note";
+
+            }
+
+
+            tr.innerHTML = `
+
+                <td>
+                    ${index + 1}
+                </td>
+
+                <td>
+                    <strong>
+                        ${student.name}
+                    </strong>
+                </td>
+
+                <td>
+                    ${student.level}
+                </td>
+
+                <td>
+                    ${student.studentClass}
+                </td>
+
+                <td>
+                    ${student.score}
+                    /
+                    ${student.total}
+                </td>
+
+                <td
+                    class="${noteClass}">
+                    ${student.note} /20
+                </td>
+
+                <td>
+                    ${student.date}
+                </td>
+
+                <td>
+
+                    <button
+                        class="delete-student"
+                        onclick="deleteStudent(${student.id})">
+
+                        🗑️
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            body.appendChild(tr);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   SUPPRIMER UN ELEVE
+===================================================== */
+
+function deleteStudent(id){
+
+    const confirmation =
+        confirm(
+            "Voulez-vous supprimer ce résultat ?"
+        );
+
+
+    if(!confirmation) return;
+
+
+    studentsResults =
+        studentsResults.filter(
+            student =>
+                student.id !== id
+        );
+
+
+    localStorage.setItem(
+
+        "infoproStudentsResults",
+
+        JSON.stringify(
+            studentsResults
+        )
+
+    );
+
+
+    displayStudents();
+
+}
+
+
+/* =====================================================
+   RECHERCHER UN ELEVE
+===================================================== */
+
+function searchStudent(){
+
+    const search =
+        document
+        .getElementById(
+            "searchStudent"
+        )
+        .value
+        .toLowerCase();
+
+
+    document
+        .querySelectorAll(
+            "#studentsBody tr"
+        )
+        .forEach(row => {
+
+            const text =
+                row.innerText
+                .toLowerCase();
+
+
+            row.style.display =
+                text.includes(search)
+                ? ""
+                : "none";
+
+        });
+
+}
+
+
+/* =====================================================
+   EFFACER TOUS LES RESULTATS
+===================================================== */
+
+function clearAllStudents(){
+
+    if(
+        !confirm(
+            "⚠️ Effacer TOUS les résultats ?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    studentsResults = [];
+
+
+    localStorage.removeItem(
+        "infoproStudentsResults"
+    );
+
+
+    displayStudents();
+
+}
+
+
+/* =====================================================
+   CHARGEMENT
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        displayStudents();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

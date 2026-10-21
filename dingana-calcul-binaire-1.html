@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculatrice Binaire Pro</title>
+
+<style>
+body{
+  font-family: Arial;
+  background:#0f172a;
+  margin:0;
+  color:white;
+}
+
+header{
+  text-align:center;
+  padding:15px;
+  background:#1e293b;
+}
+
+.container{
+  max-width:550px;
+  margin:auto;
+  padding:20px;
+}
+
+.calc{
+  background:#111827;
+  padding:20px;
+  border-radius:12px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:8px;
+  border:none;
+  text-align:center;
+  font-size:16px;
+}
+
+.btn{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.add{background:#22c55e;}
+.sub{background:#ef4444;}
+.mul{background:#3b82f6;}
+.div{background:#f59e0b;}
+
+.nav{
+  display:flex;
+  gap:10px;
+}
+
+.nav button{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  background:#64748b;
+}
+
+.stepBox{
+  margin-top:15px;
+  background:#0b1220;
+  padding:12px;
+  border-radius:8px;
+  font-family: monospace;
+  color:#00ff99;
+  white-space:pre-line;
+  min-height:60px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🧮 Calculatrice Binaire Pro (Step-by-Step)
+</header>
+
+<div class="container">
+
+<div class="calc">
+
+<input id="a" placeholder="Nombre 1 (binaire)">
+<input id="b" placeholder="Nombre 2 (binaire)">
+
+<button class="btn add" onclick="start('add')">➕ Addition</button>
+<button class="btn sub" onclick="start('sub')">➖ Soustraction</button>
+<button class="btn mul" onclick="start('mul')">✖️ Multiplication</button>
+<button class="btn div" onclick="start('div')">➗ Division</button>
+
+<div class="stepBox" id="stepBox">Choisir une opération</div>
+
+<div class="nav">
+  <button onclick="prevStep()">⬅ Prev</button>
+  <button onclick="nextStep()">Next ➡</button>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let steps = [];
+let i = 0;
+
+function start(type){
+
+  let a = document.getElementById("a").value;
+  let b = document.getElementById("b").value;
+
+  if(type === "add"){
+    steps = [
+`➕ ADDITION
+   ${a}
++  ${b}
+---------`,
+
+`Étape 1:
+1+1=10 → retenue
+0+1=1`,
+
+`Étape 2:
+Ajout des retenues`,
+
+`Résultat:
+= ${(parseInt(a,2)+parseInt(b,2)).toString(2)}`
+    ];
+  }
+
+  if(type === "sub"){
+    steps = [
+`➖ SOUSTRACTION
+   ${a}
+-  ${b}
+---------`,
+
+`Étape 1:
+0-1 → emprunt`,
+
+`Étape 2:
+Gestion des emprunts`,
+
+`Résultat:
+= ${(parseInt(a,2)-parseInt(b,2)).toString(2)}`
+    ];
+  }
+
+  if(type === "mul"){
+    steps = [
+`✖️ MULTIPLICATION
+   ${a}
+×  ${b}
+---------`,
+
+`Étape 1:
+Multiplication bit à bit`,
+
+`Étape 2:
+Décalage (shift left)`,
+
+`Résultat:
+= ${(parseInt(a,2)*parseInt(b,2)).toString(2)}`
+    ];
+  }
+
+  if(type === "div"){
+    steps = [
+`➗ DIVISION
+   ${a}
+÷  ${b}
+---------`,
+
+`Étape 1:
+Comparaison des bits`,
+
+`Étape 2:
+Soustraction répétée`,
+
+`Résultat:
+= ${Math.floor(parseInt(a,2)/parseInt(b,2)).toString(2)}`
+    ];
+  }
+
+  i = 0;
+  show();
+}
+
+function show(){
+  document.getElementById("stepBox").innerText = steps[i];
+}
+
+function nextStep(){
+  if(i < steps.length - 1){
+    i++;
+    show();
+  }
+}
+
+function prevStep(){
+  if(i > 0){
+    i--;
+    show();
+  }
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Création de fichier</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:#f8fafc;
+}
+
+/* HEADER */
+header{
+  background:#1e3a8a;
+  color:white;
+  padding:15px;
+  text-align:center;
+  position:sticky;
+  top:0;
+}
+
+.lang{
+  position:absolute;
+  right:20px;
+  top:15px;
+}
+
+button{
+  padding:6px 12px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.fr{background:#3b82f6;color:white;}
+.ml{background:#22c55e;color:white;}
+
+/* CONTAINER */
+.container{
+  padding:20px;
+}
+
+/* STEP STYLE */
+.step{
+  background:white;
+  border-left:6px solid #3b82f6;
+  padding:15px;
+  margin-bottom:12px;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.step:hover{
+  transform:translateY(-3px);
+}
+
+.content{
+  display:none;
+  margin-top:10px;
+  line-height:1.6;
+}
+
+.icon{
+  font-size:22px;
+}
+</style>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll("[data-fr]").forEach(el=>{
+    el.innerHTML = el.getAttribute("data-"+lang);
+  });
+}
+
+function toggle(id){
+  let el=document.getElementById(id);
+  el.style.display = (el.style.display==="block")?"none":"block";
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1 data-fr="📁 Création de fichier"
+    data-ml="📁 Famoronana fichier"></h1>
+
+<div class="lang">
+<button class="fr" onclick="setLang('fr')">FR</button>
+<button class="ml" onclick="setLang('ml')">ML</button>
+</div>
+</header>
+
+<div class="container">
+
+<!-- DEFINITION -->
+<div class="step" onclick="toggle('c1')">
+<div class="icon">📘</div>
+<h2 data-fr="Définition"
+    data-ml="Famaritana"></h2>
+
+<div id="c1" class="content">
+<p data-fr="Un fichier est un ensemble d’informations enregistré sur un ordinateur."
+   data-ml="Ny fichier dia fitambarana vaovao voatahiry ao amin’ny ordinatera."></p>
+</div>
+</div>
+
+<!-- ETAPES -->
+<div class="step" onclick="toggle('c2')">
+<div class="icon">🧩</div>
+<h2 data-fr="Étapes de création"
+    data-ml="Dingana famoronana"></h2>
+
+<div id="c2" class="content">
+<ol>
+<li data-fr="Ouvrir un logiciel (Word, bloc-notes)"
+    data-ml="Manokatra logiciel"></li>
+<li data-fr="Écrire le contenu"
+    data-ml="Manoratra ny contenu"></li>
+<li data-fr="Cliquer sur Fichier > Enregistrer"
+    data-ml="Tsindrio Fichier > Enregistrer"></li>
+<li data-fr="Donner un nom au fichier"
+    data-ml="Manome anarana fichier"></li>
+</ol>
+</div>
+</div>
+
+<!-- TYPES -->
+<div class="step" onclick="toggle('c3')">
+<div class="icon">📂</div>
+<h2 data-fr="Types de fichiers"
+    data-ml="Karazana fichier"></h2>
+
+<div id="c3" class="content">
+<ul>
+<li data-fr="Texte (.txt, .doc)"
+    data-ml="Lahatsoratra (.txt, .doc)"></li>
+<li data-fr="Image (.jpg, .png)"
+    data-ml="Sary (.jpg, .png)"></li>
+<li data-fr="Vidéo (.mp4)"
+    data-ml="Horonan-tsary (.mp4)"></li>
+<li data-fr="Audio (.mp3)"
+    data-ml="Feo (.mp3)"></li>
+</ul>
+</div>
+</div>
+
+<!-- IMPORTANCE -->
+<div class="step" onclick="toggle('c4')">
+<div class="icon">🎯</div>
+<h2 data-fr="Importance"
+    data-ml="Maha-zava-dehibe"></h2>
+
+<div id="c4" class="content">
+<p data-fr="Les fichiers permettent de stocker et organiser les données."
+   data-ml="Ny fichiers dia mitahiry sy mandamina angona."></p>
+</div>
+</div>
+
+<!-- EXERCICE -->
+<div class="step" onclick="toggle('c5')">
+<div class="icon">📝</div>
+<h2 data-fr="Exercice"
+    data-ml="Fanazaran-tena"></h2>
+
+<div id="c5" class="content">
+<ol>
+<li data-fr="Qu’est-ce qu’un fichier ?"
+    data-ml="Inona ny fichier ?"></li>
+<li data-fr="Donnez 2 types de fichiers"
+    data-ml="Omeo karazana fichier 2"></li>
+<li data-fr="Quelle est la première étape ?"
+    data-ml="Inona ny dingana voalohany ?"></li>
+</ol>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

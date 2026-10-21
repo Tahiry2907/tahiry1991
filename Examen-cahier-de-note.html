@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Examens Informatique PRO++ | InfoPro</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#061a2d,#0b5269,#073b4c);
+    color:#17202a;
+    padding-bottom:30px;
+}
+
+header{
+    background:rgba(0,0,0,.35);
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.3);
+}
+
+header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:16px;
+}
+
+.container{
+    width:96%;
+    max-width:1200px;
+    margin:25px auto;
+}
+
+.control{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+    margin-bottom:20px;
+}
+
+.control-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.control label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+select,
+input{
+    width:100%;
+    padding:10px;
+    border:1px solid #bbb;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+button{
+    border:none;
+    border-radius:8px;
+    padding:11px 16px;
+    cursor:pointer;
+    font-weight:bold;
+    color:white;
+}
+
+.btn-print{background:#1677ff;}
+.btn-show{background:#198754;}
+.btn-hide{background:#dc3545;}
+.btn-reset{background:#6c757d;}
+
+.exam{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+.exam-header{
+    text-align:center;
+    border-bottom:3px solid #0b5269;
+    padding-bottom:15px;
+    margin-bottom:20px;
+}
+
+.exam-header h2{
+    color:#0b5269;
+    margin-bottom:10px;
+}
+
+.exam-info{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.info-item{
+    background:#eef7fa;
+    padding:10px;
+    border-radius:8px;
+    text-align:center;
+}
+
+.section{
+    margin-top:25px;
+}
+
+.section h3{
+    background:#0b5269;
+    color:white;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.question{
+    background:#f7f9fa;
+    border-left:5px solid #0b5269;
+    padding:15px;
+    margin-bottom:12px;
+    border-radius:7px;
+}
+
+.question strong{
+    display:block;
+    margin-bottom:8px;
+}
+
+.pratique{
+    background:#eef9f0;
+    border-left:5px solid #198754;
+    padding:15px;
+    margin-bottom:12px;
+    border-radius:7px;
+}
+
+.bareme{
+    margin-top:20px;
+    background:#fff8e1;
+    padding:15px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.corrige{
+    display:none !important;
+    margin-top:25px;
+    background:#eaf7ee;
+    border:2px solid #198754;
+    padding:20px;
+    border-radius:10px;
+}
+
+.corrige.visible{
+    display:block !important;
+}
+
+.corrige h3{
+    color:#198754;
+    margin-bottom:15px;
+}
+
+.corrige li{
+    margin:8px 0;
+}
+
+.notes-box{
+    background:white;
+    margin-top:25px;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+.notes-box h2{
+    color:#0b5269;
+    margin-bottom:15px;
+}
+
+.notes-info{
+    background:#eef7fa;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+    line-height:1.6;
+}
+
+.notes-form{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.notes-form label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.note-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:20px 0;
+}
+
+.btn-add{background:#198754;}
+.btn-storage{background:#0d6efd;}
+.btn-clear{background:#dc3545;}
+
+.notes-table-wrapper{
+    overflow-x:auto;
+}
+
+.notes-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1000px;
+}
+
+.notes-table th,
+.notes-table td{
+    border:1px solid #ccc;
+    padding:8px;
+    text-align:center;
+}
+
+.notes-table th{
+    background:#0b5269;
+    color:white;
+}
+
+.notes-table tbody tr:nth-child(even){
+    background:#f5f5f5;
+}
+
+.notes-table input{
+    min-width:70px;
+    text-align:center;
+}
+
+.btn-delete{
+    background:#dc3545;
+    padding:7px 10px;
+}
+
+.footer{
+    text-align:center;
+    color:white;
+    margin-top:25px;
+    padding:20px;
+}
+
+@media(max-width:800px){
+    .control-grid,
+    .notes-form{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .exam-info{
+        grid-template-columns:1fr 1fr;
+    }
+
+    header h1{
+        font-size:23px;
+    }
+
+    .exam{
+        padding:18px;
+    }
+}
+
+@media(max-width:500px){
+    .control-grid,
+    .notes-form,
+    .exam-info{
+        grid-template-columns:1fr;
+    }
+
+    button{
+        width:100%;
+    }
+}
+
+@media print{
+    body{
+        background:white;
+    }
+
+    .control,
+    .buttons,
+    .note-actions,
+    .footer{
+        display:none !important;
+    }
+
+    .exam,
+    .notes-box{
+        box-shadow:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>💻 InfoPro — Examens Informatique PRO++</h1>
+    <p>🚀 Apprendre • Pratiquer • Réussir 🌟</p>
+    <p>Mr Tahiry - Informatique 👨‍🏫</p>
+</header>
+
+<div class="container">
+
+<!-- ================= CONTROLES ================= -->
+
+<div class="control">
+
+    <div class="control-grid">
+
+        <div>
+            <label>📚 Classe</label>
+
+            <select id="classe" onchange="afficherSujet()">
+                <option value="6eme">6ème</option>
+                <option value="5eme">5ème</option>
+                <option value="4eme">4ème</option>
+                <option value="3eme">3ème</option>
+                <option value="2nde">2nde</option>
+                <option value="1ere">1ère</option>
+                <option value="terminale">Terminale</option>
+            </select>
+        </div>
+
+        <div>
+            <label>📅 Trimestre</label>
+
+            <select id="trim" onchange="afficherSujet()">
+                <option value="1">1er trimestre</option>
+                <option value="2">2ème trimestre</option>
+                <option value="3">3ème trimestre</option>
+            </select>
+        </div>
+
+        <div>
+            <label>📝 Évaluation</label>
+
+            <select id="evaluation" onchange="afficherSujet()">
+                <option value="DS">DS</option>
+                <option value="EX">Examen trimestriel</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <button class="btn-print" onclick="window.print()">
+            🖨️ Imprimer / PDF
+        </button>
+
+        <button class="btn-show" onclick="afficherCorrige()">
+            ✅ Afficher corrigé
+        </button>
+
+        <button class="btn-hide" onclick="cacherCorrige()">
+            ❌ Cacher corrigé
+        </button>
+
+        <button class="btn-reset" onclick="reinitialiser()">
+            🔄 Réinitialiser
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= EXAMEN ================= -->
+
+<div id="exam" class="exam"></div>
+
+<!-- ================= CAHIER DE NOTES ================= -->
+
+<div class="notes-box">
+
+    <h2>📊 Cahier de Notes — Informatique</h2>
+
+    <div class="notes-info">
+
+        <strong>📌 Évaluation sélectionnée :</strong>
+
+        <span id="evaluationNoteInfo">
+            6ème — 1er trimestre — DS
+        </span>
+
+        <br><br>
+
+        Entrez les notes de chaque élève.
+
+        <br>
+
+        <strong>Total /40</strong>
+        =
+        Théorie /20 + Pratique /20
+
+        <br>
+
+        <strong>Moyenne /20</strong>
+        =
+        Total /40 ÷ 2
+
+    </div>
+
+    <div class="notes-form">
+
+        <div>
+            <label>N°</label>
+            <input
+                type="number"
+                id="numeroEleve"
+                placeholder="Ex : 1"
+                min="1">
+        </div>
+
+        <div>
+            <label>Nom</label>
+            <input
+                type="text"
+                id="nomEleve"
+                placeholder="Nom">
+        </div>
+
+        <div>
+            <label>Prénom</label>
+            <input
+                type="text"
+                id="prenomEleve"
+                placeholder="Prénom">
+        </div>
+
+        <div>
+            <label>Classe</label>
+            <input
+                type="text"
+                id="classeEleve"
+                readonly>
+        </div>
+
+        <div>
+            <label>Théorie /20</label>
+            <input
+                type="number"
+                id="theorieEleve"
+                placeholder="0 - 20"
+                min="0"
+                max="20"
+                step="0.25"
+                oninput="calculerNoteForm()">
+        </div>
+
+        <div>
+            <label>Pratique /20</label>
+            <input
+                type="number"
+                id="pratiqueEleve"
+                placeholder="0 - 20"
+                min="0"
+                max="20"
+                step="0.25"
+                oninput="calculerNoteForm()">
+        </div>
+
+        <div>
+            <label>Total /40</label>
+            <input
+                type="text"
+                id="totalEleve"
+                readonly
+                placeholder="0 / 40">
+        </div>
+
+        <div>
+            <label>Moyenne /20</label>
+            <input
+                type="text"
+                id="moyenneEleve"
+                readonly
+                placeholder="0 / 20">
+        </div>
+
+    </div>
+
+    <div class="note-actions">
+
+        <button class="btn-add" onclick="ajouterEleve()">
+            ➕ Ajouter élève
+        </button>
+
+        <button class="btn-storage" onclick="sauvegarderNotes()">
+            💾 Sauvegarder
+        </button>
+
+        <button class="btn-clear" onclick="effacerNotes()">
+            🗑️ Effacer toutes les notes
+        </button>
+
+    </div>
+
+    <div class="notes-table-wrapper">
+
+        <table class="notes-table">
+
+            <thead>
+
+                <tr>
+                    <th>N°</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Classe</th>
+                    <th>Théorie /20</th>
+                    <th>Pratique /20</th>
+                    <th>Total /40</th>
+                    <th>Moyenne /20</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="notesBody"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    💻 Mr Tahiry - Informatique 👨‍🏫
+    <br>
+    InfoPro • Examens Informatique
+</div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   BANQUE DES SUJETS
+========================================================= */
+
+const sujets = {};
+
+
+/* =========================================================
+   FONCTION POUR CREER UN SUJET
+========================================================= */
+
+function creerSujet(titre, questions, pratiques){
+
+    return {
+
+        titre:titre,
+
+        theorie:questions.map(function(q){
+            return {
+                question:q,
+                points:4
+            };
+        }),
+
+        pratique:pratiques,
+
+        corrige:questions.map(function(q,i){
+            return "Question "+(i+1)+" : réponse attendue à expliquer selon le cours.";
+        })
+
+    };
+
+}
+
+
+/* =========================================================
+   6ème
+========================================================= */
+
+sujets["6eme-1-DS"] = creerSujet(
+    "Les bases de l'informatique",
+    [
+        "Définissez le mot informatique.",
+        "Citez quatre éléments d'un ordinateur.",
+        "Quelle est la différence entre le matériel et le logiciel ?",
+        "À quoi sert le clavier ?",
+        "À quoi sert la souris ?"
+    ],
+    [
+        "Identifier les principales parties d'un ordinateur.",
+        "Créer un dossier nommé INFO_PRO.",
+        "Créer un fichier texte et l'enregistrer dans le dossier."
+    ]
+);
+
+sujets["6eme-1-EX"] = creerSujet(
+    "Ordinateur, périphériques et fichiers",
+    [
+        "Qu'est-ce qu'un ordinateur ?",
+        "Donnez trois périphériques d'entrée.",
+        "Donnez trois périphériques de sortie.",
+        "Qu'est-ce qu'un fichier ?",
+        "Qu'est-ce qu'un dossier ?"
+    ],
+    [
+        "Créer un dossier CLASSE.",
+        "Créer trois sous-dossiers COURS, EXERCICES et TRAVAUX.",
+        "Créer puis enregistrer un fichier dans TRAVAUX."
+    ]
+);
+
+sujets["6eme-2-DS"] = creerSujet(
+    "Clavier, souris et fichiers",
+    [
+        "Citez cinq touches du clavier.",
+        "À quoi sert la touche Entrée ?",
+        "À quoi sert la touche Espace ?",
+        "Qu'est-ce qu'un clic gauche ?",
+        "Qu'est-ce qu'un double-clic ?"
+    ],
+    [
+        "Ouvrir un traitement de texte.",
+        "Écrire une courte présentation.",
+        "Enregistrer le document dans un dossier."
+    ]
+);
+
+sujets["6eme-2-EX"] = creerSujet(
+    "Windows et organisation",
+    [
+        "Qu'est-ce qu'un système d'exploitation ?",
+        "Donnez un exemple de système d'exploitation.",
+        "À quoi sert le Bureau ?",
+        "Qu'est-ce qu'une icône ?",
+        "Pourquoi organiser ses fichiers ?"
+    ],
+    [
+        "Créer une arborescence de dossiers.",
+        "Renommer un dossier.",
+        "Déplacer un fichier dans un autre dossier."
+    ]
+);
+
+sujets["6eme-3-DS"] = creerSujet(
+    "Traitement de texte et dessin",
+    [
+        "Qu'est-ce qu'un traitement de texte ?",
+        "Donnez deux exemples de logiciels de traitement de texte.",
+        "Comment mettre un texte en gras ?",
+        "Comment modifier la taille du texte ?",
+        "Pourquoi utiliser les images dans un document ?"
+    ],
+    [
+        "Créer un petit texte.",
+        "Mettre le titre en gras et centré.",
+        "Ajouter une image ou une forme."
+    ]
+);
+
+sujets["6eme-3-EX"] = creerSujet(
+    "Bases pratiques",
+    [
+        "Définissez logiciel.",
+        "Définissez matériel.",
+        "Citez deux périphériques.",
+        "Qu'est-ce qu'un document ?",
+        "Pourquoi sauvegarder un travail ?"
+    ],
+    [
+        "Créer un document.",
+        "Le mettre en forme.",
+        "L'enregistrer avec un nom correct."
+    ]
+);
+
+
+/* =========================================================
+   5ème
+========================================================= */
+
+sujets["5eme-1-DS"] = creerSujet(
+    "Système et environnement informatique",
+    [
+        "Définissez système d'exploitation.",
+        "Citez deux systèmes d'exploitation.",
+        "Quel est le rôle du système d'exploitation ?",
+        "Qu'est-ce qu'un logiciel ?",
+        "Quelle est la différence entre fichier et dossier ?"
+    ],
+    [
+        "Créer une arborescence.",
+        "Copier un fichier.",
+        "Déplacer puis renommer le fichier."
+    ]
+);
+
+sujets["5eme-1-EX"] = creerSujet(
+    "Internet et sécurité",
+    [
+        "Qu'est-ce qu'Internet ?",
+        "Qu'est-ce qu'un navigateur ?",
+        "Citez deux navigateurs.",
+        "Pourquoi utiliser un mot de passe fort ?",
+        "Qu'est-ce qu'un virus informatique ?"
+    ],
+    [
+        "Ouvrir un navigateur.",
+        "Effectuer une recherche éducative.",
+        "Identifier les éléments d'une page Web."
+    ]
+);
+
+sujets["5eme-2-DS"] = creerSujet(
+    "Word et traitement de texte",
+    [
+        "À quoi sert Word ?",
+        "Comment aligner un texte au centre ?",
+        "Qu'est-ce qu'une police ?",
+        "Comment souligner un texte ?",
+        "Pourquoi utiliser des titres ?"
+    ],
+    [
+        "Créer un document de présentation.",
+        "Mettre le titre en forme.",
+        "Enregistrer le document."
+    ]
+);
+
+sujets["5eme-2-EX"] = creerSujet(
+    "Word : document structuré",
+    [
+        "Qu'est-ce qu'un paragraphe ?",
+        "Pourquoi utiliser des listes ?",
+        "Comment insérer une image ?",
+        "Comment modifier les marges ?",
+        "À quoi sert l'impression ?"
+    ],
+    [
+        "Créer un document avec titre et paragraphes.",
+        "Ajouter une liste.",
+        "Ajouter une image et enregistrer."
+    ]
+);
+
+sujets["5eme-3-DS"] = creerSujet(
+    "Stockage et fichiers",
+    [
+        "Citez trois supports de stockage.",
+        "Qu'est-ce qu'une clé USB ?",
+        "Pourquoi sauvegarder un fichier ?",
+        "Qu'est-ce qu'une extension ?",
+        "Donnez deux exemples d'extensions."
+    ],
+    [
+        "Créer trois dossiers.",
+        "Créer plusieurs fichiers.",
+        "Classer les fichiers dans les dossiers correspondants."
+    ]
+);
+
+sujets["5eme-3-EX"] = creerSujet(
+    "Projet bureautique",
+    [
+        "Qu'est-ce qu'un document bureautique ?",
+        "Citez deux logiciels bureautiques.",
+        "Pourquoi faire une mise en page ?",
+        "Qu'est-ce qu'un tableau ?",
+        "Pourquoi vérifier un document avant impression ?"
+    ],
+    [
+        "Créer un document complet.",
+        "Ajouter un tableau.",
+        "Mettre le document en forme et l'enregistrer."
+    ]
+);
+
+
+/* =========================================================
+   4ème
+========================================================= */
+
+sujets["4eme-1-DS"] = creerSujet(
+    "Word et Internet",
+    [
+        "Qu'est-ce qu'un traitement de texte ?",
+        "Qu'est-ce qu'un moteur de recherche ?",
+        "Donnez deux exemples de moteurs de recherche.",
+        "Comment effectuer une recherche efficace ?",
+        "Pourquoi vérifier une information ?"
+    ],
+    [
+        "Effectuer une recherche.",
+        "Copier les informations utiles.",
+        "Créer un document correctement présenté."
+    ]
+);
+
+sujets["4eme-1-EX"] = creerSujet(
+    "Recherche d'information",
+    [
+        "Définissez information.",
+        "Qu'est-ce qu'une source ?",
+        "Pourquoi comparer plusieurs sources ?",
+        "Qu'est-ce qu'un mot-clé ?",
+        "Comment éviter une fausse information ?"
+    ],
+    [
+        "Faire une recherche.",
+        "Comparer deux résultats.",
+        "Présenter les informations dans Word."
+    ]
+);
+
+sujets["4eme-2-DS"] = creerSujet(
+    "Sécurité informatique",
+    [
+        "Qu'est-ce que la sécurité informatique ?",
+        "Pourquoi utiliser un antivirus ?",
+        "Qu'est-ce qu'un mot de passe sécurisé ?",
+        "Qu'est-ce qu'une donnée personnelle ?",
+        "Pourquoi ne pas partager son mot de passe ?"
+    ],
+    [
+        "Créer un exemple de mot de passe sécurisé.",
+        "Identifier plusieurs risques informatiques.",
+        "Rédiger cinq règles de sécurité."
+    ]
+);
+
+sujets["4eme-2-EX"] = creerSujet(
+    "Réseaux informatiques",
+    [
+        "Qu'est-ce qu'un réseau informatique ?",
+        "Qu'est-ce qu'un routeur ?",
+        "Qu'est-ce qu'une adresse IP ?",
+        "Quelle est la différence entre LAN et Internet ?",
+        "Donnez deux avantages d'un réseau."
+    ],
+    [
+        "Identifier les équipements réseau.",
+        "Dessiner un petit réseau.",
+        "Expliquer la circulation des données."
+    ]
+);
+
+sujets["4eme-3-DS"] = creerSujet(
+    "Excel et données",
+    [
+        "À quoi sert Excel ?",
+        "Qu'est-ce qu'une cellule ?",
+        "Qu'est-ce qu'une ligne ?",
+        "Qu'est-ce qu'une colonne ?",
+        "Comment reconnaître une cellule ?"
+    ],
+    [
+        "Créer un tableau.",
+        "Saisir des données.",
+        "Mettre le tableau en forme."
+    ]
+);
+
+sujets["4eme-3-EX"] = creerSujet(
+    "Excel : calculs et présentation",
+    [
+        "Qu'est-ce qu'une formule Excel ?",
+        "Quel symbole commence une formule ?",
+        "À quoi sert SOMME ?",
+        "À quoi sert MOYENNE ?",
+        "Pourquoi mettre en forme un tableau ?"
+    ],
+    [
+        "Créer un tableau de notes.",
+        "Calculer une somme et une moyenne.",
+        "Appliquer une mise en forme."
+    ]
+);
+
+
+/* =========================================================
+   3ème
+========================================================= */
+
+sujets["3eme-1-DS"] = creerSujet(
+    "Excel : bases",
+    [
+        "Définissez cellule.",
+        "Définissez plage de cellules.",
+        "À quoi sert la formule SOMME ?",
+        "À quoi sert MOYENNE ?",
+        "Qu'est-ce qu'une référence de cellule ?"
+    ],
+    [
+        "Créer un tableau de données.",
+        "Calculer les totaux.",
+        "Calculer les moyennes."
+    ]
+);
+
+sujets["3eme-1-EX"] = creerSujet(
+    "Excel : fonctions",
+    [
+        "À quoi sert la fonction SI ?",
+        "À quoi sert SOMME.SI ?",
+        "À quoi sert ARRONDI ?",
+        "Qu'est-ce qu'une condition ?",
+        "Pourquoi utiliser les fonctions Excel ?"
+    ],
+    [
+        "Créer un tableau.",
+        "Utiliser SOMME, MOYENNE et SI.",
+        "Présenter les résultats."
+    ]
+);
+
+sujets["3eme-2-DS"] = creerSujet(
+    "Excel et classement",
+    [
+        "Qu'est-ce qu'un classement ?",
+        "Pourquoi trier des données ?",
+        "Qu'est-ce qu'un filtre ?",
+        "Comment calculer une moyenne ?",
+        "Comment identifier le meilleur résultat ?"
+    ],
+    [
+        "Créer un tableau d'élèves.",
+        "Calculer les moyennes.",
+        "Trier les résultats."
+    ]
+);
+
+sujets["3eme-2-EX"] = creerSujet(
+    "Excel : tableau complet",
+    [
+        "Qu'est-ce qu'un tableau de données ?",
+        "Pourquoi utiliser des formules ?",
+        "Quelle fonction permet de compter ?",
+        "Comment appliquer un filtre ?",
+        "Pourquoi protéger un fichier ?"
+    ],
+    [
+        "Créer un tableau complet.",
+        "Utiliser plusieurs fonctions.",
+        "Faire un classement."
+    ]
+);
+
+sujets["3eme-3-DS"] = creerSujet(
+    "Internet et bureautique",
+    [
+        "Qu'est-ce qu'une adresse Web ?",
+        "Qu'est-ce qu'un navigateur ?",
+        "Qu'est-ce qu'un traitement de texte ?",
+        "Pourquoi protéger ses données ?",
+        "Qu'est-ce qu'une sauvegarde ?"
+    ],
+    [
+        "Faire une recherche.",
+        "Créer un document.",
+        "Enregistrer et organiser le travail."
+    ]
+);
+
+sujets["3eme-3-EX"] = creerSujet(
+    "Projet informatique",
+    [
+        "Qu'est-ce qu'un projet informatique ?",
+        "Pourquoi analyser un problème ?",
+        "Qu'est-ce qu'un algorithme ?",
+        "Pourquoi tester un programme ?",
+        "Pourquoi documenter un projet ?"
+    ],
+    [
+        "Préparer un petit projet.",
+        "Réaliser le travail demandé.",
+        "Présenter le résultat."
+    ]
+);
+
+
+/* =========================================================
+   2nde
+========================================================= */
+
+sujets["2nde-1-DS"] = creerSujet(
+    "Excel avancé",
+    [
+        "Qu'est-ce qu'une formule ?",
+        "Expliquez la fonction SI.",
+        "Expliquez SOMME.SI.",
+        "À quoi sert la fonction MOYENNE ?",
+        "À quoi sert ARRONDI ?"
+    ],
+    [
+        "Créer un tableau complexe.",
+        "Utiliser plusieurs fonctions.",
+        "Calculer et présenter les résultats."
+    ]
+);
+
+sujets["2nde-1-EX"] = creerSujet(
+    "Excel : analyse",
+    [
+        "Qu'est-ce qu'une donnée ?",
+        "Qu'est-ce qu'une analyse de données ?",
+        "À quoi sert un graphique ?",
+        "Pourquoi trier les données ?",
+        "Pourquoi utiliser des filtres ?"
+    ],
+    [
+        "Créer un tableau.",
+        "Créer un graphique.",
+        "Analyser les résultats."
+    ]
+);
+
+sujets["2nde-2-DS"] = creerSujet(
+    "Algorithmique",
+    [
+        "Définissez algorithme.",
+        "Qu'est-ce qu'une variable ?",
+        "Qu'est-ce qu'une condition ?",
+        "Qu'est-ce qu'une boucle ?",
+        "Pourquoi utiliser un algorithme ?"
+    ],
+    [
+        "Écrire un algorithme.",
+        "Utiliser une condition.",
+        "Utiliser une répétition."
+    ]
+);
+
+sujets["2nde-2-EX"] = creerSujet(
+    "Algorithmique et logique",
+    [
+        "Qu'est-ce qu'une instruction ?",
+        "Qu'est-ce qu'une entrée ?",
+        "Qu'est-ce qu'une sortie ?",
+        "Qu'est-ce qu'une boucle ?",
+        "Qu'est-ce qu'un test conditionnel ?"
+    ],
+    [
+        "Écrire un algorithme de calcul.",
+        "Ajouter une condition.",
+        "Tester plusieurs valeurs."
+    ]
+);
+
+sujets["2nde-3-DS"] = creerSujet(
+    "HTML et CSS",
+    [
+        "Que signifie HTML ?",
+        "Que signifie CSS ?",
+        "À quoi sert la balise body ?",
+        "À quoi sert la balise h1 ?",
+        "Pourquoi utiliser CSS ?"
+    ],
+    [
+        "Créer une page HTML.",
+        "Ajouter un titre et un paragraphe.",
+        "Appliquer une mise en forme CSS."
+    ]
+);
+
+sujets["2nde-3-EX"] = creerSujet(
+    "Création d'une page Web",
+    [
+        "Qu'est-ce qu'une page Web ?",
+        "Quel est le rôle de HTML ?",
+        "Quel est le rôle de CSS ?",
+        "Qu'est-ce qu'un lien hypertexte ?",
+        "Pourquoi utiliser une structure HTML correcte ?"
+    ],
+    [
+        "Créer une page Web.",
+        "Ajouter titre, texte et image.",
+        "Créer une mise en page CSS."
+    ]
+);
+
+
+/* =========================================================
+   1ère
+========================================================= */
+
+sujets["1ere-1-DS"] = creerSujet(
+    "Excel avancé et logique",
+    [
+        "Expliquez la fonction SI.",
+        "Expliquez SOMME.SI.",
+        "Qu'est-ce qu'une condition logique ?",
+        "À quoi sert la référence absolue ?",
+        "Pourquoi utiliser des fonctions imbriquées ?"
+    ],
+    [
+        "Créer un tableau complexe.",
+        "Utiliser plusieurs fonctions.",
+        "Analyser les résultats."
+    ]
+);
+
+sujets["1ere-1-EX"] = creerSujet(
+    "Projet Excel",
+    [
+        "Qu'est-ce qu'un projet Excel ?",
+        "Pourquoi organiser les données ?",
+        "Pourquoi utiliser des graphiques ?",
+        "Pourquoi vérifier les formules ?",
+        "Pourquoi protéger une feuille ?"
+    ],
+    [
+        "Créer un projet Excel.",
+        "Calculer les résultats.",
+        "Créer une présentation graphique."
+    ]
+);
+
+sujets["1ere-2-DS"] = creerSujet(
+    "HTML, CSS et JavaScript",
+    [
+        "Quel est le rôle de HTML ?",
+        "Quel est le rôle de CSS ?",
+        "Quel est le rôle de JavaScript ?",
+        "Qu'est-ce qu'une variable JavaScript ?",
+        "Qu'est-ce qu'un événement ?"
+    ],
+    [
+        "Créer une page HTML.",
+        "Ajouter du CSS.",
+        "Créer une interaction JavaScript."
+    ]
+);
+
+sujets["1ere-2-EX"] = creerSujet(
+    "Application Web interactive",
+    [
+        "Qu'est-ce qu'une application Web ?",
+        "Pourquoi utiliser JavaScript ?",
+        "Qu'est-ce qu'une fonction ?",
+        "Qu'est-ce qu'un événement onclick ?",
+        "Pourquoi tester une application ?"
+    ],
+    [
+        "Créer une interface.",
+        "Ajouter un bouton.",
+        "Faire fonctionner une interaction."
+    ]
+);
+
+sujets["1ere-3-DS"] = creerSujet(
+    "Python",
+    [
+        "Qu'est-ce que Python ?",
+        "Qu'est-ce qu'une variable ?",
+        "Comment afficher un texte ?",
+        "Qu'est-ce qu'une condition ?",
+        "Qu'est-ce qu'une boucle ?"
+    ],
+    [
+        "Créer un programme Python.",
+        "Utiliser une condition.",
+        "Utiliser une boucle."
+    ]
+);
+
+sujets["1ere-3-EX"] = creerSujet(
+    "Projet Python",
+    [
+        "Pourquoi utiliser Python ?",
+        "Qu'est-ce qu'une fonction ?",
+        "Qu'est-ce qu'une liste ?",
+        "Pourquoi tester un programme ?",
+        "Qu'est-ce qu'une erreur informatique ?"
+    ],
+    [
+        "Créer un programme.",
+        "Utiliser des variables et conditions.",
+        "Afficher les résultats."
+    ]
+);
+
+
+/* =========================================================
+   TERMINALE
+========================================================= */
+
+sujets["terminale-1-DS"] = creerSujet(
+    "Algorithmique avancée",
+    [
+        "Définissez un algorithme.",
+        "Expliquez la complexité d'un algorithme.",
+        "Qu'est-ce qu'une structure conditionnelle ?",
+        "Qu'est-ce qu'une structure répétitive ?",
+        "Pourquoi tester un algorithme ?"
+    ],
+    [
+        "Écrire un algorithme complet.",
+        "Utiliser des conditions.",
+        "Utiliser une boucle."
+    ]
+);
+
+sujets["terminale-1-EX"] = creerSujet(
+    "Algorithmique et programmation",
+    [
+        "Quelle est la différence entre algorithme et programme ?",
+        "Qu'est-ce qu'une variable ?",
+        "Qu'est-ce qu'une fonction ?",
+        "Qu'est-ce qu'une boucle ?",
+        "Pourquoi déboguer un programme ?"
+    ],
+    [
+        "Écrire un programme.",
+        "Tester différentes valeurs.",
+        "Corriger une erreur."
+    ]
+);
+
+sujets["terminale-2-DS"] = creerSujet(
+    "Python et structures de données",
+    [
+        "Qu'est-ce qu'une liste Python ?",
+        "Qu'est-ce qu'un dictionnaire ?",
+        "Qu'est-ce qu'une fonction ?",
+        "Qu'est-ce qu'une boucle for ?",
+        "Qu'est-ce qu'une boucle while ?"
+    ],
+    [
+        "Créer une liste.",
+        "Parcourir la liste.",
+        "Calculer et afficher un résultat."
+    ]
+);
+
+sujets["terminale-2-EX"] = creerSujet(
+    "Python : application complète",
+    [
+        "Pourquoi utiliser des fonctions ?",
+        "Qu'est-ce qu'une structure de données ?",
+        "Comment gérer une erreur ?",
+        "Pourquoi tester un programme ?",
+        "Qu'est-ce qu'un programme modulaire ?"
+    ],
+    [
+        "Créer une application Python.",
+        "Utiliser fonctions et structures.",
+        "Tester et corriger le programme."
+    ]
+);
+
+sujets["terminale-3-DS"] = creerSujet(
+    "Web, bases de données et réseaux",
+    [
+        "Qu'est-ce qu'une base de données ?",
+        "Qu'est-ce qu'une table ?",
+        "Qu'est-ce qu'un réseau informatique ?",
+        "Qu'est-ce qu'une adresse IP ?",
+        "Qu'est-ce qu'un serveur Web ?"
+    ],
+    [
+        "Créer une petite page Web.",
+        "Organiser des données.",
+        "Présenter une architecture réseau simple."
+    ]
+);
+
+sujets["terminale-3-EX"] = creerSujet(
+    "Projet informatique final",
+    [
+        "Qu'est-ce qu'un projet informatique ?",
+        "Quelles sont les étapes d'un projet ?",
+        "Pourquoi analyser les besoins ?",
+        "Pourquoi tester une application ?",
+        "Pourquoi documenter un projet ?"
+    ],
+    [
+        "Concevoir un projet informatique.",
+        "Réaliser une partie fonctionnelle.",
+        "Présenter et expliquer le résultat."
+    ]
+);
+
+
+/* =========================================================
+   AFFICHER LE SUJET
+========================================================= */
+
+function afficherSujet(){
+
+    const classe =
+        document.getElementById("classe").value;
+
+    const trim =
+        document.getElementById("trim").value;
+
+    const evaluation =
+        document.getElementById("evaluation").value;
+
+    const cle =
+        classe + "-" + trim + "-" + evaluation;
+
+    const sujet =
+        sujets[cle];
+
+    const exam =
+        document.getElementById("exam");
+
+    const nomsClasse = {
+        "6eme":"6ème",
+        "5eme":"5ème",
+        "4eme":"4ème",
+        "3eme":"3ème",
+        "2nde":"2nde",
+        "1ere":"1ère",
+        "terminale":"Terminale"
+    };
+
+    const nomsTrim = {
+        "1":"1er trimestre",
+        "2":"2ème trimestre",
+        "3":"3ème trimestre"
+    };
+
+    const nomEvaluation =
+        evaluation === "DS"
+        ? "DS"
+        : "Examen trimestriel";
+
+    if(!sujet){
+
+        exam.innerHTML =
+            "<h2>Aucun sujet disponible.</h2>";
+
+        mettreAJourInfoNotes();
+
+        return;
+    }
+
+    let html = "";
+
+    html += `
+        <div class="exam-header">
+
+            <h2>💻 INFO PRO — INFORMATIQUE</h2>
+
+            <h3>${sujet.titre}</h3>
+
+            <div class="exam-info">
+
+                <div class="info-item">
+                    <strong>Classe</strong><br>
+                    ${nomsClasse[classe]}
+                </div>
+
+                <div class="info-item">
+                    <strong>Trimestre</strong><br>
+                    ${nomsTrim[trim]}
+                </div>
+
+                <div class="info-item">
+                    <strong>Évaluation</strong><br>
+                    ${nomEvaluation}
+                </div>
+
+                <div class="info-item">
+                    <strong>Durée</strong><br>
+                    1h30
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+
+    /* ================= THEORIE ================= */
+
+    html += `
+        <div class="section">
+
+            <h3>🧠 PARTIE I — THÉORIE /20</h3>
+    `;
+
+    sujet.theorie.forEach(function(q,index){
+
+        html += `
+            <div class="question">
+
+                <strong>
+                    ${index+1}. ${q.question}
+                </strong>
+
+                <span>
+                    Réponse :
+                    ................................................................................
+                </span>
+
+                <br><br>
+
+                <small>
+                    Barème : ${q.points} points
+                </small>
+
+            </div>
+        `;
+
+    });
+
+    html += `</div>`;
+
+
+    /* ================= PRATIQUE ================= */
+
+    html += `
+        <div class="section">
+
+            <h3>💻 PARTIE II — PRATIQUE /20</h3>
+    `;
+
+    sujet.pratique.forEach(function(p,index){
+
+        html += `
+            <div class="pratique">
+
+                <strong>
+                    Activité ${index+1}
+                </strong>
+
+                <p>${p}</p>
+
+                <br>
+
+                <strong>
+                    Travail demandé :
+                </strong>
+
+                <br><br>
+
+                ................................................................................
+                <br><br>
+                ................................................................................
+
+            </div>
+        `;
+
+    });
+
+    html += `</div>`;
+
+
+    html += `
+        <div class="bareme">
+
+            📊 BARÈME
+
+            <br><br>
+
+            Théorie : <strong>/20</strong>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            Pratique : <strong>/20</strong>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            Total : <strong>/40</strong>
+
+            <br>
+
+            Moyenne :
+            <strong>Total ÷ 2 = /20</strong>
+
+        </div>
+    `;
+
+
+    /* ================= CORRECTION ================= */
+
+    html += `
+        <div class="corrige" id="corrige">
+
+            <h3>✅ CORRIGÉ — ENSEIGNANT</h3>
+
+            <ol>
+    `;
+
+    sujet.corrige.forEach(function(rep){
+
+        html += `
+            <li>${rep}</li>
+        `;
+
+    });
+
+    html += `
+            </ol>
+
+            <br>
+
+            <strong>
+                💡 Correction pratique :
+            </strong>
+
+            <p>
+                Vérifier la réalisation des différentes tâches,
+                l'organisation du travail, la précision,
+                la présentation et le respect des consignes.
+            </p>
+
+        </div>
+    `;
+
+
+    exam.innerHTML = html;
+
+    mettreAJourInfoNotes();
+
+}
+
+
+/* =========================================================
+   INFORMATIONS CAHIER DE NOTES
+========================================================= */
+
+function mettreAJourInfoNotes(){
+
+    const classe =
+        document.getElementById("classe").value;
+
+    const trim =
+        document.getElementById("trim").value;
+
+    const evaluation =
+        document.getElementById("evaluation").value;
+
+    const nomsClasse = {
+        "6eme":"6ème",
+        "5eme":"5ème",
+        "4eme":"4ème",
+        "3eme":"3ème",
+        "2nde":"2nde",
+        "1ere":"1ère",
+        "terminale":"Terminale"
+    };
+
+    const nomsTrim = {
+        "1":"1er trimestre",
+        "2":"2ème trimestre",
+        "3":"3ème trimestre"
+    };
+
+    const nomEvaluation =
+        evaluation === "DS"
+        ? "DS"
+        : "Examen trimestriel";
+
+    document.getElementById(
+        "evaluationNoteInfo"
+    ).textContent =
+        nomsClasse[classe]
+        + " — "
+        + nomsTrim[trim]
+        + " — "
+        + nomEvaluation;
+
+    document.getElementById(
+        "classeEleve"
+    ).value =
+        nomsClasse[classe];
+
+    chargerNotes();
+
+}
+
+
+/* =========================================================
+   CALCUL NOTE FORMULAIRE
+========================================================= */
+
+function calculerNoteForm(){
+
+    let theorie =
+        parseFloat(
+            document.getElementById("theorieEleve").value
+        );
+
+    let pratique =
+        parseFloat(
+            document.getElementById("pratiqueEleve").value
+        );
+
+    if(isNaN(theorie)){
+        theorie = 0;
+    }
+
+    if(isNaN(pratique)){
+        pratique = 0;
+    }
+
+    theorie =
+        Math.max(0,Math.min(20,theorie));
+
+    pratique =
+        Math.max(0,Math.min(20,pratique));
+
+    const total =
+        theorie + pratique;
+
+    const moyenne =
+        total / 2;
+
+    document.getElementById(
+        "totalEleve"
+    ).value =
+        total.toFixed(2) + " / 40";
+
+    document.getElementById(
+        "moyenneEleve"
+    ).value =
+        moyenne.toFixed(2) + " / 20";
+
+}
+
+
+/* =========================================================
+   CLE LOCAL STORAGE
+========================================================= */
+
+function obtenirCleNotes(){
+
+    const classe =
+        document.getElementById("classe").value;
+
+    const trim =
+        document.getElementById("trim").value;
+
+    const evaluation =
+        document.getElementById("evaluation").value;
+
+    return "InfoPro_Notes_"
+        + classe
+        + "_"
+        + trim
+        + "_"
+        + evaluation;
+
+}
+
+
+/* =========================================================
+   AJOUTER ELEVE
+========================================================= */
+
+function ajouterEleve(){
+
+    const numero =
+        document.getElementById(
+            "numeroEleve"
+        ).value.trim();
+
+    const nom =
+        document.getElementById(
+            "nomEleve"
+        ).value.trim();
+
+    const prenom =
+        document.getElementById(
+            "prenomEleve"
+        ).value.trim();
+
+    let theorie =
+        parseFloat(
+            document.getElementById(
+                "theorieEleve"
+            ).value
+        );
+
+    let pratique =
+        parseFloat(
+            document.getElementById(
+                "pratiqueEleve"
+            ).value
+        );
+
+    if(
+        numero === "" ||
+        nom === "" ||
+        prenom === ""
+    ){
+
+        alert(
+            "Veuillez remplir le numéro, le nom et le prénom."
+        );
+
+        return;
+    }
+
+    if(
+        isNaN(theorie) ||
+        isNaN(pratique)
+    ){
+
+        alert(
+            "Veuillez saisir les notes de théorie et de pratique."
+        );
+
+        return;
+    }
+
+    if(
+        theorie < 0 ||
+        theorie > 20 ||
+        pratique < 0 ||
+        pratique > 20
+    ){
+
+        alert(
+            "Les notes doivent être comprises entre 0 et 20."
+        );
+
+        return;
+    }
+
+    theorie =
+        Number(theorie);
+
+    pratique =
+        Number(pratique);
+
+    const total =
+        theorie + pratique;
+
+    const moyenne =
+        total / 2;
+
+    const classe =
+        document.getElementById(
+            "classeEleve"
+        ).value;
+
+    const cle =
+        obtenirCleNotes();
+
+    let notes =
+        JSON.parse(
+            localStorage.getItem(cle)
+        ) || [];
+
+    const eleve = {
+
+        id:Date.now(),
+
+        numero:numero,
+
+        nom:nom.toUpperCase(),
+
+        prenom:prenom,
+
+        classe:classe,
+
+        theorie:theorie,
+
+        pratique:pratique,
+
+        total:total,
+
+        moyenne:moyenne
+
+    };
+
+    notes.push(eleve);
+
+    localStorage.setItem(
+        cle,
+        JSON.stringify(notes)
+    );
+
+    afficherNotes(notes);
+
+    viderFormulaire();
+
+}
+
+
+/* =========================================================
+   AFFICHER NOTES
+========================================================= */
+
+function afficherNotes(notes){
+
+    const tbody =
+        document.getElementById(
+            "notesBody"
+        );
+
+    tbody.innerHTML = "";
+
+    if(notes.length === 0){
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="9">
+                    Aucune note enregistrée.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    notes.sort(function(a,b){
+
+        return Number(a.numero)
+             - Number(b.numero);
+
+    });
+
+
+    notes.forEach(function(eleve){
+
+        const tr =
+            document.createElement("tr");
+
+        tr.innerHTML = `
+
+            <td>
+                ${eleve.numero}
+            </td>
+
+            <td>
+                ${eleve.nom}
+            </td>
+
+            <td>
+                ${eleve.prenom}
+            </td>
+
+            <td>
+                ${eleve.classe}
+            </td>
+
+            <td>
+                <input
+                    type="number"
+                    min="0"
+                    max="20"
+                    step="0.25"
+                    value="${eleve.theorie}"
+                    onchange="
+                        modifierNote(
+                            ${eleve.id},
+                            'theorie',
+                            this.value
+                        )
+                    ">
+            </td>
+
+            <td>
+                <input
+                    type="number"
+                    min="0"
+                    max="20"
+                    step="0.25"
+                    value="${eleve.pratique}"
+                    onchange="
+                        modifierNote(
+                            ${eleve.id},
+                            'pratique',
+                            this.value
+                        )
+                    ">
+            </td>
+
+            <td>
+                <strong>
+                    ${Number(eleve.total).toFixed(2)} / 40
+                </strong>
+            </td>
+
+            <td>
+                <strong>
+                    ${Number(eleve.moyenne).toFixed(2)} / 20
+                </strong>
+            </td>
+
+            <td>
+                <button
+                    class="btn-delete"
+                    onclick="
+                        supprimerEleve(${eleve.id})
+                    ">
+                    🗑️
+                </button>
+            </td>
+
+        `;
+
+        tbody.appendChild(tr);
+
+    });
+
+}
+
+
+/* =========================================================
+   CHARGER NOTES
+========================================================= */
+
+function chargerNotes(){
+
+    const cle =
+        obtenirCleNotes();
+
+    const notes =
+        JSON.parse(
+            localStorage.getItem(cle)
+        ) || [];
+
+    afficherNotes(notes);
+
+}
+
+
+/* =========================================================
+   SAUVEGARDER NOTES
+========================================================= */
+
+function sauvegarderNotes(){
+
+    const cle =
+        obtenirCleNotes();
+
+    const notes =
+        JSON.parse(
+            localStorage.getItem(cle)
+        ) || [];
+
+    localStorage.setItem(
+        cle,
+        JSON.stringify(notes)
+    );
+
+    alert(
+        "✅ Notes sauvegardées avec succès !"
+    );
+
+}
+
+
+/* =========================================================
+   MODIFIER NOTE
+========================================================= */
+
+function modifierNote(
+    id,
+    type,
+    valeur
+){
+
+    let note =
+        parseFloat(valeur);
+
+    if(isNaN(note)){
+        note = 0;
+    }
+
+    note =
+        Math.max(
+            0,
+            Math.min(20,note)
+        );
+
+    const cle =
+        obtenirCleNotes();
+
+    let notes =
+        JSON.parse(
+            localStorage.getItem(cle)
+        ) || [];
+
+    const eleve =
+        notes.find(function(e){
+            return e.id === id;
+        });
+
+    if(!eleve){
+        return;
+    }
+
+    eleve[type] =
+        note;
+
+    eleve.total =
+        Number(eleve.theorie)
+        +
+        Number(eleve.pratique);
+
+    eleve.moyenne =
+        eleve.total / 2;
+
+    localStorage.setItem(
+        cle,
+        JSON.stringify(notes)
+    );
+
+    afficherNotes(notes);
+
+}
+
+
+/* =========================================================
+   SUPPRIMER ELEVE
+========================================================= */
+
+function supprimerEleve(id){
+
+    if(
+        !confirm(
+            "Voulez-vous supprimer cet élève ?"
+        )
+    ){
+
+        return;
+    }
+
+    const cle =
+        obtenirCleNotes();
+
+    let notes =
+        JSON.parse(
+            localStorage.getItem(cle)
+        ) || [];
+
+    notes =
+        notes.filter(function(e){
+
+            return e.id !== id;
+
+        });
+
+    localStorage.setItem(
+        cle,
+        JSON.stringify(notes)
+    );
+
+    afficherNotes(notes);
+
+}
+
+
+/* =========================================================
+   VIDER FORMULAIRE
+========================================================= */
+
+function viderFormulaire(){
+
+    document.getElementById(
+        "numeroEleve"
+    ).value = "";
+
+    document.getElementById(
+        "nomEleve"
+    ).value = "";
+
+    document.getElementById(
+        "prenomEleve"
+    ).value = "";
+
+    document.getElementById(
+        "theorieEleve"
+    ).value = "";
+
+    document.getElementById(
+        "pratiqueEleve"
+    ).value = "";
+
+    document.getElementById(
+        "totalEleve"
+    ).value = "";
+
+    document.getElementById(
+        "moyenneEleve"
+    ).value = "";
+
+}
+
+
+/* =========================================================
+   EFFACER TOUTES LES NOTES
+========================================================= */
+
+function effacerNotes(){
+
+    if(
+        !confirm(
+            "⚠️ Voulez-vous vraiment effacer toutes les notes de cette évaluation ?"
+        )
+    ){
+
+        return;
+    }
+
+    const cle =
+        obtenirCleNotes();
+
+    localStorage.removeItem(cle);
+
+    chargerNotes();
+
+}
+
+
+/* =========================================================
+   AFFICHER CORRIGE
+========================================================= */
+
+function afficherCorrige(){
+
+    const correction =
+        document.getElementById(
+            "corrige"
+        );
+
+    if(correction){
+
+        correction.classList.add(
+            "visible"
+        );
+
+        correction.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* =========================================================
+   CACHER CORRIGE
+========================================================= */
+
+function cacherCorrige(){
+
+    const correction =
+        document.getElementById(
+            "corrige"
+        );
+
+    if(correction){
+
+        correction.classList.remove(
+            "visible"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   REINITIALISER
+========================================================= */
+
+function reinitialiser(){
+
+    if(
+        !confirm(
+            "Réinitialiser l'affichage de l'examen ?"
+        )
+    ){
+
+        return;
+    }
+
+    document.getElementById(
+        "classe"
+    ).value = "6eme";
+
+    document.getElementById(
+        "trim"
+    ).value = "1";
+
+    document.getElementById(
+        "evaluation"
+    ).value = "DS";
+
+    afficherSujet();
+
+}
+
+
+/* =========================================================
+   LANCEMENT AUTOMATIQUE
+========================================================= */
+
+afficherSujet();
+
+</script>
+
+</body>
+</html>

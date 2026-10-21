@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Kajy Binaire Pas à Pas</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#eef2f7;
+    text-align:center;
+}
+
+.container{
+    background:white;
+    padding:20px;
+    width:350px;
+    margin:auto;
+    margin-top:40px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+input, select, button{
+    margin:10px;
+    padding:10px;
+    width:80%;
+    font-size:16px;
+}
+
+#steps{
+    text-align:left;
+    background:#000;
+    color:#0f0;
+    padding:10px;
+    height:200px;
+    overflow:auto;
+    font-family:monospace;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Calculatrice Binaire (Pas à Pas)</h2>
+
+<input type="text" id="a" placeholder="Nombre A (ex: 1011)">
+<input type="text" id="b" placeholder="Nombre B (ex: 110)">
+
+<select id="operation">
+<option value="add">Addition</option>
+<option value="sub">Soustraction</option>
+<option value="mul">Multiplication</option>
+<option value="div">Division</option>
+</select>
+
+<button onclick="calculate()">Calculer</button>
+
+<h3>Étapes :</h3>
+<div id="steps"></div>
+</div>
+
+<script>
+
+function log(msg){
+    document.getElementById("steps").innerHTML += msg + "<br>";
+}
+
+function reset(){
+    document.getElementById("steps").innerHTML = "";
+}
+
+// ================= ADDITION =================
+function addition(a,b){
+    let result="";
+    let carry=0;
+
+    a=a.split("").reverse();
+    b=b.split("").reverse();
+
+    let max=Math.max(a.length,b.length);
+
+    for(let i=0;i<max;i++){
+        let bitA=parseInt(a[i]||0);
+        let bitB=parseInt(b[i]||0);
+
+        let sum=bitA+bitB+carry;
+        result=(sum%2)+result;
+
+        log(`Étape ${i+1}: ${bitA} + ${bitB} + retenue(${carry}) = ${sum} → bit=${sum%2}, retenue=${Math.floor(sum/2)}`);
+
+        carry=Math.floor(sum/2);
+    }
+
+    if(carry){
+        result=carry+result;
+        log("Ajout retenue finale: "+carry);
+    }
+
+    return result;
+}
+
+// ================= SOUSTRACTION =================
+function soustraction(a,b){
+    let decA=parseInt(a,2);
+    let decB=parseInt(b,2);
+
+    let result=decA-decB;
+
+    log(`${a} (${decA}) - ${b} (${decB}) = ${result}`);
+
+    return result.toString(2);
+}
+
+// ================= MULTIPLICATION =================
+function multiplication(a,b){
+    let result=0;
+
+    let decA=parseInt(a,2);
+    let decB=parseInt(b,2);
+
+    let bRev=b.split("").reverse();
+
+    bRev.forEach((bit,i)=>{
+        if(bit==="1"){
+            let temp=decA << i;
+            log(`Étape ${i+1}: ${a} décalé de ${i} → ${temp.toString(2)}`);
+            result+=temp;
+        }
+    });
+
+    return result.toString(2);
+}
+
+// ================= DIVISION =================
+function division(a,b){
+    let decA=parseInt(a,2);
+    let decB=parseInt(b,2);
+
+    let quotient=Math.floor(decA/decB);
+    let reste=decA%decB;
+
+    log(`${a} (${decA}) ÷ ${b} (${decB})`);
+    log(`Quotient = ${quotient}`);
+    log(`Reste = ${reste}`);
+
+    return quotient.toString(2) + " reste " + reste.toString(2);
+}
+
+// ================= MAIN =================
+function calculate(){
+    reset();
+
+    let a=document.getElementById("a").value;
+    let b=document.getElementById("b").value;
+    let op=document.getElementById("operation").value;
+
+    if(!a || !b){
+        log("Ampidiro ny isa roa!");
+        return;
+    }
+
+    let result="";
+
+    if(op==="add") result=addition(a,b);
+    if(op==="sub") result=soustraction(a,b);
+    if(op==="mul") result=multiplication(a,b);
+    if(op==="div") result=division(a,b);
+
+    log("------------");
+    log("Résultat final: " + result);
+}
+
+</script>
+
+</body>
+</html>

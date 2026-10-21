@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMD - Redirection & Variables</title>
+<style>
+body{font-family:Arial; margin:0; background:#0f172a; color:white;}
+header{background:#1e293b; padding:15px; display:flex; justify-content:space-between;}
+button{padding:6px 10px; border:none; border-radius:5px; cursor:pointer;}
+.lang button{margin-left:5px;}
+.container{padding:20px;}
+.section{background:#1e293b; margin:15px 0; padding:15px; border-radius:10px;}
+h2{color:#38bdf8;}
+code{background:black; color:#00ff00; display:block; padding:5px;}
+.correct{color:lightgreen;}
+.wrong{color:red;}
+.terminal{background:black; height:200px; overflow:auto; padding:10px; border-radius:10px; font-family:monospace;}
+input{width:100%; padding:10px; background:black; color:#00ff00; border:none;}
+</style>
+</head>
+<body>
+
+<header>
+<div id="title">💻 CMD - Redirection & Variables</div>
+<div class="lang">
+<button onclick="setLang('fr')">FR</button>
+<button onclick="setLang('mg')">MG</button>
+</div>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2 id="defTitle">📌 Famaritana</h2>
+<p id="defText">Redirection dia mandefa vokatra commande any amin’ny fichier. Variables dia mitahiry vaovao ho an’ny session.</p>
+</div>
+
+<div class="section">
+<h2>📂 Redirection</h2>
+<p>Dir mankany fichier:</p>
+<code>dir > liste.txt</code>
+<p>Manampy ao amin’ny fichier:</p>
+<code>echo Bonjour >> note.txt</code>
+</div>
+
+<div class="section">
+<h2>📂 Variables environnement</h2>
+<p>Ohatra mampiseho username:</p>
+<code>echo %USERNAME%</code>
+<p>Ohatra mampiseho path:</p>
+<code>echo %PATH%</code>
+</div>
+
+<div class="section">
+<h2>💻 Simulateur</h2>
+<div class="terminal" id="terminal"></div>
+<input id="cmd" placeholder="Ecrire une commande..." onkeydown="run(event)">
+</div>
+
+<div class="section">
+<h2>🧠 Quiz</h2>
+<p>dir > liste.txt = ?</p>
+<button onclick="quiz(this,true)">Vokatra any amin’ny fichier</button>
+<button onclick="quiz(this,false)">Asehoy eo amin’ny écran fotsiny</button>
+
+<p>echo %USERNAME% = ?</p>
+<button onclick="quiz(this,true)">Mampiseho username</button>
+<button onclick="quiz(this,false)">Mamorona dossier</button>
+</div>
+
+<div class="section">
+<button onclick="prevPage()">⬅ Page précédente</button>
+<button onclick="nextPage()">➡ Page suivante : Sécurité & Tips</button>
+</div>
+
+</div>
+
+<script>
+// SIMULATEUR
+function run(e){
+if(e.key==="Enter"){
+let cmd=document.getElementById("cmd").value;
+let term=document.getElementById("terminal");
+term.innerHTML+="<div>> "+cmd+"</div>";
+
+if(cmd==="dir > liste.txt"){
+term.innerHTML+="<div>Vokatra nalefa tao amin'ny liste.txt</div>";
+}else if(cmd.startsWith("echo %USERNAME%")){
+term.innerHTML+="<div>Jean</div>";
+}else if(cmd.startsWith("echo %PATH%")){
+term.innerHTML+="<div>C:\\Windows\\System32;...</div>";
+}else if(cmd.startsWith("echo Bonjour >> note.txt")){
+term.innerHTML+="<div>Vokatra nampiana tao amin'ny note.txt</div>";
+}else{
+term.innerHTML+="<div>Commande inconnue</div>";
+}
+
+document.getElementById("cmd").value="";
+term.scrollTop=term.scrollHeight;
+}
+}
+
+// QUIZ
+function quiz(btn,good){
+if(good){btn.classList.add("correct");}else{btn.classList.add("wrong");}
+}
+
+// LANGUE
+function setLang(lang){
+if(lang==="fr"){
+document.getElementById("title").innerHTML="💻 CMD - Redirection & Variables";
+document.getElementById("defTitle").innerHTML="📌 Définition";
+document.getElementById("defText").innerHTML="Redirection envoie le résultat d'une commande vers un fichier. Les variables stockent des informations pour la session.";
+}
+if(lang==="mg"){
+document.getElementById("title").innerHTML="💻 CMD - Redirection & Variables";
+document.getElementById("defTitle").innerHTML="📌 Famaritana";
+document.getElementById("defText").innerHTML="Redirection dia mandefa vokatra commande any amin’ny fichier. Variables dia mitahiry vaovao ho an’ny session.";
+}
+}
+
+// NAVIGATION PAGE
+function nextPage(){alert("Page suivante : Sécurité & Tips");}
+function prevPage(){alert("Page précédente : Commandes avancées");}
+</script>
+
+</body>
+</html>

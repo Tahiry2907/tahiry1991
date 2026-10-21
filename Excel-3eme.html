@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Excel Avancé | Mr Tahiry</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:
+        linear-gradient(135deg,#e3f2fd,#eef2f7);
+    color:#263238;
+    min-height:100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+    background:
+        linear-gradient(135deg,#0d47a1,#1565c0,#1976d2);
+    color:white;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 4px 15px rgba(0,0,0,.20);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo span{
+    font-size:28px;
+}
+
+.logo h2{
+    font-size:22px;
+}
+
+.lang{
+    display:flex;
+    gap:7px;
+}
+
+.lang button{
+    background:white;
+    color:#1565c0;
+    border:none;
+    padding:8px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.lang button:hover{
+    background:#bbdefb;
+    transform:translateY(-2px);
+}
+
+.lang button.active{
+    background:#ffca28;
+    color:#263238;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:30px auto;
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-box{
+    background:white;
+    padding:18px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+    font-weight:bold;
+    color:#1565c0;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#e0e0e0;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0;
+    background:
+        linear-gradient(90deg,#1565c0,#42a5f5);
+    border-radius:20px;
+    transition:.5s;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+    background:white;
+    padding:30px;
+    margin-bottom:25px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.09);
+    border-left:6px solid #1565c0;
+    animation:fadeIn .5s ease;
+}
+
+.card h2{
+    color:#1565c0;
+    margin-bottom:20px;
+    font-size:28px;
+}
+
+.card h3{
+    color:#1976d2;
+    margin:20px 0 10px;
+}
+
+.card p{
+    line-height:1.8;
+    margin:12px 0;
+    font-size:16px;
+}
+
+.card ul{
+    margin:15px 0 15px 25px;
+}
+
+.card li{
+    margin:10px 0;
+    line-height:1.6;
+}
+
+
+/* =====================================================
+   FORMULE EXCEL
+===================================================== */
+
+.formule{
+    background:#e3f2fd;
+    border-left:5px solid #1565c0;
+    padding:15px;
+    margin:15px 0;
+    border-radius:10px;
+    font-family:Consolas,monospace;
+    font-size:17px;
+    color:#0d47a1;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   TABLEAU
+===================================================== */
+
+.excel-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+}
+
+.excel-table th,
+.excel-table td{
+    border:1px solid #cfd8dc;
+    padding:12px;
+    text-align:left;
+}
+
+.excel-table th{
+    background:#1565c0;
+    color:white;
+}
+
+.excel-table tr:nth-child(even){
+    background:#e3f2fd;
+}
+
+
+/* =====================================================
+   BOX INFO
+===================================================== */
+
+.info-box{
+    background:#fff8e1;
+    border-left:5px solid #ffb300;
+    padding:15px;
+    border-radius:10px;
+    margin:20px 0;
+}
+
+.tip-box{
+    background:#e8f5e9;
+    border-left:5px solid #43a047;
+    padding:15px;
+    border-radius:10px;
+    margin:20px 0;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin:20px 0 30px;
+}
+
+.nav button{
+    flex:1;
+    max-width:220px;
+    background:#1565c0;
+    color:white;
+    border:none;
+    padding:13px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.nav button:hover{
+    background:#0d47a1;
+    transform:translateY(-2px);
+}
+
+.nav button:disabled{
+    background:#bdbdbd;
+    cursor:not-allowed;
+    transform:none;
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quiz-question{
+    background:#e3f2fd;
+    padding:20px;
+    border-radius:12px;
+    margin:20px 0;
+}
+
+.quiz-btn{
+    background:#1565c0;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    margin:7px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.quiz-btn:hover{
+    background:#0d47a1;
+    transform:scale(1.04);
+}
+
+.correct{
+    color:#2e7d32;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.wrong{
+    color:#d32f2f;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.score{
+    margin-top:20px;
+    padding:15px;
+    background:#e8f5e9;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   LIENS COURS
+===================================================== */
+
+.lesson-links{
+    margin-top:30px;
+}
+
+.lesson-links h2{
+    color:#1565c0;
+    margin-bottom:20px;
+}
+
+.boutton{
+    margin:12px 0;
+}
+
+.button{
+    display:block;
+    text-decoration:none;
+    background:
+        linear-gradient(135deg,#1565c0,#1976d2);
+    color:white;
+    padding:14px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+    box-shadow:0 4px 10px rgba(21,101,192,.20);
+}
+
+.button:hover{
+    transform:translateX(6px);
+    box-shadow:0 7px 18px rgba(21,101,192,.30);
+}
+
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
+
+#topBtn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#1565c0;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+    z-index:999;
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    margin-top:40px;
+    background:#0d47a1;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+}
+
+footer p{
+    margin:7px;
+}
+
+.date{
+    opacity:.8;
+    font-size:14px;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+    header{
+        padding:15px;
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .logo h2{
+        font-size:19px;
+    }
+
+    .container{
+        width:94%;
+        margin:20px auto;
+    }
+
+    .card{
+        padding:20px;
+        border-left:4px solid #1565c0;
+    }
+
+    .card h2{
+        font-size:23px;
+    }
+
+    .card p,
+    .card li{
+        font-size:15px;
+    }
+
+    .nav{
+        flex-direction:row;
+    }
+
+    .nav button{
+        padding:11px;
+    }
+
+    .excel-table{
+        font-size:13px;
+    }
+
+    .excel-table th,
+    .excel-table td{
+        padding:8px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+
+        <span>📊</span>
+
+        <h2 id="title">
+            Excel Avancé
+        </h2>
+
+    </div>
+
+
+    <div class="lang">
+
+        <button
+            id="frBtn"
+            onclick="setLang('fr')">
+
+            🇫🇷 FR
+
+        </button>
+
+
+        <button
+            id="mlBtn"
+            onclick="setLang('ml')">
+
+            🇲🇬 ML
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     PROGRESSION
+===================================================== -->
+
+<div class="progress-box">
+
+    <div class="progress-info">
+
+        <span id="progressText">
+            Progression
+        </span>
+
+        <span id="stepText">
+            1 / 9
+        </span>
+
+    </div>
+
+
+    <div class="progress">
+
+        <div
+            class="progress-bar"
+            id="progressBar">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CONTENU
+===================================================== -->
+
+<div
+    class="card"
+    id="content">
+</div>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<div class="nav">
+
+    <button
+        id="prevBtn"
+        onclick="prev()">
+
+        ⬅️ Précédent
+
+    </button>
+
+
+    <button
+        id="nextBtn"
+        onclick="next()">
+
+        Suivant ➡️
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     LIENS
+===================================================== -->
+
+<div class="card lesson-links">
+
+    <h2 id="linksTitle">
+        📚 Cours pratiques Excel
+    </h2>
+
+
+    <div class="boutton">
+
+        <a
+            href="fonction-somme-5eme .html"
+            class="button">
+
+            📊 Fonction SOMME
+
+        </a>
+
+    </div>
+
+
+    <div class="boutton">
+
+        <a
+            href="fonction-somme-multiple-5eme.html"
+            class="button">
+
+            📊 Fonction SOMME multiple
+
+        </a>
+
+    </div>
+
+
+    <div class="boutton">
+
+        <a
+            href="fonction-somme-conditionnel-5eme.html"
+            class="button">
+
+            📊 Fonction SOMME conditionnelle
+
+        </a>
+
+    </div>
+
+
+    <div class="boutton">
+
+        <a
+            href="fonction-somme-si-4eme.html"
+            class="button">
+
+            📊 Fonction SOMME SI
+
+        </a>
+
+    </div>
+
+
+    <div class="boutton">
+
+        <a
+            href="fonction-somme-si-ens-4eme.html"
+            class="button">
+
+            📊 Fonction SOMME SI ENS
+
+        </a>
+
+    </div>
+
+
+    <div class="boutton">
+
+        <a
+            href="fonction-somme-si-4eme.html"
+            class="button">
+
+            📊 Fonction SOMME SI
+
+        </a>
+
+    </div>
+
+
+    <div class="boutton">
+
+        <a
+            href="fonction-moyenne-plusieur-plage-3eme.html"
+            class="button">
+
+            📊 Fonction MOYENNE plusieurs plages
+
+        </a>
+
+    </div>
+
+
+    <div class="boutton">
+
+        <a
+            href="fonction-moyenne-5eme.html"
+            class="button">
+
+            📊 Fonction MOYENNE
+
+        </a>
+
+    </div>
+
+
+    <div class="boutton">
+
+        <a
+            href="fonction-moyenne-conditionnelle.3eme.html"
+            class="button">
+
+            📊 Fonction MOYENNE conditionnelle
+
+        </a>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <p>
+        💻 <strong>Mr Tahiry - Informatique</strong> 👨‍🏫
+    </p>
+
+    <p id="footerText">
+        Formation Excel Avancé
+    </p>
+
+    <p
+        class="date"
+        id="date">
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     TOP BUTTON
+===================================================== -->
+
+<button
+    id="topBtn"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+
+    ↑
+
+</button>
+
+
+
+<script>
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let lang =
+    localStorage.getItem("excelAdvancedLang")
+    || "fr";
+
+let step = 0;
+
+let score = 0;
+
+
+/* =====================================================
+   LESSONS
+===================================================== */
+
+const lessons = [
+
+/* =====================================================
+   1 - SI
+===================================================== */
+
+{
+fr:`
+
+<h2>⚙️ Fonction SI avancée</h2>
+
+<p>
+La fonction <strong>SI</strong> permet à Excel
+de prendre automatiquement une décision selon
+une condition.
+</p>
+
+<div class="formule">
+=SI(A1>=10;"Admis";"Échec")
+</div>
+
+<h3>📌 Explication</h3>
+
+<ul>
+<li>Si A1 est supérieur ou égal à 10 → Admis</li>
+<li>Sinon → Échec</li>
+</ul>
+
+<div class="info-box">
+💡 La fonction SI est très utile pour calculer
+automatiquement la réussite ou l'échec d'un élève.
+</div>
+
+<h3>Exemple scolaire</h3>
+
+<table class="excel-table">
+
+<tr>
+<th>Élève</th>
+<th>Moyenne</th>
+<th>Résultat</th>
+</tr>
+
+<tr>
+<td>Jean</td>
+<td>14</td>
+<td>Admis</td>
+</tr>
+
+<tr>
+<td>Paul</td>
+<td>8</td>
+<td>Échec</td>
+</tr>
+
+</table>
+`,
+
+ml:`
+
+<h2>⚙️ Fonction SI mandroso</h2>
+
+<p>
+Ny fonction <strong>SI</strong> dia mamela an'i Excel
+handray fanapahan-kevitra automatique arakaraka
+ny condition iray.
+</p>
+
+<div class="formule">
+=SI(A1>=10;"Admis";"Échec")
+</div>
+
+<h3>📌 Fanazavana</h3>
+
+<ul>
+<li>Raha A1 ≥ 10 → Admis</li>
+<li>Raha tsy izany → Échec</li>
+</ul>
+
+<div class="info-box">
+💡 Tena ilaina amin'ny calcul automatique
+ny réussite na échec-n'ny mpianatra ny SI.
+</div>
+
+<h3>Ohatra amin'ny sekoly</h3>
+
+<table class="excel-table">
+
+<tr>
+<th>Mpianatra</th>
+<th>Moyenne</th>
+<th>Valiny</th>
+</tr>
+
+<tr>
+<td>Jean</td>
+<td>14</td>
+<td>Admis</td>
+</tr>
+
+<tr>
+<td>Paul</td>
+<td>8</td>
+<td>Échec</td>
+</tr>
+
+</table>
+`
+},
+
+
+/* =====================================================
+   2 - RECHERCHEV
+===================================================== */
+
+{
+fr:`
+
+<h2>🔎 Fonction RECHERCHEV</h2>
+
+<p>
+La fonction RECHERCHEV permet de rechercher
+une valeur dans la première colonne d'un tableau
+et de récupérer une information correspondante.
+</p>
+
+<div class="formule">
+=RECHERCHEV(A2;A1:C10;2;FAUX)
+</div>
+
+<h3>📌 Structure</h3>
+
+<ul>
+<li><strong>A2</strong> → valeur recherchée</li>
+<li><strong>A1:C10</strong> → tableau de recherche</li>
+<li><strong>2</strong> → numéro de colonne à retourner</li>
+<li><strong>FAUX</strong> → recherche exacte</li>
+</ul>
+
+<div class="tip-box">
+🎯 Exemple : rechercher automatiquement
+le nom d'un élève à partir de son numéro.
+</div>
+`,
+
+ml:`
+
+<h2>🔎 Fonction RECHERCHEV</h2>
+
+<p>
+Ny RECHERCHEV dia ampiasaina hitadiavana
+valeur ao amin'ny colonne voalohany amin'ny tableau
+ary haka information mifanaraka aminy.
+</p>
+
+<div class="formule">
+=RECHERCHEV(A2;A1:C10;2;FAUX)
+</div>
+
+<h3>📌 Fanazavana</h3>
+
+<ul>
+<li><strong>A2</strong> → valeur tadiavina</li>
+<li><strong>A1:C10</strong> → tableau</li>
+<li><strong>2</strong> → numéro colonne</li>
+<li><strong>FAUX</strong> → recherche exacte</li>
+</ul>
+
+<div class="tip-box">
+🎯 Ohatra : mitady automatique ny anaran'ny
+mpianatra amin'ny alalan'ny numéro-ny.
+</div>
+`
+},
+
+
+/* =====================================================
+   3 - TABLEAU CROISE
+===================================================== */
+
+{
+fr:`
+
+<h2>📊 Tableau croisé dynamique</h2>
+
+<p>
+Le tableau croisé dynamique permet d'analyser
+rapidement une grande quantité de données.
+</p>
+
+<h3>Utilisations</h3>
+
+<ul>
+<li>Regrouper les données</li>
+<li>Calculer des totaux</li>
+<li>Comparer des catégories</li>
+<li>Analyser les résultats</li>
+</ul>
+
+<div class="info-box">
+💡 Exemple : analyser les résultats de plusieurs
+classes et comparer leurs moyennes.
+</div>
+`,
+
+ml:`
+
+<h2>📊 Tableau croisé dynamique</h2>
+
+<p>
+Ny tableau croisé dynamique dia manampy
+amin'ny analyse rapide ny données betsaka.
+</p>
+
+<h3>Fampiasana</h3>
+
+<ul>
+<li>Manangona données</li>
+<li>Manao total</li>
+<li>Mampitaha catégories</li>
+<li>Mandiniha résultats</li>
+</ul>
+
+<div class="info-box">
+💡 Ohatra : mandinika ny résultat-n'ny classe
+maro ary mampitaha ny moyenne-ny.
+</div>
+`
+},
+
+
+/* =====================================================
+   4 - MISE EN FORME CONDITIONNELLE
+===================================================== */
+
+{
+fr:`
+
+<h2>🎨 Mise en forme conditionnelle</h2>
+
+<p>
+La mise en forme conditionnelle permet de modifier
+automatiquement l'apparence d'une cellule selon
+sa valeur.
+</p>
+
+<h3>Exemple</h3>
+
+<table class="excel-table">
+
+<tr>
+<th>Élève</th>
+<th>Note</th>
+</tr>
+
+<tr>
+<td>Jean</td>
+<td>15</td>
+</tr>
+
+<tr>
+<td>Paul</td>
+<td>8</td>
+</tr>
+
+</table>
+
+<p>
+On peut appliquer une règle pour mettre en évidence
+les notes inférieures à 10.
+</p>
+
+<div class="tip-box">
+🎯 Très utile pour identifier rapidement
+les bonnes et mauvaises performances.
+</div>
+`,
+
+ml:`
+
+<h2>🎨 Mise en forme conditionnelle</h2>
+
+<p>
+Ny mise en forme conditionnelle dia mamela
+an'i Excel hanova automatique ny endriky ny cellule
+araka ny valeur.
+</p>
+
+<h3>Ohatra</h3>
+
+<table class="excel-table">
+
+<tr>
+<th>Mpianatra</th>
+<th>Naoty</th>
+</tr>
+
+<tr>
+<td>Jean</td>
+<td>15</td>
+</tr>
+
+<tr>
+<td>Paul</td>
+<td>8</td>
+</tr>
+
+</table>
+
+<p>
+Afaka mametraka règle isika mba hanasongadinana
+ny note latsaky ny 10.
+</p>
+
+<div class="tip-box">
+🎯 Manampy hahitana haingana ny résultat
+tsara sy ratsy.
+</div>
+`
+},
+
+
+/* =====================================================
+   5 - GESTION STOCK
+===================================================== */
+
+{
+fr:`
+
+<h2>📦 Gestion de stock</h2>
+
+<p>
+Excel peut être utilisé pour gérer le stock
+d'une entreprise ou d'un magasin.
+</p>
+
+<table class="excel-table">
+
+<tr>
+<th>Produit</th>
+<th>Quantité</th>
+<th>Prix</th>
+<th>Total</th>
+</tr>
+
+<tr>
+<td>Stylo</td>
+<td>20</td>
+<td>500</td>
+<td>=B2*C2</td>
+</tr>
+
+<tr>
+<td>Cahier</td>
+<td>10</td>
+<td>2000</td>
+<td>=B3*C3</td>
+</tr>
+
+</table>
+
+<div class="formule">
+=B2*C2
+</div>
+
+<p>
+Cette formule calcule automatiquement
+le montant total d'un produit.
+</p>
+`,
+
+ml:`
+
+<h2>📦 Gestion de stock</h2>
+
+<p>
+Azo ampiasaina amin'ny fitantanana stock
+ao amin'ny magasin na entreprise ny Excel.
+</p>
+
+<table class="excel-table">
+
+<tr>
+<th>Produit</th>
+<th>Habetsahana</th>
+<th>Vidiny</th>
+<th>Total</th>
+</tr>
+
+<tr>
+<td>Stylo</td>
+<td>20</td>
+<td>500</td>
+<td>=B2*C2</td>
+</tr>
+
+<tr>
+<td>Cahier</td>
+<td>10</td>
+<td>2000</td>
+<td>=B3*C3</td>
+</tr>
+
+</table>
+
+<div class="formule">
+=B2*C2
+</div>
+
+<p>
+Io formule io dia manao automatique
+ny calcul-n'ny total.
+</p>
+`
+},
+
+
+/* =====================================================
+   6 - BUDGET
+===================================================== */
+
+{
+fr:`
+
+<h2>💰 Budget familial</h2>
+
+<p>
+Excel permet de suivre les revenus,
+les dépenses et les économies.
+</p>
+
+<table class="excel-table">
+
+<tr>
+<th>Élément</th>
+<th>Montant</th>
+</tr>
+
+<tr>
+<td>Revenus</td>
+<td>1 000 000</td>
+</tr>
+
+<tr>
+<td>Alimentation</td>
+<td>300 000</td>
+</tr>
+
+<tr>
+<td>Transport</td>
+<td>100 000</td>
+</tr>
+
+<tr>
+<td>Électricité</td>
+<td>80 000</td>
+</tr>
+
+</table>
+
+<div class="formule">
+=Revenus-SOMME(Dépenses)
+</div>
+
+<div class="tip-box">
+🎯 Objectif : connaître automatiquement
+l'argent restant après les dépenses.
+</div>
+`,
+
+ml:`
+
+<h2>💰 Budget</h2>
+
+<p>
+Excel dia afaka ampiasaina hanaraha-maso
+ny vola miditra, vola mivoaka ary tahiry.
+</p>
+
+<table class="excel-table">
+
+<tr>
+<th>Karazana</th>
+<th>Vola</th>
+</tr>
+
+<tr>
+<td>Vola miditra</td>
+<td>1 000 000</td>
+</tr>
+
+<tr>
+<td>Sakafo</td>
+<td>300 000</td>
+</tr>
+
+<tr>
+<td>Fitaterana</td>
+<td>100 000</td>
+</tr>
+
+<tr>
+<td>Herinaratra</td>
+<td>80 000</td>
+</tr>
+
+</table>
+
+<div class="formule">
+=Vola_miditra-SOMME(Vola_mivoaka)
+</div>
+
+<div class="tip-box">
+🎯 Tanjona : hahafantatra automatique
+ny vola tavela rehefa avy nandoa ny fandaniana.
+</div>
+`
+},
+
+
+/* =====================================================
+   7 - GRAPHIQUES
+===================================================== */
+
+{
+fr:`
+
+<h2>📈 Graphiques avancés</h2>
+
+<p>
+Les graphiques permettent de transformer
+les données en représentation visuelle.
+</p>
+
+<ul>
+<li>📊 Colonnes</li>
+<li>📈 Courbes</li>
+<li>🥧 Secteurs</li>
+<li>📉 Barres</li>
+<li>📊 Graphiques combinés</li>
+</ul>
+
+<h3>Objectif</h3>
+
+<p>
+Présenter les résultats de manière claire
+pour faciliter leur compréhension.
+</p>
+
+<div class="tip-box">
+💡 Un bon graphique doit avoir un titre,
+des catégories lisibles et des données correctes.
+</div>
+`,
+
+ml:`
+
+<h2>📈 Graphique avancé</h2>
+
+<p>
+Ny graphique dia manova ny données ho
+endrika hita maso mora takarina.
+</p>
+
+<ul>
+<li>📊 Colonne</li>
+<li>📈 Courbe</li>
+<li>🥧 Secteur</li>
+<li>📉 Barre</li>
+<li>📊 Graphique combiné</li>
+</ul>
+
+<h3>Tanjona</h3>
+
+<p>
+Ny tanjona dia ny hampiseho résultat
+amin'ny fomba mazava sy mora takarina.
+</p>
+
+<div class="tip-box">
+💡 Tokony hisy titre mazava sy données marina
+ny graphique iray.
+</div>
+`
+},
+
+
+/* =====================================================
+   8 - MINI PROJET
+===================================================== */
+
+{
+fr:`
+
+<h2>🎓 Mini Projet</h2>
+
+<p>
+Créer un tableau de notes avec calcul automatique
+de la moyenne et du résultat.
+</p>
+
+<h3>📋 Travail demandé</h3>
+
+<ul>
+<li>Créer la liste des élèves</li>
+<li>Saisir les notes</li>
+<li>Calculer le total</li>
+<li>Calculer la moyenne</li>
+<li>Utiliser la fonction SI</li>
+<li>Appliquer une mise en forme conditionnelle</li>
+<li>Créer un graphique</li>
+</ul>
+
+<h3>📌 Formules possibles</h3>
+
+<div class="formule">
+=SOMME(B2:E2)
+</div>
+
+<div class="formule">
+=MOYENNE(B2:E2)
+</div>
+
+<div class="formule">
+=SI(F2>=10;"Admis";"Échec")
+</div>
+
+<div class="tip-box">
+🏆 Objectif : créer un véritable tableau
+de résultats scolaire automatique.
+</div>
+`,
+
+ml:`
+
+<h2>🎓 Mini Projet</h2>
+
+<p>
+Mamorona tableau misy naotin'ny mpianatra
+ary ataovy automatique ny moyenne sy résultat.
+</p>
+
+<h3>📋 Asa atao</h3>
+
+<ul>
+<li>Mamorona lisitry ny mpianatra</li>
+<li>Mampiditra naoty</li>
+<li>Manao total</li>
+<li>Manao moyenne</li>
+<li>Mampiasa fonction SI</li>
+<li>Mampiasa mise en forme conditionnelle</li>
+<li>Mamorona graphique</li>
+</ul>
+
+<h3>📌 Formule azo ampiasaina</h3>
+
+<div class="formule">
+=SOMME(B2:E2)
+</div>
+
+<div class="formule">
+=MOYENNE(B2:E2)
+</div>
+
+<div class="formule">
+=SI(F2>=10;"Admis";"Échec")
+</div>
+
+<div class="tip-box">
+🏆 Tanjona : mamorona tableau scolaire
+mandeha automatique.
+</div>
+`
+},
+
+
+/* =====================================================
+   9 - QUIZ
+===================================================== */
+
+{
+fr:`
+
+<h2>🧠 Quiz Excel Avancé</h2>
+
+<div class="quiz-question">
+
+<p>
+<strong>Question 1 :</strong>
+À quoi sert RECHERCHEV ?
+</p>
+
+<button
+class="quiz-btn"
+onclick="answer(true)">
+🔎 Chercher une donnée
+</button>
+
+<button
+class="quiz-btn"
+onclick="answer(false)">
+🎨 Dessiner
+</button>
+
+</div>
+
+
+<div class="quiz-question">
+
+<p>
+<strong>Question 2 :</strong>
+Quelle fonction permet de tester une condition ?
+</p>
+
+<button
+class="quiz-btn"
+onclick="answer(true)">
+SI
+</button>
+
+<button
+class="quiz-btn"
+onclick="answer(false)">
+MAX
+</button>
+
+</div>
+
+
+<div class="quiz-question">
+
+<p>
+<strong>Question 3 :</strong>
+Quel outil permet d'analyser rapidement
+beaucoup de données ?
+</p>
+
+<button
+class="quiz-btn"
+onclick="answer(true)">
+Tableau croisé dynamique
+</button>
+
+<button
+class="quiz-btn"
+onclick="answer(false)">
+Paint
+</button>
+
+</div>
+
+
+<p id="res"></p>
+
+<div class="score">
+🏆 Score : <span id="scoreValue">0</span>
+</div>
+`,
+
+ml:`
+
+<h2>🧠 Quiz Excel Avancé</h2>
+
+<div class="quiz-question">
+
+<p>
+<strong>Fanontaniana 1 :</strong>
+Inona no ampiasana RECHERCHEV ?
+</p>
+
+<button
+class="quiz-btn"
+onclick="answer(true)">
+🔎 Mitady donnée
+</button>
+
+<button
+class="quiz-btn"
+onclick="answer(false)">
+🎨 Manao dessin
+</button>
+
+</div>
+
+
+<div class="quiz-question">
+
+<p>
+<strong>Fanontaniana 2 :</strong>
+Iza no fonction mitsapa condition ?
+</p>
+
+<button
+class="quiz-btn"
+onclick="answer(true)">
+SI
+</button>
+
+<button
+class="quiz-btn"
+onclick="answer(false)">
+MAX
+</button>
+
+</div>
+
+
+<div class="quiz-question">
+
+<p>
+<strong>Fanontaniana 3 :</strong>
+Inona no fitaovana afaka mandinika
+données betsaka haingana ?
+</p>
+
+<button
+class="quiz-btn"
+onclick="answer(true)">
+Tableau croisé dynamique
+</button>
+
+<button
+class="quiz-btn"
+onclick="answer(false)">
+Paint
+</button>
+
+</div>
+
+
+<p id="res"></p>
+
+<div class="score">
+🏆 Isa : <span id="scoreValue">0</span>
+</div>
+`
+}
+
+];
+
+
+/* =====================================================
+   SHOW
+===================================================== */
+
+function show(){
+
+    document.getElementById("content")
+        .innerHTML =
+        lessons[step][lang];
+
+    updateProgress();
+
+    updateButtons();
+
+    updateLanguageButtons();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+function updateProgress(){
+
+    const total = lessons.length;
+
+    const current = step + 1;
+
+    const percent =
+        (current / total) * 100;
+
+    document.getElementById("progressBar")
+        .style.width =
+        percent + "%";
+
+    document.getElementById("stepText")
+        .textContent =
+        current + " / " + total;
+
+    document.getElementById("progressText")
+        .textContent =
+        lang === "fr"
+        ? "Progression"
+        : "Fandrosoana";
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function updateButtons(){
+
+    document.getElementById("prevBtn")
+        .disabled =
+        step === 0;
+
+    document.getElementById("nextBtn")
+        .disabled =
+        step === lessons.length - 1;
+
+    if(lang === "fr"){
+
+        document.getElementById("prevBtn")
+            .innerHTML =
+            "⬅️ Précédent";
+
+        document.getElementById("nextBtn")
+            .innerHTML =
+            "Suivant ➡️";
+
+    }else{
+
+        document.getElementById("prevBtn")
+            .innerHTML =
+            "⬅️ Taloha";
+
+        document.getElementById("nextBtn")
+            .innerHTML =
+            "Manaraka ➡️";
+    }
+}
+
+
+function next(){
+
+    if(step < lessons.length - 1){
+
+        step++;
+
+        show();
+    }
+}
+
+
+function prev(){
+
+    if(step > 0){
+
+        step--;
+
+        show();
+    }
+}
+
+
+/* =====================================================
+   LANGUE
+===================================================== */
+
+function setLang(l){
+
+    lang = l;
+
+    localStorage.setItem(
+        "excelAdvancedLang",
+        lang
+    );
+
+    show();
+}
+
+
+function updateLanguageButtons(){
+
+    document.getElementById("frBtn")
+        .classList.toggle(
+            "active",
+            lang === "fr"
+        );
+
+    document.getElementById("mlBtn")
+        .classList.toggle(
+            "active",
+            lang === "ml"
+        );
+
+    document.getElementById("linksTitle")
+        .textContent =
+        lang === "fr"
+        ? "📚 Cours pratiques Excel"
+        : "📚 Lesona Excel azo ampiharina";
+
+    document.getElementById("footerText")
+        .textContent =
+        lang === "fr"
+        ? "Formation Excel Avancé"
+        : "Formation Excel Avancé";
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+function answer(correct){
+
+    const res =
+        document.getElementById("res");
+
+    if(!res) return;
+
+    if(correct){
+
+        score++;
+
+        res.className =
+            "correct";
+
+        res.innerHTML =
+            lang === "fr"
+            ? "✔️ Bonne réponse !"
+            : "✔️ Marina ny valiny !";
+
+    }else{
+
+        res.className =
+            "wrong";
+
+        res.innerHTML =
+            lang === "fr"
+            ? "❌ Mauvaise réponse."
+            : "❌ Diso ny valiny.";
+    }
+
+
+    const scoreValue =
+        document.getElementById("scoreValue");
+
+    if(scoreValue){
+
+        scoreValue.textContent =
+            score;
+    }
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function showDate(){
+
+    const now =
+        new Date();
+
+    document.getElementById("date")
+        .textContent =
+        now.toLocaleDateString(
+            "fr-FR",
+            {
+                day:"2-digit",
+                month:"2-digit",
+                year:"numeric"
+            }
+        );
+}
+
+
+/* =====================================================
+   BOUTON TOP
+===================================================== */
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        const btn =
+            document.getElementById("topBtn");
+
+        if(window.scrollY > 300){
+
+            btn.style.display =
+                "block";
+
+        }else{
+
+            btn.style.display =
+                "none";
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+show();
+
+showDate();
+
+</script>
+
+
+</body>
+</html>

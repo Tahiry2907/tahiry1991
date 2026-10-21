@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesona CMD - del</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin:0; padding:0;}
+        header { background-color: #007bff; color:white; padding:15px 30px; display:flex; justify-content:space-between; align-items:center;}
+        header h1 { margin:0; font-size:20px;}
+        header button { background-color:white; color:#007bff; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;}
+        header button:hover { background-color:#e6e6e6;}
+        .container { max-width:900px; margin:30px auto; background-color:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+        h2 { color:#333; }
+        pre { background-color:#272822; color:#f8f8f2; padding:15px; border-radius:8px; overflow-x:auto; }
+        .buttons { margin-top:30px; display:flex; justify-content:space-between; }
+        .buttons button { background-color:#007bff; border:none; color:white; padding:10px 20px; font-size:16px; border-radius:8px; cursor:pointer; transition:0.3s; }
+        .buttons button:hover { background-color:#0056b3; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="title">Lesona CMD : del</h1>
+        <div>
+            <button onclick="switchLang('fr')">FR</button>
+            <button onclick="switchLang('ml')">ML</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="content"></div>
+
+        <div class="buttons">
+            <button id="prevBtn">← Previous</button>
+            <button id="nextBtn">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        // Contenu lesona del
+        const lesson = {
+            fr: `
+<h2>1️⃣ Commande de base</h2>
+<pre>del NomFichier
+Exemple : del fichier.txt</pre>
+
+<h2>2️⃣ Supprimer plusieurs fichiers</h2>
+<pre>del fichier1.txt fichier2.txt</pre>
+
+<h2>3️⃣ Supprimer tous les fichiers d'un dossier</h2>
+<pre>del *.*</pre>
+
+<h2>4️⃣ Options utiles</h2>
+<ul>
+<li>/P : demande confirmation avant suppression</li>
+<li>/F : forcer suppression des fichiers en lecture seule</li>
+<li>/S : supprimer fichiers dans tous les sous-dossiers</li>
+<li>/Q : suppression silencieuse (pas de confirmation)</li>
+</ul>
+
+<h2>5️⃣ Exemple complet</h2>
+<pre>del /F /Q C:\\Users\\Jeanjacques\\Documents\\ancien_fichier.txt</pre>
+            `,
+            ml: `
+<h2>1️⃣ Fomba fototra</h2>
+<pre>del AnaranaFichier
+Ohatra: del fichier.txt</pre>
+
+<h2>2️⃣ Mamafa fichiers maro</h2>
+<pre>del fichier1.txt fichier2.txt</pre>
+
+<h2>3️⃣ Mamafa fichiers rehetra ao anaty dossier</h2>
+<pre>del *.*</pre>
+
+<h2>4️⃣ Options ilaina</h2>
+<ul>
+<li>/P : manontany fanamafisana alohan'ny famafana</li>
+<li>/F : manery famafana fichiers voasoratra amin'ny lecture seule</li>
+<li>/S : mamafa fichiers ao amin'ny subfolders rehetra</li>
+<li>/Q : famafana tsy misy fanamafisana</li>
+</ul>
+
+<h2>5️⃣ Ohatra feno</h2>
+<pre>del /F /Q C:\\Users\\Jeanjacques\\Documents\\ancien_fichier.txt</pre>
+            `
+        };
+
+        function loadLesson(lang='fr') {
+            document.getElementById('title').textContent = lang === 'fr' ? "Lesona CMD : del" : "Lesona CMD : del";
+            document.getElementById('content').innerHTML = lesson[lang];
+        }
+
+        function switchLang(lang) {
+            loadLesson(lang);
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            window.location.href = "04_dir.html"; // ovay amin'ny URL-na page teo aloha
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            window.location.href = "06_rmdir.html"; // ovay amin'ny URL-na page manaraka
+        });
+
+        // Charger la leçon par défaut
+        loadLesson('fr');
+    </script>
+
+</body>
+</html>

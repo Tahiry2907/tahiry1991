@@ -1,0 +1,164 @@
+<div class="container">
+
+<h1>💻 Exercice Addition Binaire</h1>
+
+<button onclick="toggleLang()">🌍 FR / ML</button>
+
+<!-- ===================== -->
+<!-- EXERCICES -->
+<!-- ===================== -->
+<div class="section">
+<h2>🧠 <span class="fr">Exercices</span><span class="ml" style="display:none">Fanazaran-tena</span></h2>
+
+<pre>
+1)   101
+   + 011
+
+2)   110
+   + 001
+
+3)   1001
+   + 0010
+</pre>
+</div>
+
+<!-- ===================== -->
+<!-- CORRECTION DETAILLEE -->
+<!-- ===================== -->
+<div class="section">
+<h2 onclick="toggleCorrection()">✅ <span class="fr">Correction détaillée</span><span class="ml" style="display:none">Valiny sy dingana</span></h2>
+
+<div id="correction" style="display:none">
+
+<!-- EXO 1 -->
+<p><b>Exercice 1 :</b></p>
+<pre>
+   101
+ + 011
+ -------
+</pre>
+
+<p class="fr">
+Étapes :
+<br>1+1 = 10 → écrire 0, retenir 1
+<br>0+1+1 = 10 → écrire 0, retenir 1
+<br>1+0+1 = 10 → écrire 0, retenir 1
+<br>Résultat = <b>1000</b>
+</p>
+
+<p class="ml" style="display:none">
+Dingana :
+<br>1+1 = 10 → soraty 0, mitondra 1
+<br>0+1+1 = 10 → soraty 0, mitondra 1
+<br>1+0+1 = 10 → soraty 0, mitondra 1
+<br>Valiny = <b>1000</b>
+</p>
+
+<hr>
+
+<!-- EXO 2 -->
+<p><b>Exercice 2 :</b></p>
+<pre>
+   110
+ + 001
+ -------
+</pre>
+
+<p class="fr">
+Étapes :
+<br>0+1 = 1
+<br>1+0 = 1
+<br>1+0 = 1
+<br>Résultat = <b>111</b>
+</p>
+
+<p class="ml" style="display:none">
+Dingana :
+<br>0+1 = 1
+<br>1+0 = 1
+<br>1+0 = 1
+<br>Valiny = <b>111</b>
+</p>
+
+<hr>
+
+<!-- EXO 3 -->
+<p><b>Exercice 3 :</b></p>
+<pre>
+   1001
+ + 0010
+ -------
+</pre>
+
+<p class="fr">
+Étapes :
+<br>1+0 = 1
+<br>0+1 = 1
+<br>0+0 = 0
+<br>1+0 = 1
+<br>Résultat = <b>1011</b>
+</p>
+
+<p class="ml" style="display:none">
+Dingana :
+<br>1+0 = 1
+<br>0+1 = 1
+<br>0+0 = 0
+<br>1+0 = 1
+<br>Valiny = <b>1011</b>
+</p>
+
+</div>
+</div>
+
+</div>
+
+<script>
+function toggleCorrection() {
+  let c = document.getElementById("correction");
+  c.style.display = (c.style.display === "none") ? "block" : "none";
+}
+
+function toggleLang() {
+  let fr = document.querySelectorAll(".fr");
+  let ml = document.querySelectorAll(".ml");
+
+  fr.forEach(el => {
+    el.style.display = (el.style.display === "none") ? "inline" : "none";
+  });
+
+  ml.forEach(el => {
+    el.style.display = (el.style.display === "none") ? "inline" : "none";
+  });
+}
+</script>
+
+<style>
+.container {
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial;
+}
+
+.section {
+  background: #f4f4f4;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+pre {
+  background: black;
+  color: lime;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+</style>

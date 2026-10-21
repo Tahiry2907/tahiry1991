@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Formation Excel 5ème | Mr Tahiry</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:"Segoe UI",Arial,sans-serif;
+
+    min-height:100vh;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #e8f8ed,
+            #f4f7fb 50%,
+            #e7f5ea
+        );
+
+    color:#263238;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+    background:
+        linear-gradient(
+            135deg,
+            #107c41,
+            #2e7d32,
+            #21a366
+        );
+
+    color:white;
+
+    text-align:center;
+
+    padding:30px 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.20);
+
+}
+
+header h1{
+
+    font-size:30px;
+
+    margin-bottom:8px;
+
+}
+
+header p{
+
+    opacity:.95;
+
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+.language{
+
+    margin-top:18px;
+
+}
+
+.language button{
+
+    border:none;
+
+    padding:10px 18px;
+
+    margin:4px;
+
+    border-radius:25px;
+
+    background:white;
+
+    color:#107c41;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.language button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+    width:min(1050px,94%);
+
+    margin:auto;
+
+    padding:30px 0;
+
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.08);
+
+    border-left:6px solid #107c41;
+
+}
+
+.intro h2{
+
+    color:#107c41;
+
+    margin-bottom:10px;
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+    color:#107c41;
+
+}
+
+.progress{
+
+    height:12px;
+
+    background:#dfe8e2;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+}
+
+.progress-bar{
+
+    height:100%;
+
+    width:25%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #107c41,
+            #21a366,
+            #43c77b
+        );
+
+    border-radius:20px;
+
+    transition:
+        width .5s ease;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+    background:white;
+
+    padding:28px;
+
+    margin-bottom:22px;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.08);
+
+    border:1px solid #e2ebe5;
+
+    animation:
+        fadeIn .45s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   TITRES
+===================================================== */
+
+.card h2{
+
+    color:#107c41;
+
+    margin-bottom:15px;
+
+}
+
+.card h3{
+
+    color:#2e7d32;
+
+    margin-top:20px;
+
+}
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.info{
+
+    background:#eef9f1;
+
+    border-left:5px solid #21a366;
+
+    padding:15px;
+
+    margin:18px 0;
+
+    border-radius:8px;
+
+}
+
+
+/* =====================================================
+   FORMULA
+===================================================== */
+
+.formula{
+
+    background:#17221a;
+
+    color:#b8ffcf;
+
+    padding:16px;
+
+    border-radius:10px;
+
+    margin:12px 0;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    overflow-x:auto;
+
+    font-size:16px;
+
+}
+
+.formula span{
+
+    color:#fff;
+
+}
+
+
+/* =====================================================
+   FUNCTION GRID
+===================================================== */
+
+.function-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.function-box{
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4fff7,
+            #e9f8ee
+        );
+
+    border:1px solid #cce8d4;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    transition:.3s;
+
+}
+
+.function-box:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.10);
+
+}
+
+.function-box strong{
+
+    color:#107c41;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button.nav-btn{
+
+    background:
+        linear-gradient(
+            135deg,
+            #107c41,
+            #21a366
+        );
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+button.nav-btn:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 7px 15px rgba(16,124,65,.25);
+
+}
+
+button.nav-btn:disabled{
+
+    opacity:.45;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quiz-question{
+
+    margin-bottom:25px;
+
+    padding:18px;
+
+    background:#f7fbf8;
+
+    border-radius:12px;
+
+}
+
+.quiz-question p{
+
+    font-weight:bold;
+
+    margin-bottom:12px;
+
+}
+
+.answer{
+
+    display:block;
+
+    width:100%;
+
+    max-width:600px;
+
+    text-align:left;
+
+    background:white;
+
+    color:#263238;
+
+    border:1px solid #cfdad2;
+
+    padding:11px 15px;
+
+    margin:7px 0;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.answer:hover{
+
+    background:#eef9f1;
+
+}
+
+.correct{
+
+    background:#c8f7d2 !important;
+
+    border-color:#27ae60 !important;
+
+    color:#145a28 !important;
+
+}
+
+.wrong{
+
+    background:#ffd2d2 !important;
+
+    border-color:#e74c3c !important;
+
+    color:#8a1c1c !important;
+
+}
+
+.score{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    background:#eaf8ee;
+
+    color:#107c41;
+
+    border-radius:10px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+
+/* =====================================================
+   LESSON LINKS
+===================================================== */
+
+.lesson-links{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(230px,1fr));
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.lesson-link{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #107c41,
+            #21a366
+        );
+
+    padding:16px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.lesson-link:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 8px 18px rgba(16,124,65,.25);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    background:
+        linear-gradient(
+            270deg,
+            #141e30,
+            #243b55
+        );
+
+    color:white;
+
+    text-align:center;
+
+    padding:28px 15px;
+
+    margin-top:30px;
+
+    border-radius:
+        25px 25px 0 0;
+
+}
+
+footer h2{
+
+    color:#00e5ff;
+
+    margin-bottom:10px;
+
+}
+
+footer p{
+
+    margin:6px;
+
+    font-size:14px;
+
+}
+
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
+
+#topBtn{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:20px;
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#107c41;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    display:none;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    header h1{
+
+        font-size:24px;
+
+    }
+
+    .card{
+
+        padding:20px;
+
+    }
+
+    .nav{
+
+        flex-direction:column;
+
+    }
+
+    button.nav-btn{
+
+        width:100%;
+
+    }
+
+    .intro{
+
+        padding:20px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <h1
+        data-fr="📊 Formation Excel — Classe 5ème"
+        data-ml="📊 Fiofanana Excel — Kilasy 5ème">
+
+        📊 Formation Excel — Classe 5ème
+
+    </h1>
+
+
+    <p
+        data-fr="Apprendre Excel progressivement : formules, fonctions et exercices"
+        data-ml="Mianatra Excel tsikelikely : formules, fonctions ary fanazaran-tena">
+
+        Apprendre Excel progressivement :
+        formules, fonctions et exercices
+
+    </p>
+
+
+    <div class="language">
+
+        <button onclick="setLang('fr')">
+            🇫🇷 Français
+        </button>
+
+        <button onclick="setLang('ml')">
+            🇲🇬 Malagasy
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
+
+<div class="intro">
+
+    <h2
+        data-fr="🎯 Objectif de la formation"
+        data-ml="🎯 Tanjona amin'ny fiofanana">
+
+        🎯 Objectif de la formation
+
+    </h2>
+
+
+    <p
+        data-fr="À la fin de cette formation, l'élève doit être capable de créer un tableau simple, utiliser des formules et comprendre les principales fonctions Excel."
+        data-ml="Amin'ny faran'ity fiofanana ity dia tokony hahay mamorona tableau tsotra, mampiasa formules ary mahafantatra ireo fonctions fototra ao amin'ny Excel ny mpianatra.">
+
+        À la fin de cette formation, l'élève doit être capable
+        de créer un tableau simple, utiliser des formules
+        et comprendre les principales fonctions Excel.
+
+    </p>
+
+</div>
+
+
+
+<!-- =====================================================
+     PROGRESS
+===================================================== -->
+
+<div class="progress-info">
+
+    <span
+        data-fr="Progression"
+        data-ml="Fandrosoana">
+
+        Progression
+
+    </span>
+
+
+    <span id="lessonCounter">
+        1 / 4
+    </span>
+
+</div>
+
+
+<div class="progress">
+
+    <div
+        class="progress-bar"
+        id="progress">
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     LESSON 1
+===================================================== -->
+
+<div class="card" id="lesson1">
+
+    <h2
+        data-fr="🔰 Leçon 1 — Introduction à Excel"
+        data-ml="🔰 Lesona 1 — Fampidirana ny Excel">
+
+        🔰 Leçon 1 — Introduction à Excel
+
+    </h2>
+
+
+    <p
+        data-fr="Excel est un logiciel de tableur développé par Microsoft. Il permet d'organiser, calculer et analyser des données sous forme de tableaux."
+        data-ml="Excel dia logiciel tableur novolavolain'i Microsoft. Ampiasaina handaminana, hanaovana kajy ary handinihana données amin'ny endrika tableau izy.">
+
+        Excel est un logiciel de tableur développé par Microsoft.
+        Il permet d'organiser, calculer et analyser des données
+        sous forme de tableaux.
+
+    </p>
+
+
+    <div class="info">
+
+        💡
+
+        <strong
+            data-fr="À retenir :"
+            data-ml="Tsarovy :">
+
+            À retenir :
+
+        </strong>
+
+        <span
+            data-fr="Une formule Excel commence généralement par le signe ="
+            data-ml="Matetika ny formule Excel dia manomboka amin'ny famantarana =">
+
+            Une formule Excel commence généralement
+            par le signe =
+
+        </span>
+
+    </div>
+
+
+    <h3
+        data-fr="📋 Exemples"
+        data-ml="📋 Ohatra">
+
+        📋 Exemples
+
+    </h3>
+
+
+    <div class="formula">
+        =A1+B1
+    </div>
+
+
+    <div class="formula">
+        =A1*B1
+    </div>
+
+
+    <div class="formula">
+        =A1-B1
+    </div>
+
+
+    <div class="formula">
+        =A1/B1
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     LESSON 2
+===================================================== -->
+
+<div class="card" id="lesson2" style="display:none;">
+
+    <h2
+        data-fr="➕ Leçon 2 — Les formules"
+        data-ml="➕ Lesona 2 — Ireo formules">
+
+        ➕ Leçon 2 — Les formules
+
+    </h2>
+
+
+    <p
+        data-fr="Une formule permet d'effectuer automatiquement un calcul à partir des valeurs contenues dans les cellules."
+        data-ml="Ny formule dia ahafahana manao kajy automatique avy amin'ny sanda ao anatin'ny cellules.">
+
+        Une formule permet d'effectuer automatiquement
+        un calcul à partir des valeurs contenues dans les cellules.
+
+    </p>
+
+
+    <div class="function-grid">
+
+        <div class="function-box">
+
+            <strong
+                data-fr="➕ Addition"
+                data-ml="➕ Fanampiana">
+
+                ➕ Addition
+
+            </strong>
+
+            <div class="formula">
+                =A1+B1
+            </div>
+
+        </div>
+
+
+        <div class="function-box">
+
+            <strong
+                data-fr="➖ Soustraction"
+                data-ml="➖ Fanesorana">
+
+                ➖ Soustraction
+
+            </strong>
+
+            <div class="formula">
+                =A1-B1
+            </div>
+
+        </div>
+
+
+        <div class="function-box">
+
+            <strong
+                data-fr="✖️ Multiplication"
+                data-ml="✖️ Fampitomboana">
+
+                ✖️ Multiplication
+
+            </strong>
+
+            <div class="formula">
+                =A1*B1
+            </div>
+
+        </div>
+
+
+        <div class="function-box">
+
+            <strong
+                data-fr="➗ Division"
+                data-ml="➗ Fizarana">
+
+                ➗ Division
+
+            </strong>
+
+            <div class="formula">
+                =A1/B1
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+        📌
+
+        <strong
+            data-fr="Important :"
+            data-ml="Zava-dehibe :">
+
+            Important :
+
+        </strong>
+
+        <span
+            data-fr="Il faut toujours commencer une formule par ="
+            data-ml="Tokony hanomboka amin'ny = foana ny formule.">
+
+            Il faut toujours commencer une formule par =
+
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     LESSON 3
+===================================================== -->
+
+<div class="card" id="lesson3" style="display:none;">
+
+    <h2
+        data-fr="🧮 Leçon 3 — Les fonctions"
+        data-ml="🧮 Lesona 3 — Ireo fonctions">
+
+        🧮 Leçon 3 — Les fonctions
+
+    </h2>
+
+
+    <p
+        data-fr="Une fonction est une formule prédéfinie qui permet d'effectuer rapidement une opération."
+        data-ml="Ny fonction dia formule efa voafaritra mialoha izay manamora ny fanaovana kajy.">
+
+        Une fonction est une formule prédéfinie
+        qui permet d'effectuer rapidement une opération.
+
+    </p>
+
+
+    <div class="function-grid">
+
+        <div class="function-box">
+
+            <strong>
+                ➕ SOMME
+            </strong>
+
+            <div class="formula">
+                =SOMME(A1:A10)
+            </div>
+
+            <p
+                data-fr="Additionne plusieurs valeurs."
+                data-ml="Manampy sanda maromaro.">
+
+                Additionne plusieurs valeurs.
+
+            </p>
+
+        </div>
+
+
+        <div class="function-box">
+
+            <strong>
+                📊 MOYENNE
+            </strong>
+
+            <div class="formula">
+                =MOYENNE(A1:A10)
+            </div>
+
+            <p
+                data-fr="Calcule la moyenne."
+                data-ml="Manao kajy ny moyenne.">
+
+                Calcule la moyenne.
+
+            </p>
+
+        </div>
+
+
+        <div class="function-box">
+
+            <strong>
+                ✅ SI
+            </strong>
+
+            <div class="formula">
+                =SI(A1>=10;"Admis";"Ajourné")
+            </div>
+
+            <p
+                data-fr="Permet de tester une condition."
+                data-ml="Ampiasaina hitsapana condition.">
+
+                Permet de tester une condition.
+
+            </p>
+
+        </div>
+
+
+        <div class="function-box">
+
+            <strong>
+                ➕ SOMME.SI
+            </strong>
+
+            <div class="formula">
+                =SOMME.SI(A1:A10;">=10";B1:B10)
+            </div>
+
+            <p
+                data-fr="Additionne les valeurs qui respectent une condition."
+                data-ml="Manampy ireo sanda mahafeno condition iray.">
+
+                Additionne les valeurs qui respectent une condition.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     QUIZ
+===================================================== -->
+
+<div class="card" id="quiz" style="display:none;">
+
+    <h2
+        data-fr="🧪 Quiz Excel"
+        data-ml="🧪 Fanadinana Excel">
+
+        🧪 Quiz Excel
+
+    </h2>
+
+
+    <p
+        data-fr="Réponds aux questions puis regarde ton score."
+        data-ml="Valio ireo fanontaniana ary jereo ny isa azonao.">
+
+        Réponds aux questions puis regarde ton score.
+
+    </p>
+
+
+    <!-- QUESTION 1 -->
+
+    <div class="quiz-question">
+
+        <p
+            data-fr="1. Excel est principalement un..."
+            data-ml="1. Excel dia logiciel...">
+
+            1. Excel est principalement un...
+
+        </p>
+
+
+        <button class="answer"
+                onclick="check(this,true)">
+
+            📊 Logiciel tableur
+
+        </button>
+
+
+        <button class="answer"
+                onclick="check(this,false)">
+
+            🎮 Jeu vidéo
+
+        </button>
+
+
+        <button class="answer"
+                onclick="check(this,false)">
+
+            🎵 Lecteur musical
+
+        </button>
+
+    </div>
+
+
+
+    <!-- QUESTION 2 -->
+
+    <div class="quiz-question">
+
+        <p
+            data-fr="2. Quelle formule est correcte pour additionner A1 et B1 ?"
+            data-ml="2. Iza no formule marina hanampiana A1 sy B1 ?">
+
+            2. Quelle formule est correcte
+            pour additionner A1 et B1 ?
+
+        </p>
+
+
+        <button class="answer"
+                onclick="check(this,true)">
+
+            =A1+B1
+
+        </button>
+
+
+        <button class="answer"
+                onclick="check(this,false)">
+
+            A1+B1
+
+        </button>
+
+
+        <button class="answer"
+                onclick="check(this,false)">
+
+            +A1+B1
+
+        </button>
+
+    </div>
+
+
+
+    <!-- QUESTION 3 -->
+
+    <div class="quiz-question">
+
+        <p
+            data-fr="3. Quelle fonction permet de calculer une somme ?"
+            data-ml="3. Inona ny fonction ampiasaina hanaovana somme ?">
+
+            3. Quelle fonction permet
+            de calculer une somme ?
+
+        </p>
+
+
+        <button class="answer"
+                onclick="check(this,true)">
+
+            =SOMME(A1:A10)
+
+        </button>
+
+
+        <button class="answer"
+                onclick="check(this,false)">
+
+            =MOYENNE(A1:A10)
+
+        </button>
+
+
+        <button class="answer"
+                onclick="check(this,false)">
+
+            =SI(A1:A10)
+
+        </button>
+
+    </div>
+
+
+
+    <!-- QUESTION 4 -->
+
+    <div class="quiz-question">
+
+        <p
+            data-fr="4. Quelle fonction permet de calculer une moyenne ?"
+            data-ml="4. Inona ny fonction ampiasaina hanaovana moyenne ?">
+
+            4. Quelle fonction permet
+            de calculer une moyenne ?
+
+        </p>
+
+
+        <button class="answer"
+                onclick="check(this,true)">
+
+            =MOYENNE(A1:A10)
+
+        </button>
+
+
+        <button class="answer"
+                onclick="check(this,false)">
+
+            =SOMME(A1:A10)
+
+        </button>
+
+
+        <button class="answer"
+                onclick="check(this,false)">
+
+            =SI(A1:A10)
+
+        </button>
+
+    </div>
+
+
+
+    <div id="result" class="score">
+
+        📊 Score : 0 / 4
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<div class="nav">
+
+    <button
+        class="nav-btn"
+        id="prevBtn"
+        onclick="prev()">
+
+        ⬅️
+        <span
+            data-fr="Précédent"
+            data-ml="Teo aloha">
+
+            Précédent
+
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        id="nextBtn"
+        onclick="next()">
+
+        <span
+            data-fr="Suivant"
+            data-ml="Manaraka">
+
+            Suivant
+
+        </span>
+
+        ➡️
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     LES COURS FONCTIONS
+===================================================== -->
+
+<div class="card">
+
+    <h2
+        data-fr="📚 Cours complémentaires Excel"
+        data-ml="📚 Lesona Excel fanampiny">
+
+        📚 Cours complémentaires Excel
+
+    </h2>
+
+
+    <p
+        data-fr="Accède directement aux différentes fonctions Excel."
+        data-ml="Midira mivantana amin'ireo lesona momba ny fonctions Excel samihafa.">
+
+        Accède directement aux différentes fonctions Excel.
+
+    </p>
+
+
+    <div class="lesson-links">
+
+
+        <a
+            href="fonction-somme-5eme .html"
+            class="lesson-link">
+
+            ➕ Fonction SOMME
+
+        </a>
+
+
+        <a
+            href="fonction-somme-multiple-5eme.html"
+            class="lesson-link">
+
+            ➕ Fonction SOMME multiple
+
+        </a>
+
+
+        <a
+            href="fonction-somme-conditionnel-5eme.html"
+            class="lesson-link">
+
+            🧮 Fonction SOMME conditionnelle
+
+        </a>
+
+
+        <a
+            href="fonction-moyenne-5eme.html"
+            class="lesson-link">
+
+            📊 Fonction MOYENNE
+
+        </a>
+
+
+        <a
+            href="foncton-SI.html"
+            class="lesson-link">
+
+            ✅ Fonction SI
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     RETOUR
+===================================================== -->
+
+<div style="text-align:center;margin:30px 0;">
+
+    <a
+        href="index.html"
+        class="lesson-link"
+        style="display:inline-block;">
+
+        ⬅️
+        <span
+            data-fr="Retour à l'accueil"
+            data-ml="Hiverina any amin'ny Accueil">
+
+            Retour à l'accueil
+
+        </span>
+
+    </a>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <h2>
+        💻 Mr Tahiry - Informatique 👨‍🏫
+    </h2>
+
+
+    <p
+        data-fr="Formation pédagogique Excel"
+        data-ml="Fiofanana pedagogika Excel">
+
+        Formation pédagogique Excel
+
+    </p>
+
+
+    <p>
+
+        📅
+        <span id="dateFooter"></span>
+
+    </p>
+
+
+    <p
+        data-fr="🚀 Apprendre • Pratiquer • Réussir 🌟"
+        data-ml="🚀 Mianatra • Manao fanazaran-tena • Mahomby 🌟">
+
+        🚀 Apprendre • Pratiquer • Réussir 🌟
+
+    </p>
+
+</footer>
+
+
+
+<!-- TOP BUTTON -->
+
+<button id="topBtn"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">
+
+    ↑
+
+</button>
+
+
+
+<script>
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let current = 1;
+
+const total = 4;
+
+let score = 0;
+
+let answered = 0;
+
+
+/* =====================================================
+   AFFICHER LEÇON
+===================================================== */
+
+function showLesson(n){
+
+    for(let i = 1; i <= 3; i++){
+
+        document.getElementById(
+            "lesson" + i
+        ).style.display = "none";
+
+    }
+
+
+    document.getElementById("quiz")
+        .style.display = "none";
+
+
+    if(n <= 3){
+
+        document.getElementById(
+            "lesson" + n
+        ).style.display = "block";
+
+    }
+
+    else{
+
+        document.getElementById("quiz")
+            .style.display = "block";
+
+    }
+
+
+    const percent =
+        (n / total) * 100;
+
+
+    document.getElementById(
+        "progress"
+    ).style.width = percent + "%";
+
+
+    document.getElementById(
+        "lessonCounter"
+    ).textContent =
+        n + " / " + total;
+
+
+    document.getElementById(
+        "prevBtn"
+    ).disabled =
+        n === 1;
+
+
+    document.getElementById(
+        "nextBtn"
+    ).disabled =
+        n === total;
+
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function next(){
+
+    if(current < total){
+
+        current++;
+
+        showLesson(current);
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   PREVIOUS
+===================================================== */
+
+function prev(){
+
+    if(current > 1){
+
+        current--;
+
+        showLesson(current);
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+function check(btn,correct){
+
+    const question =
+        btn.closest(".quiz-question");
+
+
+    if(question.dataset.done === "true"){
+
+        return;
+
+    }
+
+
+    question.dataset.done = "true";
+
+
+    const buttons =
+        question.querySelectorAll(".answer");
+
+
+    buttons.forEach(function(b){
+
+        b.disabled = true;
+
+    });
+
+
+    if(correct){
+
+        btn.classList.add("correct");
+
+        score++;
+
+    }
+
+    else{
+
+        btn.classList.add("wrong");
+
+        buttons.forEach(function(b){
+
+            if(
+                b.getAttribute("onclick")
+                .includes("true")
+            ){
+
+                b.classList.add("correct");
+
+            }
+
+        });
+
+    }
+
+
+    answered++;
+
+
+    document.getElementById(
+        "result"
+    ).textContent =
+        "📊 Score : " +
+        score +
+        " / 4";
+
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+function setLang(lang){
+
+    document.querySelectorAll(
+        "[data-fr]"
+    ).forEach(function(element){
+
+        if(lang === "fr"){
+
+            element.textContent =
+                element.getAttribute("data-fr");
+
+        }
+
+        else{
+
+            element.textContent =
+                element.getAttribute("data-ml");
+
+        }
+
+    });
+
+
+    document.documentElement.lang =
+        lang === "fr"
+        ? "fr"
+        : "mg";
+
+
+    localStorage.setItem(
+        "language",
+        lang
+    );
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+const today = new Date();
+
+document.getElementById(
+    "dateFooter"
+).textContent =
+    today.toLocaleDateString(
+        "fr-FR",
+        {
+            day:"2-digit",
+            month:"2-digit",
+            year:"numeric"
+        }
+    );
+
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        const btn =
+            document.getElementById(
+                "topBtn"
+            );
+
+
+        if(window.scrollY > 400){
+
+            btn.style.display =
+                "block";
+
+        }
+
+        else{
+
+            btn.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   LANGUE SAUVEGARDEE
+===================================================== */
+
+const savedLanguage =
+    localStorage.getItem(
+        "language"
+    ) || "fr";
+
+
+setLang(savedLanguage);
+
+
+/* =====================================================
+   DEMARRAGE
+===================================================== */
+
+showLesson(current);
+
+</script>
+
+
+</body>
+</html>
